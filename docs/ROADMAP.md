@@ -17,7 +17,7 @@ its own. Update the status column as things land.
 | 4 | Goals model: fit Elo-diff → expected goals curve (Poisson regression) | `model/` | done (a=0.136, b=0.00176; `data/model_params.yaml`) |
 | 5 | Single-match simulator: scoreline, extra time, shootout, Elo update | `model/match.py` | done (vectorised over sims; frequencies verified against the Poisson model) |
 | 6 | Tournament definitions (YAML schema + loader): groups, hosts, rules, bracket | `tournament/format.py` | done (wc2026 loads and cross-validates: 48 teams, 32-match bracket, 495-row table; euro/copa 2028 placeholders share the schema) |
-| 7 | Group stage: standings, points, tiebreakers (UEFA / CONMEBOL / FIFA), best-thirds ranking. **Validate by replaying the real 2026 group results and checking the 32 advancing teams match reality** | `tournament/group.py` | todo |
+| 7 | Group stage: standings, points, tiebreakers (UEFA / CONMEBOL / FIFA), best-thirds ranking. **Validate by replaying the real 2026 group results and checking the 32 advancing teams match reality** | `tournament/group.py` | done (real 72 results -> the real 32 qualifiers and the documented third-place table; no group needed the Elo/lots fallback) |
 | 8 | Knockout stage: bracket resolution incl. the 495-row third-place table. **Validate: real 2026 standings must produce all 16 real R32 pairings** | `tournament/knockout.py` | todo (data + rules documented in `docs/WC2026_FORMAT.md`) |
 | 9 | Full single-tournament simulation | `tournament/simulate.py` | todo |
 | 10 | Monte Carlo runner: N sims, seeds, aggregation (P(win), P(reach round), group finish) | `montecarlo/` | todo |
@@ -64,7 +64,10 @@ cannot model that; fall back to rng lots) and drawing of lots.
 **7 Group tiebreakers.** World Cup 2026 and UEFA: points, then head-to-head among the tied teams
 (points, GD, goals; re-applied to any subset still level), then overall GD, goals, fair play (not
 modelled: use Elo then rng lots). CONMEBOL Copa: points, overall GD, goals, head-to-head, lots.
-Encode as ordered rule lists; exact 2026 text in `docs/WC2026_FORMAT.md`.
+Encoded as ordered stage lists in `tournament/group.py`; only the head-to-head block restarts on
+a subset still level, later stages continue. `Standings.depth` says how deep a tie went, so the
+Monte Carlo can count how often Elo or lots decided a place. Exact 2026 text in
+`docs/WC2026_FORMAT.md`.
 
 **12 Backtest metrics.** For each match: Brier score over (W/D/L) and log-loss. For the tournament:
 did the sim's most-likely champion / semi-finalists match? Rank-probability skill vs a naive

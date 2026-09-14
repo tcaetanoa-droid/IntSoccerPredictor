@@ -43,11 +43,12 @@ often a favourite actually gets the result.
 
 | Done | Next |
 |---|---|
-| Data layer for eloratings.net TSV files | Group standings with the 2026 tiebreakers and best-third ranking |
-| Elo engine, verified against the site's own point exchanges | Knockout bracket resolution |
-| Pre-tournament ratings for all 48 teams, groups, all 104 real results, full bracket and FIFA's 495-row third-place table | Full tournament simulation and Monte Carlo runner |
-| Goals model fitted and calibrated | Reports and the 2026 backtest |
+| Data layer for eloratings.net TSV files | Knockout bracket resolution |
+| Elo engine, verified against the site's own point exchanges | Full tournament simulation and Monte Carlo runner |
+| Pre-tournament ratings for all 48 teams, groups, all 104 real results, full bracket and FIFA's 495-row third-place table | Reports and the 2026 backtest |
+| Goals model fitted and calibrated | |
 | Single-match simulator with extra time and penalties, and the tournament definition loader | |
+| Group standings with the 2026 tiebreakers, verified to reproduce the real 32 qualifiers | |
 
 Details and the full component list are in [docs/ROADMAP.md](docs/ROADMAP.md).
 
@@ -78,8 +79,9 @@ src/intsoccer/
   model/       goals.py (GoalsModel, outcome_probs), fit.py (Poisson regression, diagnostics
                chart), match.py (simulate_match: scoreline, extra time, shootout, Elo update,
                vectorised over simulations)
-  tournament/  format.py (load_tournament: YAML + third-place table, fully cross-validated);
-               group.py, knockout.py, simulate.py to come
+  tournament/  format.py (load_tournament: YAML + third-place table, fully cross-validated),
+               group.py (standings, tiebreaker rulesets, best-thirds ranking); knockout.py,
+               simulate.py to come
   montecarlo/, backtest/, report/   not started
   cli.py       intsoccer fetch | snapshot | fit
 data/tournaments/   wc2026.yaml (annotated schema example), wc2026_results.csv (all 104 real
@@ -102,7 +104,7 @@ eloratings.net TSVs
 
 data/tournaments/<name>.yaml + snapshot + params
     ↓  tournament/format.py   (validated Tournament)
-    ↓  tournament/group.py    (standings, tiebreakers, best thirds)      [todo]
+    ↓  tournament/group.py    (standings, tiebreakers, best thirds)
     ↓  tournament/knockout.py (bracket, third-place table)               [todo]
     ↓  model/match.py         (one match, vectorised over simulations)
     ↓  montecarlo/            (N seeds → P(win), P(reach round), group finish)   [todo]

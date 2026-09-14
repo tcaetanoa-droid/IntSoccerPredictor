@@ -28,8 +28,11 @@ order too, so one "head-to-head first" implementation covers the World Cup and t
 CONMEBOL (Copa América) uses overall GD first; keep the rule order configurable per tournament.
 
 Simulation note: we cannot model cards, so steps f–h are replaced by the pre-tournament Elo
-rating (higher first), then a seeded random draw. Log how often the simulation reaches that
-fallback; in the real 2026 group stage no tie needed it.
+rating (higher first), then a seeded random draw. `tournament/group.py` reports how deep each tie
+went (`Standings.depth`); in the real 2026 group stage no tie went past step d. Interpretation
+used: when a–c separate *some* tied teams, a–c are re-applied to those still level (a fresh
+sub-table of just their matches); when d or e separate some, the rest continue with the next
+step rather than going back to head-to-head.
 
 ## 2. Ranking the twelve third-placed teams (best eight advance)
 
