@@ -1,16 +1,32 @@
 # CONMEBOL Copa América 2028 — host, dates, and format NOT YET ANNOUNCED (Sept 2026).
-# Template copied from the 2024 edition (16 teams, 4 groups, top two -> quarter-finals).
+# Template copied from the 2024 edition (16 teams, 4 groups, top two -> quarter-finals, 24 group
+# matches so the knockouts are numbered 25-32). Groups are PLACEHOLDERS ('TBD'); the loader
+# rejects the file until they are filled in. Slot notation: src/intsoccer/tournament/format.py.
 name: Copa America 2028
 match_type: CA          # -> K = 50
-tiebreakers: conmebol
+tiebreakers: overall_first   # CONMEBOL: points, overall GD, GF, then head-to-head
 hosts: {}
 groups:
-  A: [TBD, TBD, TBD, TBD]
-  B: [TBD, TBD, TBD, TBD]
-  C: [TBD, TBD, TBD, TBD]
-  D: [TBD, TBD, TBD, TBD]
+  A: ['TBD', 'TBD', 'TBD', 'TBD']
+  B: ['TBD', 'TBD', 'TBD', 'TBD']
+  C: ['TBD', 'TBD', 'TBD', 'TBD']
+  D: ['TBD', 'TBD', 'TBD', 'TBD']
 advance:
   top_n: 2
   best_thirds: 0
 knockout:
-  quarter_finals: [[A1, B2], [B1, A2], [C1, D2], [D1, C2]]
+  extra_time_and_penalties: true   # 2024: quarter-finals went straight to penalties; check 2028 rules
+  matches:
+    25: [1A, 2B]
+    26: [1B, 2A]
+    27: [1C, 2D]
+    28: [1D, 2C]
+    29: [W25, W26]
+    30: [W27, W28]
+    31: [L29, L30]      # third-place match
+    32: [W29, W30]      # final
+  rounds:
+    QF: [25, 26, 27, 28]
+    SF: [29, 30]
+    3P: [31]
+    F:  [32]

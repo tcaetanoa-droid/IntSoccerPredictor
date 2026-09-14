@@ -1,25 +1,48 @@
 # UEFA Euro 2028 — 9 Jun to 9 Jul 2028, hosts England, Scotland, Wales, Republic of Ireland.
-# Finals draw not held yet (qualifying draw 6 Dec 2026). Groups below are PLACEHOLDERS so the
-# pipeline can run; replace after the draw. Schema is defined in Roadmap component 6.
+# Finals draw not held yet (qualifying draw 6 Dec 2026). Groups are PLACEHOLDERS ('TBD') so the
+# file documents the schema; the loader rejects it until the draw fills the teams in.
+# Bracket and third-place table are copied from Euro 2024 (24 teams, 6 groups, best 4 thirds),
+# which UEFA has said Euro 2028 will reuse — VERIFY against the 2028 regulations when published.
+# Slot notation is explained in src/intsoccer/tournament/format.py; see wc2026.yaml for an example.
 name: UEFA Euro 2028
 match_type: EC          # -> K = 50
-tiebreakers: uefa
+tiebreakers: head_to_head_first   # UEFA: points, head-to-head, overall GD, GF
 hosts:                  # team code -> venue country code where they get +100 home advantage
   'EN': 'EN'
-  'SC': 'SC'
+  'SQ': 'SQ'            # SQ is Scotland on eloratings.net (not SC)
   'WA': 'WA'
-  'IR': 'IR'
+  'IE': 'IE'            # IE is Republic of Ireland on eloratings.net (IR is Iran)
 groups:
-  A: [EN, TBD, TBD, TBD]
-  B: [SC, TBD, TBD, TBD]
-  C: [WA, TBD, TBD, TBD]
-  D: [IR, TBD, TBD, TBD]
-  E: [TBD, TBD, TBD, TBD]
-  F: [TBD, TBD, TBD, TBD]
+  A: ['EN', 'TBD', 'TBD', 'TBD']
+  B: ['SQ', 'TBD', 'TBD', 'TBD']
+  C: ['WA', 'TBD', 'TBD', 'TBD']
+  D: ['IE', 'TBD', 'TBD', 'TBD']
+  E: ['TBD', 'TBD', 'TBD', 'TBD']
+  F: ['TBD', 'TBD', 'TBD', 'TBD']
 advance:
   top_n: 2
   best_thirds: 4
 knockout:
-  # Same bracket structure as Euro 2024; fill from the official regulations when published.
-  round_of_16: []
-  third_place_table: {}
+  third_place_table: data/tournaments/euro2028_third_place_table.csv   # Euro 2024 table, 15 rows
+  extra_time_and_penalties: true
+  matches:
+    37: [2A, 2B]
+    38: [1A, 2C]
+    39: [1C, '3:DEF']
+    40: [1B, '3:ADEF']
+    41: [2D, 2E]
+    42: [1F, '3:ABC']
+    43: [1E, '3:ABCD']
+    44: [1D, 2F]
+    45: [W39, W37]
+    46: [W41, W42]
+    47: [W43, W44]
+    48: [W40, W38]
+    49: [W45, W46]
+    50: [W47, W48]
+    51: [W49, W50]      # final; no third-place match at the Euros
+  rounds:
+    R16: [37, 38, 39, 40, 41, 42, 43, 44]
+    QF:  [45, 46, 47, 48]
+    SF:  [49, 50]
+    F:   [51]

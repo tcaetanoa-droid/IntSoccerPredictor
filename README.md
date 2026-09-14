@@ -43,10 +43,11 @@ often a favourite actually gets the result.
 
 | Done | Next |
 |---|---|
-| Data layer for eloratings.net TSV files | Single-match simulator with extra time and penalties |
-| Elo engine, verified against the site's own point exchanges | Group standings with the 2026 tiebreakers and best-third ranking |
-| Pre-tournament ratings for all 48 teams, groups, all 104 real results, full bracket and FIFA's 495-row third-place table | Knockout bracket resolution |
-| Goals model fitted and calibrated | Monte Carlo runner, reports, backtest |
+| Data layer for eloratings.net TSV files | Group standings with the 2026 tiebreakers and best-third ranking |
+| Elo engine, verified against the site's own point exchanges | Knockout bracket resolution |
+| Pre-tournament ratings for all 48 teams, groups, all 104 real results, full bracket and FIFA's 495-row third-place table | Full tournament simulation and Monte Carlo runner |
+| Goals model fitted and calibrated | Reports and the 2026 backtest |
+| Single-match simulator with extra time and penalties, and the tournament definition loader | |
 
 Details and the full component list are in [docs/ROADMAP.md](docs/ROADMAP.md).
 
@@ -83,6 +84,11 @@ All ratings and match histories come from [eloratings.net](https://eloratings.ne
 Elo Ratings). Tournament regulations are taken from FIFA's 2026 World Cup regulations as
 documented on Wikipedia. This is a personal, non-commercial project and is not affiliated with
 either.
+
+Teams are identified everywhere by eloratings.net's own two-letter codes, which are not ISO codes.
+Some are easy to get wrong: `SQ` is Scotland (`SC` is Seychelles), `IE` is the Republic of Ireland
+(`IR` is Iran), `EN` is England and `WA` is Wales. The full lookup is `en.teams.tsv`, downloaded
+into `data/raw/` by `intsoccer fetch`.
 
 ## License
 

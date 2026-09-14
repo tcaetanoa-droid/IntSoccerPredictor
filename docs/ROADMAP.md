@@ -16,7 +16,7 @@ its own. Update the status column as things land.
 | 3 | Rating reconstruction: pre-tournament snapshot, group inference, results export | `data/snapshot.py` | done (`data/snapshots/2026-06-10_wc2026.csv`, `wc2026.yaml`, `wc2026_results.csv`) |
 | 4 | Goals model: fit Elo-diff → expected goals curve (Poisson regression) | `model/` | done (a=0.136, b=0.00176; `data/model_params.yaml`) |
 | 5 | Single-match simulator: scoreline, extra time, shootout, Elo update | `model/match.py` | done (vectorised over sims; frequencies verified against the Poisson model) |
-| 6 | Tournament definitions (YAML schema + loader): groups, hosts, rules, bracket | `tournament/format.py` | todo |
+| 6 | Tournament definitions (YAML schema + loader): groups, hosts, rules, bracket | `tournament/format.py` | done (wc2026 loads and cross-validates: 48 teams, 32-match bracket, 495-row table; euro/copa 2028 placeholders share the schema) |
 | 7 | Group stage: standings, points, tiebreakers (UEFA / CONMEBOL / FIFA), best-thirds ranking. **Validate by replaying the real 2026 group results and checking the 32 advancing teams match reality** | `tournament/group.py` | todo |
 | 8 | Knockout stage: bracket resolution incl. the 495-row third-place table. **Validate: real 2026 standings must produce all 16 real R32 pairings** | `tournament/knockout.py` | todo (data + rules documented in `docs/WC2026_FORMAT.md`) |
 | 9 | Full single-tournament simulation | `tournament/simulate.py` | todo |
@@ -46,9 +46,13 @@ turned out to be ~0) from the 48 WC 2026 histories, 2010 to 10 Jun 2026. Params 
 (after ET/pens if knockout), new ratings. Extra time: Poisson with λ·(30/90). Shootout: 50/50
 (or a mild Elo tilt, configurable). Elo update uses the score after extra time, W = 0.5 on pens.
 
-**6 Tournament YAML.** Fields: name, K, hosts (code → venue country), groups (letter → codes),
-advancement (top_n, best_thirds n), tiebreaker ruleset name, bracket (list of ties referencing
-`A1`, `B2`, `3rd:ABCD`, `W:R16-1`, …), third-place pairing table.
+**6 Tournament YAML.** Fields: name, match_type (→ K), hosts (code → venue country), groups
+(letter → codes), advance (top_n, best_thirds), tiebreakers (`head_to_head_first` for the World Cup
+and UEFA, `overall_first` for CONMEBOL), knockout matches keyed by FIFA match number with slots
+`1A`, `2B`, `3:ABCDF`, `W74`, `L101`, rounds (name → match numbers), and a third-place table CSV.
+`load_tournament("wc2026")` validates every cross-reference: each group position used exactly once,
+match refs only point backwards, the table covers all C(groups, best_thirds) sets and only sends
+thirds to slots that accept them. Schema in the `tournament/format.py` docstring.
 
 **7 Group standings validation.** The 48-team / best-8-thirds format is the fiddliest part of the
 whole project, so it gets its own acceptance test: feed the 72 real group results from
