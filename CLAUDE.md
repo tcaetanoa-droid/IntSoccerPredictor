@@ -25,7 +25,9 @@ Package `src/intsoccer/`, one sub-package per pipeline stage:
 - `model/` - goals curve, its fit, and `simulate_match()` (vectorised over simulations). Pure.
 - `tournament/` - rules as data: `format.py` loads and validates `data/tournaments/*.yaml`;
   `group.py`, `knockout.py`, `simulate.py` follow (see ROADMAP).
-- `montecarlo/`, `backtest/`, `report/` - todo. `cli.py` exposes `fetch | snapshot | fit`.
+- `montecarlo/` - n seeded runs, every match/team/sim stored as Parquet under `output/<name>/`.
+- `report/` - the ten views of `docs/REPORTS.md` as CSV/JSON under `output/<name>/report/`.
+- `backtest/` - todo. `cli.py` exposes `fetch | snapshot | fit | simulate | report`.
 
 ## Key Design Decisions
 
@@ -109,6 +111,20 @@ Show the test output, not a claim. A component is done when `pytest` passes, the
 row is updated, and the docs in `docs/` reflect any formula, endpoint or rule change. Commit as
 `Component N: <what>` and push to `origin main` only when asked. No half components, no
 squashing components together. New reader-facing facts go in README, not here.
+
+## Skills (`.claude/skills/`, for the website work)
+
+Copied from GitHub on 14 Sep 2026, same set Thiago uses in his other projects:
+
+- `ui-ux-pro-max` (nextlevelbuilder/ui-ux-pro-max-skill): design intelligence with a local
+  search script, `python3 .claude/skills/ui-ux-pro-max/scripts/search.py "<query>"
+  --design-system -p "<project>"`. Use for palette, typography, layout and UX rules.
+- `brainstorming`, `writing-plans`, `executing-plans` and the rest of obra/superpowers: start
+  any website or design session with `brainstorming` (it has a visual companion that serves
+  HTML frames on localhost), then a plan, then build one section at a time for feedback.
+- `frontend-design` is Anthropic's plugin, installed globally and already active here.
+
+The website is light-themed and reads `output/<name>/report/*.json`; see `docs/REPORTS.md`.
 
 ## Commands
 
