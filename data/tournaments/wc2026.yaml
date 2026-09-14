@@ -1,0 +1,75 @@
+# FIFA World Cup 2026 — 11 Jun to 19 Jul 2026, hosts United States, Canada, Mexico.
+# Groups were inferred from who played whom in the group stage (eloratings.net histories).
+# Group LETTERS come from the 5 Dec 2025 draw (pot-1 seeds: MX=A, CA=B, BR=C, US=D, DE=E,
+# NL=F, BE=G, ES=H, FR=I, AR=J, PT=K, EN=L) — verify. Actual results: wc2026_results.csv.
+name: FIFA World Cup 2026
+match_type: WC          # -> K = 60
+tiebreakers: head_to_head_first   # 2026 rule: a-c head-to-head, then overall GD, GF
+start_date: 2026-06-11
+ratings_snapshot: data/snapshots/2026-06-10_wc2026.csv
+hosts:                  # team code -> venue country code where they get +100 home advantage
+  'US': 'US'
+  'CA': 'CA'
+  'MX': 'MX'
+groups:
+  A: ['MX', 'KR', 'CZ', 'ZA']   # Mexico, South Korea, Czechia, South Africa
+  B: ['CH', 'CA', 'BA', 'QA']   # Switzerland, Canada, Bosnia and Herzegovina, Qatar
+  C: ['BR', 'MA', 'SQ', 'HT']   # Brazil, Morocco, Scotland, Haiti
+  D: ['TR', 'PY', 'AU', 'US']   # Turkey, Paraguay, Australia, United States
+  E: ['EC', 'DE', 'CI', 'CW']   # Ecuador, Germany, Ivory Coast, Curaçao
+  F: ['NL', 'JP', 'SE', 'TN']   # Netherlands, Japan, Sweden, Tunisia
+  G: ['BE', 'IR', 'EG', 'NZ']   # Belgium, Iran, Egypt, New Zealand
+  H: ['ES', 'UY', 'CV', 'SA']   # Spain, Uruguay, Cape Verde, Saudi Arabia
+  I: ['FR', 'NO', 'SN', 'IQ']   # France, Norway, Senegal, Iraq
+  J: ['AR', 'AT', 'DZ', 'JO']   # Argentina, Austria, Algeria, Jordan
+  K: ['PT', 'CO', 'UZ', 'CD']   # Portugal, Colombia, Uzbekistan, DR Congo
+  L: ['EN', 'HR', 'PA', 'GH']   # England, Croatia, Panama, Ghana
+advance:
+  top_n: 2
+  best_thirds: 8
+knockout:
+  # Full bracket, tiebreakers and the 495-row third-place table: docs/WC2026_FORMAT.md.
+  # Slot notation: 1A/2A = group position, 3:ABCDF = third-placed team from one of those groups
+  # (resolved via wc2026_third_place_table.csv), W74 / L101 = winner / loser of match 74 / 101.
+  third_place_table: data/tournaments/wc2026_third_place_table.csv
+  extra_time_and_penalties: true
+  matches:
+    73:  [2A, 2B]
+    74:  [1E, '3:ABCDF']
+    75:  [1F, 2C]
+    76:  [1C, 2F]
+    77:  [1I, '3:CDFGH']
+    78:  [2E, 2I]
+    79:  [1A, '3:CEFHI']
+    80:  [1L, '3:EHIJK']
+    81:  [1D, '3:BEFIJ']
+    82:  [1G, '3:AEHIJ']
+    83:  [2K, 2L]
+    84:  [1H, 2J]
+    85:  [1B, '3:EFGIJ']
+    86:  [1J, 2H]
+    87:  [1K, '3:DEIJL']
+    88:  [2D, 2G]
+    89:  [W74, W77]
+    90:  [W73, W75]
+    91:  [W76, W78]
+    92:  [W79, W80]
+    93:  [W83, W84]
+    94:  [W81, W82]
+    95:  [W86, W88]
+    96:  [W85, W87]
+    97:  [W89, W90]
+    98:  [W93, W94]
+    99:  [W91, W92]
+    100: [W95, W96]
+    101: [W97, W98]
+    102: [W99, W100]
+    103: [L101, L102]   # third-place match
+    104: [W101, W102]   # final
+  rounds:
+    R32: [73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88]
+    R16: [89, 90, 91, 92, 93, 94, 95, 96]
+    QF:  [97, 98, 99, 100]
+    SF:  [101, 102]
+    3P:  [103]
+    F:   [104]
