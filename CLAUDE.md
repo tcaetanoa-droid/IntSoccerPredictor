@@ -1,8 +1,8 @@
 # CLAUDE.md - Technical notes for IntSoccerPredictor
 
-Working brief for coding sessions: what the code does, the decisions behind it, and the things
-that bite. Facts a human reader needs (what the project is, team-code traps, data credits) live in
-`README.md`; the plan and status live in `docs/ROADMAP.md`. Do not duplicate either here.
+Working brief for coding sessions: the decisions behind the code, the things that bite, and how
+to work. What the project is, the module map, data flow and team-code traps are in `README.md`;
+plan and status in `docs/ROADMAP.md`; formulas and rules in `docs/`. Do not duplicate them here.
 
 ## Project Overview
 
@@ -18,75 +18,21 @@ from it produces no draws.
 
 ## Architecture
 
-Package `src/intsoccer/`. `elo/` and `model/` are pure functions over numpy arrays with no I/O.
-I/O lives in `data/`, `tournament/format.py` (YAML/CSV loading) and later `report/`.
+Package `src/intsoccer/`, one sub-package per pipeline stage:
 
-### `data/` - eloratings.net files
-
-**`schema.py`** - column layouts (TSVs have no header), `K_BY_MATCH_TYPE` (WC 60, EC/CA 50,
-WQ 40, F 20, default 30; verified empirically, see `docs/ELO_FORMULA.md`).
-
-**`fetch.py`** - `download()` caches into `data/raw/` (git-ignored); `fetch_core()` gets
-`World.tsv` plus the team/tournament lookups; `fetch_team_histories()` gets `<Team>.tsv` per team.
-`team_filename()` strips accents because the site does.
-
-**`parse.py`** - `load_ratings()`, `load_matches()`, `load_team_names()`. Converts the site's
-Unicode minus sign and reads bytes as UTF-8 (the server sends no charset).
-
-**`snapshot.py`** - `rating_on()` = rating-after of a team's last match before date D;
-`build_snapshot()` / `save_snapshot()` / `load_snapshot()` for `data/snapshots/<date>_<label>.csv`
-(committed). `infer_groups()` reconstructs tournament groups from who played whom.
-
-### `elo/` - the rating formula
-
-**`core.py`** - `rating_diff()` (adds `HOME_ADVANTAGE` = 100 for a true home game),
-`expected_score()`, `result_score()` (shootout = draw), `goal_multiplier()`, `k_factor()`,
-`update()` → `Update(new_a, new_b, delta)`. Zero-sum, unrounded.
-
-### `model/` - goals and match simulation
-
-**`goals.py`** - `GoalsModel(a, b, c_friendly)`: `lambda = exp(a + b·dr)`, mirror-image rates
-for the two teams. `outcome_probs()` gives P(W/D/L) from two Poisson rates (used in tests and
-later for Brier/log-loss). Params persist in `data/model_params.yaml`.
-
-**`fit.py`** - `build_training_set()` from real histories, `fit_goals_model()` (Poisson
-regression by `scipy.optimize.minimize` on `dr / 1000` so all parameters are O(1)),
-`diagnostics()` + `plot_diagnostics()` for the calibration chart in `output/` and `docs/img/`.
-
-**`match.py`** - `simulate_match(rating_a, rating_b, k, model, rng, home_sign, knockout)` →
-`MatchResult`. Vectorised: scalars or length-n arrays, one entry per simulation. Knockout: extra
-time as Poisson with rates × 30/90, then a shootout (`shootout_p_a`, default 0.5). `decided_by`
-is `REGULAR` / `EXTRA_TIME` / `PENALTIES`.
-
-### `tournament/` - rules as data
-
-**`format.py`** - `load_tournament("wc2026")` → frozen `Tournament` (groups, hosts, `top_n`,
-`best_thirds`, `tiebreakers`, knockout `matches` keyed by FIFA match number, `rounds`,
-`third_place_table`). Slots are `GroupSlot` (`1A`), `ThirdSlot` (`3:ABCDF`), `MatchRef` (`W74`,
-`L101`); `parse_slot()` / `format_slot()` convert. `build_tournament()` validates every
-cross-reference and raises `ValueError` with a message that names the offending row.
-
-Planned, empty for now: `tournament/group.py` (standings), `tournament/knockout.py` (bracket),
-`tournament/simulate.py`, `montecarlo/`, `backtest/`, `report/`. See `docs/ROADMAP.md`.
-
-### `cli.py`
-
-`intsoccer fetch | snapshot | fit` work; `simulate | backtest | report` are stubs.
-
-### Data files
-
-- `data/tournaments/wc2026.yaml` - the annotated schema example. `euro2028.yaml` / `copa2028.yaml`
-  are placeholders with `TBD` teams; the loader rejects them by design until the draws happen.
-- `data/tournaments/wc2026_results.csv` - all 104 real 2026 results with pre-match ratings.
-- `data/tournaments/wc2026_third_place_table.csv` - FIFA Annex C, 495 rows.
-- `data/snapshots/2026-06-10_wc2026.csv` - every participant's rating on the eve of the opener.
+- `data/` - all eloratings.net I/O: fetch (cached in `data/raw/`), parse, rating snapshots.
+- `elo/` - the rating formula. Pure functions over numpy arrays, no I/O.
+- `model/` - goals curve, its fit, and `simulate_match()` (vectorised over simulations). Pure.
+- `tournament/` - rules as data: `format.py` loads and validates `data/tournaments/*.yaml`;
+  `group.py`, `knockout.py`, `simulate.py` follow (see ROADMAP).
+- `montecarlo/`, `backtest/`, `report/` - todo. `cli.py` exposes `fetch | snapshot | fit`.
 
 ## Key Design Decisions
 
 ### One match, one pipeline
 Pre-match Elo → gap `dr` (+100 home) → expected goals → Poisson scores → result from the score →
 Elo update with the site's formula → carry the new ratings into the next match of *that*
-simulation. Every stage exists as its own pure function so each can be checked against real data.
+simulation. Every stage is its own pure function so each can be checked against real data.
 
 ### Reproducibility
 Every simulation takes an explicit `np.random.default_rng(seed)`. No global RNG state anywhere.
@@ -94,7 +40,8 @@ Every simulation takes an explicit `np.random.default_rng(seed)`. No global RNG 
 ### Rules live in data, not in loops
 Groups, hosts, tiebreaker ruleset, bracket and the third-place table are YAML/CSV under
 `data/tournaments/` and are interpreted by `tournament/`. The simulator loop never contains a
-tournament-specific `if`.
+tournament-specific `if`. `euro2028.yaml` / `copa2028.yaml` are `TBD` placeholders that the
+loader rejects by design until the draws happen.
 
 ### Honest backtest
 The goals model is fitted only on matches before 11 June 2026. Never widen the training window
@@ -113,13 +60,12 @@ standings and bracket rules in `docs/WC2026_FORMAT.md`. Code comments point ther
 ## Important Implementation Details
 
 - Paths in a tournament YAML (`ratings_snapshot`, `third_place_table`) resolve against the
-  project root, the same convention as `model/goals.py`'s `PARAMS_PATH`.
+  project root; every module finds it as `Path(__file__).resolve().parents[3]`.
 - `simulate_match` broadcasts scalars to length-n arrays; downstream code should assume arrays.
 - Elo update in knockouts uses the score **after extra time**; a shootout is `W = 0.5`, `G = 1`.
-- Hosts get +100 when the venue column is empty in a history row (true home game). A venue code
-  means neutral, even for a host playing elsewhere in the host country group (Canada's knockouts
-  were in the USA).
-- Project root is `Path(__file__).resolve().parents[3]` from any module in the package.
+- An empty venue column in a history row means a true home game (+100). A venue code means
+  neutral, even for a host playing elsewhere in the host region (Canada's knockouts were in the USA).
+- `K` comes from the tournament's `match_type` via `elo.k_factor()` (WC 60, EC/CA 50, F 20).
 
 ## Common Gotchas
 
@@ -162,7 +108,7 @@ Bracket         → verify: the real standings yield all 16 real round-of-32 pai
 Show the test output, not a claim. A component is done when `pytest` passes, the ROADMAP status
 row is updated, and the docs in `docs/` reflect any formula, endpoint or rule change. Commit as
 `Component N: <what>` and push to `origin main` only when asked. No half components, no
-squashing components together.
+squashing components together. New reader-facing facts go in README, not here.
 
 ## Commands
 
@@ -173,30 +119,4 @@ pytest                                                  # the gate
 intsoccer fetch --teams ES AR                           # TSVs into data/raw/ (cached)
 intsoccer snapshot --date 2026-06-11 --label wc2026     # ratings as of the day before a date
 intsoccer fit                                           # refit -> data/model_params.yaml
-```
-
-## Testing Notes
-
-`tests/fixtures/` holds small real TSV slices (Spain and Argentina from 2022 on, ratings-table
-heads). Elo tests reconstruct pre-match ratings from those rows and compare the update with the
-site's own points column. Match-simulator tests run 200k simulations and compare frequencies
-with the analytic Poisson probabilities from `outcome_probs()`. Loader tests read the real
-`wc2026.yaml` and mutate it in memory to check each validation message.
-
-## Data Flow Summary
-
-```
-eloratings.net TSVs
-    ↓  data/fetch.py (cached in data/raw/)
-    ↓  data/parse.py
-    ├─→ data/snapshot.py  → data/snapshots/<date>_<label>.csv   (ratings on the eve)
-    └─→ model/fit.py      → data/model_params.yaml               (goals curve, pre-cutoff only)
-
-data/tournaments/<name>.yaml + snapshot + params
-    ↓  tournament/format.py   (validated Tournament)
-    ↓  tournament/group.py    (standings, tiebreakers, best thirds)      [todo]
-    ↓  tournament/knockout.py (bracket, third-place table)               [todo]
-    ↓  model/match.py         (one match, vectorised over simulations)
-    ↓  montecarlo/            (N seeds → P(win), P(reach round), group finish)   [todo]
-    ↓  report/ + backtest/    (tables, charts, Brier / log-loss vs 2026)        [todo]
 ```

@@ -70,13 +70,50 @@ Requires Python 3.11 or newer. Downloads are cached in `data/raw/` (not committe
 ## Project layout
 
 ```
-src/intsoccer/      the package: data/, elo/, model/, tournament/, montecarlo/, backtest/, report/
-data/tournaments/   one YAML per tournament (groups, hosts, rules, bracket) plus real results
+src/intsoccer/
+  data/        fetch.py (cached downloads into data/raw/), parse.py (headerless TSVs, Unicode
+               minus), schema.py (column layouts, K by match type), snapshot.py (a team's rating
+               on a date = rating after its last match before it; infer_groups from fixtures)
+  elo/         core.py: rating_diff (+100 home), expected_score, goal_multiplier, update
+  model/       goals.py (GoalsModel, outcome_probs), fit.py (Poisson regression, diagnostics
+               chart), match.py (simulate_match: scoreline, extra time, shootout, Elo update,
+               vectorised over simulations)
+  tournament/  format.py (load_tournament: YAML + third-place table, fully cross-validated);
+               group.py, knockout.py, simulate.py to come
+  montecarlo/, backtest/, report/   not started
+  cli.py       intsoccer fetch | snapshot | fit
+data/tournaments/   wc2026.yaml (annotated schema example), wc2026_results.csv (all 104 real
+                    results with pre-match ratings), wc2026_third_place_table.csv (FIFA Annex C,
+                    495 rows); euro2028 / copa2028 placeholders awaiting their draws
 data/snapshots/     committed rating snapshots, e.g. 2026-06-10_wc2026.csv
 data/model_params.yaml   fitted goals-model parameters
 docs/               formula reference, data-source reference, 2026 format rules, roadmap
 tests/              pytest suite with small real-data fixtures
 ```
+
+Data flow:
+
+```
+eloratings.net TSVs
+    ↓  data/fetch.py (cached in data/raw/)
+    ↓  data/parse.py
+    ├─→ data/snapshot.py  → data/snapshots/<date>_<label>.csv   (ratings on the eve)
+    └─→ model/fit.py      → data/model_params.yaml               (goals curve, pre-cutoff only)
+
+data/tournaments/<name>.yaml + snapshot + params
+    ↓  tournament/format.py   (validated Tournament)
+    ↓  tournament/group.py    (standings, tiebreakers, best thirds)      [todo]
+    ↓  tournament/knockout.py (bracket, third-place table)               [todo]
+    ↓  model/match.py         (one match, vectorised over simulations)
+    ↓  montecarlo/            (N seeds → P(win), P(reach round), group finish)   [todo]
+    ↓  report/ + backtest/    (tables, charts, Brier / log-loss vs 2026)        [todo]
+```
+
+Tests check the code against reality wherever the data allows. `tests/fixtures/` holds small real
+TSV slices; the Elo tests reconstruct pre-match ratings from them and compare the update with the
+site's own points column. The match-simulator tests run 200,000 simulations and compare outcome
+frequencies with the analytic Poisson probabilities. The loader tests read the real `wc2026.yaml`
+and cross-check its groups against the real results and the ratings snapshot.
 
 ## Data and credits
 
