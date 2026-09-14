@@ -39,10 +39,10 @@ intsoccer fit                                           # refit the goals model 
   charset header: read `resp.content`, not `resp.text`. Team history filenames strip accents.
 - An empty venue column in a history row means a true home game (+100); a venue code means neutral.
 - 2026 World Cup tiebreakers put head-to-head before overall goal difference (new that year).
-- The project lives on an iCloud-synced Desktop. iCloud evicts files it thinks are cold, and a
-  read of an evicted file blocks forever in a sandbox. The venv is therefore `.venv.nosync/`
-  (iCloud skips `*.nosync`) with `.venv` as a symlink to it. If a Python process hangs at import
-  with no CPU use, run `brctl download .` and check `ls -lO` for the `dataless` flag.
+- The project lives in `~/Developer/`, deliberately outside iCloud-synced Desktop/Documents:
+  iCloud once evicted venv and data files and every Python import hung. Never move it back.
+  The venv is `.venv.nosync/` with `.venv` symlinked to it as extra insurance. If a Python
+  process ever hangs at import with no CPU use, check `ls -lO` for the `dataless` flag.
 
 ## How to work
 

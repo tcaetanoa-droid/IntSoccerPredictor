@@ -55,7 +55,7 @@ Details and the full component list are in [docs/ROADMAP.md](docs/ROADMAP.md).
 ```bash
 git clone https://github.com/tcaetanoa-droid/IntSoccerPredictor.git
 cd IntSoccerPredictor
-python3 -m venv .venv && source .venv/bin/activate   # on an iCloud-synced folder use .venv.nosync, see CLAUDE.md
+python3 -m venv .venv && source .venv/bin/activate   # keep the clone out of iCloud-synced folders
 pip install -e ".[dev]"
 
 pytest                                   # run the test suite
