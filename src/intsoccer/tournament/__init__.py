@@ -4,8 +4,10 @@ from .format import (GroupSlot, MatchRef, ThirdSlot, Tournament, build_tournamen
                      load_tournament, parse_slot)
 from .group import Result, Row, Standings, rank_group, rank_thirds, table
 from .knockout import KnockoutMatch, play_knockout, third_assignment
+from .simulate import SimulatedTournament, simulate_tournament
 
 __all__ = ["GroupSlot", "MatchRef", "ThirdSlot", "Tournament", "build_tournament", "format_slot",
            "load_tournament", "parse_slot",
            "Result", "Row", "Standings", "rank_group", "rank_thirds", "table",
-           "KnockoutMatch", "play_knockout", "third_assignment"]
+           "KnockoutMatch", "play_knockout", "third_assignment",
+           "SimulatedTournament", "simulate_tournament"]

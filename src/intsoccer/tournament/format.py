@@ -9,6 +9,7 @@ YAML fields (see `wc2026.yaml` for a complete, annotated example):
     advance: {top_n, best_thirds}
     knockout:
       extra_time_and_penalties: bool
+      venues: {match number: country code}      # optional; a host playing there gets +100
       third_place_table: CSV path (required when best_thirds > 0)
       matches: {number: [slot, slot]}
       rounds: {round name: [match numbers]}      # in playing order
@@ -101,6 +102,7 @@ class Tournament:
     rounds: dict[str, tuple[int, ...]]          # round name -> match numbers, in playing order
     third_place_table: dict[frozenset[str], dict[str, str]]   # advancing groups -> {1A: 'E', ...}
     extra_time_and_penalties: bool
+    venues: dict[int, str]                      # knockout match number -> host country code
     start_date: str | None
     ratings_snapshot: Path | None
     path: Path | None
@@ -169,6 +171,9 @@ def build_tournament(raw: dict, path: Path | None = None, base: Path = PROJECT_R
                for n, pair in ko["matches"].items()}
     rounds = {str(name): tuple(int(n) for n in numbers) for name, numbers in ko["rounds"].items()}
     table_path = _resolve(ko.get("third_place_table"), base)
+    venues = {int(n): str(c) for n, c in (ko.get("venues") or {}).items()}
+    if unknown := set(venues) - set(matches):
+        raise ValueError(f"knockout.venues names unknown matches {sorted(unknown)}")
 
     _check_bracket(groups, top_n, best_thirds, matches, rounds)
     table = _load_third_place_table(table_path, groups, best_thirds, matches) if best_thirds else {}
@@ -187,6 +192,7 @@ def build_tournament(raw: dict, path: Path | None = None, base: Path = PROJECT_R
         rounds=rounds,
         third_place_table=table,
         extra_time_and_penalties=bool(ko.get("extra_time_and_penalties", True)),
+        venues=venues,
         start_date=None if raw.get("start_date") is None else str(raw["start_date"]),
         ratings_snapshot=_resolve(raw.get("ratings_snapshot"), base),
         path=path,

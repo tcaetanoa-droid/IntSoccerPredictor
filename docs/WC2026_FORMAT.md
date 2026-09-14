@@ -99,3 +99,8 @@ Hosts played their group matches in their own country (true home games, +100 Elo
 knockouts the site's venue column shows Mexico's and the USA's matches at home too (e.g. Mexico–
 Ecuador, USA–Bosnia, Mexico–England), so apply +100 whenever a host plays in its own country.
 Canada's knockout games were in the USA (neutral).
+
+The host country of every knockout match number is fixed by the schedule and recorded in
+`wc2026.yaml` under `knockout.venues` (Mexico: 75, 79, 92; Canada: 83, 85, 96; all others USA).
+The simulator gives +100 to a host in its group matches and in any knockout match whose venue is
+its own country, so Canada would have been at home in match 85 had it won group B.

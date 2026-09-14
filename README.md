@@ -43,13 +43,14 @@ often a favourite actually gets the result.
 
 | Done | Next |
 |---|---|
-| Data layer for eloratings.net TSV files | Full tournament simulation and Monte Carlo runner |
+| Data layer for eloratings.net TSV files | Monte Carlo runner |
 | Elo engine, verified against the site's own point exchanges | Reports and the 2026 backtest |
 | Pre-tournament ratings for all 48 teams, groups, all 104 real results, full bracket and FIFA's 495-row third-place table | |
 | Goals model fitted and calibrated | |
 | Single-match simulator with extra time and penalties, and the tournament definition loader | |
 | Group standings with the 2026 tiebreakers, verified to reproduce the real 32 qualifiers | |
 | Knockout bracket with FIFA's third-place table, verified to reproduce all 32 real knockout pairings | |
+| Full single-tournament simulation with Elo carried match to match and host home advantage | |
 
 Details and the full component list are in [docs/ROADMAP.md](docs/ROADMAP.md).
 
@@ -82,7 +83,7 @@ src/intsoccer/
                vectorised over simulations)
   tournament/  format.py (load_tournament: YAML + third-place table, fully cross-validated),
                group.py (standings, tiebreaker rulesets, best-thirds ranking), knockout.py
-               (bracket resolution incl. third-place table); simulate.py to come
+               (bracket resolution incl. third-place table), simulate.py (one whole tournament)
   montecarlo/, backtest/, report/   not started
   cli.py       intsoccer fetch | snapshot | fit
 data/tournaments/   wc2026.yaml (annotated schema example), wc2026_results.csv (all 104 real
@@ -107,6 +108,7 @@ data/tournaments/<name>.yaml + snapshot + params
     ↓  tournament/format.py   (validated Tournament)
     ↓  tournament/group.py    (standings, tiebreakers, best thirds)
     ↓  tournament/knockout.py (bracket, third-place table)
+    ↓  tournament/simulate.py (one whole tournament, Elo carried match to match)
     ↓  model/match.py         (one match, vectorised over simulations)
     ↓  montecarlo/            (N seeds → P(win), P(reach round), group finish)   [todo]
     ↓  report/ + backtest/    (tables, charts, Brier / log-loss vs 2026)        [todo]

@@ -19,7 +19,7 @@ its own. Update the status column as things land.
 | 6 | Tournament definitions (YAML schema + loader): groups, hosts, rules, bracket | `tournament/format.py` | done (wc2026 loads and cross-validates: 48 teams, 32-match bracket, 495-row table; euro/copa 2028 placeholders share the schema) |
 | 7 | Group stage: standings, points, tiebreakers (UEFA / CONMEBOL / FIFA), best-thirds ranking. **Validate by replaying the real 2026 group results and checking the 32 advancing teams match reality** | `tournament/group.py` | done (real 72 results -> the real 32 qualifiers and the documented third-place table; no group needed the Elo/lots fallback) |
 | 8 | Knockout stage: bracket resolution incl. the 495-row third-place table. **Validate: real 2026 standings must produce all 16 real R32 pairings** | `tournament/knockout.py` | done (component-7 standings from the real results + real knockout results reproduce all 32 real knockout pairings through the final) |
-| 9 | Full single-tournament simulation | `tournament/simulate.py` | todo |
+| 9 | Full single-tournament simulation | `tournament/simulate.py` | done (~4 ms per tournament; hosts get +100 in group games and in knockout matches whose YAML `venues` entry is their country) |
 | 10 | Monte Carlo runner: N sims, seeds, aggregation (P(win), P(reach round), group finish) | `montecarlo/` | todo |
 | 11 | Reports: CSV/JSON tables + charts | `report/` | todo |
 | 12 | 2026 World Cup: transcribe groups/bracket/results to YAML, snapshot ratings at 2026-06-10, run the sim, score it (Brier / log-loss, calibration) | `backtest/` + `data/tournaments/wc2026.yaml` | todo (main goal) |
@@ -71,8 +71,17 @@ Monte Carlo can count how often Elo or lots decided a place. Exact 2026 text in
 
 **8 Knockout.** `play_knockout(tournament, group_orders, best_thirds, play)` resolves slots round
 by round and calls `play(number, round, home, away) -> winner` for each match, so the tests replay
-the real results and the simulator will plug in `simulate_match`. Venues / home advantage per
-knockout match are not modelled here; component 9 decides how hosts get +100 in the knockouts.
+the real results and the simulator plugs in `simulate_match`.
+
+**9 Single tournament.** `simulate_tournament(tournament, ratings, model, rng)` plays the 72 group
+matches in FIFA match-day order, ranks each group, ranks the thirds, then plays the bracket; Elo
+is updated after every match and carried forward, while the standings' Elo fallback uses the
+pre-tournament ratings. Home advantage: hosts play their group matches at home; each knockout
+match number has a host country in the YAML (`knockout.venues`, taken from the real 2026
+schedule) and a host playing there gets +100. Extra time and penalties always apply in the
+knockouts; `extra_time_and_penalties: false` (straight to penalties, as in Copa América
+quarter-finals) is stored but not yet modelled. About 4 ms per tournament, so 100k simulations
+take ~7 minutes until component 16 vectorises across simulations.
 
 **12 Backtest metrics.** For each match: Brier score over (W/D/L) and log-loss. For the tournament:
 did the sim's most-likely champion / semi-finalists match? Rank-probability skill vs a naive
