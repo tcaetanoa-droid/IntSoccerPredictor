@@ -9,9 +9,12 @@ dist/
 .mypy_cache/
 .ruff_cache/
 
-# Project
-output/            # simulation run outputs (regenerable)
-data/raw/          # downloaded TSVs (regenerable via `intsoccer fetch`)
+# Simulation run outputs (regenerable)
+output/*
+!output/.gitkeep
+
+# Downloaded TSVs (regenerable via `intsoccer fetch`)
+data/raw/*
 !data/raw/.gitkeep
 
 # OS / editor
