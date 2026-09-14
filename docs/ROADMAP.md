@@ -18,7 +18,7 @@ its own. Update the status column as things land.
 | 5 | Single-match simulator: scoreline, extra time, shootout, Elo update | `model/match.py` | done (vectorised over sims; frequencies verified against the Poisson model) |
 | 6 | Tournament definitions (YAML schema + loader): groups, hosts, rules, bracket | `tournament/format.py` | done (wc2026 loads and cross-validates: 48 teams, 32-match bracket, 495-row table; euro/copa 2028 placeholders share the schema) |
 | 7 | Group stage: standings, points, tiebreakers (UEFA / CONMEBOL / FIFA), best-thirds ranking. **Validate by replaying the real 2026 group results and checking the 32 advancing teams match reality** | `tournament/group.py` | done (real 72 results -> the real 32 qualifiers and the documented third-place table; no group needed the Elo/lots fallback) |
-| 8 | Knockout stage: bracket resolution incl. the 495-row third-place table. **Validate: real 2026 standings must produce all 16 real R32 pairings** | `tournament/knockout.py` | todo (data + rules documented in `docs/WC2026_FORMAT.md`) |
+| 8 | Knockout stage: bracket resolution incl. the 495-row third-place table. **Validate: real 2026 standings must produce all 16 real R32 pairings** | `tournament/knockout.py` | done (component-7 standings from the real results + real knockout results reproduce all 32 real knockout pairings through the final) |
 | 9 | Full single-tournament simulation | `tournament/simulate.py` | todo |
 | 10 | Monte Carlo runner: N sims, seeds, aggregation (P(win), P(reach round), group finish) | `montecarlo/` | todo |
 | 11 | Reports: CSV/JSON tables + charts | `report/` | todo |
@@ -68,6 +68,11 @@ Encoded as ordered stage lists in `tournament/group.py`; only the head-to-head b
 a subset still level, later stages continue. `Standings.depth` says how deep a tie went, so the
 Monte Carlo can count how often Elo or lots decided a place. Exact 2026 text in
 `docs/WC2026_FORMAT.md`.
+
+**8 Knockout.** `play_knockout(tournament, group_orders, best_thirds, play)` resolves slots round
+by round and calls `play(number, round, home, away) -> winner` for each match, so the tests replay
+the real results and the simulator will plug in `simulate_match`. Venues / home advantage per
+knockout match are not modelled here; component 9 decides how hosts get +100 in the knockouts.
 
 **12 Backtest metrics.** For each match: Brier score over (W/D/L) and log-loss. For the tournament:
 did the sim's most-likely champion / semi-finalists match? Rank-probability skill vs a naive
