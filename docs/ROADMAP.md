@@ -15,7 +15,7 @@ its own. Update the status column as things land.
 | 2 | Elo core: `We`, K, G, rating update, home advantage | `elo/` | done (K verified empirically, ±1 vs site on 125 real rows) |
 | 3 | Rating reconstruction: pre-tournament snapshot, group inference, results export | `data/snapshot.py` | done (`data/snapshots/2026-06-10_wc2026.csv`, `wc2026.yaml`, `wc2026_results.csv`) |
 | 4 | Goals model: fit Elo-diff → expected goals curve (Poisson regression) | `model/` | done (a=0.136, b=0.00176; `data/model_params.yaml`) |
-| 5 | Single-match simulator: scoreline, extra time, shootout, Elo update | `model/match.py` | todo |
+| 5 | Single-match simulator: scoreline, extra time, shootout, Elo update | `model/match.py` | done (vectorised over sims; frequencies verified against the Poisson model) |
 | 6 | Tournament definitions (YAML schema + loader): groups, hosts, rules, bracket | `tournament/format.py` | todo |
 | 7 | Group stage: standings, points, tiebreakers (UEFA / CONMEBOL / FIFA), best-thirds ranking. **Validate by replaying the real 2026 group results and checking the 32 advancing teams match reality** | `tournament/group.py` | todo |
 | 8 | Knockout stage: bracket resolution incl. the 495-row third-place table. **Validate: real 2026 standings must produce all 16 real R32 pairings** | `tournament/knockout.py` | todo (data + rules documented in `docs/WC2026_FORMAT.md`) |
