@@ -1,77 +1,58 @@
-# IntSoccerPredictor
+# CLAUDE.md
 
-Personal project: an international soccer tournament simulator using Elo ratings, Poisson
-scorelines, and Monte Carlo (100,000 runs) to estimate each team's chance of reaching each round.
+Solo hobby project by Thiago Caetano: simulate international soccer tournaments with Elo ratings,
+Poisson scorelines and Monte Carlo. Current target is replaying the **2026 World Cup** from
+pre-tournament ratings; Euro/Copa 2028 come later with the same code and a new YAML.
+Read `README.md` for the overview and `docs/ROADMAP.md` for what is built and what is next.
 
-**Current target: the 2026 World Cup**, simulated from ratings dated 10 June 2026 (day before
-kickoff) and scored against what actually happened. Euro 2028 and Copa América 2028 are deferred
-until their groups and formats are known; they will reuse the same code with a new YAML.
-
-Owner: Thiago Caetano. Solo hobby project; optimise for clarity and correctness over cleverness.
-
-## How a match is simulated (the core idea, do not drift from it)
-
-1. Take both teams' **current Elo** (updated within the simulated tournament so far).
-2. Compute the Elo difference `dr` (add +100 to the home side if it is a true home game).
-3. Map `dr` to each team's **expected goals** (λ_home, λ_away) using a curve fitted from real
-   match histories (see `docs/ELO_FORMULA.md`, "Goals model").
-4. Sample a scoreline: `goals ~ Poisson(λ)` for each side. Win/draw/loss falls out of the score.
-   Draws are real outcomes and matter for group standings; never sample W/L directly from `We`.
-5. Knockouts: if drawn after 90', simulate extra time (λ scaled by 30/90), then a penalty shootout.
-6. **Update both Elos** from the scoreline using the eloratings.net formula
-   `Rn = Ro + K·G·(W − We)` and carry the new ratings into the next match of that simulation.
-7. Repeat for every match of the tournament; repeat the whole tournament N times.
-
-## Elo formula (confirmed from eloratings.net / Wikipedia, Sept 2026)
-
-- `We = 1 / (10^(−dr/400) + 1)`, `dr` = rating difference from the team's perspective, +100 for home.
-- `W` = 1 win, 0.5 draw, 0 loss. A penalty shootout counts as a draw.
-- `K` = 60 World Cup finals, 50 continental championship finals (Euro, Copa América),
-  40 WC/continental qualifiers and major tournaments, 30 other tournaments, 20 friendlies.
-- `G` = 1 for margin 0–1, 1.5 for margin 2, `(11 + N) / 8` for margin N ≥ 3.
-- Full detail and worked examples: `docs/ELO_FORMULA.md`.
-
-## Data source
-
-eloratings.net serves plain TSV files (no scraping). Endpoints, column layouts, and codes are
-documented in `docs/DATA_SOURCES.md`. Downloaded files live in `data/raw/` (gitignored);
-dated rating snapshots that we want to keep are committed under `data/snapshots/`.
-
-## Layout
+## Commands
 
 ```
-src/intsoccer/
-  cli.py          entry point: `intsoccer <command>` (fetch, fit, simulate, backtest, report)
-  data/           fetch TSVs, parse into DataFrames, column schemas, team-code mapping
-  elo/            win expectancy, K/G factors, rating update (pure functions, no I/O)
-  model/          Elo-diff -> expected goals curve, fitting, single-match simulation
-  tournament/     tournament format definitions, group tables + tiebreakers, knockout brackets
-  montecarlo/     run N tournaments, seeding, aggregate probabilities
-  backtest/       replay a past tournament from pre-tournament ratings, scoring metrics
-  report/         CSV/JSON tables and matplotlib charts into output/
-data/tournaments/ one YAML per tournament (groups, hosts, advancement rules, bracket)
-data/model_params.yaml  fitted goals-model parameters (refit with `intsoccer fit`)
-docs/             ROADMAP (component breakdown + status), formula, data, and WC2026 format references
-tests/            pytest; fixtures are small TSV excerpts committed under tests/fixtures
+python3 -m venv .venv.nosync && ln -s .venv.nosync .venv   # once; .nosync keeps it out of iCloud
+source .venv/bin/activate && pip install -e ".[dev]"
+pytest                                                  # must pass before any commit
+intsoccer fetch --teams ES AR                           # download TSVs into data/raw/ (cached)
+intsoccer snapshot --date 2026-06-11 --label wc2026     # ratings as of the day before a date
+intsoccer fit                                           # refit the goals model -> data/model_params.yaml
 ```
 
-## Conventions
+## Architecture decisions (do not drift from these)
 
-- Python 3.11, venv at `.venv/`, install with `pip install -e ".[dev]"`. Run tests with `pytest`.
-- `elo/` and `model/` are pure functions over numbers/arrays. All I/O lives in `data/` and `report/`.
-- Use numpy RNG (`np.random.default_rng(seed)`) and pass the generator explicitly; every
-  simulation must be reproducible from a seed.
-- Prefer vectorising across simulations (arrays of shape `(n_sims, ...)`) over Python loops
-  once the simple version works. 100k sims × ~50 matches must finish in well under a minute.
-- Tournament rules (advancement, tiebreakers, third-place tables) live in YAML + `tournament/`,
-  never hard-coded in the simulator loop.
-- Team identity is the eloratings.net two-letter code (e.g. `EN` England, `ES` Spain, `SQ` Scotland).
-  Display names come from `en.teams.tsv`. **Always quote codes in YAML**: bare `NO` (Norway) parses as `false`.
-- Keep the docs in `docs/` current when a formula, endpoint, or component status changes.
-- Work through `docs/ROADMAP.md` one component at a time; update its status table when done.
+- One match = pre-match Elo → Elo gap `dr` (+100 for a true home game) → expected goals via the
+  fitted curve → sample both scores from Poisson → result from the score → update both Elos with
+  the eloratings.net formula → carry the new ratings into the next match of that simulation.
+- Never sample win/loss from Elo win expectancy `We`. It is an expected score, not a probability,
+  and it produces no draws. Draws come from the scoreline model.
+- `elo/` and `model/` are pure functions over numpy arrays, no I/O. I/O lives in `data/` and `report/`.
+- Every simulation is reproducible from a seed: pass `np.random.default_rng(seed)` explicitly.
+- Tournament rules (groups, tiebreakers, bracket, third-place table) live in `data/tournaments/*.yaml`
+  and `tournament/`, never inline in the simulator loop.
+- The goals model is fitted only on matches before 11 June 2026 so the World Cup backtest is honest.
+- References, not copies: formulas in `docs/ELO_FORMULA.md`, endpoints and column layouts in
+  `docs/DATA_SOURCES.md`, 2026 standings/bracket rules in `docs/WC2026_FORMAT.md`.
 
-## Commit / GitHub
+## Gotchas you cannot infer from the code
 
-One commit per finished roadmap component, message `Component N: <what>` (plus the attribution
-trailer). Commit when the component's tests pass and its ROADMAP status is updated, then push to
-`origin main`. Do not commit half-finished components; do not squash components together.
+- Team identity is the eloratings.net two-letter code. `SQ` is Scotland, not Slovakia.
+- Quote every team code in YAML: bare `NO` (Norway) parses as `false`.
+- eloratings.net TSVs have no header, use the Unicode minus sign, and are served as UTF-8 without a
+  charset header: read `resp.content`, not `resp.text`. Team history filenames strip accents.
+- An empty venue column in a history row means a true home game (+100); a venue code means neutral.
+- 2026 World Cup tiebreakers put head-to-head before overall goal difference (new that year).
+- The project lives on an iCloud-synced Desktop. iCloud evicts files it thinks are cold, and a
+  read of an evicted file blocks forever in a sandbox. The venv is therefore `.venv.nosync/`
+  (iCloud skips `*.nosync`) with `.venv` as a symlink to it. If a Python process hangs at import
+  with no CPU use, run `brctl download .` and check `ls -lO` for the `dataless` flag.
+
+## How to work
+
+- Follow `docs/ROADMAP.md` one component at a time. Finish it, make `pytest` pass, update the status
+  table, then commit as `Component N: <what>` and push to `origin main`. No half components, no
+  squashing components together.
+- Before a design-changing choice (model form, tournament rule interpretation, data cutoff), state
+  the options and ask. Routine implementation choices: decide and mention.
+- Validate against reality whenever data allows: Elo updates against the site's points exchanged,
+  standings and bracket code against the real 2026 results. Show the test output, not a claim.
+- Simplest thing that works. No speculative flexibility, no abstractions for single-use code.
+  Touch only what the task needs; mention unrelated problems rather than fixing them silently.
+- Keep the docs in `docs/` current when a formula, endpoint or component status changes.
