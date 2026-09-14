@@ -41,6 +41,15 @@ def test_every_match_and_every_team_of_every_simulation_is_stored(saved, wc):
     assert per_sim.apply(lambda s: sorted(s) == sorted([1, 2, 3, 4] * 12)).all()
     assert r.teams["third_rank"].between(0, 12).all()
     assert (r.teams["third_rank"] > 0).sum() == N * 12
+    ko = r.matches[r.matches["stage"] != "group"]
+    assert ko["winner"].notna().all()
+    assert r.matches.loc[r.matches["stage"] == "group", "winner"].isna().all()
+    assert ((ko["winner"] == ko["home"]) | (ko["winner"] == ko["away"])).all()
+    level = ko["home_goals"] == ko["away_goals"]
+    assert (ko.loc[level, "decided_by"] == 2).all()
+    decided = ko[~level]
+    home_won = decided["home_goals"] > decided["away_goals"]
+    assert (decided["winner"] == decided["home"].where(home_won, decided["away"])).all()
 
 
 def test_tables_agree_with_each_other(saved):
@@ -71,6 +80,7 @@ def test_any_single_simulation_can_be_regenerated_from_the_seed(saved, wc, ratin
         row = ko.loc[number]
         assert (row["home"], row["away"]) == (m.home, m.away)
         assert (row["home_goals"], row["away_goals"]) == sim.knockout_scores[number][:2]
+        assert row["winner"] == m.winner
     assert r.sims.set_index("sim").loc[i, "champion"] == sim.champion
     group_a = stored[stored["group"] == "A"]
     assert [(h, a, hg, ag) for h, a, hg, ag in

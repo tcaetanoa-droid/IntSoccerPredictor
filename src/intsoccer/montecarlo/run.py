@@ -6,7 +6,8 @@ can be regenerated on its own with `regenerate(run, i)` and compared with what w
 A run is a directory under `output/` with:
 
     meta.yaml        tournament, seed, n_sims, model parameters, snapshot path, timestamp
-    matches.parquet  one row per match per simulation (104 x n for the World Cup)
+    matches.parquet  one row per match per simulation (104 x n for the World Cup); knockout
+                     rows carry the winner explicitly (a shootout leaves the goals level)
     teams.parquet    one row per team per simulation: group finish, how far it went, rating
     sims.parquet     one row per simulation: champion, runner-up, third, fourth
     summary.csv      per-team probabilities (P(win), P(reach each round), group finish)
@@ -79,7 +80,7 @@ class _Tables:
                       stage=np.zeros(m, np.int8), group=np.full(m, -1, np.int8),
                       home=np.zeros(m, np.int16), away=np.zeros(m, np.int16),
                       home_goals=np.zeros(m, np.int8), away_goals=np.zeros(m, np.int8),
-                      decided_by=np.zeros(m, np.int8))
+                      decided_by=np.zeros(m, np.int8), winner=np.full(m, -1, np.int16))
         self.k = dict(sim=np.zeros(k, np.int32), team=np.zeros(k, np.int16),
                       group=np.zeros(k, np.int8), group_pos=np.zeros(k, np.int8),
                       points=np.zeros(k, np.int8), gd=np.zeros(k, np.int16),
@@ -97,12 +98,12 @@ class _Tables:
             for res in results:
                 number += 1
                 self._match(row, i, number, 0, self.group_index[g], res.home, res.away,
-                            res.home_goals, res.away_goals, 0)
+                            res.home_goals, res.away_goals, 0, None)
                 row += 1
         for number in self.knockout_numbers:
             m, sc = sim.knockout[number], sim.knockout_scores[number]
             self._match(row, i, number, self.round_index[m.round], -1, m.home, m.away,
-                        sc.home_goals, sc.away_goals, sc.decided_by)
+                        sc.home_goals, sc.away_goals, sc.decided_by, m.winner)
             row += 1
 
         reached = {code: 0 for code in self.teams}
@@ -145,7 +146,7 @@ class _Tables:
             tp = sim.knockout[self.third_place]
             s["third"][i], s["fourth"][i] = ti[tp.winner], ti[tp.loser]
 
-    def _match(self, row, i, number, stage, group, home, away, hg, ag, decided_by):
+    def _match(self, row, i, number, stage, group, home, away, hg, ag, decided_by, winner):
         m = self.m
         m["sim"][row] = i
         m["number"][row] = number
@@ -156,6 +157,8 @@ class _Tables:
         m["home_goals"][row] = hg
         m["away_goals"][row] = ag
         m["decided_by"][row] = decided_by
+        if winner is not None:
+            m["winner"][row] = self.team_index[winner]
 
     def frames(self) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
         cat = pd.Categorical.from_codes
@@ -172,7 +175,7 @@ class _Tables:
             "group": group_col(self.m["group"]), "number": self.m["number"],
             "home": team_col(self.m["home"]), "away": team_col(self.m["away"]),
             "home_goals": self.m["home_goals"], "away_goals": self.m["away_goals"],
-            "decided_by": self.m["decided_by"],
+            "decided_by": self.m["decided_by"], "winner": team_col(self.m["winner"]),
         })
         k = dict(self.k)
         k["team"], k["group"] = team_col(k["team"]), group_col(k["group"])
