@@ -1,0 +1,25 @@
+# UEFA Euro 2028 — 9 Jun to 9 Jul 2028, hosts England, Scotland, Wales, Republic of Ireland.
+# Finals draw not held yet (qualifying draw 6 Dec 2026). Groups below are PLACEHOLDERS so the
+# pipeline can run; replace after the draw. Schema is defined in Roadmap component 6.
+name: UEFA Euro 2028
+match_type: EC          # -> K = 50
+tiebreakers: uefa
+hosts:                  # team code -> venue country code where they get +100 home advantage
+  'EN': 'EN'
+  'SC': 'SC'
+  'WA': 'WA'
+  'IR': 'IR'
+groups:
+  A: [EN, TBD, TBD, TBD]
+  B: [SC, TBD, TBD, TBD]
+  C: [WA, TBD, TBD, TBD]
+  D: [IR, TBD, TBD, TBD]
+  E: [TBD, TBD, TBD, TBD]
+  F: [TBD, TBD, TBD, TBD]
+advance:
+  top_n: 2
+  best_thirds: 4
+knockout:
+  # Same bracket structure as Euro 2024; fill from the official regulations when published.
+  round_of_16: []
+  third_place_table: {}

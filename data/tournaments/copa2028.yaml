@@ -1,0 +1,16 @@
+# CONMEBOL Copa América 2028 — host, dates, and format NOT YET ANNOUNCED (Sept 2026).
+# Template copied from the 2024 edition (16 teams, 4 groups, top two -> quarter-finals).
+name: Copa America 2028
+match_type: CA          # -> K = 50
+tiebreakers: conmebol
+hosts: {}
+groups:
+  A: [TBD, TBD, TBD, TBD]
+  B: [TBD, TBD, TBD, TBD]
+  C: [TBD, TBD, TBD, TBD]
+  D: [TBD, TBD, TBD, TBD]
+advance:
+  top_n: 2
+  best_thirds: 0
+knockout:
+  quarter_finals: [[A1, B2], [B1, A2], [C1, D2], [D1, C2]]
