@@ -226,9 +226,16 @@ Data: `sims.parquet`, `teams.parquet`, `matches.parquet`, `wc2026_results.csv` t
 component-7/8 code. Output: `reality.json` (finals table, real path, three closest runs with
 their brackets and scores) + one PNG.
 
-## Medium (undecided)
+## Medium
 
-Proposal: component 11 = `report/` produces, per run, a folder `output/<name>/report/` with one
-CSV/JSON per view plus PNG charts for the ones that are charts by nature (6, 9). The website is
-a later component that renders those JSON files; nothing in the site recomputes probabilities,
-so Euro/Copa 2028 need only a new run.
+Decided 13 Sep (late): the visuals are a **website, light theme**, designed in its own
+brainstorming session (layout, colours, vibe and tone, sections and text) and then built
+**section by section on localhost** with Thiago's feedback at each step, using the frontend
+skills from his other project setup. Component 11a already provides everything the site needs
+as `output/<name>/report/*.csv|json` and `report.json`; the site renders those files and
+recomputes nothing.
+
+Open for the next session: whether component 11b (static PNG charts) is still wanted, or whether
+the charts are the website's own components. Suggested order when resuming: brainstorm the site,
+then a style sample of one section (the fate table sets the fate palette that views 6 and 8
+reuse), then the rest one at a time.
