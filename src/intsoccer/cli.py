@@ -69,6 +69,29 @@ def cmd_fit(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_simulate(args: argparse.Namespace) -> int:
+    """Monte Carlo: simulate the tournament n times, store every run, print the summary."""
+    from .model import GoalsModel
+    from .montecarlo import OUTPUT_DIR, run
+    from .tournament import load_tournament
+
+    t = load_tournament(args.tournament)
+    ratings = snapshot.load_snapshot(t.ratings_snapshot)
+    model = GoalsModel.load()
+    out = Path(args.out) if args.out else OUTPUT_DIR / args.tournament
+    print(f"{t.name}: {args.n} simulations, seed {args.seed}, K={t.k}, "
+          f"model a={model.a:.4f} b={model.b:.5f}")
+    r = run(t, ratings, model, args.n, args.seed, out_dir=out,
+            progress_every=max(1, args.n // 20))
+    summary = r.summary
+    cols = ["team", "group", "group_1", "reach_R32", "reach_QF", "reach_SF", "reach_F", "champion"]
+    cols = [c for c in cols if c in summary.columns]
+    print()
+    print(summary[cols].head(16).to_string(index=False, float_format=lambda x: f"{x:.3f}"))
+    print(f"\n{r.meta['seconds']} s -> {out}")
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(prog="intsoccer", description=__doc__)
     sub = p.add_subparsers(dest="command", required=True)
@@ -95,8 +118,15 @@ def build_parser() -> argparse.ArgumentParser:
     ft.add_argument("--out", default="data/model_params.yaml")
     ft.set_defaults(func=cmd_fit)
 
-    for name in ["simulate", "backtest", "report"]:
-        s = sub.add_parser(name, help=f"(not implemented yet, see docs/ROADMAP.md)")
+    sm = sub.add_parser("simulate", help="run n Monte Carlo simulations and save every one")
+    sm.add_argument("--tournament", default="wc2026", help="name of data/tournaments/<name>.yaml")
+    sm.add_argument("--n", type=int, default=100_000, help="number of simulations")
+    sm.add_argument("--seed", type=int, default=2026)
+    sm.add_argument("--out", default=None, help="output directory (default: output/<tournament>)")
+    sm.set_defaults(func=cmd_simulate)
+
+    for name in ["backtest", "report"]:
+        s = sub.add_parser(name, help="(not implemented yet, see docs/ROADMAP.md)")
         s.set_defaults(func=lambda a, n=name: print(f"{n}: not implemented yet") or 1)
     return p
 

@@ -43,14 +43,15 @@ often a favourite actually gets the result.
 
 | Done | Next |
 |---|---|
-| Data layer for eloratings.net TSV files | Monte Carlo runner |
-| Elo engine, verified against the site's own point exchanges | Reports and the 2026 backtest |
+| Data layer for eloratings.net TSV files | Reports and the 2026 backtest |
+| Elo engine, verified against the site's own point exchanges | |
 | Pre-tournament ratings for all 48 teams, groups, all 104 real results, full bracket and FIFA's 495-row third-place table | |
 | Goals model fitted and calibrated | |
 | Single-match simulator with extra time and penalties, and the tournament definition loader | |
 | Group standings with the 2026 tiebreakers, verified to reproduce the real 32 qualifiers | |
 | Knockout bracket with FIFA's third-place table, verified to reproduce all 32 real knockout pairings | |
 | Full single-tournament simulation with Elo carried match to match and host home advantage | |
+| Monte Carlo runner that stores every match of every simulation as Parquet | |
 
 Details and the full component list are in [docs/ROADMAP.md](docs/ROADMAP.md).
 
@@ -66,9 +67,11 @@ pytest                                   # run the test suite
 intsoccer fetch --teams ES AR EN         # download current ratings and team histories
 intsoccer snapshot --date 2026-06-11 --label wc2026   # ratings as of the eve of the World Cup
 intsoccer fit                            # refit the goals model and draw the calibration chart
+intsoccer simulate --n 100000 --seed 2026   # 100k World Cups -> output/wc2026/ (~8 min)
 ```
 
-Requires Python 3.11 or newer. Downloads are cached in `data/raw/` (not committed).
+Requires Python 3.11 or newer. Downloads are cached in `data/raw/` and simulation runs are
+written to `output/` (neither is committed).
 
 ## Project layout
 
@@ -84,8 +87,10 @@ src/intsoccer/
   tournament/  format.py (load_tournament: YAML + third-place table, fully cross-validated),
                group.py (standings, tiebreaker rulesets, best-thirds ranking), knockout.py
                (bracket resolution incl. third-place table), simulate.py (one whole tournament)
-  montecarlo/, backtest/, report/   not started
-  cli.py       intsoccer fetch | snapshot | fit
+  montecarlo/  run.py (n simulations, each seeded as [seed, i] so any one can be regenerated;
+               matches / teams / sims Parquet tables plus a summary CSV under output/<name>/)
+  backtest/, report/   not started
+  cli.py       intsoccer fetch | snapshot | fit | simulate
 data/tournaments/   wc2026.yaml (annotated schema example), wc2026_results.csv (all 104 real
                     results with pre-match ratings), wc2026_third_place_table.csv (FIFA Annex C,
                     495 rows); euro2028 / copa2028 placeholders awaiting their draws
@@ -110,7 +115,7 @@ data/tournaments/<name>.yaml + snapshot + params
     ↓  tournament/knockout.py (bracket, third-place table)
     ↓  tournament/simulate.py (one whole tournament, Elo carried match to match)
     ↓  model/match.py         (one match, vectorised over simulations)
-    ↓  montecarlo/            (N seeds → P(win), P(reach round), group finish)   [todo]
+    ↓  montecarlo/            (n runs → output/<name>/{matches,teams,sims}.parquet + summary.csv)
     ↓  report/ + backtest/    (tables, charts, Brier / log-loss vs 2026)        [todo]
 ```
 

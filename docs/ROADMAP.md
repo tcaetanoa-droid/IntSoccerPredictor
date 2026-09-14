@@ -20,7 +20,7 @@ its own. Update the status column as things land.
 | 7 | Group stage: standings, points, tiebreakers (UEFA / CONMEBOL / FIFA), best-thirds ranking. **Validate by replaying the real 2026 group results and checking the 32 advancing teams match reality** | `tournament/group.py` | done (real 72 results -> the real 32 qualifiers and the documented third-place table; no group needed the Elo/lots fallback) |
 | 8 | Knockout stage: bracket resolution incl. the 495-row third-place table. **Validate: real 2026 standings must produce all 16 real R32 pairings** | `tournament/knockout.py` | done (component-7 standings from the real results + real knockout results reproduce all 32 real knockout pairings through the final) |
 | 9 | Full single-tournament simulation | `tournament/simulate.py` | done (~4 ms per tournament; hosts get +100 in group games and in knockout matches whose YAML `venues` entry is their country) |
-| 10 | Monte Carlo runner: N sims, seeds, aggregation (P(win), P(reach round), group finish) | `montecarlo/` | todo |
+| 10 | Monte Carlo runner: N sims, seeds, aggregation (P(win), P(reach round), group finish) | `montecarlo/` | done (every match, team-fate and sim stored as Parquet under `output/<name>/`; any sim regenerable from `[seed, i]`; `intsoccer simulate`; ~225 sims/s) |
 | 11 | Reports: CSV/JSON tables + charts | `report/` | todo |
 | 12 | 2026 World Cup: transcribe groups/bracket/results to YAML, snapshot ratings at 2026-06-10, run the sim, score it (Brier / log-loss, calibration) | `backtest/` + `data/tournaments/wc2026.yaml` | todo (main goal) |
 | 13 | Euro 2028 run | `data/tournaments/euro2028.yaml` | deferred until draw + format known |
@@ -82,6 +82,15 @@ schedule) and a host playing there gets +100. Extra time and penalties always ap
 knockouts; `extra_time_and_penalties: false` (straight to penalties, as in Copa América
 quarter-finals) is stored but not yet modelled. About 4 ms per tournament, so 100k simulations
 take ~7 minutes until component 16 vectorises across simulations.
+
+**10 Monte Carlo store.** `intsoccer simulate --n 100000 --seed 2026` writes `output/wc2026/`:
+`matches.parquet` (one row per match per simulation: stage, group, match number, home, away,
+goals after extra time, how it was decided), `teams.parquet` (one row per team per simulation:
+group position, points, GD, GF, tiebreak depth, third-place rank, last round reached, final place
+1–4, rating after the tournament), `sims.parquet` (champion, runner-up, third, fourth),
+`summary.csv` (per-team probabilities) and `meta.yaml`. Simulation i uses
+`np.random.default_rng([seed, i])`, so `regenerate(run, i)` rebuilds exactly that tournament.
+Team columns are pandas categoricals. ~65 MB for 100k World Cups; `output/` is gitignored.
 
 **12 Backtest metrics.** For each match: Brier score over (W/D/L) and log-loss. For the tournament:
 did the sim's most-likely champion / semi-finalists match? Rank-probability skill vs a naive
