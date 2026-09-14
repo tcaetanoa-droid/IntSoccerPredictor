@@ -92,6 +92,23 @@ def cmd_simulate(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_report(args: argparse.Namespace) -> int:
+    """Compute the report views for a saved run and write them under <run>/report/."""
+    from .report import build_report
+
+    run_dir = Path(args.run)
+    views = build_report(run_dir)
+    print(f"{len(views)} views -> {run_dir / 'report'}")
+    b = views["bracket"]
+    final = b["matches"][-1]
+    print(f"most-probable final: {final['home']} v {final['away']} "
+          f"{final['p_home']:.0%} -> {final['winner']}")
+    real = views["reality"]["top_finals"][0]
+    print(f"most common final: {real['champion']} beat {real['runner_up']} in {real['pct']:.2%}"
+          f"{' (the real one)' if real['real'] else ''}")
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(prog="intsoccer", description=__doc__)
     sub = p.add_subparsers(dest="command", required=True)
@@ -125,9 +142,12 @@ def build_parser() -> argparse.ArgumentParser:
     sm.add_argument("--out", default=None, help="output directory (default: output/<tournament>)")
     sm.set_defaults(func=cmd_simulate)
 
-    for name in ["backtest", "report"]:
-        s = sub.add_parser(name, help="(not implemented yet, see docs/ROADMAP.md)")
-        s.set_defaults(func=lambda a, n=name: print(f"{n}: not implemented yet") or 1)
+    rp = sub.add_parser("report", help="build every report view of docs/REPORTS.md for a run")
+    rp.add_argument("--run", default="output/wc2026", help="run directory written by simulate")
+    rp.set_defaults(func=cmd_report)
+
+    bt = sub.add_parser("backtest", help="(not implemented yet, see docs/ROADMAP.md)")
+    bt.set_defaults(func=lambda a: print("backtest: not implemented yet") or 1)
     return p
 
 

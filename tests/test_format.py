@@ -35,6 +35,7 @@ def test_wc2026_groups_and_settings(wc):
     assert wc.k == 60 and wc.match_type == "WC"
     assert wc.tiebreakers == "head_to_head_first"
     assert wc.hosts == {"US": "US", "CA": "CA", "MX": "MX"}
+    assert wc.past_champions["BR"] == 5 and wc.past_champions["ES"] == 1 and "IT" in wc.past_champions
     assert wc.group_of("SQ") == "C"          # SQ is Scotland
     assert wc.group_of("NO") == "I"          # quoted in YAML, not False
     assert wc.start_date == "2026-06-11"

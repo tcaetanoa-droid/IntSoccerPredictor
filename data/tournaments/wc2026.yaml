@@ -7,6 +7,15 @@ match_type: WC          # -> K = 60
 tiebreakers: head_to_head_first   # 2026 rule: a-c head-to-head, then overall GD, GF
 start_date: 2026-06-11
 ratings_snapshot: data/snapshots/2026-06-10_wc2026.csv
+past_champions:         # World Cup titles BEFORE this tournament (for the report views)
+  'UY': 2
+  'IT': 4               # not in the 2026 field
+  'DE': 4
+  'BR': 5
+  'EN': 1
+  'AR': 3
+  'FR': 2
+  'ES': 1
 hosts:                  # team code -> venue country code where they get +100 home advantage
   'US': 'US'
   'CA': 'CA'

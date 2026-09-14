@@ -15,18 +15,18 @@ colour, no glow/bevel), while keeping the same information and arrangement.
 
 ## Status
 
-| # | View | Defined | Built |
+| # | View | Defined | Built (data = CSV/JSON by `report/`; chart = PNG) |
 |---|---|---|---|
-| 1 | Group advance probabilities | defined | |
-| 2 | Full fate table, counts per team | defined | |
-| 3 | Weakest teams (+ lowest-Elo companion) | defined | |
-| 4 | First-time champions | defined | |
-| 5 | Trophy paradox: new contenders vs faded giants | defined | |
-| 6 | Host nations exit distributions | defined | |
-| 7 | Paradoxes: Elo vs tournament odds | defined | |
-| 8 | Team focus page (Spain first) | defined | |
-| 9 | Most-probable bracket | defined | |
-| 10 | Reality overlay: real final, real path, three closest runs | defined | |
+| 1 | Group advance probabilities | defined | data |
+| 2 | Full fate table, counts per team | defined | data |
+| 3 | Weakest teams (+ lowest-Elo companion) | defined | data |
+| 4 | First-time champions | defined | data |
+| 5 | Trophy paradox: new contenders vs faded giants | defined | data |
+| 6 | Host nations exit distributions | defined | data |
+| 7 | Paradoxes: Elo vs tournament odds | defined | data |
+| 8 | Team focus page (Spain first) | defined | data |
+| 9 | Most-probable bracket | defined | data |
+| 10 | Reality overlay: real final, real path, three closest runs | defined | data |
 
 ## 1. Group advance probabilities (defined)
 

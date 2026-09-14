@@ -43,7 +43,7 @@ often a favourite actually gets the result.
 
 | Done | Next |
 |---|---|
-| Data layer for eloratings.net TSV files | Reports and the 2026 backtest |
+| Data layer for eloratings.net TSV files | Report charts and the 2026 backtest |
 | Elo engine, verified against the site's own point exchanges | |
 | Pre-tournament ratings for all 48 teams, groups, all 104 real results, full bracket and FIFA's 495-row third-place table | |
 | Goals model fitted and calibrated | |
@@ -52,6 +52,7 @@ often a favourite actually gets the result.
 | Knockout bracket with FIFA's third-place table, verified to reproduce all 32 real knockout pairings | |
 | Full single-tournament simulation with Elo carried match to match and host home advantage | |
 | Monte Carlo runner that stores every match of every simulation as Parquet | |
+| Report data layer: ten views (group odds, fate table, paradoxes, most-probable bracket, reality check) as CSV/JSON | |
 
 Details and the full component list are in [docs/ROADMAP.md](docs/ROADMAP.md).
 
@@ -68,6 +69,7 @@ intsoccer fetch --teams ES AR EN         # download current ratings and team his
 intsoccer snapshot --date 2026-06-11 --label wc2026   # ratings as of the eve of the World Cup
 intsoccer fit                            # refit the goals model and draw the calibration chart
 intsoccer simulate --n 100000 --seed 2026   # 100k World Cups -> output/wc2026/ (~8 min)
+intsoccer report --run output/wc2026        # the report views -> output/wc2026/report/
 ```
 
 Requires Python 3.11 or newer. Downloads are cached in `data/raw/` and simulation runs are
@@ -89,8 +91,11 @@ src/intsoccer/
                (bracket resolution incl. third-place table), simulate.py (one whole tournament)
   montecarlo/  run.py (n simulations, each seeded as [seed, i] so any one can be regenerated;
                matches / teams / sims Parquet tables plus a summary CSV under output/<name>/)
-  backtest/, report/   not started
-  cli.py       intsoccer fetch | snapshot | fit | simulate
+  report/      tables.py (views 1-8), bracket.py (most-probable bracket, reality overlay),
+               build.py (writes output/<name>/report/*.csv|json); the views are specified in
+               docs/REPORTS.md
+  backtest/    not started
+  cli.py       intsoccer fetch | snapshot | fit | simulate | report
 data/tournaments/   wc2026.yaml (annotated schema example), wc2026_results.csv (all 104 real
                     results with pre-match ratings), wc2026_third_place_table.csv (FIFA Annex C,
                     495 rows); euro2028 / copa2028 placeholders awaiting their draws
@@ -116,7 +121,8 @@ data/tournaments/<name>.yaml + snapshot + params
     ↓  tournament/simulate.py (one whole tournament, Elo carried match to match)
     ↓  model/match.py         (one match, vectorised over simulations)
     ↓  montecarlo/            (n runs → output/<name>/{matches,teams,sims}.parquet + summary.csv)
-    ↓  report/ + backtest/    (tables, charts, Brier / log-loss vs 2026)        [todo]
+    ↓  report/                (output/<name>/report/: one CSV/JSON per view, charts to come)
+    ↓  backtest/              (Brier / log-loss vs the real 2026 results)         [todo]
 ```
 
 Tests check the code against reality wherever the data allows. `tests/fixtures/` holds small real

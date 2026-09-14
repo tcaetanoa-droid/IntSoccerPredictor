@@ -5,6 +5,7 @@ YAML fields (see `wc2026.yaml` for a complete, annotated example):
     name, match_type (-> Elo K), tiebreakers (head_to_head_first | overall_first),
     start_date, ratings_snapshot (optional paths, relative to the project root),
     hosts: {team code: venue country code}        # +100 when they play there
+    past_champions: {team code: titles before this edition}   # optional, for reports
     groups: {letter: [team codes]}                # quote codes in YAML ('NO' is Norway)
     advance: {top_n, best_thirds}
     knockout:
@@ -95,6 +96,7 @@ class Tournament:
     k: int
     tiebreakers: str
     hosts: dict[str, str]                       # team code -> venue country code
+    past_champions: dict[str, int]              # titles before this edition; may include absentees
     groups: dict[str, tuple[str, ...]]          # letter -> team codes
     top_n: int
     best_thirds: int
@@ -185,6 +187,7 @@ def build_tournament(raw: dict, path: Path | None = None, base: Path = PROJECT_R
         k=k_factor(str(raw["match_type"])),
         tiebreakers=str(raw["tiebreakers"]),
         hosts={str(k): str(v) for k, v in (raw.get("hosts") or {}).items()},
+        past_champions={str(k): int(v) for k, v in (raw.get("past_champions") or {}).items()},
         groups=groups,
         top_n=top_n,
         best_thirds=best_thirds,

@@ -21,7 +21,7 @@ its own. Update the status column as things land.
 | 8 | Knockout stage: bracket resolution incl. the 495-row third-place table. **Validate: real 2026 standings must produce all 16 real R32 pairings** | `tournament/knockout.py` | done (component-7 standings from the real results + real knockout results reproduce all 32 real knockout pairings through the final) |
 | 9 | Full single-tournament simulation | `tournament/simulate.py` | done (~4 ms per tournament; hosts get +100 in group games and in knockout matches whose YAML `venues` entry is their country) |
 | 10 | Monte Carlo runner: N sims, seeds, aggregation (P(win), P(reach round), group finish) | `montecarlo/` | done (every match, team-fate and sim stored as Parquet under `output/<name>/`; any sim regenerable from `[seed, i]`; `intsoccer simulate`; ~225 sims/s) |
-| 11 | Reports: CSV/JSON tables + charts | `report/` | todo |
+| 11 | Reports: CSV/JSON tables + charts | `report/` | 11a done (data layer: the ten views of `docs/REPORTS.md` as CSV/JSON under `output/<name>/report/`, `intsoccer report`); 11b charts todo |
 | 12 | 2026 World Cup: transcribe groups/bracket/results to YAML, snapshot ratings at 2026-06-10, run the sim, score it (Brier / log-loss, calibration) | `backtest/` + `data/tournaments/wc2026.yaml` | todo (main goal) |
 | 13 | Euro 2028 run | `data/tournaments/euro2028.yaml` | deferred until draw + format known |
 | 14 | Copa América 2028 run | `data/tournaments/copa2028.yaml` | deferred until CONMEBOL announces format |
@@ -91,6 +91,13 @@ group position, points, GD, GF, tiebreak depth, third-place rank, last round rea
 `summary.csv` (per-team probabilities) and `meta.yaml`. Simulation i uses
 `np.random.default_rng([seed, i])`, so `regenerate(run, i)` rebuilds exactly that tournament.
 Team columns are pandas categoricals. ~65 MB for 100k World Cups; `output/` is gitignored.
+
+**11 Reports.** The views are specified in `docs/REPORTS.md` (agreed with Thiago view by view).
+11a, `report/tables.py` (views 1–8), `report/bracket.py` (9–10) and `report/build.py`, turns a
+saved run into one CSV/JSON per view plus `report.json`; editorial choices per tournament (focus
+team, faded giants, paradox pairs, real-results file) live in `build.FOCUS`. Tests check the
+structural invariants on a fresh 300-run store and, when `output/wc2026/` holds the seed-2026
+100k run, the exact numbers quoted in the doc. 11b draws one PNG per view from those files.
 
 **12 Backtest metrics.** For each match: Brier score over (W/D/L) and log-loss. For the tournament:
 did the sim's most-likely champion / semi-finalists match? Rank-probability skill vs a naive
