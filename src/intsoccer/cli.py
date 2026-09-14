@@ -40,6 +40,35 @@ def cmd_snapshot(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_fit(args: argparse.Namespace) -> int:
+    """Fit the Elo-gap -> expected-goals curve on real match histories."""
+    from .model import fit as fitmod
+
+    paths = fetch.fetch_core()
+    names = parse.load_team_names(paths["teams"])
+    codes = list(parse.load_ratings(fetch.download(args.table))["code"])
+    rows = fitmod.build_training_set(codes, names, args.start, args.end)
+    n_matches = len(rows) // 2
+    model = fitmod.fit_goals_model(rows, with_friendly_term=True)
+    competitive_only = fitmod.fit_goals_model(rows[~rows["friendly"]], with_friendly_term=False)
+    print(f"training set: {n_matches} matches ({int(rows['friendly'].sum()) // 2} friendlies), "
+          f"{args.start} <= date < {args.end}, from {len(codes)} team histories")
+    print(f"fitted:  a={model.a:.4f}  b={model.b:.6f}  c_friendly={model.c_friendly:.4f}")
+    print(f"  -> equal teams, neutral: {model.rate(0):.3f} goals each; "
+          f"+100 (home) edge: {model.rate(100):.3f} vs {model.rate(-100):.3f}; "
+          f"+400 edge: {model.rate(400):.3f} vs {model.rate(-400):.3f}")
+    print(f"competitive-only fit for comparison: a={competitive_only.a:.4f} b={competitive_only.b:.6f}")
+    diag = fitmod.diagnostics(rows, model)
+    print("\ndiagnostics by Elo-advantage bin (dr incl. home +100):")
+    print(diag[diag["n"] >= 30].to_string())
+    out = Path(args.out)
+    model.save(out, meta={"fitted_on": {"start": args.start, "end": args.end, "table": args.table,
+                                        "matches": n_matches, "friendly_types": sorted(fitmod.FRIENDLY_TYPES)}})
+    chart = fitmod.plot_diagnostics(diag, Path("output") / "goals_model_diagnostics.png")
+    print(f"\nsaved {out} and {chart}")
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(prog="intsoccer", description=__doc__)
     sub = p.add_subparsers(dest="command", required=True)
@@ -59,7 +88,14 @@ def build_parser() -> argparse.ArgumentParser:
                     help="date used in the filename (default: --date minus one day)")
     sn.set_defaults(func=cmd_snapshot)
 
-    for name in ["fit", "simulate", "backtest", "report"]:
+    ft = sub.add_parser("fit", help="fit the Elo-gap -> expected-goals model")
+    ft.add_argument("--table", default="2026_World_Cup.tsv", help="teams whose histories to use")
+    ft.add_argument("--start", default="2010-01-01")
+    ft.add_argument("--end", default="2026-06-11", help="exclusive; keep the backtest window out")
+    ft.add_argument("--out", default="data/model_params.yaml")
+    ft.set_defaults(func=cmd_fit)
+
+    for name in ["simulate", "backtest", "report"]:
         s = sub.add_parser(name, help=f"(not implemented yet, see docs/ROADMAP.md)")
         s.set_defaults(func=lambda a, n=name: print(f"{n}: not implemented yet") or 1)
     return p

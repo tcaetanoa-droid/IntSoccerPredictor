@@ -1,0 +1,13 @@
+goals_model:
+  a: 0.13591012167448221
+  b: 0.001761159182653181
+  c_friendly: -0.00798943113562542
+  max_goals: 15
+fitted_on:
+  start: '2010-01-01'
+  end: '2026-06-11'
+  table: 2026_World_Cup.tsv
+  matches: 7526
+  friendly_types:
+  - F
+  - FT

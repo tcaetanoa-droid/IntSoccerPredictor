@@ -72,16 +72,41 @@ come from the Poisson scoreline. `We` is used only inside the rating update.
 
 ## Goals model (Elo difference → expected goals)
 
-Status: **to be fitted** (Roadmap component 4).
-
-Plan: Poisson regression on competitive matches from the per-team histories (post-2000 or so):
+Status: **fitted** (Roadmap component 4). Parameters live in `data/model_params.yaml`; refit with
+`intsoccer fit`. Code: `src/intsoccer/model/goals.py`, `fit.py`.
 
 ```
-log(λ_team) = a + b · dr_team        (dr includes the +100 home term)
+lambda_team = exp(a + b * dr_team + c * is_friendly)
 ```
 
-Fit `a`, `b` with scipy / statsmodels-style maximum likelihood. Sanity targets from the literature:
-average total goals per international match ≈ 2.6–2.8; a 400-point favourite should win roughly
-80–85 % of the time (which is where a plain Elo `We` and the Poisson model start to diverge).
-Possible refinements later: Dixon–Coles low-score correction, separate curves per confederation,
-capping λ for very large `dr`.
+`dr_team` is the rating gap from that team's view, including the +100 home term, so the two
+teams' rates mirror each other (A uses +dr, B uses −dr). Both sides' goals are then drawn from
+independent Poisson distributions with those rates.
+
+Fit (Sept 2026): Poisson maximum likelihood on 7,526 matches from the histories of the 48 World
+Cup 2026 teams, 1 Jan 2010 to 10 Jun 2026 (the World Cup itself is excluded so the backtest is
+honest), friendlies included (2,650 of them).
+
+| Parameter | Value | Meaning |
+|---|---|---|
+| a | 0.136 | equal teams at a neutral venue: exp(0.136) = 1.15 goals each, 2.3 per match |
+| b | 0.00176 per Elo point | every +100 Elo multiplies a team's goal rate by exp(0.176) = 1.19 |
+| c_friendly | −0.008 | friendlies have the same goal rates as competitive games; the simulator uses 0 |
+
+Fitting only competitive matches gives a = 0.133, b = 0.00178: the friendlies make no
+practical difference, which is why they stay in (more data, same curve).
+
+Examples: home team +100 → 1.37 vs 0.96 goals; +400 favourite → 2.32 vs 0.57 goals.
+
+Calibration by Elo-gap bin (from `intsoccer fit` diagnostics, chart in
+`output/goals_model_diagnostics.png`): predicted and observed mean goals agree within ~0.05 for
+every bin between −700 and +700; predicted win rates are within ~0.02 of observed across the
+range. The one visible weakness is draws: near dr = 0 the model gives 0.28 vs 0.30 observed
+(the usual independent-Poisson under-prediction; a Dixon–Coles correction is the roadmap fix if
+the backtest shows it matters).
+
+Elo `We` vs reality: at a +300 gap Elo's expected score is 0.88 while the observed score
+(W + D/2) is 0.82; at +100 it is 0.70 vs 0.65. The Poisson model tracks the observed values.
+This is the divergence between Elo win expectancy and real outcomes that the scoreline model
+fixes.
+

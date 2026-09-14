@@ -50,6 +50,7 @@ src/intsoccer/
   backtest/       replay a past tournament from pre-tournament ratings, scoring metrics
   report/         CSV/JSON tables and matplotlib charts into output/
 data/tournaments/ one YAML per tournament (groups, hosts, advancement rules, bracket)
+data/model_params.yaml  fitted goals-model parameters (refit with `intsoccer fit`)
 docs/             ROADMAP (component breakdown + status), formula, data, and WC2026 format references
 tests/            pytest; fixtures are small TSV excerpts committed under tests/fixtures
 ```

@@ -14,7 +14,7 @@ its own. Update the status column as things land.
 | 1 | Data layer: fetch TSVs, parse ratings + histories, team codes | `data/` | done (fetch + parse) |
 | 2 | Elo core: `We`, K, G, rating update, home advantage | `elo/` | done (K verified empirically, ±1 vs site on 125 real rows) |
 | 3 | Rating reconstruction: pre-tournament snapshot, group inference, results export | `data/snapshot.py` | done (`data/snapshots/2026-06-10_wc2026.csv`, `wc2026.yaml`, `wc2026_results.csv`) |
-| 4 | Goals model: fit Elo-diff → expected goals curve (Poisson regression) | `model/` | todo |
+| 4 | Goals model: fit Elo-diff → expected goals curve (Poisson regression) | `model/` | done (a=0.136, b=0.00176; `data/model_params.yaml`) |
 | 5 | Single-match simulator: scoreline, extra time, shootout, Elo update | `model/match.py` | todo |
 | 6 | Tournament definitions (YAML schema + loader): groups, hosts, rules, bracket | `tournament/format.py` | todo |
 | 7 | Group stage: standings, points, tiebreakers (UEFA / CONMEBOL / FIFA), best-thirds ranking. **Validate by replaying the real 2026 group results and checking the 32 advancing teams match reality** | `tournament/group.py` | todo |
@@ -38,9 +38,9 @@ apply the update, expect the site's "points exchanged" column within ±2 (roundi
 For a tournament backtest, snapshot every participant's rating the day before the opening match.
 Save snapshots to `data/snapshots/<YYYY-MM-DD>_<label>.csv` and commit them.
 
-**4 Goals model.** Fit on competitive matches (exclude friendlies, or fit separately) from a pool of
-team histories covering the 2026 WC / Euro / Copa fields. Output the fitted `(a, b)` to
-`data/model_params.yaml`. Plot fitted P(win/draw/loss) vs Elo `We` to show the divergence.
+**4 Goals model.** Fitted on all matches (friendlies included, with a separate friendly offset that
+turned out to be ~0) from the 48 WC 2026 histories, 2010 to 10 Jun 2026. Params in
+`data/model_params.yaml`; diagnostics chart in `output/`. Details in `docs/ELO_FORMULA.md`.
 
 **5 Match simulator.** Inputs: two ratings, home flag, K, rng. Output: scoreline, winner
 (after ET/pens if knockout), new ratings. Extra time: Poisson with λ·(30/90). Shootout: 50/50
