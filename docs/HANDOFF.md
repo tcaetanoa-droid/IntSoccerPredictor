@@ -90,6 +90,13 @@ simulation explorers), and where the "how it works" method section sits.
   name lookup is `data/raw/en.teams.tsv` after `intsoccer fetch`. The site needs a code → name
   (and flag) map; none exists in the report files yet.
 
+## Pushing to GitHub
+
+Two GitHub accounts are logged in on this machine. The repo belongs to `tcaetanoa-droid`; if
+the active `gh` account is `guard-supplements` a push fails with "Repository not found". Fix:
+`gh auth switch --user tcaetanoa-droid`, push, then `gh auth switch --user guard-supplements`
+so the other project is unaffected.
+
 ## Working agreements
 
 - One component per sitting; ask before design-changing choices; routine choices decide and
