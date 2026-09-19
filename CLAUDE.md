@@ -123,6 +123,7 @@ Copied from GitHub on 14 Sep 2026, same set Thiago uses in his other projects:
   any website or design session with `brainstorming` (it has a visual companion that serves
   HTML frames on localhost), then a plan, then build one section at a time for feedback.
 - `frontend-design` is Anthropic's plugin, installed globally and already active here.
+- `handoff` (Thiago's own): writes a resume-here doc to `$TMPDIR` when a session is ending mid-task.
 
 The website is light-themed and reads `output/<name>/report/*.json`; see `docs/REPORTS.md`.
 
