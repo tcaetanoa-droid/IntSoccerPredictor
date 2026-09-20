@@ -1,5 +1,5 @@
 // site/js/fate-table.js
-import { h, flag, name, fmtCount, fmtPct } from './dom.js';
+import { h, flag, name, fmtCount } from './dom.js';
 
 // The nine ways a run can end, in tournament order. Chapters 4 and 7 reuse FATES and tint().
 export const FATES = [
@@ -45,5 +45,5 @@ export function render(section, ctx) {
     h('p', { class: 'lede', html: `Each row splits a team's ${runs} runs into nine ways a World Cup can end: fourth in the group, third and out, then the round where the run stopped, up to the trophy. A third-placed team that squeaked through is counted where it was eventually knocked out. <b>${name(lead.team, ctx.byCode)} won ${won} runs; Qatar won none.</b>` }),
     h('div', { class: 'legend' }, ...FATES.map((f) => h('span', {}, h('i', { style: `background:${f.colour}` }), f.long)), h('span', { style: 'margin-left:auto' }, 'Click a column header to sort')),
     h('div', { class: 'scroll-x' }, table),
-    h('p', { class: 'foot' }, `Counts, not percentages: ${won} out of ${runs} is easier to believe than ${fmtPct(lead.champion / ctx.n)}. The Advanced and 3rd-in-group columns are subtotals: a team can be third and still advance, so they overlap.`));
+    h('p', { class: 'foot' }, 'The Advanced and 3rd-in-group columns are subtotals: a team can be third and still advance, so they overlap.'));
 }
