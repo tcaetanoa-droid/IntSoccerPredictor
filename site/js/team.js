@@ -14,17 +14,17 @@ export async function render(section, ctx) {
   const cnt = (share) => countOf(share, ctx.n);
   const fromHash = (location.hash.match(/team=([A-Z]{2})/) || [])[1];
   let code = ctx.byCode[fromHash] ? fromHash : ctx.teams[0].code;
-  let matches = [], hi = -1;
+  let matches = [], hi = -1, blurT = 0;
 
   const input = h('input', { class: 'si', id: 'team-search', type: 'text', autocomplete: 'off', role: 'combobox',
     'aria-controls': 'team-results', 'aria-expanded': 'false', 'aria-autocomplete': 'list',
-    onfocus: (e) => e.target.select(),
+    onfocus: (e) => { clearTimeout(blurT); e.target.select(); },
     oninput: () => openList(input.value),
-    onblur: () => setTimeout(() => closeList(true), 120),  // after a row's click has landed
+    onblur: () => { blurT = setTimeout(() => closeList(true), 120); },  // after a row's click has landed
     onkeydown: onKey });
   const fsl = h('span', { class: 'sfl' });  // the chosen team's flag, redrawn by show()
   const clear = h('button', { class: 'x', type: 'button', 'aria-label': 'Clear the team name',
-    onclick: () => { input.value = ''; closeList(false); input.focus(); } }, '×');
+    onclick: () => { clearTimeout(blurT); input.value = ''; closeList(false); input.focus(); } }, '×');
   const results = h('div', { class: 'res', id: 'team-results', role: 'listbox', 'aria-label': 'Teams', hidden: '' });
   const chips = h('div', { class: 'chips' });
   const body = h('div', { class: 'tbody' });
@@ -71,6 +71,10 @@ export async function render(section, ctx) {
     code = c;
     history.replaceState(null, '', `#team=${code}`);
     closeList(false);
+    // Always: show() rebuilds the chip row, so a chip that was activated is removed from the
+    // document and focus would fall to <body>. From a row or the keyboard the focus is already
+    // here, so moving it back to the input is a no-op there.
+    input.focus();
     show();
   }
 
