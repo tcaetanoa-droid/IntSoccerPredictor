@@ -251,7 +251,8 @@ main { min-width: 0; }
 #paradoxes .vs { padding: 14px 16px 12px; font-size: 12.5px; }
 #paradoxes .vm { font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 12px; line-height: 1.4; }
 #paradoxes .vs-grid { display: grid; grid-template-columns: 1fr 28px 1fr; gap: 8px; align-items: end; }
-#paradoxes .vsx { text-align: center; font-family: var(--serif); font-style: italic; color: var(--faint); padding-bottom: 6px; }
+/* The mock-up's --faint is 2.96:1 on the card; --muted (5.45:1) is the Elo labels' colour. */
+#paradoxes .vsx { text-align: center; font-family: var(--serif); font-style: italic; color: var(--muted); padding-bottom: 6px; }
 #paradoxes .vh { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
 #paradoxes .vh b { font-family: var(--serif); font-size: 18px; font-weight: 500; }
 #paradoxes .vh .n { font-size: 11px; color: var(--muted); }
