@@ -24,15 +24,19 @@ function panel(title, bins, series, ymax, ylab, W = 620, H = 300, L = 44, T = 28
 }
 
 export function calibrationChart(bins) {
+  const head = h('div', { class: 'exh' }, 'Calibration: predicted against observed, by rating gap');
+  // A later tournament may ship no calibration rows at all, and the 30-match floor can drop the
+  // zero bin the draw sentence quotes. Neither may throw: this runs before replaceChildren, so
+  // an exception here would leave the whole chapter empty.
+  if (!bins.length) return h('div', { class: 'card calbox' }, head, h('p', { class: 'foot' }, 'No calibration data is available for this tournament yet.'));
   // Round the goals axis up to the next half goal so the widest bin (+900, 6.05 predicted) sits
   // inside the panel; the rate panel is always a full 0-100%.
   const gmax = Math.ceil(Math.max(...bins.map((b) => Math.max(b.obs_goals, b.pred_goals))) * 2) / 2;
   const eq = bins.find((b) => b.bin === 0);  // the near-equal bin the footnote quotes
-  return h('div', { class: 'card calbox' },
-    h('div', { class: 'exh' }, 'Calibration: predicted against observed, by rating gap'),
-    h('div', { class: 'cl' }, h('span', {}, h('i', { class: 'ln', style: 'background:var(--green)' }), 'model'), h('span', {}, h('i', { class: 'dot', style: 'border-color:var(--green)' }), 'observed, dot size = number of matches in the bin'), h('span', {}, h('i', { class: 'ln', style: 'background:var(--orange)' }), 'draws, model'), h('span', {}, h('i', { class: 'dot', style: 'border-color:var(--orange)' }), 'draws, observed')),
+  return h('div', { class: 'card calbox' }, head,
+    h('div', { class: 'cl' }, h('span', {},h('i', { class: 'ln', style: 'background:var(--green)' }), 'model'), h('span', {}, h('i', { class: 'dot', style: 'border-color:var(--green)' }), 'observed, dot size = number of matches in the bin'), h('span', {}, h('i', { class: 'ln', style: 'background:var(--orange)' }), 'draws, model'), h('span', {}, h('i', { class: 'dot', style: 'border-color:var(--orange)' }), 'draws, observed')),
     h('div', { class: 'cal2' },
       panel('Mean goals scored per team', bins, [['pred_goals', 'obs_goals', 'var(--green)']], gmax, (t) => t.toFixed(1)),
       panel('Win rate and draw rate', bins, [['pred_win', 'obs_win', 'var(--green)'], ['pred_draw', 'obs_draw', 'var(--orange)']], 1, (t) => `${Math.round(t * 100)}%`)),
-    h('p', { class: 'foot' }, `7,526 matches from January 2010 to 10 June 2026, in bins of 100 rating points; bins with fewer than 30 matches are dropped. The line is what the model predicts for the matches in each bin, the dots are what happened. Between −500 and +500 the two agree within about 0.07 goals and 0.02 in win rate. The draw line sits just under the dots near zero: the model gives ${fmtPct(eq.pred_draw, 0)}, reality ${fmtPct(eq.obs_draw, 0)}.`));
+    h('p', { class: 'foot' }, `7,526 matches from January 2010 to 10 June 2026, in bins of 100 rating points; bins with fewer than 30 matches are dropped. The line is what the model predicts for the matches in each bin, the dots are what happened. Between −500 and +500 the two agree within about 0.07 goals and 0.02 in win rate.${eq ? ` The draw line sits just under the dots near zero: the model gives ${fmtPct(eq.pred_draw, 0)}, reality ${fmtPct(eq.obs_draw, 0)}.` : ''}`));
 }
