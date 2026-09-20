@@ -120,3 +120,32 @@ main { min-width: 0; }
 #who-wins-it .sub { color: var(--ink-soft); opacity: .85; }
 #who-wins-it th.sub { border-left: 1px solid var(--border); }
 #who-wins-it tr:hover td { filter: brightness(.97); }
+
+/* chapter 2: the group stage */
+#group-stage { --adv: #E4F0E5; --third: #F1F6EF; }
+#group-stage .ggrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+#group-stage .gcard { overflow: hidden; }
+#group-stage .gh { display: flex; justify-content: space-between; align-items: baseline; padding: 10px 12px 8px; border-bottom: 1px solid var(--ink); font-family: var(--serif); font-size: 19px; font-weight: 500; }
+#group-stage .gh .th { font-family: var(--sans); font-size: 10.5px; color: var(--ink-soft); letter-spacing: .02em; }
+/* Narrower than the mock-up's 70/44 columns: the rail costs each card 54px, and the team name
+   needs 113px ("Bosnia & Herz.") before the host tag starts being clipped away. */
+#group-stage .row { display: grid; grid-template-columns: 16px 1fr 52px 38px; gap: 6px; align-items: center; padding: 7px 12px; font-size: 13px; border-bottom: 1px solid #EEF2EC; }
+#group-stage .row:last-child { border-bottom: 0; }
+#group-stage .row.adv { background: var(--adv); }
+#group-stage .row.third { background: var(--third); }
+#group-stage .row.out { color: var(--muted); }
+#group-stage .row.out img { opacity: .7; }
+#group-stage .pos { font-size: 10px; color: var(--ink-soft); }
+#group-stage .tm { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#group-stage .tm em { font-style: normal; font-size: 9px; letter-spacing: .08em; text-transform: uppercase; color: var(--orange); margin-left: 5px; vertical-align: 1px; }
+#group-stage .bar { display: block; height: 8px; background: var(--rule); border-radius: 2px; overflow: hidden; }
+#group-stage .bar i { display: block; height: 100%; background: #3F8F57; }
+#group-stage .row.third .bar i { background: #6BAE7C; }
+#group-stage .row.out .bar i { background: #B9CBBB; }
+#group-stage .v { text-align: right; font-weight: 600; }
+#group-stage .row.out .v { font-weight: 400; }
+/* A card needs ~265px before the names start being clipped, and the rail takes 218px out of the
+   page above 1023px, so four columns only fit from the 1440 design width down. */
+@media (max-width: 1439px) { #group-stage .ggrid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 1160px) { #group-stage .ggrid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { #group-stage .ggrid { grid-template-columns: 1fr; } }
