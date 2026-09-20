@@ -9,7 +9,7 @@ import pandas as pd
 
 from ..montecarlo import Run, load_run
 from ..tournament.format import TOURNAMENT_DIR
-from . import bracket, tables
+from . import bracket, site, tables
 
 # Editorial choices per tournament (which team gets the focus page, which giants, which pairs).
 FOCUS = {
@@ -30,8 +30,15 @@ def _json(obj):
     return obj
 
 
+def _load_names() -> dict[str, str]:
+    """Team names from the cached en.teams.tsv; codes stand in if it was never fetched."""
+    from ..data import fetch, parse
+    path = fetch.RAW_DIR / "en.teams.tsv"
+    return parse.load_team_names(path) if path.exists() else {}
+
+
 def build_report(run: Run | Path, out_dir: Path | None = None, focus: dict | None = None,
-                 name: str | None = None) -> dict:
+                 name: str | None = None, names: dict | None = None) -> dict:
     """Compute all views; write them under out_dir (default <run dir>/report) if given a path."""
     run_dir = None
     if not isinstance(run, Run):
@@ -40,6 +47,8 @@ def build_report(run: Run | Path, out_dir: Path | None = None, focus: dict | Non
     name = name or (run_dir.name if run_dir else Path(run.meta["tournament_yaml"]).stem)
     focus = focus or FOCUS[name]
     ctx = tables.context(run)
+    if names is None:
+        names = _load_names()
 
     views = {
         "group_advance": tables.group_advance(ctx),
@@ -53,6 +62,7 @@ def build_report(run: Run | Path, out_dir: Path | None = None, focus: dict | Non
         f"team_{focus['team']}": tables.team_page(ctx, focus["team"]),
         "bracket": bracket.modal_bracket(ctx),
         "reality": bracket.reality(ctx, Path(focus["results"])),
+        "teams": site.teams_index(ctx, names),
     }
     if out_dir is None and run_dir is not None:
         out_dir = run_dir / "report"
