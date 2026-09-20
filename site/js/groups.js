@@ -28,7 +28,7 @@ export function render(section, ctx) {
     h('div', { class: 'legend' },
       h('span', {}, h('i', { style: 'background:var(--adv)' }), 'top two, through'),
       h('span', {}, h('i', { style: 'background:var(--third)' }), 'third place, usually through'),
-      h('span', {}, h('i', { style: 'background:var(--card);box-shadow:0 0 0 1px var(--border) inset' }), 'usually out'),
+      h('span', {}, h('i', { style: 'background:var(--card)' }), 'usually out'),
       h('span', { class: 'n', style: 'font-size:11px' }, '1–4 = most common finishing position')),
     h('div', { class: 'ggrid' }, ...cards),
     h('p', { class: 'foot' }, 'The small number at the left is the position a team finishes most often, which is not always the order of the bars: in Group D the USA get out more often than Australia yet finish fourth more often than third.'));

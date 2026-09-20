@@ -123,6 +123,9 @@ main { min-width: 0; }
 
 /* chapter 2: the group stage */
 #group-stage { --adv: #E4F0E5; --third: #F1F6EF; }
+/* The row tints are far too pale to read as swatches on the paper, so every one gets the thin
+   border that the white "usually out" swatch needs anyway. */
+#group-stage .legend i { box-shadow: 0 0 0 1px var(--border) inset; }
 #group-stage .ggrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
 #group-stage .gcard { overflow: hidden; }
 #group-stage .gh { display: flex; justify-content: space-between; align-items: baseline; padding: 10px 12px 8px; border-bottom: 1px solid var(--ink); font-family: var(--serif); font-size: 19px; font-weight: 500; }
