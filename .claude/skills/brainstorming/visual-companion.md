@@ -112,19 +112,27 @@ Use `--url-host` to control what hostname is printed in the returned URL JSON.
    - Use your file-creation tool — **never use cat/heredoc** (dumps noise into terminal)
    - Server automatically serves the newest file
 
-2. **Tell user what to expect and end your turn:**
+2. **Quality verification gate (required before every screen reaches the user):**
+   - Render the screen yourself and look at it. On macOS with Chrome installed:
+     `"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --disable-gpu --hide-scrollbars --window-size=1440,2400 --virtual-time-budget=6000 --screenshot=<scratch>/<screen>.png "<full url with ?key=…>"`
+     then open the PNG with your image-reading tool. Elsewhere use whatever headless browser exists; if none does, say so and describe the layout risk instead of claiming it looks right.
+   - Check: options are stacked and readable, nothing is squeezed into a narrow column, tables and mockups are not clipped, fonts loaded, text contrast is fine in the frame's theme (it follows the OS light/dark setting), the whole question fits without needing a horizontal scroll.
+   - Frame trap to know: `.option` is a horizontal flexbox (`display: flex; gap: 1rem`) designed for a letter badge plus one line of text. Any rich mockup inside an `.option` must override it with `.option.<yours> { display: block; }` or its children will be laid out as a row.
+   - If anything is wrong, write a new versioned file (`-v2`, `-v3`), re-render, re-check. Only a screen you have seen rendered correctly goes to the user.
+
+3. **Tell user what to expect and end your turn:**
    - Remind them of the URL (every step, not just first)
    - Give a brief text summary of what's on screen (e.g., "Showing 3 layout options for the homepage")
    - Ask them to respond in the terminal: "Take a look and let me know what you think. Click to select an option if you'd like."
 
-3. **On your next turn** — after the user responds in the terminal:
+4. **On your next turn** — after the user responds in the terminal:
    - Read `$STATE_DIR/events` if it exists — this contains the user's browser interactions (clicks, selections) as JSON lines
    - Merge with the user's terminal text to get the full picture
    - The terminal message is the primary feedback; `state_dir/events` provides structured interaction data
 
-4. **Iterate or advance** — if feedback changes current screen, write a new file (e.g., `layout-v2.html`). Only move to the next question when the current step is validated.
+5. **Iterate or advance** — if feedback changes current screen, write a new file (e.g., `layout-v2.html`). Only move to the next question when the current step is validated.
 
-5. **Unload when returning to terminal** — when the next step doesn't need the browser (e.g., a clarifying question, a tradeoff discussion), push a waiting screen to clear the stale content:
+6. **Unload when returning to terminal** — when the next step doesn't need the browser (e.g., a clarifying question, a tradeoff discussion), push a waiting screen to clear the stale content:
 
    ```html
    <!-- filename: waiting.html (or waiting-2.html, etc.) -->
@@ -135,7 +143,7 @@ Use `--url-host` to control what hostname is printed in the returned URL JSON.
 
    This prevents the user from staring at a resolved choice while the conversation has moved on. When the next visual question comes up, push a new content file as usual.
 
-6. Repeat until done.
+7. Repeat until done.
 
 ## Writing Content Fragments
 

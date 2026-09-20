@@ -1,0 +1,386 @@
+[
+ {
+  "code": "ES",
+  "iso": "es",
+  "name": "Spain",
+  "group": "H",
+  "elo": 2157.0,
+  "champion_pct": 0.18626
+ },
+ {
+  "code": "AR",
+  "iso": "ar",
+  "name": "Argentina",
+  "group": "J",
+  "elo": 2115.0,
+  "champion_pct": 0.13668
+ },
+ {
+  "code": "FR",
+  "iso": "fr",
+  "name": "France",
+  "group": "I",
+  "elo": 2064.0,
+  "champion_pct": 0.09752
+ },
+ {
+  "code": "EN",
+  "iso": "gb-eng",
+  "name": "England",
+  "group": "L",
+  "elo": 2024.0,
+  "champion_pct": 0.06518
+ },
+ {
+  "code": "PT",
+  "iso": "pt",
+  "name": "Portugal",
+  "group": "K",
+  "elo": 1989.0,
+  "champion_pct": 0.04889
+ },
+ {
+  "code": "BR",
+  "iso": "br",
+  "name": "Brazil",
+  "group": "C",
+  "elo": 1991.0,
+  "champion_pct": 0.04834
+ },
+ {
+  "code": "CO",
+  "iso": "co",
+  "name": "Colombia",
+  "group": "K",
+  "elo": 1982.0,
+  "champion_pct": 0.04495
+ },
+ {
+  "code": "NL",
+  "iso": "nl",
+  "name": "Netherlands",
+  "group": "F",
+  "elo": 1947.0,
+  "champion_pct": 0.03503
+ },
+ {
+  "code": "EC",
+  "iso": "ec",
+  "name": "Ecuador",
+  "group": "E",
+  "elo": 1938.0,
+  "champion_pct": 0.03141
+ },
+ {
+  "code": "DE",
+  "iso": "de",
+  "name": "Germany",
+  "group": "E",
+  "elo": 1932.0,
+  "champion_pct": 0.02894
+ },
+ {
+  "code": "NO",
+  "iso": "no",
+  "name": "Norway",
+  "group": "I",
+  "elo": 1914.0,
+  "champion_pct": 0.02501
+ },
+ {
+  "code": "TR",
+  "iso": "tr",
+  "name": "Turkey",
+  "group": "D",
+  "elo": 1910.0,
+  "champion_pct": 0.02476
+ },
+ {
+  "code": "HR",
+  "iso": "hr",
+  "name": "Croatia",
+  "group": "L",
+  "elo": 1911.0,
+  "champion_pct": 0.02317
+ },
+ {
+  "code": "JP",
+  "iso": "jp",
+  "name": "Japan",
+  "group": "F",
+  "elo": 1906.0,
+  "champion_pct": 0.02246
+ },
+ {
+  "code": "MX",
+  "iso": "mx",
+  "name": "Mexico",
+  "group": "A",
+  "elo": 1875.0,
+  "champion_pct": 0.0212
+ },
+ {
+  "code": "BE",
+  "iso": "be",
+  "name": "Belgium",
+  "group": "G",
+  "elo": 1893.0,
+  "champion_pct": 0.02024
+ },
+ {
+  "code": "CH",
+  "iso": "ch",
+  "name": "Switzerland",
+  "group": "B",
+  "elo": 1891.0,
+  "champion_pct": 0.02006
+ },
+ {
+  "code": "UY",
+  "iso": "uy",
+  "name": "Uruguay",
+  "group": "H",
+  "elo": 1892.0,
+  "champion_pct": 0.01813
+ },
+ {
+  "code": "SN",
+  "iso": "sn",
+  "name": "Senegal",
+  "group": "I",
+  "elo": 1860.0,
+  "champion_pct": 0.01403
+ },
+ {
+  "code": "PY",
+  "iso": "py",
+  "name": "Paraguay",
+  "group": "D",
+  "elo": 1833.0,
+  "champion_pct": 0.01095
+ },
+ {
+  "code": "US",
+  "iso": "us",
+  "name": "USA",
+  "group": "D",
+  "elo": 1726.0,
+  "champion_pct": 0.0097
+ },
+ {
+  "code": "MA",
+  "iso": "ma",
+  "name": "Morocco",
+  "group": "C",
+  "elo": 1827.0,
+  "champion_pct": 0.00965
+ },
+ {
+  "code": "CA",
+  "iso": "ca",
+  "name": "Canada",
+  "group": "B",
+  "elo": 1788.0,
+  "champion_pct": 0.0082
+ },
+ {
+  "code": "AT",
+  "iso": "at",
+  "name": "Austria",
+  "group": "J",
+  "elo": 1830.0,
+  "champion_pct": 0.00784
+ },
+ {
+  "code": "AU",
+  "iso": "au",
+  "name": "Australia",
+  "group": "D",
+  "elo": 1777.0,
+  "champion_pct": 0.00561
+ },
+ {
+  "code": "SQ",
+  "iso": "gb-sct",
+  "name": "Scotland",
+  "group": "C",
+  "elo": 1782.0,
+  "champion_pct": 0.0056
+ },
+ {
+  "code": "IR",
+  "iso": "ir",
+  "name": "Iran",
+  "group": "G",
+  "elo": 1772.0,
+  "champion_pct": 0.00502
+ },
+ {
+  "code": "KR",
+  "iso": "kr",
+  "name": "South Korea",
+  "group": "A",
+  "elo": 1758.0,
+  "champion_pct": 0.00426
+ },
+ {
+  "code": "DZ",
+  "iso": "dz",
+  "name": "Algeria",
+  "group": "J",
+  "elo": 1772.0,
+  "champion_pct": 0.0038
+ },
+ {
+  "code": "CZ",
+  "iso": "cz",
+  "name": "Czechia",
+  "group": "A",
+  "elo": 1740.0,
+  "champion_pct": 0.00346
+ },
+ {
+  "code": "PA",
+  "iso": "pa",
+  "name": "Panama",
+  "group": "L",
+  "elo": 1730.0,
+  "champion_pct": 0.00247
+ },
+ {
+  "code": "SE",
+  "iso": "se",
+  "name": "Sweden",
+  "group": "F",
+  "elo": 1712.0,
+  "champion_pct": 0.00213
+ },
+ {
+  "code": "UZ",
+  "iso": "uz",
+  "name": "Uzbekistan",
+  "group": "K",
+  "elo": 1714.0,
+  "champion_pct": 0.00198
+ },
+ {
+  "code": "EG",
+  "iso": "eg",
+  "name": "Egypt",
+  "group": "G",
+  "elo": 1696.0,
+  "champion_pct": 0.00176
+ },
+ {
+  "code": "CI",
+  "iso": "ci",
+  "name": "Ivory Coast",
+  "group": "E",
+  "elo": 1696.0,
+  "champion_pct": 0.00152
+ },
+ {
+  "code": "JO",
+  "iso": "jo",
+  "name": "Jordan",
+  "group": "J",
+  "elo": 1680.0,
+  "champion_pct": 0.00098
+ },
+ {
+  "code": "TN",
+  "iso": "tn",
+  "name": "Tunisia",
+  "group": "F",
+  "elo": 1628.0,
+  "champion_pct": 0.00066
+ },
+ {
+  "code": "CD",
+  "iso": "cd",
+  "name": "DR Congo",
+  "group": "K",
+  "elo": 1652.0,
+  "champion_pct": 0.0006
+ },
+ {
+  "code": "BA",
+  "iso": "ba",
+  "name": "Bosnia & Herz.",
+  "group": "B",
+  "elo": 1594.0,
+  "champion_pct": 0.00043
+ },
+ {
+  "code": "IQ",
+  "iso": "iq",
+  "name": "Iraq",
+  "group": "I",
+  "elo": 1607.0,
+  "champion_pct": 0.00032
+ },
+ {
+  "code": "NZ",
+  "iso": "nz",
+  "name": "New Zealand",
+  "group": "G",
+  "elo": 1562.0,
+  "champion_pct": 0.00025
+ },
+ {
+  "code": "SA",
+  "iso": "sa",
+  "name": "Saudi Arabia",
+  "group": "H",
+  "elo": 1576.0,
+  "champion_pct": 0.00018
+ },
+ {
+  "code": "CV",
+  "iso": "cv",
+  "name": "Cape Verde",
+  "group": "H",
+  "elo": 1578.0,
+  "champion_pct": 0.00015
+ },
+ {
+  "code": "HT",
+  "iso": "ht",
+  "name": "Haiti",
+  "group": "C",
+  "elo": 1548.0,
+  "champion_pct": 0.00011
+ },
+ {
+  "code": "ZA",
+  "iso": "za",
+  "name": "South Africa",
+  "group": "A",
+  "elo": 1518.0,
+  "champion_pct": 6e-05
+ },
+ {
+  "code": "GH",
+  "iso": "gh",
+  "name": "Ghana",
+  "group": "L",
+  "elo": 1511.0,
+  "champion_pct": 4e-05
+ },
+ {
+  "code": "CW",
+  "iso": "cw",
+  "name": "Cura\u00e7ao",
+  "group": "E",
+  "elo": 1434.0,
+  "champion_pct": 1e-05
+ },
+ {
+  "code": "QA",
+  "iso": "qa",
+  "name": "Qatar",
+  "group": "B",
+  "elo": 1421.0,
+  "champion_pct": 0.0
+ }
+]

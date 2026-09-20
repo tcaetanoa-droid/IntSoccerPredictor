@@ -1,0 +1,139 @@
+{
+ "team": "NO",
+ "group": "I",
+ "elo": 1914.0,
+ "champion_pct": 0.02501,
+ "fates": {
+  "gs4": 0.1108,
+  "gs3_out": 0.072,
+  "r32": 0.34895,
+  "r16": 0.22262,
+  "qf": 0.11878,
+  "fourth": 0.03661,
+  "third": 0.03369,
+  "runner_up": 0.03154,
+  "champion": 0.02501
+ },
+ "reach": {
+  "R32": 0.8172,
+  "R16": 0.46825,
+  "QF": 0.24563,
+  "SF": 0.12685,
+  "F": 0.05655
+ },
+ "opponents_by_round": {
+  "R32": [
+   {
+    "team": "DE",
+    "pct": 0.16215124816446402
+   },
+   {
+    "team": "EC",
+    "pct": 0.15630200685266765
+   },
+   {
+    "team": "CI",
+    "pct": 0.09845814977973569
+   }
+  ],
+  "R16": [
+   {
+    "team": "BR",
+    "pct": 0.18492258408969567
+   },
+   {
+    "team": "EC",
+    "pct": 0.1189535504538174
+   },
+   {
+    "team": "DE",
+    "pct": 0.11325146823278164
+   }
+  ],
+  "QF": [
+   {
+    "team": "EN",
+    "pct": 0.12140210886292391
+   },
+   {
+    "team": "MX",
+    "pct": 0.11985506656353051
+   },
+   {
+    "team": "NL",
+    "pct": 0.09331107763709645
+   }
+  ],
+  "SF": [
+   {
+    "team": "ES",
+    "pct": 0.18510051241623965
+   },
+   {
+    "team": "AR",
+    "pct": 0.15782420181316514
+   },
+   {
+    "team": "CO",
+    "pct": 0.07560110366574695
+   }
+  ],
+  "3P": [
+   {
+    "team": "FR",
+    "pct": 0.11322901849217638
+   },
+   {
+    "team": "ES",
+    "pct": 0.07496443812233286
+   },
+   {
+    "team": "AR",
+    "pct": 0.059317211948790895
+   }
+  ],
+  "F": [
+   {
+    "team": "ES",
+    "pct": 0.14412024756852343
+   },
+   {
+    "team": "FR",
+    "pct": 0.14217506631299734
+   },
+   {
+    "team": "AR",
+    "pct": 0.1129973474801061
+   }
+  ]
+ },
+ "knocked_out_by": [
+  {
+   "team": "DE",
+   "pct": 0.12053926457036822
+  },
+  {
+   "team": "EC",
+   "pct": 0.11839331473510142
+  },
+  {
+   "team": "BR",
+   "pct": 0.07542382509246519
+  },
+  {
+   "team": "EN",
+   "pct": 0.06869564119718755
+  },
+  {
+   "team": "NL",
+   "pct": 0.049621934131963294
+  }
+ ],
+ "first_round_excerpt": {
+  "opponent": "DE",
+  "meet_in_r32_pct": 0.13251,
+  "win_pct_when_met": 0.5061504792091163
+ },
+ "name": "Norway",
+ "excerpt_text": "Norway's single biggest risk is the round of 32, where 34.9% of its runs end. Germany is the team that ends its tournament most often, 12.1% of eliminations. The two meet in the round of 32 in 13.3% of all runs, and Norway wins 51% of those meetings."
+}

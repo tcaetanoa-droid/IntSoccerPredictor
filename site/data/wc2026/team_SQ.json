@@ -1,0 +1,139 @@
+{
+ "team": "SQ",
+ "group": "C",
+ "elo": 1782.0,
+ "champion_pct": 0.0056,
+ "fates": {
+  "gs4": 0.17202,
+  "gs3_out": 0.1014,
+  "r32": 0.45191,
+  "r16": 0.15424,
+  "qf": 0.07409,
+  "fourth": 0.01832,
+  "third": 0.01176,
+  "runner_up": 0.01066,
+  "champion": 0.0056
+ },
+ "reach": {
+  "R32": 0.72658,
+  "R16": 0.27467,
+  "QF": 0.12043,
+  "SF": 0.04634,
+  "F": 0.01626
+ },
+ "opponents_by_round": {
+  "R32": [
+   {
+    "team": "NL",
+    "pct": 0.26959178617633295
+   },
+   {
+    "team": "JP",
+    "pct": 0.23456467285089047
+   },
+   {
+    "team": "EC",
+    "pct": 0.10047069834016902
+   }
+  ],
+  "R16": [
+   {
+    "team": "FR",
+    "pct": 0.1374740597808279
+   },
+   {
+    "team": "NO",
+    "pct": 0.0946954527250883
+   },
+   {
+    "team": "CH",
+    "pct": 0.092110532639167
+   }
+  ],
+  "QF": [
+   {
+    "team": "FR",
+    "pct": 0.17263140413518227
+   },
+   {
+    "team": "EN",
+    "pct": 0.08743668521132608
+   },
+   {
+    "team": "EC",
+    "pct": 0.08419828946275845
+   }
+  ],
+  "SF": [
+   {
+    "team": "ES",
+    "pct": 0.2343547690979715
+   },
+   {
+    "team": "AR",
+    "pct": 0.15796288303841174
+   },
+   {
+    "team": "PT",
+    "pct": 0.08027621924902892
+   }
+  ],
+  "3P": [
+   {
+    "team": "BR",
+    "pct": 0.07779255319148937
+   },
+   {
+    "team": "AR",
+    "pct": 0.07081117021276596
+   },
+   {
+    "team": "FR",
+    "pct": 0.061835106382978726
+   }
+  ],
+  "F": [
+   {
+    "team": "ES",
+    "pct": 0.14206642066420663
+   },
+   {
+    "team": "AR",
+    "pct": 0.10516605166051661
+   },
+   {
+    "team": "FR",
+    "pct": 0.09471094710947109
+   }
+  ]
+ },
+ "knocked_out_by": [
+  {
+   "team": "NL",
+   "pct": 0.18742544869483205
+  },
+  {
+   "team": "JP",
+   "pct": 0.15089184165996283
+  },
+  {
+   "team": "EC",
+   "pct": 0.09413575966046214
+  },
+  {
+   "team": "DE",
+   "pct": 0.09044633693028933
+  },
+  {
+   "team": "MX",
+   "pct": 0.08131987017670393
+  }
+ ],
+ "first_round_excerpt": {
+  "opponent": "NL",
+  "meet_in_r32_pct": 0.19588,
+  "win_pct_when_met": 0.3350520726975699
+ },
+ "name": "Scotland",
+ "excerpt_text": "Scotland's single biggest risk is the round of 32, where 45.2% of its runs end. Netherlands is the team that ends its tournament most often, 18.7% of eliminations. The two meet in the round of 32 in 19.6% of all runs, and Scotland wins 34% of those meetings."
+}

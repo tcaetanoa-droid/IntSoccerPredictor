@@ -1,0 +1,139 @@
+{
+ "team": "PT",
+ "group": "K",
+ "elo": 1989.0,
+ "champion_pct": 0.04889,
+ "fates": {
+  "gs4": 0.05447,
+  "gs3_out": 0.03121,
+  "r32": 0.32302,
+  "r16": 0.26123,
+  "qf": 0.15178,
+  "fourth": 0.03713,
+  "third": 0.04335,
+  "runner_up": 0.04892,
+  "champion": 0.04889
+ },
+ "reach": {
+  "R32": 0.91432,
+  "R16": 0.5913,
+  "QF": 0.33007,
+  "SF": 0.17829,
+  "F": 0.09781
+ },
+ "opponents_by_round": {
+  "R32": [
+   {
+    "team": "HR",
+    "pct": 0.27970513605739783
+   },
+   {
+    "team": "PA",
+    "pct": 0.25343424621576693
+   },
+   {
+    "team": "EN",
+    "pct": 0.22938358561553943
+   }
+  ],
+  "R16": [
+   {
+    "team": "ES",
+    "pct": 0.21603247082699137
+   },
+   {
+    "team": "CH",
+    "pct": 0.18290208016235412
+   },
+   {
+    "team": "CA",
+    "pct": 0.1791645526805344
+   }
+  ],
+  "QF": [
+   {
+    "team": "AR",
+    "pct": 0.2913624382706699
+   },
+   {
+    "team": "TR",
+    "pct": 0.08870845578210683
+   },
+   {
+    "team": "BE",
+    "pct": 0.07861968673311721
+   }
+  ],
+  "SF": [
+   {
+    "team": "EN",
+    "pct": 0.1154860059453699
+   },
+   {
+    "team": "FR",
+    "pct": 0.10836277974087162
+   },
+   {
+    "team": "BR",
+    "pct": 0.1038757081159908
+   }
+  ],
+  "3P": [
+   {
+    "team": "ES",
+    "pct": 0.09281809145129225
+   },
+   {
+    "team": "FR",
+    "pct": 0.08250497017892644
+   },
+   {
+    "team": "CO",
+    "pct": 0.0536779324055666
+   }
+  ],
+  "F": [
+   {
+    "team": "ES",
+    "pct": 0.20713628463347306
+   },
+   {
+    "team": "FR",
+    "pct": 0.10714650853695941
+   },
+   {
+    "team": "AR",
+    "pct": 0.07535016869440753
+   }
+  ]
+ },
+ "knocked_out_by": [
+  {
+   "team": "EN",
+   "pct": 0.14642432085783946
+  },
+  {
+   "team": "ES",
+   "pct": 0.13125267208208635
+  },
+  {
+   "team": "HR",
+   "pct": 0.12789018175935662
+  },
+  {
+   "team": "AR",
+   "pct": 0.09313289347491999
+  },
+  {
+   "team": "PA",
+   "pct": 0.06307846966247993
+  }
+ ],
+ "first_round_excerpt": {
+  "opponent": "EN",
+  "meet_in_r32_pct": 0.20973,
+  "win_pct_when_met": 0.45954322223811567
+ },
+ "name": "Portugal",
+ "excerpt_text": "Portugal's single biggest risk is the round of 32, where 32.3% of its runs end. England is the team that ends its tournament most often, 14.6% of eliminations. The two meet in the round of 32 in 21.0% of all runs, and Portugal wins 46% of those meetings."
+}

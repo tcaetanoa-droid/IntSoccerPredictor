@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="IntSoccerPredictor">
+  <circle cx="16" cy="16" r="16" fill="#1B5E3A"/>
+  <circle cx="16" cy="16" r="13" fill="none" stroke="#F2F6F1" stroke-width="1.3" opacity="0.5"/>
+  <path d="M16 8.6l7 5.09-2.67 8.23h-8.66L9 13.69z" fill="#F2F6F1"/>
+</svg>

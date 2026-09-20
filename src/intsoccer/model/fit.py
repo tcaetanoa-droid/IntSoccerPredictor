@@ -98,6 +98,13 @@ def diagnostics(rows: pd.DataFrame, model: GoalsModel, bin_width: int = 100) -> 
     return out.round(3)
 
 
+def calibration_records(diag: pd.DataFrame, min_n: int = 30) -> list[dict]:
+    """diagnostics() rows with n >= min_n as JSON-ready dicts, `bin` as a column (site chart)."""
+    kept = diag[diag["n"] >= min_n].reset_index()
+    return [{k: (int(v) if k in ("bin", "n") else float(v)) for k, v in row.items()}
+            for row in kept.to_dict(orient="records")]
+
+
 def plot_diagnostics(diag: pd.DataFrame, out_path: Path, min_n: int = 30) -> Path:
     import matplotlib
     matplotlib.use("Agg")

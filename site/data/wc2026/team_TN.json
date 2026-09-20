@@ -1,0 +1,139 @@
+{
+ "team": "TN",
+ "group": "F",
+ "elo": 1628.0,
+ "champion_pct": 0.00066,
+ "fates": {
+  "gs4": 0.52408,
+  "gs3_out": 0.11682,
+  "r32": 0.27891,
+  "r16": 0.05497,
+  "qf": 0.01743,
+  "fourth": 0.00427,
+  "third": 0.00151,
+  "runner_up": 0.00135,
+  "champion": 0.00066
+ },
+ "reach": {
+  "R32": 0.3591,
+  "R16": 0.08019,
+  "QF": 0.02522,
+  "SF": 0.00779,
+  "F": 0.00201
+ },
+ "opponents_by_round": {
+  "R32": [
+   {
+    "team": "BR",
+    "pct": 0.25605680868838765
+   },
+   {
+    "team": "FR",
+    "pct": 0.23355611250348093
+   },
+   {
+    "team": "MA",
+    "pct": 0.13686995265942634
+   }
+  ],
+  "R16": [
+   {
+    "team": "DE",
+    "pct": 0.1627384960718294
+   },
+   {
+    "team": "EC",
+    "pct": 0.15937149270482603
+   },
+   {
+    "team": "FR",
+    "pct": 0.09228083302157376
+   }
+  ],
+  "QF": [
+   {
+    "team": "FR",
+    "pct": 0.12490087232355274
+   },
+   {
+    "team": "EN",
+    "pct": 0.1070578905630452
+   },
+   {
+    "team": "MX",
+    "pct": 0.08406026962727994
+   }
+  ],
+  "SF": [
+   {
+    "team": "ES",
+    "pct": 0.21566110397946084
+   },
+   {
+    "team": "AR",
+    "pct": 0.13222079589216945
+   },
+   {
+    "team": "CO",
+    "pct": 0.0821566110397946
+   }
+  ],
+  "3P": [
+   {
+    "team": "FR",
+    "pct": 0.07439446366782007
+   },
+   {
+    "team": "AR",
+    "pct": 0.06055363321799308
+   },
+   {
+    "team": "ES",
+    "pct": 0.058823529411764705
+   }
+  ],
+  "F": [
+   {
+    "team": "AR",
+    "pct": 0.12935323383084577
+   },
+   {
+    "team": "ES",
+    "pct": 0.09950248756218906
+   },
+   {
+    "team": "FR",
+    "pct": 0.0945273631840796
+   }
+  ]
+ },
+ "knocked_out_by": [
+  {
+   "team": "FR",
+   "pct": 0.23381877022653721
+  },
+  {
+   "team": "BR",
+   "pct": 0.20935163486218056
+  },
+  {
+   "team": "NO",
+   "pct": 0.10032362459546926
+  },
+  {
+   "team": "MA",
+   "pct": 0.0946880928467805
+  },
+  {
+   "team": "SQ",
+   "pct": 0.0715879924115612
+  }
+ ],
+ "first_round_excerpt": {
+  "opponent": "FR",
+  "meet_in_r32_pct": 0.08387,
+  "win_pct_when_met": 0.10647430547275545
+ },
+ "name": "Tunisia",
+ "excerpt_text": "Tunisia's most common ending is fourth in its group, 52.4% of its runs. It got out of the group in 35.9% of them, and when it did, France was the team that ended its tournament most often (23.4% of eliminations)."
+}

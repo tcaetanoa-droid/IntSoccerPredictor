@@ -1,0 +1,139 @@
+{
+ "team": "CI",
+ "group": "E",
+ "elo": 1696.0,
+ "champion_pct": 0.00152,
+ "fates": {
+  "gs4": 0.17777,
+  "gs3_out": 0.15932,
+  "r32": 0.46217,
+  "r16": 0.1406,
+  "qf": 0.04126,
+  "fourth": 0.00894,
+  "third": 0.00459,
+  "runner_up": 0.00383,
+  "champion": 0.00152
+ },
+ "reach": {
+  "R32": 0.66291,
+  "R16": 0.20074,
+  "QF": 0.06014,
+  "SF": 0.01888,
+  "F": 0.00535
+ },
+ "opponents_by_round": {
+  "R32": [
+   {
+    "team": "MX",
+    "pct": 0.1851835090736299
+   },
+   {
+    "team": "NO",
+    "pct": 0.12137394216409467
+   },
+   {
+    "team": "SN",
+    "pct": 0.10401110256294217
+   }
+  ],
+  "R16": [
+   {
+    "team": "BR",
+    "pct": 0.13534920793065658
+   },
+   {
+    "team": "FR",
+    "pct": 0.11761482514695626
+   },
+   {
+    "team": "EN",
+    "pct": 0.10570887715452824
+   }
+  ],
+  "QF": [
+   {
+    "team": "EN",
+    "pct": 0.10409045560359162
+   },
+   {
+    "team": "MX",
+    "pct": 0.09860325906218823
+   },
+   {
+    "team": "BR",
+    "pct": 0.07615563684735617
+   }
+  ],
+  "SF": [
+   {
+    "team": "AR",
+    "pct": 0.18485169491525424
+   },
+   {
+    "team": "ES",
+    "pct": 0.1461864406779661
+   },
+   {
+    "team": "PT",
+    "pct": 0.0858050847457627
+   }
+  ],
+  "3P": [
+   {
+    "team": "ES",
+    "pct": 0.07760532150776053
+   },
+   {
+    "team": "FR",
+    "pct": 0.07390983000739099
+   },
+   {
+    "team": "EC",
+    "pct": 0.05543237250554324
+   }
+  ],
+  "F": [
+   {
+    "team": "ES",
+    "pct": 0.17196261682242991
+   },
+   {
+    "team": "AR",
+    "pct": 0.11401869158878504
+   },
+   {
+    "team": "FR",
+    "pct": 0.10654205607476636
+   }
+  ]
+ },
+ "knocked_out_by": [
+  {
+   "team": "MX",
+   "pct": 0.1579703352031328
+  },
+  {
+   "team": "FR",
+   "pct": 0.10648785134338287
+  },
+  {
+   "team": "NO",
+   "pct": 0.097597484086545
+  },
+  {
+   "team": "SN",
+   "pct": 0.07711032824808359
+  },
+  {
+   "team": "EN",
+   "pct": 0.05334220354102723
+  }
+ ],
+ "first_round_excerpt": {
+  "opponent": "MX",
+  "meet_in_r32_pct": 0.12276,
+  "win_pct_when_met": 0.1953405017921147
+ },
+ "name": "Ivory Coast",
+ "excerpt_text": "Ivory Coast's single biggest risk is the round of 32, where 46.2% of its runs end. Mexico is the team that ends its tournament most often, 15.8% of eliminations. The two meet in the round of 32 in 12.3% of all runs, and Ivory Coast wins 20% of those meetings."
+}

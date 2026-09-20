@@ -1,0 +1,139 @@
+{
+ "team": "CA",
+ "group": "B",
+ "elo": 1788.0,
+ "champion_pct": 0.0082,
+ "fates": {
+  "gs4": 0.02856,
+  "gs3_out": 0.02251,
+  "r32": 0.41113,
+  "r16": 0.31588,
+  "qf": 0.1514,
+  "fourth": 0.0292,
+  "third": 0.01661,
+  "runner_up": 0.01651,
+  "champion": 0.0082
+ },
+ "reach": {
+  "R32": 0.94893,
+  "R16": 0.5378,
+  "QF": 0.22192,
+  "SF": 0.07052,
+  "F": 0.02471
+ },
+ "opponents_by_round": {
+  "R32": [
+   {
+    "team": "KR",
+    "pct": 0.13913565805696942
+   },
+   {
+    "team": "CZ",
+    "pct": 0.13144278292392483
+   },
+   {
+    "team": "MX",
+    "pct": 0.09415868399144299
+   }
+  ],
+  "R16": [
+   {
+    "team": "PT",
+    "pct": 0.1969877277798438
+   },
+   {
+    "team": "CO",
+    "pct": 0.18294905169207884
+   },
+   {
+    "team": "NL",
+    "pct": 0.11000371885459279
+   }
+  ],
+  "QF": [
+   {
+    "team": "AR",
+    "pct": 0.2865447007930786
+   },
+   {
+    "team": "FR",
+    "pct": 0.0907984859408796
+   },
+   {
+    "team": "ES",
+    "pct": 0.07966834895457822
+   }
+  ],
+  "SF": [
+   {
+    "team": "EN",
+    "pct": 0.13145207033465683
+   },
+   {
+    "team": "ES",
+    "pct": 0.10862166761202496
+   },
+   {
+    "team": "BR",
+    "pct": 0.09841179807146909
+   }
+  ],
+  "3P": [
+   {
+    "team": "ES",
+    "pct": 0.08011351233355163
+   },
+   {
+    "team": "FR",
+    "pct": 0.07531106745252128
+   },
+   {
+    "team": "CH",
+    "pct": 0.06068543986029251
+   }
+  ],
+  "F": [
+   {
+    "team": "ES",
+    "pct": 0.19870497774180493
+   },
+   {
+    "team": "FR",
+    "pct": 0.1027923917442331
+   },
+   {
+    "team": "AR",
+    "pct": 0.07810602994738972
+   }
+  ]
+ },
+ "knocked_out_by": [
+  {
+   "team": "KR",
+   "pct": 0.07369808552932297
+  },
+  {
+   "team": "PT",
+   "pct": 0.07115750534159641
+  },
+  {
+   "team": "CZ",
+   "pct": 0.0678728221700169
+  },
+  {
+   "team": "CO",
+   "pct": 0.06607634496614331
+  },
+  {
+   "team": "AR",
+   "pct": 0.06518342138551976
+  }
+ ],
+ "first_round_excerpt": {
+  "opponent": "KR",
+  "meet_in_r32_pct": 0.13203,
+  "win_pct_when_met": 0.4889040369612967
+ },
+ "name": "Canada",
+ "excerpt_text": "Canada's single biggest risk is the round of 32, where 41.1% of its runs end. South Korea is the team that ends its tournament most often, 7.4% of eliminations. The two meet in the round of 32 in 13.2% of all runs, and Canada wins 49% of those meetings."
+}

@@ -56,6 +56,17 @@ often a favourite actually gets the result.
 
 Details and the full component list are in [docs/ROADMAP.md](docs/ROADMAP.md).
 
+### Website
+
+The simulations are published at [intsoccerpredictor.vercel.app](https://intsoccerpredictor.vercel.app):
+the 2026 World Cup in eight chapters — who wins it, the group stage, the bracket, the hosts, the
+underdogs, the paradoxes, pick a team, and how it works. It is plain HTML, CSS and JavaScript under
+`site/`, with no build step and no framework. Every number on it is read from
+`site/data/wc2026/*.json`, written by `intsoccer report --site` and committed alongside the pages,
+so the site never computes a statistic of its own; the views themselves are specified in
+[docs/REPORTS.md](docs/REPORTS.md). Vercel deploys it from `main` through its GitHub integration,
+with the project's root directory set to `site/`; every pull request gets a preview deployment.
+
 ## Quick start
 
 ```bash
@@ -96,6 +107,7 @@ src/intsoccer/
                docs/REPORTS.md
   backtest/    not started
   cli.py       intsoccer fetch | snapshot | fit | simulate | report
+site/               the static website (plain HTML/CSS/JS), reads site/data/<name>/*.json
 data/tournaments/   wc2026.yaml (annotated schema example), wc2026_results.csv (all 104 real
                     results with pre-match ratings), wc2026_third_place_table.csv (FIFA Annex C,
                     495 rows); euro2028 / copa2028 placeholders awaiting their draws
@@ -135,8 +147,8 @@ and cross-check its groups against the real results and the ratings snapshot.
 
 All ratings and match histories come from [eloratings.net](https://eloratings.net) (World Football
 Elo Ratings). Tournament regulations are taken from FIFA's 2026 World Cup regulations as
-documented on Wikipedia. This is a personal, non-commercial project and is not affiliated with
-either.
+documented on Wikipedia. Flag images are served by flagcdn.com. This is a personal,
+non-commercial project and is not affiliated with any of them.
 
 Teams are identified everywhere by eloratings.net's own two-letter codes, which are not ISO codes.
 Some are easy to get wrong: `SQ` is Scotland (`SC` is Seychelles), `IE` is the Republic of Ireland

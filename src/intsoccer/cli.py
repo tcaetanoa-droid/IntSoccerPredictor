@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import sys
 
 from pathlib import Path
@@ -65,6 +66,9 @@ def cmd_fit(args: argparse.Namespace) -> int:
     model.save(out, meta={"fitted_on": {"start": args.start, "end": args.end, "table": args.table,
                                         "matches": n_matches, "friendly_types": sorted(fitmod.FRIENDLY_TYPES)}})
     chart = fitmod.plot_diagnostics(diag, Path("output") / "goals_model_diagnostics.png")
+    cal = Path("data") / "calibration.json"
+    cal.write_text(json.dumps(fitmod.calibration_records(diag), indent=1))
+    print(f"saved {cal}")
     print(f"\nsaved {out} and {chart}")
     return 0
 
@@ -99,6 +103,10 @@ def cmd_report(args: argparse.Namespace) -> int:
     run_dir = Path(args.run)
     views = build_report(run_dir)
     print(f"{len(views)} views -> {run_dir / 'report'}")
+    if args.site:
+        from .report.site import copy_site_data
+        written = copy_site_data(run_dir / "report", Path("site"), run_dir.name)
+        print(f"{len(written)} files -> site/data/{run_dir.name}/")
     b = views["bracket"]
     final = b["matches"][-1]
     print(f"most-probable final: {final['home']} v {final['away']} "
@@ -144,6 +152,8 @@ def build_parser() -> argparse.ArgumentParser:
 
     rp = sub.add_parser("report", help="build every report view of docs/REPORTS.md for a run")
     rp.add_argument("--run", default="output/wc2026", help="run directory written by simulate")
+    rp.add_argument("--site", action="store_true",
+                    help="also copy the site's JSON into site/data/<run name>/")
     rp.set_defaults(func=cmd_report)
 
     bt = sub.add_parser("backtest", help="(not implemented yet, see docs/ROADMAP.md)")

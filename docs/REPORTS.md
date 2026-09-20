@@ -226,6 +226,23 @@ Data: `sims.parquet`, `teams.parquet`, `matches.parquet`, `wc2026_results.csv` t
 component-7/8 code. Output: `reality.json` (finals table, real path, three closest runs with
 their brackets and scores) + one PNG.
 
+## Website data (component 11b)
+
+Beyond the ten views, `intsoccer report --site` writes for the site:
+
+- `teams.json`: `{code, iso, name, group, elo, champion_pct}` for every team, sorted by title
+  chance. `iso` is the flagcdn.com code (`SQ` -> `gb-sct`, `EN` -> `gb-eng`, `WA` -> `gb-wls`).
+  Display names come from `en.teams.tsv` with two overrides: USA and "Bosnia & Herz.".
+- `team_<CODE>.json` for all 48 teams: view 8 plus `name` and `excerpt_text`, the generated
+  "one thing to know" paragraph (`report/site.py::excerpt_text`): most common fate and share;
+  the team that eliminates it most often; how often they meet in the first knockout round and
+  the win rate when they do. Branches for a group-stage modal fate and for a champion modal fate.
+- `calibration.json` (from `intsoccer fit`): the diagnostics bins with n >= 30, for the
+  calibration chart in the method chapter.
+
+Everything is copied into `site/data/<run name>/`, which is committed so Vercel serves it.
+The reality view (10) is written but the site does not render it (design decision, 19 Sep 2026).
+
 ## Medium
 
 Decided 13 Sep (late): the visuals are a **website, light theme**, designed in its own

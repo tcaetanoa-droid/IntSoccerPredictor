@@ -1,0 +1,139 @@
+{
+ "team": "QA",
+ "group": "B",
+ "elo": 1421.0,
+ "champion_pct": 0.0,
+ "fates": {
+  "gs4": 0.68046,
+  "gs3_out": 0.12963,
+  "r32": 0.1611,
+  "r16": 0.02424,
+  "qf": 0.00412,
+  "fourth": 0.00026,
+  "third": 0.0001,
+  "runner_up": 9e-05,
+  "champion": 0.0
+ },
+ "reach": {
+  "R32": 0.18991,
+  "R16": 0.02881,
+  "QF": 0.00457,
+  "SF": 0.00045,
+  "F": 9e-05
+ },
+ "opponents_by_round": {
+  "R32": [
+   {
+    "team": "TR",
+    "pct": 0.2348480859354431
+   },
+   {
+    "team": "PY",
+    "pct": 0.14396292980885683
+   },
+   {
+    "team": "US",
+    "pct": 0.13764414722763416
+   }
+  ],
+  "R16": [
+   {
+    "team": "BE",
+    "pct": 0.15619576535925025
+   },
+   {
+    "team": "NL",
+    "pct": 0.13328705310656022
+   },
+   {
+    "team": "JP",
+    "pct": 0.10378340853870184
+   }
+  ],
+  "QF": [
+   {
+    "team": "ES",
+    "pct": 0.23194748358862144
+   },
+   {
+    "team": "FR",
+    "pct": 0.12472647702407003
+   },
+   {
+    "team": "AR",
+    "pct": 0.08971553610503283
+   }
+  ],
+  "SF": [
+   {
+    "team": "DE",
+    "pct": 0.13333333333333333
+   },
+   {
+    "team": "ES",
+    "pct": 0.1111111111111111
+   },
+   {
+    "team": "CO",
+    "pct": 0.08888888888888889
+   }
+  ],
+  "3P": [
+   {
+    "team": "BR",
+    "pct": 0.1111111111111111
+   },
+   {
+    "team": "EC",
+    "pct": 0.08333333333333333
+   },
+   {
+    "team": "MX",
+    "pct": 0.08333333333333333
+   }
+  ],
+  "F": [
+   {
+    "team": "AR",
+    "pct": 0.3333333333333333
+   },
+   {
+    "team": "PT",
+    "pct": 0.2222222222222222
+   },
+   {
+    "team": "EC",
+    "pct": 0.2222222222222222
+   }
+  ]
+ },
+ "knocked_out_by": [
+  {
+   "team": "TR",
+   "pct": 0.2176294034016113
+  },
+  {
+   "team": "PY",
+   "pct": 0.12790269074824917
+  },
+  {
+   "team": "US",
+   "pct": 0.12216312990363856
+  },
+  {
+   "team": "KR",
+   "pct": 0.08762045179295455
+  },
+  {
+   "team": "AU",
+   "pct": 0.08735716918540361
+  }
+ ],
+ "first_round_excerpt": {
+  "opponent": "TR",
+  "meet_in_r32_pct": 0.0446,
+  "win_pct_when_met": 0.0742152466367713
+ },
+ "name": "Qatar",
+ "excerpt_text": "Qatar's most common ending is fourth in its group, 68.0% of its runs. It got out of the group in 19.0% of them, and when it did, Turkey was the team that ended its tournament most often (21.8% of eliminations)."
+}

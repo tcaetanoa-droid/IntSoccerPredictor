@@ -1,0 +1,377 @@
+/* site/css/site.css */
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root {
+  --paper: #F2F6F1; --ink: #10261A; --ink-soft: #2C4A38; --muted: #5B6E62; --faint: #8A9A90;
+  --green: #1B5E3A; --orange: #C2410C; --card: #FFFFFF; --border: #D4DFD4; --rule: #E3EAE2;
+  --gold: #C9A227; --gold-text: #8A6D12; --silver: #A8A9AD; --bronze: #B87333;
+  --f-gs4: #DDE3DC; --f-gs3: #C9D3C7; --f-r32: #C2DFC6; --f-r16: #98C8A2; --f-qf: #6BAE7C;
+  --f-4th: #3F8F57; --f-3rd: #B87333; --f-ru: #A8A9AD; --f-w: #C9A227;
+  --serif: 'Newsreader', Georgia, serif; --sans: 'IBM Plex Sans', system-ui, sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --rail-w: 190px; --gutter: 48px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.55; min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; }
+a { color: var(--green); }
+:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
+.n { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+img.flag { width: 20px; height: 14px; object-fit: cover; border-radius: 2px; vertical-align: -2px; margin-right: 7px; box-shadow: 0 0 0 1px rgba(16,38,26,.15); }
+
+/* header */
+.site-header { display: flex; justify-content: space-between; align-items: center; padding: 16px var(--gutter); border-bottom: 1px solid var(--border); font-size: 13px; }
+.wordmark { font-family: var(--serif); font-size: 19px; font-weight: 600; letter-spacing: -.01em; color: var(--ink); text-decoration: none; }
+.wordmark span { color: var(--green); }
+.site-header nav { display: flex; gap: 22px; }
+.site-header nav a { color: var(--ink); text-decoration: none; opacity: .75; }
+.site-header nav a[aria-current="page"] { opacity: 1; font-weight: 600; border-bottom: 2px solid var(--orange); padding-bottom: 2px; }
+.pill { font-size: 9px; letter-spacing: .08em; text-transform: uppercase; margin-left: 2px; background: var(--border); padding: 2px 5px; border-radius: 3px; vertical-align: 2px; }
+
+/* layout with the rail */
+.page { display: grid; grid-template-columns: var(--rail-w) 1fr; gap: 28px; padding: 0 var(--gutter); flex: 1 0 auto; }
+.rail { position: sticky; top: 24px; align-self: start; font-size: 12.5px; display: flex; flex-direction: column; gap: 8px; border-left: 1px solid var(--border); padding-left: 12px; margin-top: 44px; }
+.rail a { color: var(--ink-soft); text-decoration: none; }
+.rail a i { font-style: normal; font-family: var(--mono); font-size: 10px; color: var(--green); margin-right: 7px; }
+.rail a.on { font-weight: 600; color: var(--green); }
+.rail-toggle { display: none; }
+main { min-width: 0; }
+/* Sideways-scrolling regions (chapters 1, 3, 6 and 8): focusable, so the arrow keys scroll them. */
+.scroll-x { overflow-x: auto; }
+
+/* chapter header pattern */
+.chapter { padding: 44px 0 30px; border-top: 1px solid var(--border); }
+.chapter .num { font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--green); margin-bottom: 10px; }
+.chapter h2 { font-family: var(--serif); font-weight: 500; font-size: 38px; line-height: 1.05; letter-spacing: -.02em; margin: 0 0 12px; }
+.chapter h2 em { font-style: italic; color: var(--orange); }
+.chapter .lede { font-size: 16px; line-height: 1.55; max-width: 70ch; color: var(--ink-soft); margin: 0 0 22px; }
+.chapter .lede b { color: var(--ink); }
+.chapter .sh { font-family: var(--serif); font-size: 22px; font-weight: 500; margin: 26px 0 8px; }
+.chapter .cst { font-size: 12px; color: var(--ink-soft); margin-bottom: 14px; max-width: 80ch; }
+.chapter .foot { font-size: 12px; color: var(--ink-soft); margin-top: 14px; }
+.legend { display: flex; gap: 18px; font-size: 12px; color: var(--ink-soft); margin: 0 0 12px; flex-wrap: wrap; }
+.legend i { display: inline-block; width: 12px; height: 12px; border-radius: 2px; vertical-align: -1px; margin-right: 6px; }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; }
+/* Three equal cards in a row: chapters 5 and 6, each with its own stacking width. */
+.row3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.exh { font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--green); font-family: var(--mono); margin-bottom: 8px; }
+.kv { display: grid; grid-template-columns: 90px 1fr; gap: 14px; padding: 8px 0; border-top: 1px solid var(--rule); font-size: 13px; }
+.kv:first-child { border-top: 0; }
+.kv span { color: var(--muted); }
+.kv b { font-weight: 500; }
+/* SVG charts (js/svg.js, chapters 4 and 6). Geometry is in the JS; every colour that is a spec
+   token lives here, so only a team's own colour is written into the SVG. */
+.chart { display: block; }
+.chart .grid { stroke: var(--border); }
+.chart .tick { fill: var(--muted); }
+.chart .val { fill: var(--ink); }
+.chart .lab { fill: var(--ink-soft); }
+
+/* footer */
+.site-footer { margin-top: 40px; padding: 26px var(--gutter); background: var(--ink); color: var(--border); font-size: 13px; line-height: 1.55; display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 40px; }
+.site-footer .wordmark { color: #fff; } .site-footer .wordmark span { color: #98C8A2; }
+.site-footer a { color: #fff; text-decoration: underline; text-decoration-color: #5FA872; }
+.site-footer p { margin: 8px 0 0; } .site-footer .exh { color: #98C8A2; }
+
+/* phones and tablets */
+@media (max-width: 1023px) {
+  :root { --gutter: 16px; }
+  .page { grid-template-columns: 1fr; }
+  .rail { display: none; }
+  .rail.open { display: flex; position: fixed; inset: auto 16px 62px auto; background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; z-index: 5; margin: 0; }
+  .rail-toggle { display: block; position: fixed; right: 16px; bottom: 16px; z-index: 6; background: var(--ink); color: #fff; border: 0; border-radius: 20px; padding: 8px 14px; font: 500 12px var(--sans); cursor: pointer; }
+  .site-header { flex-wrap: wrap; gap: 10px; } .site-header nav { flex-wrap: wrap; gap: 12px; }
+  .site-footer { grid-template-columns: 1fr; gap: 20px; }
+  .chapter h2 { font-size: 30px; }
+}
+
+/* hero */
+#hero { padding: 44px 0 36px; }
+#hero .hero-split { display: grid; grid-template-columns: 1.1fr 1fr; gap: 56px; align-items: start; }
+#hero .kicker { font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--green); margin-bottom: 18px; }
+#hero h1 { font-family: var(--serif); font-weight: 500; font-size: 52px; line-height: 1.04; letter-spacing: -.02em; margin: 0 0 20px; }
+#hero h1 em { font-style: italic; color: var(--orange); }
+#hero .lede { font-size: 17px; line-height: 1.55; margin: 0 0 30px; color: var(--ink-soft); }
+#hero .lede b { color: var(--ink); font-weight: 600; }
+#hero .strip { display: flex; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--border); }
+#hero .strip > div { flex: 1; padding: 16px 18px 14px 0; border-right: 1px solid var(--border); margin-right: 18px; }
+#hero .strip > div:last-child { border-right: 0; margin-right: 0; }
+#hero .strip b { display: block; font-family: var(--serif); font-weight: 500; font-size: 32px; letter-spacing: -.02em; line-height: 1; margin-bottom: 8px; }
+#hero .strip span { font-size: 13px; color: var(--ink-soft); line-height: 1.35; display: block; }
+#hero .bars { font-size: 13px; }
+#hero .bars .t { font-family: var(--serif); font-size: 20px; font-weight: 500; letter-spacing: -.01em; margin-bottom: 4px; }
+#hero .bars .st { font-size: 12px; color: var(--ink-soft); margin-bottom: 14px; }
+#hero .bar { display: grid; grid-template-columns: 118px 1fr 92px; align-items: center; gap: 10px; margin-bottom: 8px; }
+#hero .bar img { width: 22px; height: 15px; object-fit: cover; border-radius: 2px; vertical-align: -3px; margin-right: 8px; box-shadow: 0 0 0 1px rgba(16,38,26,.15); }
+#hero .bar .track { height: 18px; background: var(--rule); border-radius: 2px; overflow: hidden; }
+#hero .bar .fill { height: 100%; border-radius: 2px; box-shadow: inset 0 0 0 1px rgba(16,38,26,.12); }
+#hero .bar .v { text-align: right; white-space: nowrap; }
+#hero .others { font-size: 12px; color: var(--ink-soft); margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--border); }
+#hero .chapters { display: flex; margin-top: 28px; font-size: 12.5px; border-top: 1px solid var(--border); padding-top: 12px; flex-wrap: wrap; }
+#hero .chapters a { color: var(--ink); text-decoration: none; margin-right: 22px; opacity: .8; }
+#hero .chapters a i { font-style: normal; font-family: var(--mono); font-size: 11px; color: var(--green); margin-right: 6px; }
+@media (max-width: 1023px) {
+  #hero .hero-split { grid-template-columns: 1fr; }
+  #hero h1 { font-size: 34px; }
+}
+
+/* chapter 1: the fate table */
+#who-wins-it table { border-collapse: collapse; width: 100%; min-width: 980px; font-size: 12.5px; }
+#who-wins-it th { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; text-align: right; padding: 8px; color: var(--ink-soft); font-weight: 500; border-bottom: 1px solid var(--ink); white-space: nowrap; }
+#who-wins-it th.sort { padding: 0; }
+#who-wins-it th button { display: block; width: 100%; padding: 8px; border: 0; background: none; font: inherit; color: inherit; letter-spacing: inherit; text-transform: inherit; text-align: inherit; white-space: nowrap; cursor: pointer; }
+#who-wins-it th button:focus-visible { outline-offset: -2px; }  /* inside the scroll container, which would clip an outer ring */
+#who-wins-it th.sorted button { color: var(--ink); text-decoration: underline; }
+#who-wins-it th[aria-sort="descending"] button::after { content: ' \2193'; }
+#who-wins-it th[aria-sort="ascending"] button::after { content: ' \2191'; }
+#who-wins-it th i { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 5px; vertical-align: 0; }
+#who-wins-it th.tm, #who-wins-it td.tm { text-align: left; white-space: nowrap; }
+#who-wins-it td { padding: 5px 8px; text-align: right; border-bottom: 1px solid var(--rule); }
+#who-wins-it td.g { color: var(--ink-soft); }
+#who-wins-it td.w { font-weight: 600; }
+#who-wins-it .sub { color: var(--ink-soft); opacity: .85; }
+#who-wins-it th.sub { border-left: 1px solid var(--border); }
+#who-wins-it tr:hover td { filter: brightness(.97); }
+
+/* chapter 2: the group stage */
+#group-stage { --adv: #E4F0E5; --third: #F1F6EF; }
+/* The row tints are far too pale to read as swatches on the paper, so every one gets the thin
+   border that the white "usually out" swatch needs anyway. */
+#group-stage .legend i { box-shadow: 0 0 0 1px var(--border) inset; }
+#group-stage .ggrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+#group-stage .gcard { overflow: hidden; }
+#group-stage .gh { display: flex; justify-content: space-between; align-items: baseline; padding: 10px 12px 8px; border-bottom: 1px solid var(--ink); font-family: var(--serif); font-size: 19px; font-weight: 500; }
+#group-stage .gh .th { font-family: var(--sans); font-size: 10.5px; color: var(--ink-soft); letter-spacing: .02em; }
+/* Narrower than the mock-up's 70/44 columns: the rail costs each card 54px, and the team name
+   needs 113px ("Bosnia & Herz.") before the host tag starts being clipped away. */
+#group-stage .row { display: grid; grid-template-columns: 16px 1fr 52px 38px; gap: 6px; align-items: center; padding: 7px 12px; font-size: 13px; border-bottom: 1px solid #EEF2EC; }
+#group-stage .row:last-child { border-bottom: 0; }
+#group-stage .row.adv { background: var(--adv); }
+#group-stage .row.third { background: var(--third); }
+#group-stage .row.out { color: var(--muted); }
+#group-stage .row.out img { opacity: .7; }
+#group-stage .pos { font-size: 10px; color: var(--ink-soft); }
+#group-stage .tm { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+/* A darker --orange: at 9px the tag has no large-text exemption, and #C2410C is 4.41:1 on the
+   green row tint. #9A3412 clears 4.5:1 on all three row backgrounds. */
+#group-stage .tm em { font-style: normal; font-size: 9px; letter-spacing: .08em; text-transform: uppercase; color: #9A3412; margin-left: 5px; vertical-align: 1px; }
+#group-stage .bar { display: block; height: 8px; background: var(--rule); border-radius: 2px; overflow: hidden; }
+#group-stage .bar i { display: block; height: 100%; background: #3F8F57; }
+#group-stage .row.third .bar i { background: #6BAE7C; }
+#group-stage .row.out .bar i { background: #B9CBBB; }
+#group-stage .v { text-align: right; font-weight: 600; }
+#group-stage .row.out .v { font-weight: 400; }
+/* A card needs ~265px before the names start being clipped, and the rail takes 218px out of the
+   page above 1023px, so four columns only fit from the 1440 design width down. */
+@media (max-width: 1439px) { #group-stage .ggrid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 1160px) { #group-stage .ggrid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { #group-stage .ggrid { grid-template-columns: 1fr; } }
+
+/* chapter 3: the bracket */
+/* One grid holds the round headers and the nine columns: the 1fr tracks size to their content
+   (the widest name needs ~125px, an equal ninth of 1120px would be 117px and clip it), and a
+   header in the same grid stays centred over its column whatever width that gives. The floor
+   is the grid's measured min-content with the 8px gap and 5px row padding (1103.2px), so it
+   fills the 1126px main column at the 1440 design width, still with a 15px scrollbar. */
+#bracket .bracket { position: relative; display: grid; grid-template-columns: repeat(9, 1fr); grid-template-rows: auto 560px; gap: 8px; min-width: 1104px; }
+#bracket .bh { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); font-family: var(--mono); text-align: center; }
+#bracket .col { display: flex; flex-direction: column; }
+#bracket .slot { flex: 1; display: flex; align-items: center; }
+/* Equal tracks above and below the final keep it on the semi-finals' mid-line, so the two
+   connectors into it run straight; the champion card and the third-place match hug it. */
+#bracket .col.fin .slot { display: grid; grid-template-rows: 1fr auto 1fr; align-items: end; }
+#bracket .col.fin .third { align-self: start; }
+#bracket .m { width: 100%; background: var(--card); border: 1px solid var(--border); border-radius: 5px; font-size: 11.5px; position: relative; }
+#bracket .m .mn { position: absolute; right: 4px; top: -9px; font-size: 8.5px; color: var(--muted); background: var(--paper); padding: 0 3px; }
+#bracket .tie { display: flex; align-items: center; gap: 5px; padding: 5px; color: var(--muted); }
+#bracket .tie + .tie { border-top: 1px solid #EEF2EC; }
+#bracket .tie.win { color: var(--ink); font-weight: 600; background: #E4F0E5; }
+#bracket .tie .nm { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#bracket .tie .p { font-size: 10.5px; font-weight: 400; }
+#bracket .tie.win .p { font-weight: 600; color: var(--green); }
+#bracket .tie img.flag { width: 18px; height: 12px; margin-right: 0; }
+#bracket .lbl { font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-soft); font-family: var(--mono); }
+#bracket .champ { text-align: center; margin-bottom: 14px; }
+#bracket .champ b { display: block; font-family: var(--serif); font-size: 24px; font-weight: 500; margin-top: 4px; }
+#bracket .champ img.flag { width: 34px; height: 23px; margin: 8px 0 0; }
+#bracket .champ .sub { font-size: 10.5px; color: var(--ink-soft); margin-top: 4px; line-height: 1.3; }
+/* Only the final wears gold, as one clean 1px line; its number tab sits wholly above the box so
+   the line runs unbroken. The third-place match (inside .third) is a plain box. */
+#bracket .col.fin .slot > .m { border-color: var(--gold); }
+#bracket .col.fin .slot > .m .mn { top: -14px; background: none; }
+#bracket .conn { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+#bracket .conn path { fill: none; stroke: var(--f-r16); stroke-width: 1.5; }
+
+/* chapter 4: the hosts */
+#hosts .sm3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+#hosts .hn { display: flex; align-items: baseline; gap: 12px; margin-bottom: 2px; font-size: 15px; }
+#hosts .hn b { font-family: var(--serif); font-size: 22px; font-weight: 500; }
+/* The brief stacks at 1024px, but the rail takes 218px out of the page down to 1023px, so
+   between 1024 and 1261 a third of the column is under 300px and the 9.5px labels inside the
+   420-wide viewBox scale down to 6px. Stack from there, and cap the width so a lone chart does
+   not scale its labels up past the body text on a tablet. */
+@media (max-width: 1261px) {
+  #hosts .sm3 { grid-template-columns: 1fr; }
+  #hosts .sm { max-width: 560px; }
+}
+
+/* chapter 5: underdogs */
+#underdogs .row5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+#underdogs .wc, #underdogs .fc { padding: 16px 16px 12px; font-size: 12.5px; }
+#underdogs .wh { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+#underdogs .wh b { font-family: var(--serif); font-size: 19px; font-weight: 500; }
+#underdogs .wh .n { font-size: 11px; color: var(--muted); }
+#underdogs .wh em { font-style: normal; font-size: 9.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--orange); width: 100%; }
+#underdogs .sb { display: flex; height: 8px; border-radius: 2px; overflow: hidden; background: var(--rule); margin-bottom: 12px; }
+#underdogs .sb i { display: block; height: 100%; }
+#underdogs .big { font-family: var(--serif); font-size: 34px; line-height: 1; letter-spacing: -.02em; }
+#underdogs .fc .big { font-size: 40px; }
+#underdogs .big.gold { color: var(--gold-text); }
+#underdogs .bl { font-size: 11.5px; color: var(--ink-soft); margin: 4px 0 12px; }
+/* The shared .kv is a 90px label grid; these cards put the count hard right instead. */
+#underdogs .kv { display: flex; justify-content: space-between; gap: 10px; padding: 5px 0; font-size: 12px; }
+#underdogs .kv .n { color: var(--ink); }
+/* The brief drops to two columns at 1024px, where the rail is gone and a fifth of the page is
+   187px. Down to 1023px the rail is still there, so a fifth is 134-178px and the 34px count
+   spills out of its card; step down at the top of that band instead. */
+@media (max-width: 1261px) { #underdogs .row5 { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 800px) { #underdogs .row3 { grid-template-columns: 1fr; } }
+@media (max-width: 600px) { #underdogs .row5 { grid-template-columns: 1fr; } }
+
+/* chapter 6: paradoxes */
+/* The chart's smallest labels are 11px in a 1300-wide viewBox, so they drop under 7px once it
+   is squeezed below 830px; give it that floor and let the section scroll instead. */
+#paradoxes .chart { min-width: 830px; }
+#paradoxes .chart .tn { fill: var(--ink); }
+#paradoxes .chart .tt { fill: var(--muted); }
+/* --gold-text (#8A6D12) is 4.49:1 on the paper, just under AA, and these 11px labels sit on
+   it; this one use is a shade deeper, 5.54:1, still gold and still not --muted. */
+#paradoxes .chart .tt.first { fill: #7A5F0E; }
+#paradoxes .chart .dv { stroke: var(--ink); }
+#paradoxes .chart .dl { fill: var(--ink-soft); }
+#paradoxes .vs { padding: 14px 16px 12px; font-size: 12.5px; }
+#paradoxes .vm { font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 12px; line-height: 1.4; }
+#paradoxes .vs-grid { display: grid; grid-template-columns: 1fr 28px 1fr; gap: 8px; align-items: end; }
+/* The mock-up's --faint is 2.96:1 on the card; --muted (5.45:1) is the Elo labels' colour. */
+#paradoxes .vsx { text-align: center; font-family: var(--serif); font-style: italic; color: var(--muted); padding-bottom: 6px; }
+#paradoxes .vh { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
+#paradoxes .vh b { font-family: var(--serif); font-size: 18px; font-weight: 500; }
+#paradoxes .vh .n { font-size: 11px; color: var(--muted); }
+#paradoxes .vb { height: 8px; background: var(--rule); border-radius: 2px; overflow: hidden; margin-bottom: 6px; }
+#paradoxes .vb i { display: block; height: 100%; }
+#paradoxes .vv { font-family: var(--serif); font-size: 26px; line-height: 1; color: var(--muted); }
+#paradoxes .vv.hi { color: var(--orange); }
+#paradoxes .vn { font-size: 11.5px; color: var(--ink-soft); line-height: 1.45; margin: 12px 0 0; border-top: 1px solid var(--rule); padding-top: 8px; }
+@media (max-width: 900px) { #paradoxes .row3 { grid-template-columns: 1fr; } }
+
+/* chapter 7: pick a team */
+#pick-a-team .pk { display: flex; align-items: center; gap: 14px; margin: 0 0 22px; font-size: 13px; flex-wrap: wrap; }
+#pick-a-team .pk label { font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-soft); font-family: var(--mono); }
+#pick-a-team .pkn { font-size: 11.5px; color: var(--muted); }
+/* The search box: the chosen team's flag, the input itself, and the clear button. The results
+   list hangs off .sw so opening it moves nothing on the page. */
+#pick-a-team .sw { position: relative; }
+#pick-a-team .srch { background: var(--card); border: 1px solid var(--ink); border-radius: 6px; padding: 8px 12px; min-width: 260px; max-width: 100%; display: flex; align-items: center; }
+#pick-a-team .srch img.flag { width: 20px; height: 14px; }
+#pick-a-team .si { flex: 1; min-width: 0; border: 0; padding: 0; background: none; color: var(--ink); font: 600 13px var(--sans); }
+#pick-a-team .si:focus { outline: 0; }             /* the box below carries the focus ring */
+#pick-a-team .srch:has(.si:focus) { outline: 2px solid var(--orange); outline-offset: 2px; }
+/* The mock-up greys the × at --faint (2.96:1); as a real button it is --muted, 5.45:1. */
+#pick-a-team .srch .x { margin-left: auto; padding: 0 0 0 10px; border: 0; background: none; color: var(--muted); font: 400 15px var(--sans); line-height: 1; cursor: pointer; }
+#pick-a-team .res { position: absolute; top: calc(100% + 4px); left: 0; min-width: 100%; max-width: 100%; z-index: 4; background: var(--card); border: 1px solid var(--border); border-radius: 6px; box-shadow: 0 6px 18px rgba(16, 38, 26, .12); padding: 4px; max-height: 296px; overflow-y: auto; }
+#pick-a-team .res .r { display: flex; align-items: center; padding: 6px 8px; border-radius: 4px; font-size: 13px; cursor: pointer; white-space: nowrap; }
+#pick-a-team .res .r b { margin-left: auto; padding-left: 12px; font-weight: 400; color: var(--muted); }
+/* The same pale green the bracket uses for a winning tie. */
+#pick-a-team .res .r.on, #pick-a-team .res .r:hover { background: #E4F0E5; }
+#pick-a-team .res .none { color: var(--muted); cursor: default; }
+#pick-a-team .chips { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+#pick-a-team .chip { border: 0; background: #E4F0E5; color: var(--ink); border-radius: 20px; padding: 4px 10px 4px 6px; font: 500 12px var(--sans); cursor: pointer; }
+#pick-a-team .chip img.flag { width: 16px; height: 11px; margin-right: 5px; }
+#pick-a-team .th { display: flex; align-items: center; gap: 16px; padding: 0 0 18px; border-bottom: 1px solid var(--ink); }
+#pick-a-team .th > img.flag { width: 64px; height: 44px; border-radius: 4px; margin: 0; }
+#pick-a-team .tn { font-family: var(--serif); font-size: 40px; font-weight: 500; line-height: 1; }
+#pick-a-team .tm { font-size: 12px; color: var(--ink-soft); margin-top: 6px; }
+#pick-a-team .tc { margin-left: auto; text-align: right; }
+#pick-a-team .tc b { display: block; font-family: var(--serif); font-size: 44px; font-weight: 500; line-height: 1; color: var(--gold-text); }
+#pick-a-team .tc span { font-size: 12px; color: var(--ink-soft); }
+#pick-a-team .fs { display: flex; height: 40px; border-radius: 4px; overflow: hidden; }
+#pick-a-team .fs i { display: flex; align-items: center; justify-content: center; font-style: normal; font-size: 12px; font-family: var(--mono); overflow: hidden; white-space: nowrap; }
+#pick-a-team .legend.fl { margin-top: 8px; gap: 14px; font-size: 11.5px; }
+#pick-a-team .legend.fl b { margin-left: 3px; }
+#pick-a-team .st { display: grid; grid-template-columns: 110px 1fr 64px; gap: 12px; align-items: center; padding: 5px 0; font-size: 13px; }
+#pick-a-team .st i { display: block; height: 12px; background: var(--rule); border-radius: 2px; overflow: hidden; }
+#pick-a-team .st b { display: block; height: 100%; }
+#pick-a-team .st .n { text-align: right; font-weight: 600; }
+#pick-a-team .op { display: grid; grid-template-columns: 100px 1fr 1fr 1fr; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--rule); font-size: 12.5px; align-items: center; }
+#pick-a-team .ol { color: var(--ink-soft); }
+#pick-a-team .oc { white-space: nowrap; }
+#pick-a-team .oc img.flag { width: 18px; height: 12px; margin-right: 6px; }
+#pick-a-team .oc b { margin-left: 6px; color: var(--muted); font-weight: 400; }
+#pick-a-team .ko { display: grid; grid-template-columns: 120px 1fr 44px; gap: 12px; align-items: center; padding: 5px 0; font-size: 12.5px; }
+#pick-a-team .ko i { display: block; height: 10px; background: var(--rule); border-radius: 2px; overflow: hidden; }
+#pick-a-team .ko b { display: block; height: 100%; background: var(--orange); }
+#pick-a-team .ko .n { text-align: right; }
+#pick-a-team .ex { font-size: 14px; line-height: 1.55; color: var(--ink-soft); max-width: 80ch; margin: 0; }
+#pick-a-team .cards4 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 20px; }
+#pick-a-team .cd { padding: 6px 18px 16px; }
+#pick-a-team .cd.wide { grid-column: 1 / -1; }
+#pick-a-team .cd .sh { margin-top: 14px; }
+@media (max-width: 900px) { #pick-a-team .cards4 { grid-template-columns: 1fr; } }
+/* Below 700px a 6%-wide segment is under 38px, too narrow for a five-figure count; the strip
+   keeps its colours and the legend under it carries every number. */
+@media (max-width: 700px) { #pick-a-team .fs i span { display: none; } }
+/* Under 16px iOS zooms the page when the field is focused. */
+@media (max-width: 600px), (pointer: coarse) { #pick-a-team .si { font-size: 16px; } }
+/* On a phone the three opponents cannot sit beside a 100px round label without pushing the
+   card past the screen, so the label takes its own line and the opponents wrap under it. */
+@media (max-width: 600px) {
+  #pick-a-team .th > img.flag { width: 44px; height: 30px; }
+  #pick-a-team .tn { font-size: 30px; }
+  #pick-a-team .tc b { font-size: 32px; }
+  #pick-a-team .op { display: flex; flex-wrap: wrap; gap: 6px 16px; }
+  #pick-a-team .ol { flex: 0 0 100%; }
+}
+
+/* chapter 8: how it works */
+/* Two columns: the prose on the left, the maths and its key on the right. */
+#how-it-works .step { display: grid; grid-template-columns: 1fr 1.15fr; gap: 40px; border-top: 1px solid var(--ink); padding: 22px 0 10px; }
+#how-it-works .side { min-width: 0; }
+#how-it-works .stn { font-size: 12px; color: var(--green); letter-spacing: .12em; }
+#how-it-works h3 { font-family: var(--serif); font-size: 24px; font-weight: 500; margin: 4px 0 10px; }
+#how-it-works .step p { font-size: 15px; line-height: 1.6; color: var(--ink-soft); margin: 0 0 12px; }
+#how-it-works .step p b, #how-it-works .step p em { color: var(--ink); }
+/* A KaTeX display block is 18px wide maths that cannot wrap; let the longest ones scroll on a
+   phone instead of pushing the page sideways. */
+#how-it-works .eq { font-size: 18px; margin: 0 0 10px; color: var(--ink); overflow-x: auto; overflow-y: hidden; }
+/* The mock-up needs !important here because .step p outweighs .fn; scoped and ordered after it
+   this does not. */
+#how-it-works .step p.fn { font-size: 12.5px; color: var(--muted); line-height: 1.5; }
+#how-it-works .key { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px 6px; margin: 4px 0 14px; }
+#how-it-works .kr { display: grid; grid-template-columns: 110px 1fr; gap: 12px; padding: 6px 0; border-top: 1px solid #EEF2EC; font-size: 13px; line-height: 1.5; color: var(--ink-soft); }
+#how-it-works .ks { color: var(--ink); font-size: 15px; }
+#how-it-works .pt { border-collapse: collapse; font-size: 12.5px; margin: 6px 0 10px; }
+#how-it-works .pt th { text-align: left; font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-soft); font-weight: 500; padding: 4px 12px 4px 0; border-bottom: 1px solid var(--ink); }
+#how-it-works .pt td { padding: 5px 12px 5px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+#how-it-works .two { display: flex; gap: 40px; flex-wrap: wrap; }
+/* .calbox and .repo already carry .card; the worked example is a bare div. */
+#how-it-works .ex { background: var(--card); border: 1px solid var(--border); border-radius: 8px; }
+#how-it-works .ex, #how-it-works .calbox, #how-it-works .repo { padding: 14px 18px; margin: 12px 0 14px; font-size: 13.5px; }
+#how-it-works .ex p, #how-it-works .repo p { font-size: 13.5px; margin: 0; }
+#how-it-works .repo { margin-top: 26px; }
+#how-it-works code { font-family: var(--mono); font-size: 12px; background: var(--paper); padding: 1px 5px; border-radius: 3px; }
+#how-it-works .cal2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+#how-it-works .cal2 svg { max-height: 340px; }
+#how-it-works .cl { display: flex; gap: 18px; font-size: 11.5px; color: var(--ink-soft); margin-bottom: 6px; flex-wrap: wrap; }
+#how-it-works .cl .ln { display: inline-block; width: 18px; height: 2px; vertical-align: middle; margin-right: 6px; }
+#how-it-works .cl .dot { display: inline-block; width: 8px; height: 8px; border: 1.6px solid; border-radius: 50%; background: var(--card); vertical-align: middle; margin-right: 6px; }
+#how-it-works .chart .ttl { fill: var(--ink); }
+#how-it-works .chart .zero { stroke: var(--ink); opacity: .4; }
+@media (max-width: 1023px) { #how-it-works .step { grid-template-columns: 1fr; gap: 0; } }
+/* The brief stacks .cal2 at 1024px too, but a 10px axis label in the 620-wide viewBox needs a
+   panel about 500px wide before it renders under 8px, and two panels only clear that above
+   1382px: the rail and the gutters take 314px out of the page and the card another 38. Stack
+   from there; max-height then holds a lone panel to a 1.13 scale, so it cannot grow instead. */
+@media (max-width: 1382px) { #how-it-works .cal2 { grid-template-columns: 1fr; } }
+/* Below 570px even one panel is under 500px, so the card scrolls, as chapter 6's does. */
+@media (max-width: 569px) { #how-it-works .cal2 svg { min-width: 500px; } }

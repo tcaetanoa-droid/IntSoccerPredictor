@@ -1,0 +1,139 @@
+{
+ "team": "BA",
+ "group": "B",
+ "elo": 1594.0,
+ "champion_pct": 0.00043,
+ "fates": {
+  "gs4": 0.26187,
+  "gs3_out": 0.18938,
+  "r32": 0.3999,
+  "r16": 0.11095,
+  "qf": 0.03064,
+  "fourth": 0.00406,
+  "third": 0.00148,
+  "runner_up": 0.00129,
+  "champion": 0.00043
+ },
+ "reach": {
+  "R32": 0.54875,
+  "R16": 0.14885,
+  "QF": 0.0379,
+  "SF": 0.00726,
+  "F": 0.00172
+ },
+ "opponents_by_round": {
+  "R32": [
+   {
+    "team": "TR",
+    "pct": 0.21087927107061502
+   },
+   {
+    "team": "PY",
+    "pct": 0.12973120728929385
+   },
+   {
+    "team": "US",
+    "pct": 0.12311617312072894
+   }
+  ],
+  "R16": [
+   {
+    "team": "BE",
+    "pct": 0.14161907961034598
+   },
+   {
+    "team": "NL",
+    "pct": 0.1312059119919382
+   },
+   {
+    "team": "JP",
+    "pct": 0.0965401410816258
+   }
+  ],
+  "QF": [
+   {
+    "team": "ES",
+    "pct": 0.21002638522427441
+   },
+   {
+    "team": "FR",
+    "pct": 0.12216358839050132
+   },
+   {
+    "team": "AR",
+    "pct": 0.09920844327176781
+   }
+  ],
+  "SF": [
+   {
+    "team": "ES",
+    "pct": 0.18732782369146006
+   },
+   {
+    "team": "FR",
+    "pct": 0.081267217630854
+   },
+   {
+    "team": "EN",
+    "pct": 0.07851239669421488
+   }
+  ],
+  "3P": [
+   {
+    "team": "AR",
+    "pct": 0.09566787003610108
+   },
+   {
+    "team": "EN",
+    "pct": 0.07220216606498195
+   },
+   {
+    "team": "FR",
+    "pct": 0.06678700361010831
+   }
+  ],
+  "F": [
+   {
+    "team": "AR",
+    "pct": 0.1744186046511628
+   },
+   {
+    "team": "ES",
+    "pct": 0.10465116279069768
+   },
+   {
+    "team": "EN",
+    "pct": 0.06395348837209303
+   }
+  ]
+ },
+ "knocked_out_by": [
+  {
+   "team": "TR",
+   "pct": 0.17958491391887949
+  },
+  {
+   "team": "PY",
+   "pct": 0.10557703530784943
+  },
+  {
+   "team": "US",
+   "pct": 0.09771666180332653
+  },
+  {
+   "team": "KR",
+   "pct": 0.08101108841552378
+  },
+  {
+   "team": "CZ",
+   "pct": 0.07351546542165159
+  }
+ ],
+ "first_round_excerpt": {
+  "opponent": "TR",
+  "meet_in_r32_pct": 0.11572,
+  "win_pct_when_met": 0.1552886277220878
+ },
+ "name": "Bosnia & Herz.",
+ "excerpt_text": "Bosnia & Herz.'s single biggest risk is the round of 32, where 40.0% of its runs end. Turkey is the team that ends its tournament most often, 18.0% of eliminations. The two meet in the round of 32 in 11.6% of all runs, and Bosnia & Herz. wins 16% of those meetings."
+}

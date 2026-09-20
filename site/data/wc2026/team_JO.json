@@ -1,0 +1,139 @@
+{
+ "team": "JO",
+ "group": "J",
+ "elo": 1680.0,
+ "champion_pct": 0.00098,
+ "fates": {
+  "gs4": 0.49171,
+  "gs3_out": 0.12748,
+  "r32": 0.28665,
+  "r16": 0.06097,
+  "qf": 0.0234,
+  "fourth": 0.00433,
+  "third": 0.0021,
+  "runner_up": 0.00238,
+  "champion": 0.00098
+ },
+ "reach": {
+  "R32": 0.38081,
+  "R16": 0.09416,
+  "QF": 0.03319,
+  "SF": 0.00979,
+  "F": 0.00336
+ },
+ "opponents_by_round": {
+  "R32": [
+   {
+    "team": "ES",
+    "pct": 0.37653948163125966
+   },
+   {
+    "team": "UY",
+    "pct": 0.14881436937055226
+   },
+   {
+    "team": "CH",
+    "pct": 0.10871563246763478
+   }
+  ],
+  "R16": [
+   {
+    "team": "PT",
+    "pct": 0.15367459643160578
+   },
+   {
+    "team": "CO",
+    "pct": 0.149214103653356
+   },
+   {
+    "team": "HR",
+    "pct": 0.07933305012744266
+   }
+  ],
+  "QF": [
+   {
+    "team": "ES",
+    "pct": 0.12413377523350407
+   },
+   {
+    "team": "AR",
+    "pct": 0.12292859294968364
+   },
+   {
+    "team": "BE",
+    "pct": 0.07231093702922567
+   }
+  ],
+  "SF": [
+   {
+    "team": "FR",
+    "pct": 0.13789581205311544
+   },
+   {
+    "team": "BR",
+    "pct": 0.09397344228804903
+   },
+   {
+    "team": "NL",
+    "pct": 0.08273748723186926
+   }
+  ],
+  "3P": [
+   {
+    "team": "AR",
+    "pct": 0.08398133748055987
+   },
+   {
+    "team": "FR",
+    "pct": 0.06687402799377916
+   },
+   {
+    "team": "ES",
+    "pct": 0.06376360808709176
+   }
+  ],
+  "F": [
+   {
+    "team": "AR",
+    "pct": 0.18452380952380953
+   },
+   {
+    "team": "ES",
+    "pct": 0.16071428571428573
+   },
+   {
+    "team": "FR",
+    "pct": 0.09821428571428571
+   }
+  ]
+ },
+ "knocked_out_by": [
+  {
+   "team": "ES",
+   "pct": 0.34489113550799044
+  },
+  {
+   "team": "UY",
+   "pct": 0.10270384119211226
+  },
+  {
+   "team": "CH",
+   "pct": 0.08287918279230182
+  },
+  {
+   "team": "CA",
+   "pct": 0.07921965089645368
+  },
+  {
+   "team": "TR",
+   "pct": 0.04064976436827002
+  }
+ ],
+ "first_round_excerpt": {
+  "opponent": "ES",
+  "meet_in_r32_pct": 0.14339,
+  "win_pct_when_met": 0.11534974544947346
+ },
+ "name": "Jordan",
+ "excerpt_text": "Jordan's most common ending is fourth in its group, 49.2% of its runs. It got out of the group in 38.1% of them, and when it did, Spain was the team that ended its tournament most often (34.5% of eliminations)."
+}

@@ -1,0 +1,139 @@
+{
+ "team": "SA",
+ "group": "H",
+ "elo": 1576.0,
+ "champion_pct": 0.00018,
+ "fates": {
+  "gs4": 0.47515,
+  "gs3_out": 0.2113,
+  "r32": 0.25703,
+  "r16": 0.04252,
+  "qf": 0.01085,
+  "fourth": 0.00173,
+  "third": 0.00065,
+  "runner_up": 0.00059,
+  "champion": 0.00018
+ },
+ "reach": {
+  "R32": 0.31355,
+  "R16": 0.05652,
+  "QF": 0.014,
+  "SF": 0.00315,
+  "F": 0.00077
+ },
+ "opponents_by_round": {
+  "R32": [
+   {
+    "team": "AR",
+    "pct": 0.27718067293892523
+   },
+   {
+    "team": "MX",
+    "pct": 0.21298038590336468
+   },
+   {
+    "team": "BE",
+    "pct": 0.08103970658587147
+   }
+  ],
+  "R16": [
+   {
+    "team": "EN",
+    "pct": 0.17834394904458598
+   },
+   {
+    "team": "TR",
+    "pct": 0.11518046709129512
+   },
+   {
+    "team": "HR",
+    "pct": 0.09943382873319179
+   }
+  ],
+  "QF": [
+   {
+    "team": "ES",
+    "pct": 0.10071428571428571
+   },
+   {
+    "team": "CO",
+    "pct": 0.09928571428571428
+   },
+   {
+    "team": "PT",
+    "pct": 0.09785714285714285
+   }
+  ],
+  "SF": [
+   {
+    "team": "FR",
+    "pct": 0.12698412698412698
+   },
+   {
+    "team": "BR",
+    "pct": 0.09523809523809523
+   },
+   {
+    "team": "EN",
+    "pct": 0.08888888888888889
+   }
+  ],
+  "3P": [
+   {
+    "team": "ES",
+    "pct": 0.08823529411764706
+   },
+   {
+    "team": "FR",
+    "pct": 0.08823529411764706
+   },
+   {
+    "team": "AR",
+    "pct": 0.06302521008403361
+   }
+  ],
+  "F": [
+   {
+    "team": "ES",
+    "pct": 0.2597402597402597
+   },
+   {
+    "team": "AR",
+    "pct": 0.1038961038961039
+   },
+   {
+    "team": "FR",
+    "pct": 0.09090909090909091
+   }
+  ]
+ },
+ "knocked_out_by": [
+  {
+   "team": "AR",
+   "pct": 0.2547148737913648
+  },
+  {
+   "team": "MX",
+   "pct": 0.18524427992468967
+  },
+  {
+   "team": "BE",
+   "pct": 0.07205539777260107
+  },
+  {
+   "team": "AT",
+   "pct": 0.05198327855250981
+  },
+  {
+   "team": "KR",
+   "pct": 0.04729233813064428
+  }
+ ],
+ "first_round_excerpt": {
+  "opponent": "AR",
+  "meet_in_r32_pct": 0.08691,
+  "win_pct_when_met": 0.08756184558738925
+ },
+ "name": "Saudi Arabia",
+ "excerpt_text": "Saudi Arabia's most common ending is fourth in its group, 47.5% of its runs. It got out of the group in 31.4% of them, and when it did, Argentina was the team that ended its tournament most often (25.5% of eliminations)."
+}

@@ -1,0 +1,139 @@
+{
+ "team": "JP",
+ "group": "F",
+ "elo": 1906.0,
+ "champion_pct": 0.02246,
+ "fates": {
+  "gs4": 0.08805,
+  "gs3_out": 0.04506,
+  "r32": 0.43687,
+  "r16": 0.18165,
+  "qf": 0.13037,
+  "fourth": 0.03473,
+  "third": 0.03259,
+  "runner_up": 0.02822,
+  "champion": 0.02246
+ },
+ "reach": {
+  "R32": 0.86689,
+  "R16": 0.43002,
+  "QF": 0.24837,
+  "SF": 0.118,
+  "F": 0.05068
+ },
+ "opponents_by_round": {
+  "R32": [
+   {
+    "team": "BR",
+    "pct": 0.34303083436191445
+   },
+   {
+    "team": "MA",
+    "pct": 0.236385239188363
+   },
+   {
+    "team": "SQ",
+    "pct": 0.19659933786293532
+   }
+  ],
+  "R16": [
+   {
+    "team": "CH",
+    "pct": 0.11832007813590066
+   },
+   {
+    "team": "CA",
+    "pct": 0.10099530254406772
+   },
+   {
+    "team": "DE",
+    "pct": 0.0956932235709967
+   }
+  ],
+  "QF": [
+   {
+    "team": "FR",
+    "pct": 0.19503160607158673
+   },
+   {
+    "team": "EC",
+    "pct": 0.10299150461005757
+   },
+   {
+    "team": "DE",
+    "pct": 0.0947376897370858
+   }
+  ],
+  "SF": [
+   {
+    "team": "ES",
+    "pct": 0.27305084745762714
+   },
+   {
+    "team": "AR",
+    "pct": 0.1252542372881356
+   },
+   {
+    "team": "PT",
+    "pct": 0.06745762711864407
+   }
+  ],
+  "3P": [
+   {
+    "team": "AR",
+    "pct": 0.07709447415329768
+   },
+   {
+    "team": "EN",
+    "pct": 0.06283422459893048
+   },
+   {
+    "team": "NL",
+    "pct": 0.06209150326797386
+   }
+  ],
+  "F": [
+   {
+    "team": "AR",
+    "pct": 0.14917127071823205
+   },
+   {
+    "team": "ES",
+    "pct": 0.10734017363851618
+   },
+   {
+    "team": "FR",
+    "pct": 0.07675611681136543
+   }
+  ]
+ },
+ "knocked_out_by": [
+  {
+   "team": "BR",
+   "pct": 0.2132799639993842
+  },
+  {
+   "team": "FR",
+   "pct": 0.12942458226259132
+  },
+  {
+   "team": "MA",
+   "pct": 0.10694788200324479
+  },
+  {
+   "team": "SQ",
+   "pct": 0.08035005861942375
+  },
+  {
+   "team": "NO",
+   "pct": 0.055374631408168826
+  }
+ ],
+ "first_round_excerpt": {
+  "opponent": "BR",
+  "meet_in_r32_pct": 0.29737,
+  "win_pct_when_met": 0.41170931835760166
+ },
+ "name": "Japan",
+ "excerpt_text": "Japan's single biggest risk is the round of 32, where 43.7% of its runs end. Brazil is the team that ends its tournament most often, 21.3% of eliminations. The two meet in the round of 32 in 29.7% of all runs, and Japan wins 41% of those meetings."
+}

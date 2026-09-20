@@ -22,3 +22,6 @@ data/raw/*
 .DS_Store
 .vscode/
 .idea/
+
+# Brainstorm visual companion sessions (mockups, not source)
+.superpowers/

@@ -23,7 +23,7 @@ def wc():
 def built(wc, tmp_path_factory):
     out = tmp_path_factory.mktemp("run") / "wc2026"
     run(wc, load_snapshot(wc.ratings_snapshot), MODEL, n_sims=N, seed=11, out_dir=out)
-    views = build_report(out)
+    views = build_report(out, names={})
     return views, out / "report"
 
 
