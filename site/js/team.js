@@ -3,6 +3,9 @@ import { h, flag, name, fmtCount, fmtPct, countOf } from './dom.js';
 import { FATES } from './fate-table.js';
 
 const ROUNDS = [['R32', 'Round of 32'], ['R16', 'Round of 16'], ['QF', 'Quarter-final'], ['SF', 'Semi-final'], ['F', 'Final']];
+// The two fate colours dark enough that an ink count on them falls under 4.5:1; .fs i.dk in
+// site.css writes those two counts in white instead.
+const DARK_FATES = new Set(['fourth', 'third']);
 
 export async function render(section, ctx) {
   const runs = fmtCount(ctx.n);
@@ -20,7 +23,7 @@ export async function render(section, ctx) {
     const t = await ctx.team(code);
     const top = ctx.teams[0].code === code;
     const nm = t.name;
-    const segs = FATES.map((f) => h('i', { style: `width:${(t.fates[f.key] * 100).toFixed(2)}%;background:${f.colour}`, title: `${f.long}: ${cnt(t.fates[f.key])}` }, h('span', {}, t.fates[f.key] >= 0.06 ? cnt(t.fates[f.key]) : '')));
+    const segs = FATES.map((f) => h('i', { class: DARK_FATES.has(f.key) ? 'dk' : null, style: `width:${(t.fates[f.key] * 100).toFixed(2)}%;background:${f.colour}`, title: `${f.long}: ${cnt(t.fates[f.key])}` }, h('span', {}, t.fates[f.key] >= 0.06 ? cnt(t.fates[f.key]) : '')));
     const legend = h('div', { class: 'legend fl' }, ...FATES.map((f) => h('span', {}, h('i', { style: `background:${f.colour}` }), `${f.long} `, h('b', { class: 'n' }, cnt(t.fates[f.key])))));
     // The two step colours are spec tokens: the reached-that-round green and the trophy gold.
     const steps = [...ROUNDS.map(([k, lab]) => [lab, t.reach[k], 'var(--f-4th)']), ['Champion', t.champion_pct, 'var(--gold)']]
