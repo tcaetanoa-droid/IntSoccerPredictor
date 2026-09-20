@@ -96,6 +96,7 @@ src/intsoccer/
                docs/REPORTS.md
   backtest/    not started
   cli.py       intsoccer fetch | snapshot | fit | simulate | report
+site/               the static website (plain HTML/CSS/JS), reads site/data/<name>/*.json
 data/tournaments/   wc2026.yaml (annotated schema example), wc2026_results.csv (all 104 real
                     results with pre-match ratings), wc2026_third_place_table.csv (FIFA Annex C,
                     495 rows); euro2028 / copa2028 placeholders awaiting their draws
@@ -135,8 +136,8 @@ and cross-check its groups against the real results and the ratings snapshot.
 
 All ratings and match histories come from [eloratings.net](https://eloratings.net) (World Football
 Elo Ratings). Tournament regulations are taken from FIFA's 2026 World Cup regulations as
-documented on Wikipedia. This is a personal, non-commercial project and is not affiliated with
-either.
+documented on Wikipedia. Flag images are served by flagcdn.com. This is a personal,
+non-commercial project and is not affiliated with either.
 
 Teams are identified everywhere by eloratings.net's own two-letter codes, which are not ISO codes.
 Some are easy to get wrong: `SQ` is Scotland (`SC` is Seychelles), `IE` is the Republic of Ireland
