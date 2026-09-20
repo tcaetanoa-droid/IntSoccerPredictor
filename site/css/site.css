@@ -137,7 +137,9 @@ main { min-width: 0; }
 #group-stage .row.out img { opacity: .7; }
 #group-stage .pos { font-size: 10px; color: var(--ink-soft); }
 #group-stage .tm { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-#group-stage .tm em { font-style: normal; font-size: 9px; letter-spacing: .08em; text-transform: uppercase; color: var(--orange); margin-left: 5px; vertical-align: 1px; }
+/* A darker --orange: at 9px the tag has no large-text exemption, and #C2410C is 4.41:1 on the
+   green row tint. #9A3412 clears 4.5:1 on all three row backgrounds. */
+#group-stage .tm em { font-style: normal; font-size: 9px; letter-spacing: .08em; text-transform: uppercase; color: #9A3412; margin-left: 5px; vertical-align: 1px; }
 #group-stage .bar { display: block; height: 8px; background: var(--rule); border-radius: 2px; overflow: hidden; }
 #group-stage .bar i { display: block; height: 100%; background: #3F8F57; }
 #group-stage .row.third .bar i { background: #6BAE7C; }
