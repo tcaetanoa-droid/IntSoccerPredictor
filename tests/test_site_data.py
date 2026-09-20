@@ -113,3 +113,25 @@ def test_copy_site_data_copies_only_what_the_site_reads(built, tmp_path):
     assert len([n for n in names if n.startswith("team_")]) == 48
     assert not any(n.endswith(".csv") for n in names) and "reality.json" not in names
     assert sorted(written) == sorted(dest.iterdir())
+
+
+def test_copy_site_data_publishes_file_names_not_local_paths(tmp_path):
+    report_dir = tmp_path / "report"
+    report_dir.mkdir()
+    meta = {"tournament": "FIFA World Cup 2026",
+            "tournament_yaml": "/Users/someone/IntSoccerPredictor/data/tournaments/wc2026.yaml",
+            "ratings_snapshot": "/Users/someone/IntSoccerPredictor/data/snapshots/"
+                                "2026-06-10_wc2026.csv",
+            "seed": 2026}
+    source_text = json.dumps({"meta": meta, "teams": []}, indent=1)
+    (report_dir / "report.json").write_text(source_text)
+    (report_dir / "teams.json").write_text("[]")
+
+    site.copy_site_data(report_dir, tmp_path / "site", "wc2026",
+                        calibration=tmp_path / "missing.json")
+
+    copied = json.loads((tmp_path / "site" / "data" / "wc2026" / "report.json").read_text())
+    assert copied["meta"]["tournament_yaml"] == "wc2026.yaml"
+    assert copied["meta"]["ratings_snapshot"] == "2026-06-10_wc2026.csv"
+    assert copied["meta"]["tournament"] == "FIFA World Cup 2026" and copied["meta"]["seed"] == 2026
+    assert (report_dir / "report.json").read_text() == source_text

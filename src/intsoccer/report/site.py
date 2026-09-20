@@ -2,6 +2,7 @@
 calibration export and the copy into site/data/. Pure functions over report outputs."""
 from __future__ import annotations
 
+import json
 import shutil
 from pathlib import Path
 
@@ -103,6 +104,20 @@ def team_pages(ctx: tables.Context, names: dict[str, str]) -> dict[str, dict]:
     return out
 
 
+LOCAL_PATH_META = ("tournament_yaml", "ratings_snapshot")
+
+
+def _publish_report(src: Path, target: Path) -> None:
+    """report.json's meta holds absolute paths on the machine that ran the simulation; the
+    published copy keeps only the file names. Same serialisation as report.build."""
+    bundle = json.loads(src.read_text())
+    meta = bundle.get("meta", {})
+    for key in LOCAL_PATH_META:
+        if key in meta:
+            meta[key] = Path(meta[key]).name
+    target.write_text(json.dumps(bundle, indent=1))
+
+
 def copy_site_data(report_dir: Path, site_dir: Path, name: str,
                    calibration: Path = Path("data") / "calibration.json") -> list[Path]:
     """Copy the files the website fetches into <site_dir>/data/<name>/. Returns written paths."""
@@ -115,6 +130,9 @@ def copy_site_data(report_dir: Path, site_dir: Path, name: str,
     written = []
     for src in sources:
         target = dest / src.name
-        shutil.copyfile(src, target)
+        if src.name == "report.json":
+            _publish_report(src, target)
+        else:
+            shutil.copyfile(src, target)
         written.append(target)
     return written

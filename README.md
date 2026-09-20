@@ -56,6 +56,17 @@ often a favourite actually gets the result.
 
 Details and the full component list are in [docs/ROADMAP.md](docs/ROADMAP.md).
 
+### Website
+
+The simulations are published at [intsoccerpredictor.vercel.app](https://intsoccerpredictor.vercel.app):
+the 2026 World Cup in eight chapters — who wins it, the group stage, the bracket, the hosts, the
+underdogs, the paradoxes, pick a team, and how it works. It is plain HTML, CSS and JavaScript under
+`site/`, with no build step and no framework. Every number on it is read from
+`site/data/wc2026/*.json`, written by `intsoccer report --site` and committed alongside the pages,
+so the site never computes a statistic of its own; the views themselves are specified in
+[docs/REPORTS.md](docs/REPORTS.md). Vercel deploys it automatically from `main`, with `vercel.json`
+pointing at `site/` (setting the project's Root Directory to `site` does the same job).
+
 ## Quick start
 
 ```bash

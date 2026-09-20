@@ -1,7 +1,7 @@
 {
  "meta": {
   "tournament": "FIFA World Cup 2026",
-  "tournament_yaml": "/Users/thiagocaetano/Developer/IntSoccerPredictor/data/tournaments/wc2026.yaml",
+  "tournament_yaml": "wc2026.yaml",
   "seed": 2026,
   "n_sims": 100000,
   "rounds": [
@@ -12,7 +12,7 @@
    "3P",
    "F"
   ],
-  "ratings_snapshot": "/Users/thiagocaetano/Developer/IntSoccerPredictor/data/snapshots/2026-06-10_wc2026.csv",
+  "ratings_snapshot": "2026-06-10_wc2026.csv",
   "goals_model": {
    "a": 0.13591012167448221,
    "b": 0.001761159182653181,
