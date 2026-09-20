@@ -3,9 +3,6 @@ import { h, flag, name, fmtCount, fmtPct, countOf } from './dom.js';
 import { FATES } from './fate-table.js';
 
 const ROUNDS = [['R32', 'Round of 32'], ['R16', 'Round of 16'], ['QF', 'Quarter-final'], ['SF', 'Semi-final'], ['F', 'Final']];
-// 3rd place (#B87333) and 4th place (#3F8F57) are too dark for a 12px count and no text colour
-// clears 4.5:1 on them, so those two segments carry their count in the tooltip and legend only.
-const NO_COUNT = new Set(['third', 'fourth']);
 // "curacao" has to find "Curaçao", so both sides of the match lose their accents.
 const norm = (s) => s.normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase();
 
@@ -88,8 +85,9 @@ export async function render(section, ctx) {
     chips.replaceChildren(...ctx.teams.slice(0, 6).filter((z) => z.code !== code).slice(0, 5)
       .map((z) => h('button', { class: 'chip', type: 'button', onclick: () => pick(z.code) }, flag(z.code, ctx.byCode, 20), z.name)),
       h('span', { class: 'pkn' }, 'favourites'));
+    // Plain ink on the segment: 3rd place (4.21:1) and 4th place (4.02:1) are under 4.5:1, by the owner's decision.
     const segs = FATES.map((f) => h('i', { style: `width:${(t.fates[f.key] * 100).toFixed(2)}%;background:${f.colour}`, title: `${f.long}: ${cnt(t.fates[f.key])}` },
-      t.fates[f.key] >= 0.06 && !NO_COUNT.has(f.key) ? h('span', {}, cnt(t.fates[f.key])) : null));
+      t.fates[f.key] >= 0.06 ? h('span', {}, cnt(t.fates[f.key])) : null));
     const legend = h('div', { class: 'legend fl' }, ...FATES.map((f) => h('span', {}, h('i', { style: `background:${f.colour}` }), `${f.long} `, h('b', { class: 'n' }, cnt(t.fates[f.key])))));
     // The two step colours are spec tokens: the reached-that-round green and the trophy gold.
     const steps = [...ROUNDS.map(([k, lab]) => [lab, t.reach[k], 'var(--f-4th)']), ['Champion', t.champion_pct, 'var(--gold)']]
