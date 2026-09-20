@@ -240,7 +240,7 @@ Beyond the ten views, `intsoccer report --site` writes for the site:
 - `calibration.json` (from `intsoccer fit`): the diagnostics bins with n >= 30, for the
   calibration chart in the method chapter.
 
-Everything is copied into `site/data/<run name>/`, which is committed so GitHub Pages serves it.
+Everything is copied into `site/data/<run name>/`, which is committed so Vercel serves it.
 The reality view (10) is written but the site does not render it (design decision, 19 Sep 2026).
 
 ## Medium

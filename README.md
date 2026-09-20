@@ -64,8 +64,8 @@ underdogs, the paradoxes, pick a team, and how it works. It is plain HTML, CSS a
 `site/`, with no build step and no framework. Every number on it is read from
 `site/data/wc2026/*.json`, written by `intsoccer report --site` and committed alongside the pages,
 so the site never computes a statistic of its own; the views themselves are specified in
-[docs/REPORTS.md](docs/REPORTS.md). Vercel deploys it automatically from `main`, with `vercel.json`
-pointing at `site/` (setting the project's Root Directory to `site` does the same job).
+[docs/REPORTS.md](docs/REPORTS.md). Vercel deploys it from `main` through its GitHub integration,
+with the project's root directory set to `site/`; every pull request gets a preview deployment.
 
 ## Quick start
 
