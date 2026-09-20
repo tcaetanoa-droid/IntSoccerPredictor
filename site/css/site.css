@@ -328,3 +328,49 @@ main { min-width: 0; }
   #pick-a-team .op { display: flex; flex-wrap: wrap; gap: 6px 16px; }
   #pick-a-team .ol { flex: 0 0 100%; }
 }
+
+/* chapter 8: how it works */
+/* Two columns: the prose on the left, the maths and its key on the right. */
+#how-it-works .step { display: grid; grid-template-columns: 1fr 1.15fr; gap: 40px; border-top: 1px solid var(--ink); padding: 22px 0 10px; }
+#how-it-works .side { min-width: 0; }
+#how-it-works .stn { font-size: 12px; color: var(--green); letter-spacing: .12em; }
+#how-it-works h3 { font-family: var(--serif); font-size: 24px; font-weight: 500; margin: 4px 0 10px; }
+#how-it-works .step p { font-size: 15px; line-height: 1.6; color: var(--ink-soft); margin: 0 0 12px; }
+#how-it-works .step p b, #how-it-works .step p em { color: var(--ink); }
+/* A KaTeX display block is 18px wide maths that cannot wrap; let the longest ones scroll on a
+   phone instead of pushing the page sideways. */
+#how-it-works .eq { font-size: 18px; margin: 0 0 10px; color: var(--ink); overflow-x: auto; overflow-y: hidden; }
+/* The mock-up needs !important here because .step p outweighs .fn; scoped and ordered after it
+   this does not. */
+#how-it-works .step p.fn { font-size: 12.5px; color: var(--muted); line-height: 1.5; }
+#how-it-works .key { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px 6px; margin: 4px 0 14px; }
+#how-it-works .kr { display: grid; grid-template-columns: 110px 1fr; gap: 12px; padding: 6px 0; border-top: 1px solid #EEF2EC; font-size: 13px; line-height: 1.5; color: var(--ink-soft); }
+#how-it-works .ks { color: var(--ink); font-size: 15px; }
+#how-it-works .pt { border-collapse: collapse; font-size: 12.5px; margin: 6px 0 10px; }
+#how-it-works .pt th { text-align: left; font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-soft); font-weight: 500; padding: 4px 12px 4px 0; border-bottom: 1px solid var(--ink); }
+#how-it-works .pt td { padding: 5px 12px 5px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+#how-it-works .two { display: flex; gap: 40px; flex-wrap: wrap; }
+/* .calbox and .repo already carry .card; the worked example is a bare div. */
+#how-it-works .ex { background: var(--card); border: 1px solid var(--border); border-radius: 8px; }
+#how-it-works .ex, #how-it-works .calbox, #how-it-works .repo { padding: 14px 18px; margin: 12px 0 14px; font-size: 13.5px; }
+#how-it-works .ex p, #how-it-works .repo p { font-size: 13.5px; margin: 0; }
+#how-it-works .repo { margin-top: 26px; }
+#how-it-works code { font-family: var(--mono); font-size: 12px; background: var(--paper); padding: 1px 5px; border-radius: 3px; }
+#how-it-works .cal2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+#how-it-works .cal2 svg { max-height: 340px; }
+#how-it-works .cl { display: flex; gap: 18px; font-size: 11.5px; color: var(--ink-soft); margin-bottom: 6px; flex-wrap: wrap; }
+#how-it-works .cl .ln { display: inline-block; width: 18px; height: 2px; vertical-align: middle; margin-right: 6px; }
+#how-it-works .cl .dot { display: inline-block; width: 8px; height: 8px; border: 1.6px solid; border-radius: 50%; background: var(--card); vertical-align: middle; margin-right: 6px; }
+#how-it-works .chart .ttl { fill: var(--ink); }
+#how-it-works .chart .zero { stroke: var(--ink); opacity: .4; }
+@media (max-width: 1023px) { #how-it-works .step { grid-template-columns: 1fr; gap: 0; } }
+/* The brief stacks .cal2 at 1024px too, but a 10px axis label in the 620-wide viewBox needs a
+   panel about 500px wide before it renders under 8px, and two panels only clear that above
+   1382px: the rail and the gutters take 314px out of the page and the card another 38. Stack
+   from there; max-height then holds a lone panel to a 1.13 scale, so it cannot grow instead. */
+@media (max-width: 1382px) { #how-it-works .cal2 { grid-template-columns: 1fr; } }
+/* Below 570px even one panel is under 500px, so the card scrolls, as chapter 6's does. */
+@media (max-width: 569px) {
+  #how-it-works .cal2 { overflow-x: auto; }
+  #how-it-works .cal2 svg { min-width: 500px; }
+}

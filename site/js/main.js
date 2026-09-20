@@ -11,6 +11,7 @@ CHAPTERS.push({ id: 'hosts', mod: './hosts.js' });
 CHAPTERS.push({ id: 'underdogs', mod: './underdogs.js' });
 CHAPTERS.push({ id: 'paradoxes', mod: './paradoxes.js' });
 CHAPTERS.push({ id: 'pick-a-team', mod: './team.js' });
+CHAPTERS.push({ id: 'how-it-works', mod: './method.js' });
 
 async function boot() {
   initRail(document.querySelector('.rail'), [...document.querySelectorAll('main section[id]')]);
