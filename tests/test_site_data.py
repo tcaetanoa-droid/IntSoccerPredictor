@@ -52,3 +52,51 @@ def test_teams_index_is_written_sorted_by_title_chance(built, wc):
     assert [r["code"] for r in rows] == sorted(wc.teams, key=lambda c: -champion.loc[c])
     assert set(rows[0]) == {"code", "iso", "name", "group", "elo", "champion_pct"}
     assert all(r["iso"] == site.ISO[r["code"]] for r in rows)
+
+
+def _page(team, fates, conq, ex):
+    return {"team": team, "fates": fates, "knocked_out_by": conq, "first_round_excerpt": ex}
+
+
+FATES_ES = {"gs4": .004, "gs3_out": .003, "r32": .247, "r16": .189, "qf": .132, "fourth": .043,
+            "third": .093, "runner_up": .102, "champion": .186}
+NAMES = {"ES": "Spain", "AR": "Argentina", "QA": "Qatar", "CH": "Switzerland", "BR": "Brazil"}
+
+
+def test_excerpt_knockout_branch_names_the_risk_the_conqueror_and_the_meeting():
+    page = _page("ES", FATES_ES, [{"team": "AR", "pct": .192}],
+                 {"opponent": "AR", "meet_in_r32_pct": .276, "win_pct_when_met": .548})
+    text = site.excerpt_text(page, NAMES)
+    assert text == ("Spain's single biggest risk is the round of 32, where 24.7% of its runs "
+                    "end. Argentina is the team that ends its tournament most often, 19.2% of "
+                    "eliminations. The two meet in the round of 32 in 27.6% of all runs, and "
+                    "Spain wins 55% of those meetings.")
+
+
+def test_excerpt_group_stage_branch():
+    fates = {"gs4": .68, "gs3_out": .13, "r32": .16, "r16": .024, "qf": .004, "fourth": 0,
+             "third": 0, "runner_up": 0, "champion": 0}
+    ex = {"opponent": "CH", "meet_in_r32_pct": .05, "win_pct_when_met": .2}
+    page = _page("QA", fates, [{"team": "CH", "pct": .31}], ex)
+    text = site.excerpt_text(page, NAMES)
+    assert text == ("Qatar's most common ending is fourth in its group, 68.0% of its runs. "
+                    "It got out of the group in 19.0% of them, and when it did, Switzerland "
+                    "was the team that ended its tournament most often (31.0% of eliminations).")
+
+
+def test_excerpt_champion_branch_and_no_meeting_line_when_conqueror_differs():
+    fates = dict(FATES_ES, champion=.40, r32=.10)
+    ex = {"opponent": "CH", "meet_in_r32_pct": .1, "win_pct_when_met": .5}
+    page = _page("BR", fates, [{"team": "AR", "pct": .2}], ex)
+    text = site.excerpt_text(page, NAMES)
+    assert text.startswith("Brazil's most common ending is the trophy: it won 40.0% of its runs.")
+    assert "meet" not in text and text.endswith("(20.0% of eliminations).")
+
+
+def test_a_team_file_is_written_for_all_48_with_text(built, wc):
+    views, out = built
+    files = sorted(p.name for p in out.glob("team_*.json"))
+    assert files == sorted(f"team_{c}.json" for c in wc.teams)
+    page = json.loads((out / "team_ES.json").read_text())
+    assert page["name"] == "ES" and page["excerpt_text"].startswith("ES")
+    assert "team_ES" in views and views["team_ES"]["excerpt_text"] == page["excerpt_text"]

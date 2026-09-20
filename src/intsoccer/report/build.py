@@ -59,7 +59,7 @@ def build_report(run: Run | Path, out_dir: Path | None = None, focus: dict | Non
         "trophy_paradox": tables.trophy_paradox(ctx, focus["giants"], focus["absent_giants"]),
         "hosts_exit": tables.hosts_exit(ctx),
         "paradoxes": tables.paradoxes(ctx, focus["paradox_a"], focus["paradox_b"]),
-        f"team_{focus['team']}": tables.team_page(ctx, focus["team"]),
+        **site.team_pages(ctx, names),
         "bracket": bracket.modal_bracket(ctx),
         "reality": bracket.reality(ctx, Path(focus["results"])),
         "teams": site.teams_index(ctx, names),
