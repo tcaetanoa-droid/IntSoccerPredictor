@@ -16,6 +16,8 @@ export function flag(code, byCode, width = 40) {
   const iso = byCode[code] ? byCode[code].iso : 'un';
   return h('img', { class: 'flag', src: `https://flagcdn.com/w${width}/${iso}.png`, alt: '', loading: 'lazy' });
 }
+// A sideways-scrolling region a keyboard can reach: Tab lands on it, the arrow keys scroll it.
+export const scrollX = (label, ...children) => h('div', { class: 'scroll-x', tabindex: '0', role: 'group', 'aria-label': label }, ...children);
 export const fmtCount = (n) => Math.round(n).toLocaleString('en-GB');
 export const fmtPct = (x, dec = 1) => `${(x * 100).toFixed(dec)}%`;
 export const countOf = (share, n) => fmtCount(share * n);  // n: ctx.n, the simulation count

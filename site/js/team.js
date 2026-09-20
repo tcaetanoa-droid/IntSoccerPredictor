@@ -38,8 +38,9 @@ export async function render(section, ctx) {
         onmousedown: (e) => e.preventDefault(),  // keep the focus so the blur restore does not fire first
         onclick: () => pick(t.code) },
         flag(t.code, ctx.byCode, 20), t.name, h('b', { class: 'n' }, cnt(t.champion_pct))))
-      : [h('div', { class: 'r none' }, 'No team matches')]));
+      : [h('div', { class: 'r none', role: 'presentation' }, 'No team matches')]));
     results.hidden = false;
+    if (hi >= 0) results.children[hi].scrollIntoView({ block: 'nearest' });
     input.setAttribute('aria-expanded', 'true');
     if (hi >= 0) input.setAttribute('aria-activedescendant', `tr-${matches[hi].code}`);
     else input.removeAttribute('aria-activedescendant');
@@ -83,7 +84,7 @@ export async function render(section, ctx) {
     input.value = nm;
     // The five favourites are the strongest teams that are not the one already on the page.
     chips.replaceChildren(...ctx.teams.slice(0, 6).filter((z) => z.code !== code).slice(0, 5)
-      .map((z) => h('button', { class: 'chip', type: 'button', onclick: () => pick(z.code) }, flag(z.code, ctx.byCode, 20), z.name)),
+      .map((z) => h('button', { class: 'chip', type: 'button', onmousedown: (e) => e.preventDefault(), onclick: () => pick(z.code) }, flag(z.code, ctx.byCode, 20), z.name)),
       h('span', { class: 'pkn' }, 'favourites'));
     // Plain ink on the segment: 3rd place (4.21:1) and 4th place (4.02:1) are under 4.5:1, by the owner's decision.
     const segs = FATES.map((f) => h('i', { style: `width:${(t.fates[f.key] * 100).toFixed(2)}%;background:${f.colour}`, title: `${f.long}: ${cnt(t.fates[f.key])}` },

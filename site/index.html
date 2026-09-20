@@ -13,16 +13,16 @@
 <body>
 <header class="site-header">
   <a class="wordmark" href="index.html">Int<span>Soccer</span>Predictor</a>
-  <nav>
+  <nav aria-label="Site">
     <a href="index.html" aria-current="page">World Cup 2026</a>
-    <a href="euro2028.html">Euro 2028<em class="pill">soon</em></a>
-    <a href="copa2028.html">Copa América 2028<em class="pill">soon</em></a>
+    <a href="euro2028.html">Euro 2028 <span class="pill">soon</span></a>
+    <a href="copa2028.html">Copa América 2028 <span class="pill">soon</span></a>
     <a href="#how-it-works">How it works</a>
     <a href="https://github.com/tcaetanoa-droid/IntSoccerPredictor">GitHub</a>
   </nav>
 </header>
 <div class="page">
-  <nav class="rail" aria-label="Chapters">
+  <nav class="rail" id="rail" aria-label="Chapters">
     <a href="#who-wins-it"><i>01</i>Who wins it</a>
     <a href="#group-stage"><i>02</i>Group stage</a>
     <a href="#bracket"><i>03</i>The bracket</a>
@@ -44,7 +44,7 @@
     <section id="how-it-works" class="chapter"></section>
   </main>
 </div>
-<button class="rail-toggle" type="button">Chapters</button>
+<button class="rail-toggle" type="button" aria-expanded="false" aria-controls="rail">Chapters</button>
 <footer class="site-footer">
   <div><a class="wordmark" href="index.html">Int<span>Soccer</span>Predictor</a>
     <p>100,000 replays of international tournaments from Elo ratings. A personal project by Thiago Caetano, not affiliated with FIFA, UEFA, CONMEBOL or eloratings.net.</p></div>

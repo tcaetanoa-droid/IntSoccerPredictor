@@ -1,5 +1,5 @@
 // site/js/paradoxes.js
-import { h, flag, name, fmtPct } from './dom.js';
+import { h, flag, name, fmtPct, scrollX } from './dom.js';
 import { svgEl } from './svg.js';
 
 const COLOUR = { PT: '#DA291C', CO: '#FCD116', NL: '#F36C21', DE: '#111111', UY: '#5CBFEB', IT: '#005F35' };
@@ -50,7 +50,7 @@ export function render(section, ctx) {
     h('p', { class: 'lede' }, 'Elo measures strength. Tournament odds also depend on the draw, the bracket and the venue, so two teams of similar strength can have very different chances. Two illustrations: past glory buys nothing, and playing at home is worth about a hundred rating points, enough to lift a host above a better-rated team.'),
     h('div', { class: 'sh' }, 'New contenders, faded giants'), h('p', { class: 'cst' }, 'Three teams that have never won it, each more likely to lift the trophy than Germany, a four-time champion. Italy has four titles and no chance at all: it did not qualify.'),
     // Six full team names need room: below a floor the chart scrolls, as in chapters 1 and 3.
-    h('div', { class: 'scroll-x' }, chart),
+    scrollX('Trophy chart, scrolls sideways', chart),
     h('div', { class: 'sh' }, 'Elo is not tournament odds'), h('p', { class: 'cst' }, 'A rating says how good a team is. A tournament also asks who you play, and where. Three pairs where the lower-rated team has the better number.'),
     h('div', { class: 'row3' }, ...cards));
 }

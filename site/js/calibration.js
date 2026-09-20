@@ -35,7 +35,7 @@ export function calibrationChart(bins) {
   const eq = bins.find((b) => b.bin === 0);  // the near-equal bin the footnote quotes
   return h('div', { class: 'card calbox' }, head,
     h('div', { class: 'cl' }, h('span', {},h('i', { class: 'ln', style: 'background:var(--green)' }), 'model'), h('span', {}, h('i', { class: 'dot', style: 'border-color:var(--green)' }), 'observed, dot size = number of matches in the bin'), h('span', {}, h('i', { class: 'ln', style: 'background:var(--orange)' }), 'draws, model'), h('span', {}, h('i', { class: 'dot', style: 'border-color:var(--orange)' }), 'draws, observed')),
-    h('div', { class: 'cal2' },
+    h('div', { class: 'cal2 scroll-x', tabindex: '0', role: 'group', 'aria-label': 'Calibration charts, scroll sideways on a narrow screen' },
       panel('Mean goals scored per team', bins, [['pred_goals', 'obs_goals', 'var(--green)']], gmax, (t) => t.toFixed(1)),
       panel('Win rate and draw rate', bins, [['pred_win', 'obs_win', 'var(--green)'], ['pred_draw', 'obs_draw', 'var(--orange)']], 1, (t) => `${Math.round(t * 100)}%`)),
     h('p', { class: 'foot' }, `7,526 matches from January 2010 to 10 June 2026, in bins of 100 rating points; bins with fewer than 30 matches are dropped. The line is what the model predicts for the matches in each bin, the dots are what happened. Between −500 and +500 the two agree within about 0.07 goals and 0.02 in win rate.${eq ? ` The draw line sits just under the dots near zero: the model gives ${fmtPct(eq.pred_draw, 0)}, reality ${fmtPct(eq.obs_draw, 0)}.` : ''}`));

@@ -1,5 +1,5 @@
 // site/js/bracket.js
-import { h, flag, name, fmtPct } from './dom.js';
+import { h, flag, name, fmtPct, scrollX } from './dom.js';
 
 // Feed order from data/tournaments/wc2026.yaml knockout.matches: 101 = W97 v W98, 102 = W99 v W100.
 const LEFT = { R32: [74, 77, 73, 75, 83, 84, 81, 82], R16: [89, 90, 93, 94], QF: [97, 98], SF: [101] };
@@ -26,7 +26,7 @@ export function render(section, ctx) {
   section.replaceChildren(
     h('div', { class: 'num' }, '03 · The bracket'), h('h2', {}, 'The most likely road to the final.'),
     h('p', { class: 'lede', html: 'Take the most common finishing order in every group, then at each knockout match ask: of all the runs where these two teams met in this exact slot, who won more often? Follow the winners to the final. It is the path of most likely steps, <b>not the most likely single tournament</b>, which is far rarer. The real tournament got the same four semi-finalists and the same final.' }),
-    h('div', { class: 'scroll-x' }, grid),
+    scrollX('The bracket, scrolls sideways', grid),
     h('p', { class: 'foot' }, `Percentages are conditional on the pairing: ${name(es.home, ctx.byCode)} beat ${name(es.away, ctx.byCode)} in ${fmtPct(es.p_home, 0)} of the ${es.n_met.toLocaleString('en-GB')} runs where they met in match 84. Coin flips are printed as coin flips: Germany 49%, Norway 51%. Match numbers are FIFA's.`));
   drawConnectors(grid);
 }
@@ -40,6 +40,7 @@ function drawConnectors(grid) {
   const NS = 'http://www.w3.org/2000/svg';
   const svg = document.createElementNS(NS, 'svg');
   svg.setAttribute('class', 'conn');
+  svg.setAttribute('aria-hidden', 'true');
   grid.append(svg);
   const cols = [...grid.querySelectorAll('.col')];
   const boxes = (c) => [...c.querySelectorAll('.m')];

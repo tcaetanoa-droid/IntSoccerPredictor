@@ -29,6 +29,6 @@ export function render(section, ctx) {
         h('div', { class: 'st' }, 'Number of runs each team lifted the trophy'),
         ...bars,
         h('div', { class: 'others', html: `The other ${rows.length - 8} teams won the remaining <span class="n">${fmtCount(rest)}</span> runs between them. Nobody outside this list clears ${fmtCount(rows[8].champion)}.` }))),
-    h('div', { class: 'chapters' }, ...[...document.querySelectorAll('.rail a')]
+    h('nav', { class: 'chapters', 'aria-label': 'Jump to a chapter' }, ...[...document.querySelectorAll('.rail a')]
       .map((a) => h('a', { href: a.getAttribute('href') }, h('i', {}, a.querySelector('i').textContent), a.lastChild.textContent))));
 }
