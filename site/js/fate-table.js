@@ -29,11 +29,15 @@ export function render(section, ctx) {
       ...FATES.map((f) => { const t = r[f.key] ? Math.pow(r[f.key] / max[f.key], 0.55) * 0.85 : 0;
         return h('td', { class: 'n' + (f.key === 'champion' ? ' w' : ''), style: `background:${tint(f.colour, t)}` }, fmtCount(r[f.key])); }),
       h('td', { class: 'n sub' }, fmtCount(r.advanced)), h('td', { class: 'n sub' }, fmtCount(r.group_third))));
+    const keepFocus = table.contains(document.activeElement);
     table.replaceChildren(head, ...body);
+    if (keepFocus) table.querySelector('th.sorted').focus();  // the row was rebuilt; follow the sort
   };
+  const sortBy = (key) => { desc = sortKey === key ? !desc : true; sortKey = key; draw(); };
   function th(key, label, colour, cls = '') {
     return h('th', { class: cls + (sortKey === key ? ' sorted' : ''), role: 'button', tabindex: '0', title: 'Sort',
-      onclick: () => { desc = sortKey === key ? !desc : true; sortKey = key; draw(); } },
+      onclick: () => sortBy(key),
+      onkeydown: (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); sortBy(key); } } },
       colour ? h('i', { style: `background:${colour}` }) : null, label);
   }
   draw();
