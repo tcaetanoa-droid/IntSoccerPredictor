@@ -184,6 +184,9 @@ main { min-width: 0; }
 #bracket .champ b { display: block; font-family: var(--serif); font-size: 24px; font-weight: 500; margin-top: 4px; }
 #bracket .champ img.flag { width: 34px; height: 23px; margin: 8px 0 0; }
 #bracket .champ .sub { font-size: 10.5px; color: var(--ink-soft); margin-top: 4px; line-height: 1.3; }
-#bracket .col.fin .m { border-color: var(--gold); box-shadow: 0 0 0 1px var(--gold) inset; }
+/* Only the final wears gold, as one clean 1px line; its number tab sits wholly above the box so
+   the line runs unbroken. The third-place match (inside .third) is a plain box. */
+#bracket .col.fin .slot > .m { border-color: var(--gold); }
+#bracket .col.fin .slot > .m .mn { top: -14px; background: none; }
 #bracket .conn { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 #bracket .conn path { fill: none; stroke: var(--f-r16); stroke-width: 1.5; }
