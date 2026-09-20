@@ -7,6 +7,7 @@ CHAPTERS.push({ id: 'hero', mod: './hero.js' });
 CHAPTERS.push({ id: 'who-wins-it', mod: './fate-table.js' });
 CHAPTERS.push({ id: 'group-stage', mod: './groups.js' });
 CHAPTERS.push({ id: 'bracket', mod: './bracket.js' });
+CHAPTERS.push({ id: 'hosts', mod: './hosts.js' });
 
 async function boot() {
   initRail(document.querySelector('.rail'), [...document.querySelectorAll('main section[id]')]);

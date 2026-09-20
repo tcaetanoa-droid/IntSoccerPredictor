@@ -56,6 +56,13 @@ main { min-width: 0; }
 .kv:first-child { border-top: 0; }
 .kv span { color: var(--muted); }
 .kv b { font-weight: 500; }
+/* SVG charts (js/svg.js, chapters 4 and 6). Geometry is in the JS; every colour that is a spec
+   token lives here, so only a team's own colour is written into the SVG. */
+.chart { display: block; }
+.chart .grid { stroke: var(--border); }
+.chart .tick { fill: var(--muted); }
+.chart .val { fill: var(--ink); }
+.chart .lab { fill: var(--ink-soft); }
 
 /* footer */
 .site-footer { margin-top: 40px; padding: 26px var(--gutter); background: var(--ink); color: var(--border); font-size: 13px; line-height: 1.55; display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 40px; }
@@ -190,3 +197,16 @@ main { min-width: 0; }
 #bracket .col.fin .slot > .m .mn { top: -14px; background: none; }
 #bracket .conn { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 #bracket .conn path { fill: none; stroke: var(--f-r16); stroke-width: 1.5; }
+
+/* chapter 4: the hosts */
+#hosts .sm3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+#hosts .hn { display: flex; align-items: baseline; gap: 12px; margin-bottom: 2px; font-size: 15px; }
+#hosts .hn b { font-family: var(--serif); font-size: 22px; font-weight: 500; }
+/* The brief stacks at 1024px, but the rail takes 218px out of the page down to 1023px, so
+   between 1024 and 1261 a third of the column is under 300px and the 9.5px labels inside the
+   420-wide viewBox scale down to 6px. Stack from there, and cap the width so a lone chart does
+   not scale its labels up past the body text on a tablet. */
+@media (max-width: 1261px) {
+  #hosts .sm3 { grid-template-columns: 1fr; }
+  #hosts .sm { max-width: 560px; }
+}
