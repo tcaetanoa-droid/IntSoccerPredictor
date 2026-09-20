@@ -262,3 +262,53 @@ main { min-width: 0; }
 #paradoxes .vv.hi { color: var(--orange); }
 #paradoxes .vn { font-size: 11.5px; color: var(--ink-soft); line-height: 1.45; margin: 12px 0 0; border-top: 1px solid var(--rule); padding-top: 8px; }
 @media (max-width: 900px) { #paradoxes .row3 { grid-template-columns: 1fr; } }
+
+/* chapter 7: pick a team */
+#pick-a-team .pk { display: flex; align-items: center; gap: 14px; margin: 0 0 22px; font-size: 13px; flex-wrap: wrap; }
+#pick-a-team .pk label { font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-soft); font-family: var(--mono); }
+#pick-a-team .pkn { font-size: 11.5px; color: var(--muted); }
+/* The mock-up's .sel is a flag and a name in a box; a native select cannot hold the flag, so it
+   keeps the box and the browser's own arrow. */
+#pick-a-team .picker { background: var(--card); color: var(--ink); border: 1px solid var(--ink); border-radius: 6px; padding: 8px 12px; font: 600 13px var(--sans); cursor: pointer; max-width: 100%; }
+#pick-a-team .th { display: flex; align-items: center; gap: 16px; padding: 0 0 18px; border-bottom: 1px solid var(--ink); }
+#pick-a-team .th > img.flag { width: 64px; height: 44px; border-radius: 4px; margin: 0; }
+#pick-a-team .tn { font-family: var(--serif); font-size: 40px; font-weight: 500; line-height: 1; }
+#pick-a-team .tm { font-size: 12px; color: var(--ink-soft); margin-top: 6px; }
+#pick-a-team .tc { margin-left: auto; text-align: right; }
+#pick-a-team .tc b { display: block; font-family: var(--serif); font-size: 44px; font-weight: 500; line-height: 1; color: var(--gold-text); }
+#pick-a-team .tc span { font-size: 12px; color: var(--ink-soft); }
+#pick-a-team .fs { display: flex; height: 40px; border-radius: 4px; overflow: hidden; }
+#pick-a-team .fs i { display: flex; align-items: center; justify-content: center; font-style: normal; font-size: 12px; font-family: var(--mono); overflow: hidden; white-space: nowrap; }
+#pick-a-team .legend.fl { margin-top: 8px; gap: 14px; font-size: 11.5px; }
+#pick-a-team .legend.fl b { margin-left: 3px; }
+#pick-a-team .st { display: grid; grid-template-columns: 110px 1fr 64px; gap: 12px; align-items: center; padding: 5px 0; font-size: 13px; }
+#pick-a-team .st i { display: block; height: 12px; background: var(--rule); border-radius: 2px; overflow: hidden; }
+#pick-a-team .st b { display: block; height: 100%; }
+#pick-a-team .st .n { text-align: right; font-weight: 600; }
+#pick-a-team .op { display: grid; grid-template-columns: 100px 1fr 1fr 1fr; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--rule); font-size: 12.5px; align-items: center; }
+#pick-a-team .ol { color: var(--ink-soft); }
+#pick-a-team .oc { white-space: nowrap; }
+#pick-a-team .oc img.flag { width: 18px; height: 12px; margin-right: 6px; }
+#pick-a-team .oc b { margin-left: 6px; color: var(--muted); font-weight: 400; }
+#pick-a-team .ko { display: grid; grid-template-columns: 120px 1fr 44px; gap: 12px; align-items: center; padding: 5px 0; font-size: 12.5px; }
+#pick-a-team .ko i { display: block; height: 10px; background: var(--rule); border-radius: 2px; overflow: hidden; }
+#pick-a-team .ko b { display: block; height: 100%; background: var(--orange); }
+#pick-a-team .ko .n { text-align: right; }
+#pick-a-team .ex { font-size: 14px; line-height: 1.55; color: var(--ink-soft); max-width: 80ch; margin: 0; }
+#pick-a-team .cards4 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 20px; }
+#pick-a-team .cd { padding: 6px 18px 16px; }
+#pick-a-team .cd.wide { grid-column: 1 / -1; }
+#pick-a-team .cd .sh { margin-top: 14px; }
+@media (max-width: 900px) { #pick-a-team .cards4 { grid-template-columns: 1fr; } }
+/* Below 700px a 6%-wide segment is under 25px, too narrow for a five-figure count; the strip
+   keeps its colours and the legend under it carries every number. */
+@media (max-width: 700px) { #pick-a-team .fs i span { display: none; } }
+/* On a phone the three opponents cannot sit beside a 100px round label without pushing the
+   card past the screen, so the label takes its own line and the opponents wrap under it. */
+@media (max-width: 600px) {
+  #pick-a-team .th > img.flag { width: 44px; height: 30px; }
+  #pick-a-team .tn { font-size: 30px; }
+  #pick-a-team .tc b { font-size: 32px; }
+  #pick-a-team .op { display: flex; flex-wrap: wrap; gap: 6px 16px; }
+  #pick-a-team .ol { flex: 0 0 100%; }
+}
