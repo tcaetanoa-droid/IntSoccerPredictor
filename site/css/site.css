@@ -159,10 +159,10 @@ main { min-width: 0; }
 #bracket .scroll-x { overflow-x: auto; }
 /* One grid holds the round headers and the nine columns: the 1fr tracks size to their content
    (the widest name needs ~125px, an equal ninth of 1120px would be 117px and clip it), and a
-   header in the same grid stays centred over its column whatever width that gives. 1120px is
-   what fits the main column at the 1440 design width (1126px); the grid's own min-content is
-   ~1103px with the 8px gap and 5px row padding, so the names are not the thing that gives. */
-#bracket .bracket { position: relative; display: grid; grid-template-columns: repeat(9, 1fr); grid-template-rows: auto 560px; gap: 8px; min-width: 1120px; }
+   header in the same grid stays centred over its column whatever width that gives. The floor
+   is the grid's measured min-content with the 8px gap and 5px row padding (1103.2px), so it
+   fills the 1126px main column at the 1440 design width, still with a 15px scrollbar. */
+#bracket .bracket { position: relative; display: grid; grid-template-columns: repeat(9, 1fr); grid-template-rows: auto 560px; gap: 8px; min-width: 1104px; }
 #bracket .bh { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); font-family: var(--mono); text-align: center; }
 #bracket .col { display: flex; flex-direction: column; }
 #bracket .slot { flex: 1; display: flex; align-items: center; }
@@ -171,7 +171,7 @@ main { min-width: 0; }
 #bracket .col.fin .slot { display: grid; grid-template-rows: 1fr auto 1fr; align-items: end; }
 #bracket .col.fin .third { align-self: start; }
 #bracket .m { width: 100%; background: var(--card); border: 1px solid var(--border); border-radius: 5px; font-size: 11.5px; position: relative; }
-#bracket .m .mn { position: absolute; right: 4px; top: -9px; font-size: 8.5px; color: var(--faint); background: var(--paper); padding: 0 3px; }
+#bracket .m .mn { position: absolute; right: 4px; top: -9px; font-size: 8.5px; color: var(--muted); background: var(--paper); padding: 0 3px; }
 #bracket .tie { display: flex; align-items: center; gap: 5px; padding: 5px; color: var(--muted); }
 #bracket .tie + .tie { border-top: 1px solid #EEF2EC; }
 #bracket .tie.win { color: var(--ink); font-weight: 600; background: #E4F0E5; }
