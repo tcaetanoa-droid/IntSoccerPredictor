@@ -267,9 +267,25 @@ main { min-width: 0; }
 #pick-a-team .pk { display: flex; align-items: center; gap: 14px; margin: 0 0 22px; font-size: 13px; flex-wrap: wrap; }
 #pick-a-team .pk label { font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-soft); font-family: var(--mono); }
 #pick-a-team .pkn { font-size: 11.5px; color: var(--muted); }
-/* The mock-up's .sel is a flag and a name in a box; a native select cannot hold the flag, so it
-   keeps the box and the browser's own arrow. */
-#pick-a-team .picker { background: var(--card); color: var(--ink); border: 1px solid var(--ink); border-radius: 6px; padding: 8px 12px; font: 600 13px var(--sans); cursor: pointer; max-width: 100%; }
+/* The search box: the chosen team's flag, the input itself, and the clear button. The results
+   list hangs off .sw so opening it moves nothing on the page. */
+#pick-a-team .sw { position: relative; }
+#pick-a-team .srch { background: var(--card); border: 1px solid var(--ink); border-radius: 6px; padding: 8px 12px; min-width: 260px; max-width: 100%; display: flex; align-items: center; }
+#pick-a-team .srch img.flag { width: 20px; height: 14px; }
+#pick-a-team .si { flex: 1; min-width: 0; border: 0; padding: 0; background: none; color: var(--ink); font: 600 13px var(--sans); }
+#pick-a-team .si:focus { outline: 0; }             /* the box below carries the focus ring */
+#pick-a-team .srch:focus-within { outline: 2px solid var(--orange); outline-offset: 2px; }
+/* The mock-up greys the × at --faint (2.96:1); as a real button it is --muted, 5.45:1. */
+#pick-a-team .srch .x { margin-left: auto; padding: 0 0 0 10px; border: 0; background: none; color: var(--muted); font: 400 15px var(--sans); line-height: 1; cursor: pointer; }
+#pick-a-team .res { position: absolute; top: calc(100% + 4px); left: 0; min-width: 100%; max-width: 100%; z-index: 4; background: var(--card); border: 1px solid var(--border); border-radius: 6px; box-shadow: 0 6px 18px rgba(16, 38, 26, .12); padding: 4px; max-height: 296px; overflow-y: auto; }
+#pick-a-team .res .r { display: flex; align-items: center; padding: 6px 8px; border-radius: 4px; font-size: 13px; cursor: pointer; white-space: nowrap; }
+#pick-a-team .res .r b { margin-left: auto; padding-left: 12px; font-weight: 400; color: var(--muted); }
+/* The same pale green the bracket uses for a winning tie. */
+#pick-a-team .res .r.on, #pick-a-team .res .r:hover { background: #E4F0E5; }
+#pick-a-team .res .none { color: var(--muted); cursor: default; }
+#pick-a-team .chips { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+#pick-a-team .chip { border: 0; background: #E4F0E5; color: var(--ink); border-radius: 20px; padding: 4px 10px 4px 6px; font: 500 12px var(--sans); cursor: pointer; }
+#pick-a-team .chip img.flag { width: 16px; height: 11px; margin-right: 5px; }
 #pick-a-team .th { display: flex; align-items: center; gap: 16px; padding: 0 0 18px; border-bottom: 1px solid var(--ink); }
 #pick-a-team .th > img.flag { width: 64px; height: 44px; border-radius: 4px; margin: 0; }
 #pick-a-team .tn { font-family: var(--serif); font-size: 40px; font-weight: 500; line-height: 1; }
@@ -279,10 +295,6 @@ main { min-width: 0; }
 #pick-a-team .tc span { font-size: 12px; color: var(--ink-soft); }
 #pick-a-team .fs { display: flex; height: 40px; border-radius: 4px; overflow: hidden; }
 #pick-a-team .fs i { display: flex; align-items: center; justify-content: center; font-style: normal; font-size: 12px; font-family: var(--mono); overflow: hidden; white-space: nowrap; }
-/* No single text colour clears 4.5:1 on all nine fate colours, so every count sits on the same
-   translucent paper chip and stays ink: 12.4:1 on the two darkest segments (3rd place #B87333
-   and 4th place #3F8F57), 14.3:1 on the palest. On those pale segments the chip is invisible. */
-#pick-a-team .fs i span { background: rgba(242, 246, 241, .85); padding: 0 3px; border-radius: 2px; color: var(--ink); }
 #pick-a-team .legend.fl { margin-top: 8px; gap: 14px; font-size: 11.5px; }
 #pick-a-team .legend.fl b { margin-left: 3px; }
 #pick-a-team .st { display: grid; grid-template-columns: 110px 1fr 64px; gap: 12px; align-items: center; padding: 5px 0; font-size: 13px; }
@@ -304,10 +316,9 @@ main { min-width: 0; }
 #pick-a-team .cd.wide { grid-column: 1 / -1; }
 #pick-a-team .cd .sh { margin-top: 14px; }
 @media (max-width: 900px) { #pick-a-team .cards4 { grid-template-columns: 1fr; } }
-/* Below 800px a 6%-wide segment is under 44px, too narrow for a five-figure count on its chip
-   (measured: the tightest 6% segments in the 48 team files need 42px and get 38-41px at 701px
-   wide); the strip keeps its colours and the legend under it carries every number. */
-@media (max-width: 800px) { #pick-a-team .fs i span { display: none; } }
+/* Below 700px a 6%-wide segment is under 38px, too narrow for a five-figure count; the strip
+   keeps its colours and the legend under it carries every number. */
+@media (max-width: 700px) { #pick-a-team .fs i span { display: none; } }
 /* On a phone the three opponents cannot sit beside a 100px round label without pushing the
    card past the screen, so the label takes its own line and the opponents wrap under it. */
 @media (max-width: 600px) {
