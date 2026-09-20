@@ -41,12 +41,10 @@ export function render(section, ctx) {
       colour ? h('i', { style: `background:${colour}` }) : null, label);
   }
   draw();
-  const lead = rows[0];  // draw() has just sorted by champion, descending
   const runs = fmtCount(ctx.n);
-  const won = fmtCount(lead.champion);
   section.replaceChildren(
     h('div', { class: 'num' }, '01 · Who wins it'), h('h2', {}, "Every team's fate, counted."),
-    h('p', { class: 'lede', html: `Each row splits a team's ${runs} runs into nine ways a World Cup can end: fourth in the group, third and out, then the round where the run stopped, up to the trophy. A third-placed team that squeaked through is counted where it was eventually knocked out. <b>${name(lead.team, ctx.byCode)} won ${won} runs; Qatar won none.</b>` }),
+    h('p', { class: 'lede' }, `Each row splits a team's ${runs} runs into nine ways a World Cup can end: fourth in the group, third and out, then the round where the run stopped, up to the trophy. A third-placed team that squeaked through is counted where it was eventually knocked out.`),
     h('div', { class: 'legend' }, ...FATES.map((f) => h('span', {}, h('i', { style: `background:${f.colour}` }), f.long)), h('span', { style: 'margin-left:auto' }, 'Click a column header to sort')),
     h('div', { class: 'scroll-x' }, table),
     h('p', { class: 'foot' }, 'The Advanced and 3rd-in-group columns are subtotals: a team can be third and still advance, so they overlap.'));
