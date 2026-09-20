@@ -1,0 +1,139 @@
+{
+ "team": "ES",
+ "group": "H",
+ "elo": 2157.0,
+ "champion_pct": 0.18626,
+ "fates": {
+  "gs4": 0.0036,
+  "gs3_out": 0.00268,
+  "r32": 0.24681,
+  "r16": 0.18896,
+  "qf": 0.13244,
+  "fourth": 0.04346,
+  "third": 0.09339,
+  "runner_up": 0.1024,
+  "champion": 0.18626
+ },
+ "reach": {
+  "R32": 0.99372,
+  "R16": 0.74691,
+  "QF": 0.55795,
+  "SF": 0.42551,
+  "F": 0.28866
+ },
+ "opponents_by_round": {
+  "R32": [
+   {
+    "team": "AT",
+    "pct": 0.31562210683089803
+   },
+   {
+    "team": "AR",
+    "pct": 0.2781970776476271
+   },
+   {
+    "team": "DZ",
+    "pct": 0.23874934589220304
+   }
+  ],
+  "R16": [
+   {
+    "team": "HR",
+    "pct": 0.1830207120001071
+   },
+   {
+    "team": "CO",
+    "pct": 0.17798663828305955
+   },
+   {
+    "team": "PT",
+    "pct": 0.17102462144033417
+   }
+  ],
+  "QF": [
+   {
+    "team": "BE",
+    "pct": 0.1710368312572811
+   },
+   {
+    "team": "TR",
+    "pct": 0.15176987185231652
+   },
+   {
+    "team": "PY",
+    "pct": 0.07916479971323595
+   }
+  ],
+  "SF": [
+   {
+    "team": "FR",
+    "pct": 0.19527155648515898
+   },
+   {
+    "team": "NL",
+    "pct": 0.10899861342859157
+   },
+   {
+    "team": "EC",
+    "pct": 0.08631994547719207
+   }
+  ],
+  "3P": [
+   {
+    "team": "AR",
+    "pct": 0.10573620752648885
+   },
+   {
+    "team": "EN",
+    "pct": 0.07606868834490318
+   },
+   {
+    "team": "BR",
+    "pct": 0.06298867373036171
+   }
+  ],
+  "F": [
+   {
+    "team": "AR",
+    "pct": 0.19891914362918311
+   },
+   {
+    "team": "EN",
+    "pct": 0.09246171967020024
+   },
+   {
+    "team": "PT",
+    "pct": 0.07018637843830111
+   }
+  ]
+ },
+ "knocked_out_by": [
+  {
+   "team": "AR",
+   "pct": 0.19197235776385208
+  },
+  {
+   "team": "AT",
+   "pct": 0.07810913234092091
+  },
+  {
+   "team": "CO",
+   "pct": 0.06662868748916355
+  },
+  {
+   "team": "PT",
+   "pct": 0.06626953657147103
+  },
+  {
+   "team": "EN",
+   "pct": 0.06418893815173507
+  }
+ ],
+ "first_round_excerpt": {
+  "opponent": "AR",
+  "meet_in_r32_pct": 0.27645,
+  "win_pct_when_met": 0.5480557062759993
+ },
+ "name": "Spain",
+ "excerpt_text": "Spain's single biggest risk is the round of 32, where 24.7% of its runs end. Argentina is the team that ends its tournament most often, 19.2% of eliminations. The two meet in the round of 32 in 27.6% of all runs, and Spain wins 55% of those meetings."
+}

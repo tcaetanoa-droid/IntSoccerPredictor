@@ -1,0 +1,139 @@
+{
+ "team": "HR",
+ "group": "L",
+ "elo": 1911.0,
+ "champion_pct": 0.02317,
+ "fates": {
+  "gs4": 0.05589,
+  "gs3_out": 0.04437,
+  "r32": 0.4211,
+  "r16": 0.25758,
+  "qf": 0.10887,
+  "fourth": 0.03093,
+  "third": 0.02875,
+  "runner_up": 0.02934,
+  "champion": 0.02317
+ },
+ "reach": {
+  "R32": 0.89974,
+  "R16": 0.47864,
+  "QF": 0.22106,
+  "SF": 0.11219,
+  "F": 0.05251
+ },
+ "opponents_by_round": {
+  "R32": [
+   {
+    "team": "CO",
+    "pct": 0.2905728321515104
+   },
+   {
+    "team": "PT",
+    "pct": 0.2842376686598351
+   },
+   {
+    "team": "UZ",
+    "pct": 0.17858492453375419
+   }
+  ],
+  "R16": [
+   {
+    "team": "ES",
+    "pct": 0.2856008691291994
+   },
+   {
+    "team": "MX",
+    "pct": 0.20416179174327262
+   },
+   {
+    "team": "UY",
+    "pct": 0.05968995487213773
+   }
+  ],
+  "QF": [
+   {
+    "team": "BR",
+    "pct": 0.1260291323622546
+   },
+   {
+    "team": "BE",
+    "pct": 0.07061431285623812
+   },
+   {
+    "team": "TR",
+    "pct": 0.06916674206097892
+   }
+  ],
+  "SF": [
+   {
+    "team": "AR",
+    "pct": 0.16409662180229967
+   },
+   {
+    "team": "FR",
+    "pct": 0.08895623495855245
+   },
+   {
+    "team": "PT",
+    "pct": 0.06257242178447277
+   }
+  ],
+  "3P": [
+   {
+    "team": "ES",
+    "pct": 0.08076407506702413
+   },
+   {
+    "team": "EN",
+    "pct": 0.07758042895442359
+   },
+   {
+    "team": "FR",
+    "pct": 0.07473190348525469
+   }
+  ],
+  "F": [
+   {
+    "team": "ES",
+    "pct": 0.1719672443344125
+   },
+   {
+    "team": "AR",
+    "pct": 0.10340887450009521
+   },
+   {
+    "team": "FR",
+    "pct": 0.09979051609217292
+   }
+  ]
+ },
+ "knocked_out_by": [
+  {
+   "team": "CO",
+   "pct": 0.17876495887379218
+  },
+  {
+   "team": "PT",
+   "pct": 0.1760498305896848
+  },
+  {
+   "team": "ES",
+   "pct": 0.12823847496492008
+  },
+  {
+   "team": "MX",
+   "pct": 0.061957402147004806
+  },
+  {
+   "team": "UZ",
+   "pct": 0.05737134512931084
+  }
+ ],
+ "first_round_excerpt": {
+  "opponent": "CO",
+  "meet_in_r32_pct": 0.26144,
+  "win_pct_when_met": 0.41848990208078335
+ },
+ "name": "Croatia",
+ "excerpt_text": "Croatia's single biggest risk is the round of 32, where 42.1% of its runs end. Colombia is the team that ends its tournament most often, 17.9% of eliminations. The two meet in the round of 32 in 26.1% of all runs, and Croatia wins 42% of those meetings."
+}

@@ -1,0 +1,10590 @@
+{
+ "meta": {
+  "tournament": "FIFA World Cup 2026",
+  "tournament_yaml": "/Users/thiagocaetano/Developer/IntSoccerPredictor/data/tournaments/wc2026.yaml",
+  "seed": 2026,
+  "n_sims": 100000,
+  "rounds": [
+   "R32",
+   "R16",
+   "QF",
+   "SF",
+   "3P",
+   "F"
+  ],
+  "ratings_snapshot": "/Users/thiagocaetano/Developer/IntSoccerPredictor/data/snapshots/2026-06-10_wc2026.csv",
+  "goals_model": {
+   "a": 0.13591012167448221,
+   "b": 0.001761159182653181,
+   "c_friendly": -0.00798943113562542,
+   "max_goals": 15
+  },
+  "created": "2026-09-14T04:11:25+00:00",
+  "seconds": 445.9
+ },
+ "group_advance": [
+  {
+   "group": "A",
+   "team": "MX",
+   "adv_pct": 0.95585,
+   "modal_pos": 1,
+   "third_qualifies_pct": 0.68143,
+   "third_shaded": true
+  },
+  {
+   "group": "A",
+   "team": "KR",
+   "adv_pct": 0.75058,
+   "modal_pos": 2,
+   "third_qualifies_pct": 0.68143,
+   "third_shaded": true
+  },
+  {
+   "group": "A",
+   "team": "CZ",
+   "adv_pct": 0.72089,
+   "modal_pos": 3,
+   "third_qualifies_pct": 0.68143,
+   "third_shaded": true
+  },
+  {
+   "group": "A",
+   "team": "ZA",
+   "adv_pct": 0.25411,
+   "modal_pos": 4,
+   "third_qualifies_pct": 0.68143,
+   "third_shaded": true
+  },
+  {
+   "group": "B",
+   "team": "CA",
+   "adv_pct": 0.94893,
+   "modal_pos": 2,
+   "third_qualifies_pct": 0.63532,
+   "third_shaded": false
+  },
+  {
+   "group": "B",
+   "team": "CH",
+   "adv_pct": 0.94773,
+   "modal_pos": 1,
+   "third_qualifies_pct": 0.63532,
+   "third_shaded": false
+  },
+  {
+   "group": "B",
+   "team": "BA",
+   "adv_pct": 0.54875,
+   "modal_pos": 3,
+   "third_qualifies_pct": 0.63532,
+   "third_shaded": false
+  },
+  {
+   "group": "B",
+   "team": "QA",
+   "adv_pct": 0.18991,
+   "modal_pos": 4,
+   "third_qualifies_pct": 0.63532,
+   "third_shaded": false
+  },
+  {
+   "group": "C",
+   "team": "BR",
+   "adv_pct": 0.94561,
+   "modal_pos": 1,
+   "third_qualifies_pct": 0.70012,
+   "third_shaded": true
+  },
+  {
+   "group": "C",
+   "team": "MA",
+   "adv_pct": 0.79337,
+   "modal_pos": 2,
+   "third_qualifies_pct": 0.70012,
+   "third_shaded": true
+  },
+  {
+   "group": "C",
+   "team": "SQ",
+   "adv_pct": 0.72658,
+   "modal_pos": 3,
+   "third_qualifies_pct": 0.70012,
+   "third_shaded": true
+  },
+  {
+   "group": "C",
+   "team": "HT",
+   "adv_pct": 0.23456,
+   "modal_pos": 4,
+   "third_qualifies_pct": 0.70012,
+   "third_shaded": true
+  },
+  {
+   "group": "D",
+   "team": "TR",
+   "adv_pct": 0.8073,
+   "modal_pos": 1,
+   "third_qualifies_pct": 0.72253,
+   "third_shaded": true
+  },
+  {
+   "group": "D",
+   "team": "PY",
+   "adv_pct": 0.68116,
+   "modal_pos": 2,
+   "third_qualifies_pct": 0.72253,
+   "third_shaded": true
+  },
+  {
+   "group": "D",
+   "team": "US",
+   "adv_pct": 0.66443,
+   "modal_pos": 4,
+   "third_qualifies_pct": 0.72253,
+   "third_shaded": true
+  },
+  {
+   "group": "D",
+   "team": "AU",
+   "adv_pct": 0.56964,
+   "modal_pos": 3,
+   "third_qualifies_pct": 0.72253,
+   "third_shaded": true
+  },
+  {
+   "group": "E",
+   "team": "EC",
+   "adv_pct": 0.94806,
+   "modal_pos": 1,
+   "third_qualifies_pct": 0.69305,
+   "third_shaded": true
+  },
+  {
+   "group": "E",
+   "team": "DE",
+   "adv_pct": 0.94653,
+   "modal_pos": 2,
+   "third_qualifies_pct": 0.69305,
+   "third_shaded": true
+  },
+  {
+   "group": "E",
+   "team": "CI",
+   "adv_pct": 0.66291,
+   "modal_pos": 3,
+   "third_qualifies_pct": 0.69305,
+   "third_shaded": true
+  },
+  {
+   "group": "E",
+   "team": "CW",
+   "adv_pct": 0.13555,
+   "modal_pos": 4,
+   "third_qualifies_pct": 0.69305,
+   "third_shaded": true
+  },
+  {
+   "group": "F",
+   "team": "NL",
+   "adv_pct": 0.9036,
+   "modal_pos": 1,
+   "third_qualifies_pct": 0.68125,
+   "third_shaded": true
+  },
+  {
+   "group": "F",
+   "team": "JP",
+   "adv_pct": 0.86689,
+   "modal_pos": 2,
+   "third_qualifies_pct": 0.68125,
+   "third_shaded": true
+  },
+  {
+   "group": "F",
+   "team": "SE",
+   "adv_pct": 0.55166,
+   "modal_pos": 3,
+   "third_qualifies_pct": 0.68125,
+   "third_shaded": true
+  },
+  {
+   "group": "F",
+   "team": "TN",
+   "adv_pct": 0.3591,
+   "modal_pos": 4,
+   "third_qualifies_pct": 0.68125,
+   "third_shaded": true
+  },
+  {
+   "group": "G",
+   "team": "BE",
+   "adv_pct": 0.90974,
+   "modal_pos": 1,
+   "third_qualifies_pct": 0.69548,
+   "third_shaded": true
+  },
+  {
+   "group": "G",
+   "team": "IR",
+   "adv_pct": 0.78018,
+   "modal_pos": 2,
+   "third_qualifies_pct": 0.69548,
+   "third_shaded": true
+  },
+  {
+   "group": "G",
+   "team": "EG",
+   "adv_pct": 0.64947,
+   "modal_pos": 3,
+   "third_qualifies_pct": 0.69548,
+   "third_shaded": true
+  },
+  {
+   "group": "G",
+   "team": "NZ",
+   "adv_pct": 0.35609,
+   "modal_pos": 4,
+   "third_qualifies_pct": 0.69548,
+   "third_shaded": true
+  },
+  {
+   "group": "H",
+   "team": "ES",
+   "adv_pct": 0.99372,
+   "modal_pos": 1,
+   "third_qualifies_pct": 0.51417,
+   "third_shaded": false
+  },
+  {
+   "group": "H",
+   "team": "UY",
+   "adv_pct": 0.8897,
+   "modal_pos": 2,
+   "third_qualifies_pct": 0.51417,
+   "third_shaded": false
+  },
+  {
+   "group": "H",
+   "team": "CV",
+   "adv_pct": 0.3172,
+   "modal_pos": 3,
+   "third_qualifies_pct": 0.51417,
+   "third_shaded": false
+  },
+  {
+   "group": "H",
+   "team": "SA",
+   "adv_pct": 0.31355,
+   "modal_pos": 4,
+   "third_qualifies_pct": 0.51417,
+   "third_shaded": false
+  },
+  {
+   "group": "I",
+   "team": "FR",
+   "adv_pct": 0.94582,
+   "modal_pos": 1,
+   "third_qualifies_pct": 0.71051,
+   "third_shaded": true
+  },
+  {
+   "group": "I",
+   "team": "NO",
+   "adv_pct": 0.8172,
+   "modal_pos": 2,
+   "third_qualifies_pct": 0.71051,
+   "third_shaded": true
+  },
+  {
+   "group": "I",
+   "team": "SN",
+   "adv_pct": 0.73606,
+   "modal_pos": 3,
+   "third_qualifies_pct": 0.71051,
+   "third_shaded": true
+  },
+  {
+   "group": "I",
+   "team": "IQ",
+   "adv_pct": 0.21143,
+   "modal_pos": 4,
+   "third_qualifies_pct": 0.71051,
+   "third_shaded": true
+  },
+  {
+   "group": "J",
+   "team": "AR",
+   "adv_pct": 0.97106,
+   "modal_pos": 1,
+   "third_qualifies_pct": 0.63277,
+   "third_shaded": false
+  },
+  {
+   "group": "J",
+   "team": "AT",
+   "adv_pct": 0.69741,
+   "modal_pos": 2,
+   "third_qualifies_pct": 0.63277,
+   "third_shaded": false
+  },
+  {
+   "group": "J",
+   "team": "DZ",
+   "adv_pct": 0.58349,
+   "modal_pos": 3,
+   "third_qualifies_pct": 0.63277,
+   "third_shaded": false
+  },
+  {
+   "group": "J",
+   "team": "JO",
+   "adv_pct": 0.38081,
+   "modal_pos": 4,
+   "third_qualifies_pct": 0.63277,
+   "third_shaded": false
+  },
+  {
+   "group": "K",
+   "team": "PT",
+   "adv_pct": 0.91432,
+   "modal_pos": 1,
+   "third_qualifies_pct": 0.65742,
+   "third_shaded": false
+  },
+  {
+   "group": "K",
+   "team": "CO",
+   "adv_pct": 0.90913,
+   "modal_pos": 2,
+   "third_qualifies_pct": 0.65742,
+   "third_shaded": false
+  },
+  {
+   "group": "K",
+   "team": "UZ",
+   "adv_pct": 0.48708,
+   "modal_pos": 3,
+   "third_qualifies_pct": 0.65742,
+   "third_shaded": false
+  },
+  {
+   "group": "K",
+   "team": "CD",
+   "adv_pct": 0.34689,
+   "modal_pos": 4,
+   "third_qualifies_pct": 0.65742,
+   "third_shaded": false
+  },
+  {
+   "group": "L",
+   "team": "EN",
+   "adv_pct": 0.96281,
+   "modal_pos": 1,
+   "third_qualifies_pct": 0.67595,
+   "third_shaded": true
+  },
+  {
+   "group": "L",
+   "team": "HR",
+   "adv_pct": 0.89974,
+   "modal_pos": 2,
+   "third_qualifies_pct": 0.67595,
+   "third_shaded": true
+  },
+  {
+   "group": "L",
+   "team": "PA",
+   "adv_pct": 0.63504,
+   "modal_pos": 3,
+   "third_qualifies_pct": 0.67595,
+   "third_shaded": true
+  },
+  {
+   "group": "L",
+   "team": "GH",
+   "adv_pct": 0.17836,
+   "modal_pos": 4,
+   "third_qualifies_pct": 0.67595,
+   "third_shaded": true
+  }
+ ],
+ "fate_table": [
+  {
+   "team": "ES",
+   "group": "H",
+   "elo": 2157.0,
+   "gs4": 360,
+   "gs3_out": 268,
+   "r32": 24681,
+   "r16": 18896,
+   "qf": 13244,
+   "fourth": 4346,
+   "third": 9339,
+   "runner_up": 10240,
+   "champion": 18626,
+   "advanced": 99372,
+   "group_third": 2567
+  },
+  {
+   "team": "AR",
+   "group": "J",
+   "elo": 2115.0,
+   "gs4": 1996,
+   "gs3_out": 898,
+   "r32": 30715,
+   "r16": 15685,
+   "qf": 15453,
+   "fourth": 4482,
+   "third": 7817,
+   "runner_up": 9286,
+   "champion": 13668,
+   "advanced": 97106,
+   "group_third": 6453
+  },
+  {
+   "team": "FR",
+   "group": "I",
+   "elo": 2064.0,
+   "gs4": 3426,
+   "gs3_out": 1992,
+   "r32": 23911,
+   "r16": 24550,
+   "qf": 15604,
+   "fourth": 5291,
+   "third": 8113,
+   "runner_up": 7361,
+   "champion": 9752,
+   "advanced": 94582,
+   "group_third": 12949
+  },
+  {
+   "team": "EN",
+   "group": "L",
+   "elo": 2024.0,
+   "gs4": 2178,
+   "gs3_out": 1541,
+   "r32": 31435,
+   "r16": 26703,
+   "qf": 15299,
+   "fourth": 4556,
+   "third": 5910,
+   "runner_up": 5860,
+   "champion": 6518,
+   "advanced": 96281,
+   "group_third": 10770
+  },
+  {
+   "team": "PT",
+   "group": "K",
+   "elo": 1989.0,
+   "gs4": 5447,
+   "gs3_out": 3121,
+   "r32": 32302,
+   "r16": 26123,
+   "qf": 15178,
+   "fourth": 3713,
+   "third": 4335,
+   "runner_up": 4892,
+   "champion": 4889,
+   "advanced": 91432,
+   "group_third": 15073
+  },
+  {
+   "team": "BR",
+   "group": "C",
+   "elo": 1991.0,
+   "gs4": 3471,
+   "gs3_out": 1968,
+   "r32": 36815,
+   "r16": 22773,
+   "qf": 15309,
+   "fourth": 4501,
+   "third": 5370,
+   "runner_up": 4959,
+   "champion": 4834,
+   "advanced": 94561,
+   "group_third": 12650
+  },
+  {
+   "team": "CO",
+   "group": "K",
+   "elo": 1982.0,
+   "gs4": 5815,
+   "gs3_out": 3272,
+   "r32": 33029,
+   "r16": 26262,
+   "qf": 14623,
+   "fourth": 3577,
+   "third": 4241,
+   "runner_up": 4686,
+   "champion": 4495,
+   "advanced": 90913,
+   "group_third": 15828
+  },
+  {
+   "team": "NL",
+   "group": "F",
+   "elo": 1947.0,
+   "gs4": 6440,
+   "gs3_out": 3200,
+   "r32": 40553,
+   "r16": 18482,
+   "qf": 15267,
+   "fourth": 4239,
+   "third": 4437,
+   "runner_up": 3879,
+   "champion": 3503,
+   "advanced": 90360,
+   "group_third": 15667
+  },
+  {
+   "team": "EC",
+   "group": "E",
+   "elo": 1938.0,
+   "gs4": 2711,
+   "gs3_out": 2483,
+   "r32": 39608,
+   "r16": 28148,
+   "qf": 12266,
+   "fourth": 4031,
+   "third": 4027,
+   "runner_up": 3585,
+   "champion": 3141,
+   "advanced": 94806,
+   "group_third": 15566
+  },
+  {
+   "team": "DE",
+   "group": "E",
+   "elo": 1932.0,
+   "gs4": 2842,
+   "gs3_out": 2505,
+   "r32": 40244,
+   "r16": 27902,
+   "qf": 12153,
+   "fourth": 3993,
+   "third": 3886,
+   "runner_up": 3581,
+   "champion": 2894,
+   "advanced": 94653,
+   "group_third": 16133
+  },
+  {
+   "team": "NO",
+   "group": "I",
+   "elo": 1914.0,
+   "gs4": 11080,
+   "gs3_out": 7200,
+   "r32": 34895,
+   "r16": 22262,
+   "qf": 11878,
+   "fourth": 3661,
+   "third": 3369,
+   "runner_up": 3154,
+   "champion": 2501,
+   "advanced": 81720,
+   "group_third": 29341
+  },
+  {
+   "team": "TR",
+   "group": "D",
+   "elo": 1910.0,
+   "gs4": 14489,
+   "gs3_out": 4781,
+   "r32": 28292,
+   "r16": 25286,
+   "qf": 15645,
+   "fourth": 3121,
+   "third": 2879,
+   "runner_up": 3031,
+   "champion": 2476,
+   "advanced": 80730,
+   "group_third": 20534
+  },
+  {
+   "team": "HR",
+   "group": "L",
+   "elo": 1911.0,
+   "gs4": 5589,
+   "gs3_out": 4437,
+   "r32": 42110,
+   "r16": 25758,
+   "qf": 10887,
+   "fourth": 3093,
+   "third": 2875,
+   "runner_up": 2934,
+   "champion": 2317,
+   "advanced": 89974,
+   "group_third": 21240
+  },
+  {
+   "team": "JP",
+   "group": "F",
+   "elo": 1906.0,
+   "gs4": 8805,
+   "gs3_out": 4506,
+   "r32": 43687,
+   "r16": 18165,
+   "qf": 13037,
+   "fourth": 3473,
+   "third": 3259,
+   "runner_up": 2822,
+   "champion": 2246,
+   "advanced": 86689,
+   "group_third": 19670
+  },
+  {
+   "team": "MX",
+   "group": "A",
+   "elo": 1875.0,
+   "gs4": 2844,
+   "gs3_out": 1571,
+   "r32": 30290,
+   "r16": 32508,
+   "qf": 19056,
+   "fourth": 4703,
+   "third": 3647,
+   "runner_up": 3261,
+   "champion": 2120,
+   "advanced": 95585,
+   "group_third": 10150
+  },
+  {
+   "team": "BE",
+   "group": "G",
+   "elo": 1893.0,
+   "gs4": 6126,
+   "gs3_out": 2900,
+   "r32": 35810,
+   "r16": 28689,
+   "qf": 16247,
+   "fourth": 2951,
+   "third": 2529,
+   "runner_up": 2724,
+   "champion": 2024,
+   "advanced": 90974,
+   "group_third": 14668
+  },
+  {
+   "team": "CH",
+   "group": "B",
+   "elo": 1891.0,
+   "gs4": 2911,
+   "gs3_out": 2316,
+   "r32": 35562,
+   "r16": 32072,
+   "qf": 16063,
+   "fourth": 3416,
+   "third": 2773,
+   "runner_up": 2881,
+   "champion": 2006,
+   "advanced": 94773,
+   "group_third": 12950
+  },
+  {
+   "team": "UY",
+   "group": "H",
+   "elo": 1892.0,
+   "gs4": 5739,
+   "gs3_out": 5291,
+   "r32": 53976,
+   "r16": 16135,
+   "qf": 9533,
+   "fourth": 2776,
+   "third": 2218,
+   "runner_up": 2519,
+   "champion": 1813,
+   "advanced": 88970,
+   "group_third": 17648
+  },
+  {
+   "team": "SN",
+   "group": "I",
+   "elo": 1860.0,
+   "gs4": 16148,
+   "gs3_out": 10246,
+   "r32": 36302,
+   "r16": 19330,
+   "qf": 9671,
+   "fourth": 2631,
+   "third": 2241,
+   "runner_up": 2028,
+   "champion": 1403,
+   "advanced": 73606,
+   "group_third": 36898
+  },
+  {
+   "team": "PY",
+   "group": "D",
+   "elo": 1833.0,
+   "gs4": 24553,
+   "gs3_out": 7331,
+   "r32": 29898,
+   "r16": 21457,
+   "qf": 10320,
+   "fourth": 2120,
+   "third": 1595,
+   "runner_up": 1631,
+   "champion": 1095,
+   "advanced": 68116,
+   "group_third": 26049
+  },
+  {
+   "team": "US",
+   "group": "D",
+   "elo": 1726.0,
+   "gs4": 26379,
+   "gs3_out": 7178,
+   "r32": 29812,
+   "r16": 20957,
+   "qf": 9634,
+   "fourth": 2029,
+   "third": 1500,
+   "runner_up": 1541,
+   "champion": 970,
+   "advanced": 66443,
+   "group_third": 25919
+  },
+  {
+   "team": "MA",
+   "group": "C",
+   "elo": 1827.0,
+   "gs4": 12662,
+   "gs3_out": 8001,
+   "r32": 45857,
+   "r16": 17363,
+   "qf": 9477,
+   "fourth": 2386,
+   "third": 1765,
+   "runner_up": 1524,
+   "champion": 965,
+   "advanced": 79337,
+   "group_third": 30006
+  },
+  {
+   "team": "CA",
+   "group": "B",
+   "elo": 1788.0,
+   "gs4": 2856,
+   "gs3_out": 2251,
+   "r32": 41113,
+   "r16": 31588,
+   "qf": 15140,
+   "fourth": 2920,
+   "third": 1661,
+   "runner_up": 1651,
+   "champion": 820,
+   "advanced": 94893,
+   "group_third": 13059
+  },
+  {
+   "team": "AT",
+   "group": "J",
+   "elo": 1830.0,
+   "gs4": 19964,
+   "gs3_out": 10295,
+   "r32": 45846,
+   "r16": 12462,
+   "qf": 6479,
+   "fourth": 1565,
+   "third": 1211,
+   "runner_up": 1394,
+   "champion": 784,
+   "advanced": 69741,
+   "group_third": 30054
+  },
+  {
+   "team": "AU",
+   "group": "D",
+   "elo": 1777.0,
+   "gs4": 34579,
+   "gs3_out": 8457,
+   "r32": 28726,
+   "r16": 17358,
+   "qf": 7016,
+   "fourth": 1520,
+   "third": 899,
+   "runner_up": 884,
+   "champion": 561,
+   "advanced": 56964,
+   "group_third": 27498
+  },
+  {
+   "team": "SQ",
+   "group": "C",
+   "elo": 1782.0,
+   "gs4": 17202,
+   "gs3_out": 10140,
+   "r32": 45191,
+   "r16": 15424,
+   "qf": 7409,
+   "fourth": 1832,
+   "third": 1176,
+   "runner_up": 1066,
+   "champion": 560,
+   "advanced": 72658,
+   "group_third": 35568
+  },
+  {
+   "team": "IR",
+   "group": "G",
+   "elo": 1772.0,
+   "gs4": 15101,
+   "gs3_out": 6881,
+   "r32": 42776,
+   "r16": 22704,
+   "qf": 8565,
+   "fourth": 1536,
+   "third": 949,
+   "runner_up": 986,
+   "champion": 502,
+   "advanced": 78018,
+   "group_third": 26178
+  },
+  {
+   "team": "KR",
+   "group": "A",
+   "elo": 1758.0,
+   "gs4": 15569,
+   "gs3_out": 9373,
+   "r32": 38567,
+   "r16": 23518,
+   "qf": 8884,
+   "fourth": 1717,
+   "third": 1031,
+   "runner_up": 915,
+   "champion": 426,
+   "advanced": 75058,
+   "group_third": 32183
+  },
+  {
+   "team": "DZ",
+   "group": "J",
+   "elo": 1772.0,
+   "gs4": 28869,
+   "gs3_out": 12782,
+   "r32": 40781,
+   "r16": 10182,
+   "qf": 4573,
+   "fourth": 1017,
+   "third": 694,
+   "runner_up": 722,
+   "champion": 380,
+   "advanced": 58349,
+   "group_third": 34197
+  },
+  {
+   "team": "CZ",
+   "group": "A",
+   "elo": 1740.0,
+   "gs4": 17656,
+   "gs3_out": 10255,
+   "r32": 38576,
+   "r16": 21876,
+   "qf": 8160,
+   "fourth": 1543,
+   "third": 833,
+   "runner_up": 755,
+   "champion": 346,
+   "advanced": 72089,
+   "group_third": 34308
+  },
+  {
+   "team": "PA",
+   "group": "L",
+   "elo": 1730.0,
+   "gs4": 21026,
+   "gs3_out": 15470,
+   "r32": 43272,
+   "r16": 13741,
+   "qf": 4219,
+   "fourth": 974,
+   "third": 534,
+   "runner_up": 517,
+   "champion": 247,
+   "advanced": 63504,
+   "group_third": 46592
+  },
+  {
+   "team": "SE",
+   "group": "F",
+   "elo": 1712.0,
+   "gs4": 32347,
+   "gs3_out": 12487,
+   "r32": 39259,
+   "r16": 9566,
+   "qf": 4172,
+   "fourth": 1012,
+   "third": 493,
+   "runner_up": 451,
+   "champion": 213,
+   "advanced": 55166,
+   "group_third": 35837
+  },
+  {
+   "team": "UZ",
+   "group": "K",
+   "elo": 1714.0,
+   "gs4": 36601,
+   "gs3_out": 14691,
+   "r32": 32730,
+   "r16": 10834,
+   "qf": 3395,
+   "fourth": 727,
+   "third": 421,
+   "runner_up": 403,
+   "champion": 198,
+   "advanced": 48708,
+   "group_third": 38124
+  },
+  {
+   "team": "EG",
+   "group": "G",
+   "elo": 1696.0,
+   "gs4": 24868,
+   "gs3_out": 10185,
+   "r32": 41046,
+   "r16": 16910,
+   "qf": 5120,
+   "fourth": 836,
+   "third": 444,
+   "runner_up": 415,
+   "champion": 176,
+   "advanced": 64947,
+   "group_third": 32574
+  },
+  {
+   "team": "CI",
+   "group": "E",
+   "elo": 1696.0,
+   "gs4": 17777,
+   "gs3_out": 15932,
+   "r32": 46217,
+   "r16": 14060,
+   "qf": 4126,
+   "fourth": 894,
+   "third": 459,
+   "runner_up": 383,
+   "champion": 152,
+   "advanced": 66291,
+   "group_third": 49941
+  },
+  {
+   "team": "JO",
+   "group": "J",
+   "elo": 1680.0,
+   "gs4": 49171,
+   "gs3_out": 12748,
+   "r32": 28665,
+   "r16": 6097,
+   "qf": 2340,
+   "fourth": 433,
+   "third": 210,
+   "runner_up": 238,
+   "champion": 98,
+   "advanced": 38081,
+   "group_third": 29296
+  },
+  {
+   "team": "TN",
+   "group": "F",
+   "elo": 1628.0,
+   "gs4": 52408,
+   "gs3_out": 11682,
+   "r32": 27891,
+   "r16": 5497,
+   "qf": 1743,
+   "fourth": 427,
+   "third": 151,
+   "runner_up": 135,
+   "champion": 66,
+   "advanced": 35910,
+   "group_third": 28826
+  },
+  {
+   "team": "CD",
+   "group": "K",
+   "elo": 1652.0,
+   "gs4": 52137,
+   "gs3_out": 13174,
+   "r32": 25072,
+   "r16": 6990,
+   "qf": 1851,
+   "fourth": 374,
+   "third": 173,
+   "runner_up": 169,
+   "champion": 60,
+   "advanced": 34689,
+   "group_third": 30975
+  },
+  {
+   "team": "BA",
+   "group": "B",
+   "elo": 1594.0,
+   "gs4": 26187,
+   "gs3_out": 18938,
+   "r32": 39990,
+   "r16": 11095,
+   "qf": 3064,
+   "fourth": 406,
+   "third": 148,
+   "runner_up": 129,
+   "champion": 43,
+   "advanced": 54875,
+   "group_third": 49288
+  },
+  {
+   "team": "IQ",
+   "group": "I",
+   "elo": 1607.0,
+   "gs4": 69346,
+   "gs3_out": 9511,
+   "r32": 15478,
+   "r16": 3970,
+   "qf": 1259,
+   "fourth": 235,
+   "third": 90,
+   "runner_up": 79,
+   "champion": 32,
+   "advanced": 21143,
+   "group_third": 20812
+  },
+  {
+   "team": "NZ",
+   "group": "G",
+   "elo": 1562.0,
+   "gs4": 53905,
+   "gs3_out": 10486,
+   "r32": 26805,
+   "r16": 6964,
+   "qf": 1482,
+   "fourth": 173,
+   "third": 72,
+   "runner_up": 88,
+   "champion": 25,
+   "advanced": 35609,
+   "group_third": 26580
+  },
+  {
+   "team": "SA",
+   "group": "H",
+   "elo": 1576.0,
+   "gs4": 47515,
+   "gs3_out": 21130,
+   "r32": 25703,
+   "r16": 4252,
+   "qf": 1085,
+   "fourth": 173,
+   "third": 65,
+   "runner_up": 59,
+   "champion": 18,
+   "advanced": 31355,
+   "group_third": 39381
+  },
+  {
+   "team": "CV",
+   "group": "H",
+   "elo": 1578.0,
+   "gs4": 46386,
+   "gs3_out": 21894,
+   "r32": 25968,
+   "r16": 4374,
+   "qf": 1065,
+   "fourth": 177,
+   "third": 58,
+   "runner_up": 63,
+   "champion": 15,
+   "advanced": 31720,
+   "group_third": 40404
+  },
+  {
+   "team": "HT",
+   "group": "C",
+   "elo": 1548.0,
+   "gs4": 66665,
+   "gs3_out": 9879,
+   "r32": 18993,
+   "r16": 3349,
+   "qf": 850,
+   "fourth": 165,
+   "third": 40,
+   "runner_up": 48,
+   "champion": 11,
+   "advanced": 23456,
+   "group_third": 21776
+  },
+  {
+   "team": "ZA",
+   "group": "A",
+   "elo": 1518.0,
+   "gs4": 63931,
+   "gs3_out": 10658,
+   "r32": 18491,
+   "r16": 5538,
+   "qf": 1161,
+   "fourth": 136,
+   "third": 34,
+   "runner_up": 45,
+   "champion": 6,
+   "advanced": 25411,
+   "group_third": 23359
+  },
+  {
+   "team": "GH",
+   "group": "L",
+   "elo": 1511.0,
+   "gs4": 71207,
+   "gs3_out": 10957,
+   "r32": 15091,
+   "r16": 2250,
+   "qf": 390,
+   "fourth": 71,
+   "third": 15,
+   "runner_up": 15,
+   "champion": 4,
+   "advanced": 17836,
+   "group_third": 21398
+  },
+  {
+   "team": "CW",
+   "group": "E",
+   "elo": 1434.0,
+   "gs4": 76670,
+   "gs3_out": 9775,
+   "r32": 11859,
+   "r16": 1471,
+   "qf": 196,
+   "fourth": 22,
+   "third": 4,
+   "runner_up": 2,
+   "champion": 1,
+   "advanced": 13555,
+   "group_third": 18360
+  },
+  {
+   "team": "QA",
+   "group": "B",
+   "elo": 1421.0,
+   "gs4": 68046,
+   "gs3_out": 12963,
+   "r32": 16110,
+   "r16": 2424,
+   "qf": 412,
+   "fourth": 26,
+   "third": 10,
+   "runner_up": 9,
+   "champion": 0,
+   "advanced": 18991,
+   "group_third": 24703
+  }
+ ],
+ "weakest_teams": [
+  {
+   "team": "CW",
+   "elo": 1434.0,
+   "escape_pct": 0.13555,
+   "gs4_pct": 0.7667,
+   "gs3_out_pct": 0.09775,
+   "champion_pct": 1e-05
+  },
+  {
+   "team": "GH",
+   "elo": 1511.0,
+   "escape_pct": 0.17836,
+   "gs4_pct": 0.71207,
+   "gs3_out_pct": 0.10957,
+   "champion_pct": 4e-05
+  },
+  {
+   "team": "QA",
+   "elo": 1421.0,
+   "escape_pct": 0.18991,
+   "gs4_pct": 0.68046,
+   "gs3_out_pct": 0.12963,
+   "champion_pct": 0.0
+  },
+  {
+   "team": "IQ",
+   "elo": 1607.0,
+   "escape_pct": 0.21143,
+   "gs4_pct": 0.69346,
+   "gs3_out_pct": 0.09511,
+   "champion_pct": 0.00032
+  },
+  {
+   "team": "HT",
+   "elo": 1548.0,
+   "escape_pct": 0.23456,
+   "gs4_pct": 0.66665,
+   "gs3_out_pct": 0.09879,
+   "champion_pct": 0.00011
+  }
+ ],
+ "lowest_elo_teams": [
+  {
+   "team": "QA",
+   "elo": 1421.0,
+   "escape_pct": 0.18991,
+   "gs4_pct": 0.68046,
+   "gs3_out_pct": 0.12963,
+   "champion_pct": 0.0
+  },
+  {
+   "team": "CW",
+   "elo": 1434.0,
+   "escape_pct": 0.13555,
+   "gs4_pct": 0.7667,
+   "gs3_out_pct": 0.09775,
+   "champion_pct": 1e-05
+  },
+  {
+   "team": "GH",
+   "elo": 1511.0,
+   "escape_pct": 0.17836,
+   "gs4_pct": 0.71207,
+   "gs3_out_pct": 0.10957,
+   "champion_pct": 4e-05
+  },
+  {
+   "team": "ZA",
+   "elo": 1518.0,
+   "escape_pct": 0.25411,
+   "gs4_pct": 0.63931,
+   "gs3_out_pct": 0.10658,
+   "champion_pct": 6e-05
+  },
+  {
+   "team": "HT",
+   "elo": 1548.0,
+   "escape_pct": 0.23456,
+   "gs4_pct": 0.66665,
+   "gs3_out_pct": 0.09879,
+   "champion_pct": 0.00011
+  }
+ ],
+ "first_time_champions": [
+  {
+   "team": "PT",
+   "elo": 1989.0,
+   "champion_pct": 0.04889,
+   "escape_pct": 0.91432,
+   "reach_qf_pct": 0.33007,
+   "reach_final_pct": 0.09781
+  },
+  {
+   "team": "CO",
+   "elo": 1982.0,
+   "champion_pct": 0.04495,
+   "escape_pct": 0.90913,
+   "reach_qf_pct": 0.31622,
+   "reach_final_pct": 0.09181
+  },
+  {
+   "team": "NL",
+   "elo": 1947.0,
+   "champion_pct": 0.03503,
+   "escape_pct": 0.9036,
+   "reach_qf_pct": 0.31325,
+   "reach_final_pct": 0.07382
+  }
+ ],
+ "trophy_paradox": [
+  {
+   "side": "first_timer",
+   "team": "PT",
+   "titles": 0,
+   "champion_pct": 0.04889,
+   "qualified": true
+  },
+  {
+   "side": "first_timer",
+   "team": "CO",
+   "titles": 0,
+   "champion_pct": 0.04495,
+   "qualified": true
+  },
+  {
+   "side": "first_timer",
+   "team": "NL",
+   "titles": 0,
+   "champion_pct": 0.03503,
+   "qualified": true
+  },
+  {
+   "side": "giant",
+   "team": "DE",
+   "titles": 4,
+   "champion_pct": 0.02894,
+   "qualified": true
+  },
+  {
+   "side": "giant",
+   "team": "UY",
+   "titles": 2,
+   "champion_pct": 0.01813,
+   "qualified": true
+  },
+  {
+   "side": "giant",
+   "team": "IT",
+   "titles": 4,
+   "champion_pct": 0.0,
+   "qualified": false
+  }
+ ],
+ "hosts_exit": [
+  {
+   "team": "US",
+   "fate": "gs4",
+   "pct": 0.26379
+  },
+  {
+   "team": "US",
+   "fate": "gs3_out",
+   "pct": 0.07178
+  },
+  {
+   "team": "US",
+   "fate": "r32",
+   "pct": 0.29812
+  },
+  {
+   "team": "US",
+   "fate": "r16",
+   "pct": 0.20957
+  },
+  {
+   "team": "US",
+   "fate": "qf",
+   "pct": 0.09634
+  },
+  {
+   "team": "US",
+   "fate": "fourth",
+   "pct": 0.02029
+  },
+  {
+   "team": "US",
+   "fate": "third",
+   "pct": 0.015
+  },
+  {
+   "team": "US",
+   "fate": "runner_up",
+   "pct": 0.01541
+  },
+  {
+   "team": "US",
+   "fate": "champion",
+   "pct": 0.0097
+  },
+  {
+   "team": "CA",
+   "fate": "gs4",
+   "pct": 0.02856
+  },
+  {
+   "team": "CA",
+   "fate": "gs3_out",
+   "pct": 0.02251
+  },
+  {
+   "team": "CA",
+   "fate": "r32",
+   "pct": 0.41113
+  },
+  {
+   "team": "CA",
+   "fate": "r16",
+   "pct": 0.31588
+  },
+  {
+   "team": "CA",
+   "fate": "qf",
+   "pct": 0.1514
+  },
+  {
+   "team": "CA",
+   "fate": "fourth",
+   "pct": 0.0292
+  },
+  {
+   "team": "CA",
+   "fate": "third",
+   "pct": 0.01661
+  },
+  {
+   "team": "CA",
+   "fate": "runner_up",
+   "pct": 0.01651
+  },
+  {
+   "team": "CA",
+   "fate": "champion",
+   "pct": 0.0082
+  },
+  {
+   "team": "MX",
+   "fate": "gs4",
+   "pct": 0.02844
+  },
+  {
+   "team": "MX",
+   "fate": "gs3_out",
+   "pct": 0.01571
+  },
+  {
+   "team": "MX",
+   "fate": "r32",
+   "pct": 0.3029
+  },
+  {
+   "team": "MX",
+   "fate": "r16",
+   "pct": 0.32508
+  },
+  {
+   "team": "MX",
+   "fate": "qf",
+   "pct": 0.19056
+  },
+  {
+   "team": "MX",
+   "fate": "fourth",
+   "pct": 0.04703
+  },
+  {
+   "team": "MX",
+   "fate": "third",
+   "pct": 0.03647
+  },
+  {
+   "team": "MX",
+   "fate": "runner_up",
+   "pct": 0.03261
+  },
+  {
+   "team": "MX",
+   "fate": "champion",
+   "pct": 0.0212
+  }
+ ],
+ "paradoxes": [
+  {
+   "panel": "A",
+   "pair": 1,
+   "team": "AR",
+   "elo": 2115.0,
+   "metric": "r32_exit_given_reached",
+   "value": 0.316303832924845,
+   "reason": "most common R32 opponent: UY (48%)"
+  },
+  {
+   "panel": "A",
+   "pair": 1,
+   "team": "FR",
+   "elo": 2064.0,
+   "metric": "r32_exit_given_reached",
+   "value": 0.25280708802943486,
+   "reason": "most common R32 opponent: SE (12%)"
+  },
+  {
+   "panel": "B",
+   "pair": 1,
+   "team": "AT",
+   "elo": 1830.0,
+   "metric": "champion_pct",
+   "value": 0.00784,
+   "reason": ""
+  },
+  {
+   "panel": "B",
+   "pair": 1,
+   "team": "US",
+   "elo": 1726.0,
+   "metric": "champion_pct",
+   "value": 0.0097,
+   "reason": "host: plays its knockout matches at home (+100)"
+  },
+  {
+   "panel": "B",
+   "pair": 2,
+   "team": "UY",
+   "elo": 1892.0,
+   "metric": "champion_pct",
+   "value": 0.01813,
+   "reason": ""
+  },
+  {
+   "panel": "B",
+   "pair": 2,
+   "team": "MX",
+   "elo": 1875.0,
+   "metric": "champion_pct",
+   "value": 0.0212,
+   "reason": "host: plays its knockout matches at home (+100)"
+  }
+ ],
+ "team_MX": {
+  "team": "MX",
+  "group": "A",
+  "elo": 1875.0,
+  "champion_pct": 0.0212,
+  "fates": {
+   "gs4": 0.02844,
+   "gs3_out": 0.01571,
+   "r32": 0.3029,
+   "r16": 0.32508,
+   "qf": 0.19056,
+   "fourth": 0.04703,
+   "third": 0.03647,
+   "runner_up": 0.03261,
+   "champion": 0.0212
+  },
+  "reach": {
+   "R32": 0.95585,
+   "R16": 0.65295,
+   "QF": 0.32787,
+   "SF": 0.13731,
+   "F": 0.05381
+  },
+  "opponents_by_round": {
+   "R32": [
+    {
+     "team": "CI",
+     "pct": 0.12843019302191766
+    },
+    {
+     "team": "CA",
+     "pct": 0.09347700999110739
+    },
+    {
+     "team": "CH",
+     "pct": 0.0932991578176492
+    }
+   ],
+   "R16": [
+    {
+     "team": "EN",
+     "pct": 0.31889118615514206
+    },
+    {
+     "team": "HR",
+     "pct": 0.14965923883911478
+    },
+    {
+     "team": "NL",
+     "pct": 0.0645991270388238
+    }
+   ],
+   "QF": [
+    {
+     "team": "BR",
+     "pct": 0.18394485619300333
+    },
+    {
+     "team": "FR",
+     "pct": 0.1394455119407082
+    },
+    {
+     "team": "DE",
+     "pct": 0.09939915210296764
+    }
+   ],
+   "SF": [
+    {
+     "team": "AR",
+     "pct": 0.2519117325759231
+    },
+    {
+     "team": "ES",
+     "pct": 0.10210472653120675
+    },
+    {
+     "team": "PT",
+     "pct": 0.101157963731702
+    }
+   ],
+   "3P": [
+    {
+     "team": "ES",
+     "pct": 0.09592814371257485
+    },
+    {
+     "team": "FR",
+     "pct": 0.08694610778443114
+    },
+    {
+     "team": "NL",
+     "pct": 0.0592814371257485
+    }
+   ],
+   "F": [
+    {
+     "team": "ES",
+     "pct": 0.22244935885523137
+    },
+    {
+     "team": "FR",
+     "pct": 0.10871585207210556
+    },
+    {
+     "team": "AR",
+     "pct": 0.06820293625720127
+    }
+   ]
+  },
+  "knocked_out_by": [
+   {
+    "team": "EN",
+    "pct": 0.12971700636601938
+   },
+   {
+    "team": "BR",
+    "pct": 0.06655967474455679
+   },
+   {
+    "team": "CH",
+    "pct": 0.05678061306371369
+   },
+   {
+    "team": "HR",
+    "pct": 0.05164500080243942
+   },
+   {
+    "team": "FR",
+    "pct": 0.04677686834643984
+   }
+  ],
+  "first_round_excerpt": {
+   "opponent": "EN",
+   "meet_in_r32_pct": 0.0,
+   "win_pct_when_met": 0
+  },
+  "name": "Mexico",
+  "excerpt_text": "Mexico's single biggest risk is the round of 16, where 32.5% of its runs end. England is the team that ends its tournament most often, 13.0% of eliminations. The two meet in the round of 32 in 0.0% of all runs, and Mexico wins 0% of those meetings."
+ },
+ "team_KR": {
+  "team": "KR",
+  "group": "A",
+  "elo": 1758.0,
+  "champion_pct": 0.00426,
+  "fates": {
+   "gs4": 0.15569,
+   "gs3_out": 0.09373,
+   "r32": 0.38567,
+   "r16": 0.23518,
+   "qf": 0.08884,
+   "fourth": 0.01717,
+   "third": 0.01031,
+   "runner_up": 0.00915,
+   "champion": 0.00426
+  },
+  "reach": {
+   "R32": 0.75058,
+   "R16": 0.36491,
+   "QF": 0.12973,
+   "SF": 0.04089,
+   "F": 0.01341
+  },
+  "opponents_by_round": {
+   "R32": [
+    {
+     "team": "CA",
+     "pct": 0.17590396759839058
+    },
+    {
+     "team": "CH",
+     "pct": 0.17046817128087613
+    },
+    {
+     "team": "BE",
+     "pct": 0.15341469263769353
+    }
+   ],
+   "R16": [
+    {
+     "team": "NL",
+     "pct": 0.1513797922775479
+    },
+    {
+     "team": "EN",
+     "pct": 0.12605848017319338
+    },
+    {
+     "team": "JP",
+     "pct": 0.10978049382039407
+    }
+   ],
+   "QF": [
+    {
+     "team": "FR",
+     "pct": 0.18291836892006474
+    },
+    {
+     "team": "ES",
+     "pct": 0.10722269328605566
+    },
+    {
+     "team": "EC",
+     "pct": 0.09797271255684883
+    }
+   ],
+   "SF": [
+    {
+     "team": "ES",
+     "pct": 0.20151626314502324
+    },
+    {
+     "team": "AR",
+     "pct": 0.12619222303741745
+    },
+    {
+     "team": "CO",
+     "pct": 0.061139642944485206
+    }
+   ],
+   "3P": [
+    {
+     "team": "AR",
+     "pct": 0.08078602620087336
+    },
+    {
+     "team": "MX",
+     "pct": 0.06877729257641921
+    },
+    {
+     "team": "BR",
+     "pct": 0.05858806404657933
+    }
+   ],
+   "F": [
+    {
+     "team": "AR",
+     "pct": 0.14914243102162567
+    },
+    {
+     "team": "ES",
+     "pct": 0.10365398956002983
+    },
+    {
+     "team": "FR",
+     "pct": 0.0790454884414616
+    }
+   ]
+  },
+  "knocked_out_by": [
+   {
+    "team": "BE",
+    "pct": 0.10964465644763641
+   },
+   {
+    "team": "CH",
+    "pct": 0.10644227677135813
+   },
+   {
+    "team": "CA",
+    "pct": 0.08888948440347304
+   },
+   {
+    "team": "NL",
+    "pct": 0.05783042126701683
+   },
+   {
+    "team": "EN",
+    "pct": 0.0481026905348912
+   }
+  ],
+  "first_round_excerpt": {
+   "opponent": "BE",
+   "meet_in_r32_pct": 0.11515,
+   "win_pct_when_met": 0.3003907946157186
+  },
+  "name": "South Korea",
+  "excerpt_text": "South Korea's single biggest risk is the round of 32, where 38.6% of its runs end. Belgium is the team that ends its tournament most often, 11.0% of eliminations. The two meet in the round of 32 in 11.5% of all runs, and South Korea wins 30% of those meetings."
+ },
+ "team_CZ": {
+  "team": "CZ",
+  "group": "A",
+  "elo": 1740.0,
+  "champion_pct": 0.00346,
+  "fates": {
+   "gs4": 0.17656,
+   "gs3_out": 0.10255,
+   "r32": 0.38576,
+   "r16": 0.21876,
+   "qf": 0.0816,
+   "fourth": 0.01543,
+   "third": 0.00833,
+   "runner_up": 0.00755,
+   "champion": 0.00346
+  },
+  "reach": {
+   "R32": 0.72089,
+   "R16": 0.33513,
+   "QF": 0.11637,
+   "SF": 0.03477,
+   "F": 0.01101
+  },
+  "opponents_by_round": {
+   "R32": [
+    {
+     "team": "CA",
+     "pct": 0.17302223640222503
+    },
+    {
+     "team": "CH",
+     "pct": 0.1663776720442786
+    },
+    {
+     "team": "BE",
+     "pct": 0.16614185243240995
+    }
+   ],
+   "R16": [
+    {
+     "team": "NL",
+     "pct": 0.14537642109032317
+    },
+    {
+     "team": "EN",
+     "pct": 0.11494047086205353
+    },
+    {
+     "team": "JP",
+     "pct": 0.10670486080028646
+    }
+   ],
+   "QF": [
+    {
+     "team": "FR",
+     "pct": 0.1794276875483372
+    },
+    {
+     "team": "ES",
+     "pct": 0.1194465927644582
+    },
+    {
+     "team": "EC",
+     "pct": 0.09633066941651629
+    }
+   ],
+   "SF": [
+    {
+     "team": "ES",
+     "pct": 0.1895312050618349
+    },
+    {
+     "team": "AR",
+     "pct": 0.12280701754385964
+    },
+    {
+     "team": "PT",
+     "pct": 0.06298533218291631
+    }
+   ],
+   "3P": [
+    {
+     "team": "AR",
+     "pct": 0.07196969696969698
+    },
+    {
+     "team": "MX",
+     "pct": 0.06944444444444445
+    },
+    {
+     "team": "FR",
+     "pct": 0.06691919191919192
+    }
+   ],
+   "F": [
+    {
+     "team": "AR",
+     "pct": 0.15349682107175294
+    },
+    {
+     "team": "ES",
+     "pct": 0.11534968210717529
+    },
+    {
+     "team": "FR",
+     "pct": 0.07629427792915532
+    }
+   ]
+  },
+  "knocked_out_by": [
+   {
+    "team": "BE",
+    "pct": 0.11944022413336493
+   },
+   {
+    "team": "CH",
+    "pct": 0.10671424389835941
+   },
+   {
+    "team": "CA",
+    "pct": 0.08962546868684053
+   },
+   {
+    "team": "NL",
+    "pct": 0.05371952664371437
+   },
+   {
+    "team": "IR",
+    "pct": 0.052311723791868193
+   }
+  ],
+  "first_round_excerpt": {
+   "opponent": "BE",
+   "meet_in_r32_pct": 0.11977,
+   "win_pct_when_met": 0.2935626617683894
+  },
+  "name": "Czechia",
+  "excerpt_text": "Czechia's single biggest risk is the round of 32, where 38.6% of its runs end. Belgium is the team that ends its tournament most often, 11.9% of eliminations. The two meet in the round of 32 in 12.0% of all runs, and Czechia wins 29% of those meetings."
+ },
+ "team_ZA": {
+  "team": "ZA",
+  "group": "A",
+  "elo": 1518.0,
+  "champion_pct": 6e-05,
+  "fates": {
+   "gs4": 0.63931,
+   "gs3_out": 0.10658,
+   "r32": 0.18491,
+   "r16": 0.05538,
+   "qf": 0.01161,
+   "fourth": 0.00136,
+   "third": 0.00034,
+   "runner_up": 0.00045,
+   "champion": 6e-05
+  },
+  "reach": {
+   "R32": 0.25411,
+   "R16": 0.0692,
+   "QF": 0.01382,
+   "SF": 0.00221,
+   "F": 0.00051
+  },
+  "opponents_by_round": {
+   "R32": [
+    {
+     "team": "BE",
+     "pct": 0.2513871945220574
+    },
+    {
+     "team": "CA",
+     "pct": 0.1526110739443548
+    },
+    {
+     "team": "CH",
+     "pct": 0.1454488213765692
+    }
+   ],
+   "R16": [
+    {
+     "team": "NL",
+     "pct": 0.14523121387283236
+    },
+    {
+     "team": "TR",
+     "pct": 0.10809248554913295
+    },
+    {
+     "team": "JP",
+     "pct": 0.10245664739884393
+    }
+   ],
+   "QF": [
+    {
+     "team": "ES",
+     "pct": 0.19030390738060782
+    },
+    {
+     "team": "FR",
+     "pct": 0.15991316931982633
+    },
+    {
+     "team": "EC",
+     "pct": 0.08031837916063676
+    }
+   ],
+   "SF": [
+    {
+     "team": "ES",
+     "pct": 0.17194570135746606
+    },
+    {
+     "team": "AR",
+     "pct": 0.08144796380090498
+    },
+    {
+     "team": "FR",
+     "pct": 0.06787330316742081
+    }
+   ],
+   "3P": [
+    {
+     "team": "AR",
+     "pct": 0.1
+    },
+    {
+     "team": "EN",
+     "pct": 0.08235294117647059
+    },
+    {
+     "team": "ES",
+     "pct": 0.07058823529411765
+    }
+   ],
+   "F": [
+    {
+     "team": "AR",
+     "pct": 0.1568627450980392
+    },
+    {
+     "team": "ES",
+     "pct": 0.11764705882352941
+    },
+    {
+     "team": "CO",
+     "pct": 0.0784313725490196
+    }
+   ]
+  },
+  "knocked_out_by": [
+   {
+    "team": "BE",
+    "pct": 0.2131076559732336
+   },
+   {
+    "team": "CH",
+    "pct": 0.11781145443810273
+   },
+   {
+    "team": "CA",
+    "pct": 0.10647510332611691
+   },
+   {
+    "team": "IR",
+    "pct": 0.09419405628813225
+   },
+   {
+    "team": "EG",
+    "pct": 0.05479236370793151
+   }
+  ],
+  "first_round_excerpt": {
+   "opponent": "BE",
+   "meet_in_r32_pct": 0.06388,
+   "win_pct_when_met": 0.1541953663118347
+  },
+  "name": "South Africa",
+  "excerpt_text": "South Africa's most common ending is fourth in its group, 63.9% of its runs. It got out of the group in 25.4% of them, and when it did, Belgium was the team that ended its tournament most often (21.3% of eliminations)."
+ },
+ "team_CH": {
+  "team": "CH",
+  "group": "B",
+  "elo": 1891.0,
+  "champion_pct": 0.02006,
+  "fates": {
+   "gs4": 0.02911,
+   "gs3_out": 0.02316,
+   "r32": 0.35562,
+   "r16": 0.32072,
+   "qf": 0.16063,
+   "fourth": 0.03416,
+   "third": 0.02773,
+   "runner_up": 0.02881,
+   "champion": 0.02006
+  },
+  "reach": {
+   "R32": 0.94773,
+   "R16": 0.59211,
+   "QF": 0.27139,
+   "SF": 0.11076,
+   "F": 0.04887
+  },
+  "opponents_by_round": {
+   "R32": [
+    {
+     "team": "KR",
+     "pct": 0.13500680573581084
+    },
+    {
+     "team": "CZ",
+     "pct": 0.12655503149631225
+    },
+    {
+     "team": "MX",
+     "pct": 0.09409853017209543
+    }
+   ],
+   "R16": [
+    {
+     "team": "PT",
+     "pct": 0.18265187211835637
+    },
+    {
+     "team": "CO",
+     "pct": 0.1728057286652818
+    },
+    {
+     "team": "NL",
+     "pct": 0.11599196095320126
+    }
+   ],
+   "QF": [
+    {
+     "team": "AR",
+     "pct": 0.23869707800582188
+    },
+    {
+     "team": "FR",
+     "pct": 0.11805888205165997
+    },
+    {
+     "team": "ES",
+     "pct": 0.0819853347580972
+    }
+   ],
+   "SF": [
+    {
+     "team": "ES",
+     "pct": 0.1380462260743951
+    },
+    {
+     "team": "EN",
+     "pct": 0.11394005055976887
+    },
+    {
+     "team": "BR",
+     "pct": 0.08559046587215602
+    }
+   ],
+   "3P": [
+    {
+     "team": "ES",
+     "pct": 0.07464857004362578
+    },
+    {
+     "team": "FR",
+     "pct": 0.07077072224915172
+    },
+    {
+     "team": "AR",
+     "pct": 0.06495395055744062
+    }
+   ],
+   "F": [
+    {
+     "team": "ES",
+     "pct": 0.1831389400450174
+    },
+    {
+     "team": "FR",
+     "pct": 0.10149375895232249
+    },
+    {
+     "team": "AR",
+     "pct": 0.09883364027010436
+    }
+   ]
+  },
+  "knocked_out_by": [
+   {
+    "team": "PT",
+    "pct": 0.07620166654090356
+   },
+   {
+    "team": "CO",
+    "pct": 0.07010035896385568
+   },
+   {
+    "team": "AR",
+    "pct": 0.06323369301583537
+   },
+   {
+    "team": "KR",
+    "pct": 0.0572509620878114
+   },
+   {
+    "team": "CZ",
+    "pct": 0.05161318141149331
+   }
+  ],
+  "first_round_excerpt": {
+   "opponent": "PT",
+   "meet_in_r32_pct": 0.0,
+   "win_pct_when_met": 0
+  },
+  "name": "Switzerland",
+  "excerpt_text": "Switzerland's single biggest risk is the round of 32, where 35.6% of its runs end. Portugal is the team that ends its tournament most often, 7.6% of eliminations. The two meet in the round of 32 in 0.0% of all runs, and Switzerland wins 0% of those meetings."
+ },
+ "team_CA": {
+  "team": "CA",
+  "group": "B",
+  "elo": 1788.0,
+  "champion_pct": 0.0082,
+  "fates": {
+   "gs4": 0.02856,
+   "gs3_out": 0.02251,
+   "r32": 0.41113,
+   "r16": 0.31588,
+   "qf": 0.1514,
+   "fourth": 0.0292,
+   "third": 0.01661,
+   "runner_up": 0.01651,
+   "champion": 0.0082
+  },
+  "reach": {
+   "R32": 0.94893,
+   "R16": 0.5378,
+   "QF": 0.22192,
+   "SF": 0.07052,
+   "F": 0.02471
+  },
+  "opponents_by_round": {
+   "R32": [
+    {
+     "team": "KR",
+     "pct": 0.13913565805696942
+    },
+    {
+     "team": "CZ",
+     "pct": 0.13144278292392483
+    },
+    {
+     "team": "MX",
+     "pct": 0.09415868399144299
+    }
+   ],
+   "R16": [
+    {
+     "team": "PT",
+     "pct": 0.1969877277798438
+    },
+    {
+     "team": "CO",
+     "pct": 0.18294905169207884
+    },
+    {
+     "team": "NL",
+     "pct": 0.11000371885459279
+    }
+   ],
+   "QF": [
+    {
+     "team": "AR",
+     "pct": 0.2865447007930786
+    },
+    {
+     "team": "FR",
+     "pct": 0.0907984859408796
+    },
+    {
+     "team": "ES",
+     "pct": 0.07966834895457822
+    }
+   ],
+   "SF": [
+    {
+     "team": "EN",
+     "pct": 0.13145207033465683
+    },
+    {
+     "team": "ES",
+     "pct": 0.10862166761202496
+    },
+    {
+     "team": "BR",
+     "pct": 0.09841179807146909
+    }
+   ],
+   "3P": [
+    {
+     "team": "ES",
+     "pct": 0.08011351233355163
+    },
+    {
+     "team": "FR",
+     "pct": 0.07531106745252128
+    },
+    {
+     "team": "CH",
+     "pct": 0.06068543986029251
+    }
+   ],
+   "F": [
+    {
+     "team": "ES",
+     "pct": 0.19870497774180493
+    },
+    {
+     "team": "FR",
+     "pct": 0.1027923917442331
+    },
+    {
+     "team": "AR",
+     "pct": 0.07810602994738972
+    }
+   ]
+  },
+  "knocked_out_by": [
+   {
+    "team": "KR",
+    "pct": 0.07369808552932297
+   },
+   {
+    "team": "PT",
+    "pct": 0.07115750534159641
+   },
+   {
+    "team": "CZ",
+    "pct": 0.0678728221700169
+   },
+   {
+    "team": "CO",
+    "pct": 0.06607634496614331
+   },
+   {
+    "team": "AR",
+    "pct": 0.06518342138551976
+   }
+  ],
+  "first_round_excerpt": {
+   "opponent": "KR",
+   "meet_in_r32_pct": 0.13203,
+   "win_pct_when_met": 0.4889040369612967
+  },
+  "name": "Canada",
+  "excerpt_text": "Canada's single biggest risk is the round of 32, where 41.1% of its runs end. South Korea is the team that ends its tournament most often, 7.4% of eliminations. The two meet in the round of 32 in 13.2% of all runs, and Canada wins 49% of those meetings."
+ },
+ "team_BA": {
+  "team": "BA",
+  "group": "B",
+  "elo": 1594.0,
+  "champion_pct": 0.00043,
+  "fates": {
+   "gs4": 0.26187,
+   "gs3_out": 0.18938,
+   "r32": 0.3999,
+   "r16": 0.11095,
+   "qf": 0.03064,
+   "fourth": 0.00406,
+   "third": 0.00148,
+   "runner_up": 0.00129,
+   "champion": 0.00043
+  },
+  "reach": {
+   "R32": 0.54875,
+   "R16": 0.14885,
+   "QF": 0.0379,
+   "SF": 0.00726,
+   "F": 0.00172
+  },
+  "opponents_by_round": {
+   "R32": [
+    {
+     "team": "TR",
+     "pct": 0.21087927107061502
+    },
+    {
+     "team": "PY",
+     "pct": 0.12973120728929385
+    },
+    {
+     "team": "US",
+     "pct": 0.12311617312072894
+    }
+   ],
+   "R16": [
+    {
+     "team": "BE",
+     "pct": 0.14161907961034598
+    },
+    {
+     "team": "NL",
+     "pct": 0.1312059119919382
+    },
+    {
+     "team": "JP",
+     "pct": 0.0965401410816258
+    }
+   ],
+   "QF": [
+    {
+     "team": "ES",
+     "pct": 0.21002638522427441
+    },
+    {
+     "team": "FR",
+     "pct": 0.12216358839050132
+    },
+    {
+     "team": "AR",
+     "pct": 0.09920844327176781
+    }
+   ],
+   "SF": [
+    {
+     "team": "ES",
+     "pct": 0.18732782369146006
+    },
+    {
+     "team": "FR",
+     "pct": 0.081267217630854
+    },
+    {
+     "team": "EN",
+     "pct": 0.07851239669421488
+    }
+   ],
+   "3P": [
+    {
+     "team": "AR",
+     "pct": 0.09566787003610108
+    },
+    {
+     "team": "EN",
+     "pct": 0.07220216606498195
+    },
+    {
+     "team": "FR",
+     "pct": 0.06678700361010831
+    }
+   ],
+   "F": [
+    {
+     "team": "AR",
+     "pct": 0.1744186046511628
+    },
+    {
+     "team": "ES",
+     "pct": 0.10465116279069768
+    },
+    {
+     "team": "EN",
+     "pct": 0.06395348837209303
+    }
+   ]
+  },
+  "knocked_out_by": [
+   {
+    "team": "TR",
+    "pct": 0.17958491391887949
+   },
+   {
+    "team": "PY",
+    "pct": 0.10557703530784943
+   },
+   {
+    "team": "US",
+    "pct": 0.09771666180332653
+   },
+   {
+    "team": "KR",
+    "pct": 0.08101108841552378
+   },
+   {
+    "team": "CZ",
+    "pct": 0.07351546542165159
+   }
+  ],
+  "first_round_excerpt": {
+   "opponent": "TR",
+   "meet_in_r32_pct": 0.11572,
+   "win_pct_when_met": 0.1552886277220878
+  },
+  "name": "Bosnia & Herz.",
+  "excerpt_text": "Bosnia & Herz.'s single biggest risk is the round of 32, where 40.0% of its runs end. Turkey is the team that ends its tournament most often, 18.0% of eliminations. The two meet in the round of 32 in 11.6% of all runs, and Bosnia & Herz. wins 16% of those meetings."
+ },
+ "team_QA": {
+  "team": "QA",
+  "group": "B",
+  "elo": 1421.0,
+  "champion_pct": 0.0,
+  "fates": {
+   "gs4": 0.68046,
+   "gs3_out": 0.12963,
+   "r32": 0.1611,
+   "r16": 0.02424,
+   "qf": 0.00412,
+   "fourth": 0.00026,
+   "third": 0.0001,
+   "runner_up": 9e-05,
+   "champion": 0.0
+  },
+  "reach": {
+   "R32": 0.18991,
+   "R16": 0.02881,
+   "QF": 0.00457,
+   "SF": 0.00045,
+   "F": 9e-05
+  },
+  "opponents_by_round": {
+   "R32": [
+    {
+     "team": "TR",
+     "pct": 0.2348480859354431
+    },
+    {
+     "team": "PY",
+     "pct": 0.14396292980885683
+    },
+    {
+     "team": "US",
+     "pct": 0.13764414722763416
+    }
+   ],
+   "R16": [
+    {
+     "team": "BE",
+     "pct": 0.15619576535925025
+    },
+    {
+     "team": "NL",
+     "pct": 0.13328705310656022
+    },
+    {
+     "team": "JP",
+     "pct": 0.10378340853870184
+    }
+   ],
+   "QF": [
+    {
+     "team": "ES",
+     "pct": 0.23194748358862144
+    },
+    {
+     "team": "FR",
+     "pct": 0.12472647702407003
+    },
+    {
+     "team": "AR",
+     "pct": 0.08971553610503283
+    }
+   ],
+   "SF": [
+    {
+     "team": "DE",
+     "pct": 0.13333333333333333
+    },
+    {
+     "team": "ES",
+     "pct": 0.1111111111111111
+    },
+    {
+     "team": "CO",
+     "pct": 0.08888888888888889
+    }
+   ],
+   "3P": [
+    {
+     "team": "BR",
+     "pct": 0.1111111111111111
+    },
+    {
+     "team": "EC",
+     "pct": 0.08333333333333333
+    },
+    {
+     "team": "MX",
+     "pct": 0.08333333333333333
+    }
+   ],
+   "F": [
+    {
+     "team": "AR",
+     "pct": 0.3333333333333333
+    },
+    {
+     "team": "PT",
+     "pct": 0.2222222222222222
+    },
+    {
+     "team": "EC",
+     "pct": 0.2222222222222222
+    }
+   ]
+  },
+  "knocked_out_by": [
+   {
+    "team": "TR",
+    "pct": 0.2176294034016113
+   },
+   {
+    "team": "PY",
+    "pct": 0.12790269074824917
+   },
+   {
+    "team": "US",
+    "pct": 0.12216312990363856
+   },
+   {
+    "team": "KR",
+    "pct": 0.08762045179295455
+   },
+   {
+    "team": "AU",
+    "pct": 0.08735716918540361
+   }
+  ],
+  "first_round_excerpt": {
+   "opponent": "TR",
+   "meet_in_r32_pct": 0.0446,
+   "win_pct_when_met": 0.0742152466367713
+  },
+  "name": "Qatar",
+  "excerpt_text": "Qatar's most common ending is fourth in its group, 68.0% of its runs. It got out of the group in 19.0% of them, and when it did, Turkey was the team that ended its tournament most often (21.8% of eliminations)."
+ },
+ "team_BR": {
+  "team": "BR",
+  "group": "C",
+  "elo": 1991.0,
+  "champion_pct": 0.04834,
+  "fates": {
+   "gs4": 0.03471,
+   "gs3_out": 0.01968,
+   "r32": 0.36815,
+   "r16": 0.22773,
+   "qf": 0.15309,
+   "fourth": 0.04501,
+   "third": 0.0537,
+   "runner_up": 0.04959,
+   "champion": 0.04834
+  },
+  "reach": {
+   "R32": 0.94561,
+   "R16": 0.57746,
+   "QF": 0.34973,
+   "SF": 0.19664,
+   "F": 0.09793
+  },
+  "opponents_by_round": {
+   "R32": [
+    {
+     "team": "NL",
+     "pct": 0.3171286259663075
+    },
+    {
+     "team": "JP",
+     "pct": 0.3144742547138884
+    },
+    {
+     "team": "SE",
+     "pct": 0.15819418153361323
+    }
+   ],
+   "R16": [
+    {
+     "team": "NO",
+     "pct": 0.14994978007134693
+    },
+    {
+     "team": "FR",
+     "pct": 0.14593218577910158
+    },
+    {
+     "team": "DE",
+     "pct": 0.12174003394174489
+    }
+   ],
+   "QF": [
+    {
+     "team": "EN",
+     "pct": 0.18817373402338947
+    },
+    {
+     "team": "MX",
+     "pct": 0.172447316501301
+    },
+    {
+     "team": "FR",
+     "pct": 0.0944442855917422
+    }
+   ],
+   "SF": [
+    {
+     "team": "AR",
+     "pct": 0.2339300244100895
+    },
+    {
+     "team": "ES",
+     "pct": 0.14045972335231896
+    },
+    {
+     "team": "PT",
+     "pct": 0.09418226200162734
+    }
+   ],
+   "3P": [
+    {
+     "team": "ES",
+     "pct": 0.08732651200486273
+    },
+    {
+     "team": "FR",
+     "pct": 0.0838820788167359
+    },
+    {
+     "team": "NL",
+     "pct": 0.060277580792219634
+    }
+   ],
+   "F": [
+    {
+     "team": "ES",
+     "pct": 0.19932604921882977
+    },
+    {
+     "team": "FR",
+     "pct": 0.11947309302563056
+    },
+    {
+     "team": "AR",
+     "pct": 0.0717859695701011
+    }
+   ]
+  },
+  "knocked_out_by": [
+   {
+    "team": "NL",
+    "pct": 0.15731050854257916
+   },
+   {
+    "team": "JP",
+    "pct": 0.140503973163039
+   },
+   {
+    "team": "FR",
+    "pct": 0.08138018656591661
+   },
+   {
+    "team": "EC",
+    "pct": 0.06404984007043588
+   },
+   {
+    "team": "DE",
+    "pct": 0.06089582845743199
+   }
+  ],
+  "first_round_excerpt": {
+   "opponent": "NL",
+   "meet_in_r32_pct": 0.29988,
+   "win_pct_when_met": 0.5487528344671202
+  },
+  "name": "Brazil",
+  "excerpt_text": "Brazil's single biggest risk is the round of 32, where 36.8% of its runs end. Netherlands is the team that ends its tournament most often, 15.7% of eliminations. The two meet in the round of 32 in 30.0% of all runs, and Brazil wins 55% of those meetings."
+ },
+ "team_MA": {
+  "team": "MA",
+  "group": "C",
+  "elo": 1827.0,
+  "champion_pct": 0.00965,
+  "fates": {
+   "gs4": 0.12662,
+   "gs3_out": 0.08001,
+   "r32": 0.45857,
+   "r16": 0.17363,
+   "qf": 0.09477,
+   "fourth": 0.02386,
+   "third": 0.01765,
+   "runner_up": 0.01524,
+   "champion": 0.00965
+  },
+  "reach": {
+   "R32": 0.79337,
+   "R16": 0.3348,
+   "QF": 0.16117,
+   "SF": 0.0664,
+   "F": 0.02489
+  },
+  "opponents_by_round": {
+   "R32": [
+    {
+     "team": "NL",
+     "pct": 0.2948561200952897
+    },
+    {
+     "team": "JP",
+     "pct": 0.2582905832083391
+    },
+    {
+     "team": "SE",
+     "pct": 0.1075412480935755
+    }
+   ],
+   "R16": [
+    {
+     "team": "FR",
+     "pct": 0.1349462365591398
+    },
+    {
+     "team": "NO",
+     "pct": 0.09656511350059738
+    },
+    {
+     "team": "CH",
+     "pct": 0.09375746714456391
+    }
+   ],
+   "QF": [
+    {
+     "team": "FR",
+     "pct": 0.16547744617484644
+    },
+    {
+     "team": "EN",
+     "pct": 0.10305888192591674
+    },
+    {
+     "team": "MX",
+     "pct": 0.09195259663709127
+    }
+   ],
+   "SF": [
+    {
+     "team": "ES",
+     "pct": 0.23162650602409637
+    },
+    {
+     "team": "AR",
+     "pct": 0.1594879518072289
+    },
+    {
+     "team": "PT",
+     "pct": 0.0789156626506024
+    }
+   ],
+   "3P": [
+    {
+     "team": "BR",
+     "pct": 0.07492170561310528
+    },
+    {
+     "team": "FR",
+     "pct": 0.06721271982654782
+    },
+    {
+     "team": "AR",
+     "pct": 0.06119007468079981
+    }
+   ],
+   "F": [
+    {
+     "team": "ES",
+     "pct": 0.13820811570912012
+    },
+    {
+     "team": "AR",
+     "pct": 0.12374447569304942
+    },
+    {
+     "team": "FR",
+     "pct": 0.08035355564483729
+    }
+   ]
+  },
+  "knocked_out_by": [
+   {
+    "team": "NL",
+    "pct": 0.1929770836523248
+   },
+   {
+    "team": "JP",
+    "pct": 0.15545092635124788
+   },
+   {
+    "team": "EC",
+    "pct": 0.08259327310774256
+   },
+   {
+    "team": "DE",
+    "pct": 0.07899504925228398
+   },
+   {
+    "team": "MX",
+    "pct": 0.07049711631705201
+   }
+  ],
+  "first_round_excerpt": {
+   "opponent": "NL",
+   "meet_in_r32_pct": 0.23393,
+   "win_pct_when_met": 0.37506946522463985
+  },
+  "name": "Morocco",
+  "excerpt_text": "Morocco's single biggest risk is the round of 32, where 45.9% of its runs end. Netherlands is the team that ends its tournament most often, 19.3% of eliminations. The two meet in the round of 32 in 23.4% of all runs, and Morocco wins 38% of those meetings."
+ },
+ "team_SQ": {
+  "team": "SQ",
+  "group": "C",
+  "elo": 1782.0,
+  "champion_pct": 0.0056,
+  "fates": {
+   "gs4": 0.17202,
+   "gs3_out": 0.1014,
+   "r32": 0.45191,
+   "r16": 0.15424,
+   "qf": 0.07409,
+   "fourth": 0.01832,
+   "third": 0.01176,
+   "runner_up": 0.01066,
+   "champion": 0.0056
+  },
+  "reach": {
+   "R32": 0.72658,
+   "R16": 0.27467,
+   "QF": 0.12043,
+   "SF": 0.04634,
+   "F": 0.01626
+  },
+  "opponents_by_round": {
+   "R32": [
+    {
+     "team": "NL",
+     "pct": 0.26959178617633295
+    },
+    {
+     "team": "JP",
+     "pct": 0.23456467285089047
+    },
+    {
+     "team": "EC",
+     "pct": 0.10047069834016902
+    }
+   ],
+   "R16": [
+    {
+     "team": "FR",
+     "pct": 0.1374740597808279
+    },
+    {
+     "team": "NO",
+     "pct": 0.0946954527250883
+    },
+    {
+     "team": "CH",
+     "pct": 0.092110532639167
+    }
+   ],
+   "QF": [
+    {
+     "team": "FR",
+     "pct": 0.17263140413518227
+    },
+    {
+     "team": "EN",
+     "pct": 0.08743668521132608
+    },
+    {
+     "team": "EC",
+     "pct": 0.08419828946275845
+    }
+   ],
+   "SF": [
+    {
+     "team": "ES",
+     "pct": 0.2343547690979715
+    },
+    {
+     "team": "AR",
+     "pct": 0.15796288303841174
+    },
+    {
+     "team": "PT",
+     "pct": 0.08027621924902892
+    }
+   ],
+   "3P": [
+    {
+     "team": "BR",
+     "pct": 0.07779255319148937
+    },
+    {
+     "team": "AR",
+     "pct": 0.07081117021276596
+    },
+    {
+     "team": "FR",
+     "pct": 0.061835106382978726
+    }
+   ],
+   "F": [
+    {
+     "team": "ES",
+     "pct": 0.14206642066420663
+    },
+    {
+     "team": "AR",
+     "pct": 0.10516605166051661
+    },
+    {
+     "team": "FR",
+     "pct": 0.09471094710947109
+    }
+   ]
+  },
+  "knocked_out_by": [
+   {
+    "team": "NL",
+    "pct": 0.18742544869483205
+   },
+   {
+    "team": "JP",
+    "pct": 0.15089184165996283
+   },
+   {
+    "team": "EC",
+    "pct": 0.09413575966046214
+   },
+   {
+    "team": "DE",
+    "pct": 0.09044633693028933
+   },
+   {
+    "team": "MX",
+    "pct": 0.08131987017670393
+   }
+  ],
+  "first_round_excerpt": {
+   "opponent": "NL",
+   "meet_in_r32_pct": 0.19588,
+   "win_pct_when_met": 0.3350520726975699
+  },
+  "name": "Scotland",
+  "excerpt_text": "Scotland's single biggest risk is the round of 32, where 45.2% of its runs end. Netherlands is the team that ends its tournament most often, 18.7% of eliminations. The two meet in the round of 32 in 19.6% of all runs, and Scotland wins 34% of those meetings."
+ },
+ "team_HT": {
+  "team": "HT",
+  "group": "C",
+  "elo": 1548.0,
+  "champion_pct": 0.00011,
+  "fates": {
+   "gs4": 0.66665,
+   "gs3_out": 0.09879,
+   "r32": 0.18993,
+   "r16": 0.03349,
+   "qf": 0.0085,
+   "fourth": 0.00165,
+   "third": 0.0004,
+   "runner_up": 0.00048,
+   "champion": 0.00011
+  },
+  "reach": {
+   "R32": 0.23456,
+   "R16": 0.04463,
+   "QF": 0.01114,
+   "SF": 0.00264,
+   "F": 0.00059
+  },
+  "opponents_by_round": {
+   "R32": [
+    {
+     "team": "NL",
+     "pct": 0.209924965893588
+    },
+    {
+     "team": "JP",
+     "pct": 0.18131821282401092
+    },
+    {
+     "team": "DE",
+     "pct": 0.14375852660300137
+    }
+   ],
+   "R16": [
+    {
+     "team": "FR",
+     "pct": 0.15505265516468744
+    },
+    {
+     "team": "CH",
+     "pct": 0.09097019941743222
+    },
+    {
+     "team": "EN",
+     "pct": 0.08312794084696393
+    }
+   ],
+   "QF": [
+    {
+     "team": "FR",
+     "pct": 0.16696588868940754
+    },
+    {
+     "team": "EC",
+     "pct": 0.10323159784560143
+    },
+    {
+     "team": "DE",
+     "pct": 0.08348294434470377
+    }
+   ],
+   "SF": [
+    {
+     "team": "ES",
+     "pct": 0.24242424242424243
+    },
+    {
+     "team": "AR",
+     "pct": 0.17803030303030304
+    },
+    {
+     "team": "CO",
+     "pct": 0.07575757575757576
+    }
+   ],
+   "3P": [
+    {
+     "team": "BR",
+     "pct": 0.07804878048780488
+    },
+    {
+     "team": "EN",
+     "pct": 0.06829268292682927
+    },
+    {
+     "team": "NL",
+     "pct": 0.06829268292682927
+    }
+   ],
+   "F": [
+    {
+     "team": "EN",
+     "pct": 0.11864406779661017
+    },
+    {
+     "team": "AR",
+     "pct": 0.1016949152542373
+    },
+    {
+     "team": "ES",
+     "pct": 0.0847457627118644
+    }
+   ]
+  },
+  "knocked_out_by": [
+   {
+    "team": "NL",
+    "pct": 0.17846022606099382
+   },
+   {
+    "team": "JP",
+    "pct": 0.14787801236937514
+   },
+   {
+    "team": "DE",
+    "pct": 0.13324802729793134
+   },
+   {
+    "team": "EC",
+    "pct": 0.13175517167839626
+   },
+   {
+    "team": "MX",
+    "pct": 0.11558967796971635
+   }
+  ],
+  "first_round_excerpt": {
+   "opponent": "NL",
+   "meet_in_r32_pct": 0.04924,
+   "win_pct_when_met": 0.16673436230706742
+  },
+  "name": "Haiti",
+  "excerpt_text": "Haiti's most common ending is fourth in its group, 66.7% of its runs. It got out of the group in 23.5% of them, and when it did, Netherlands was the team that ended its tournament most often (17.8% of eliminations)."
+ },
+ "team_TR": {
+  "team": "TR",
+  "group": "D",
+  "elo": 1910.0,
+  "champion_pct": 0.02476,
+  "fates": {
+   "gs4": 0.14489,
+   "gs3_out": 0.04781,
+   "r32": 0.28292,
+   "r16": 0.25286,
+   "qf": 0.15645,
+   "fourth": 0.03121,
+   "third": 0.02879,
+   "runner_up": 0.03031,
+   "champion": 0.02476
+  },
+  "reach": {
+   "R32": 0.8073,
+   "R16": 0.52438,
+   "QF": 0.27152,
+   "SF": 0.11507,
+   "F": 0.05507
+  },
+  "opponents_by_round": {
+   "R32": [
+    {
+     "team": "BA",
+     "pct": 0.14334200421156942
+    },
+    {
+     "team": "IR",
+     "pct": 0.10929022668153103
+    },
+    {
+     "team": "BE",
+     "pct": 0.09144060448408274
+    }
+   ],
+   "R16": [
+    {
+     "team": "BE",
+     "pct": 0.19972157595636753
+    },
+    {
+     "team": "AR",
+     "pct": 0.1849612876158511
+    },
+    {
+     "team": "IR",
+     "pct": 0.08610168198634578
+    }
+   ],
+   "QF": [
+    {
+     "team": "ES",
+     "pct": 0.3118738951090159
+    },
+    {
+     "team": "PT",
+     "pct": 0.10783736004714202
+    },
+    {
+     "team": "CO",
+     "pct": 0.10072922804949912
+    }
+   ],
+   "SF": [
+    {
+     "team": "FR",
+     "pct": 0.15729555922481966
+    },
+    {
+     "team": "NL",
+     "pct": 0.08542626227513687
+    },
+    {
+     "team": "BR",
+     "pct": 0.07656209263926306
+    }
+   ],
+   "3P": [
+    {
+     "team": "AR",
+     "pct": 0.08983333333333333
+    },
+    {
+     "team": "EN",
+     "pct": 0.06633333333333333
+    },
+    {
+     "team": "BR",
+     "pct": 0.058
+    }
+   ],
+   "F": [
+    {
+     "team": "AR",
+     "pct": 0.15888868712547666
+    },
+    {
+     "team": "ES",
+     "pct": 0.11058652623933175
+    },
+    {
+     "team": "EN",
+     "pct": 0.07935355002723805
+    }
+   ]
+  },
+  "knocked_out_by": [
+   {
+    "team": "AR",
+    "pct": 0.11089528969765124
+   },
+   {
+    "team": "BE",
+    "pct": 0.10763667032995118
+   },
+   {
+    "team": "ES",
+    "pct": 0.10482531244409231
+   },
+   {
+    "team": "FR",
+    "pct": 0.06593912132287168
+   },
+   {
+    "team": "IR",
+    "pct": 0.061543179901346896
+   }
+  ],
+  "first_round_excerpt": {
+   "opponent": "AR",
+   "meet_in_r32_pct": 0.00453,
+   "win_pct_when_met": 0.44370860927152317
+  },
+  "name": "Turkey",
+  "excerpt_text": "Turkey's single biggest risk is the round of 32, where 28.3% of its runs end. Argentina is the team that ends its tournament most often, 11.1% of eliminations. The two meet in the round of 32 in 0.5% of all runs, and Turkey wins 44% of those meetings."
+ },
+ "team_PY": {
+  "team": "PY",
+  "group": "D",
+  "elo": 1833.0,
+  "champion_pct": 0.01095,
+  "fates": {
+   "gs4": 0.24553,
+   "gs3_out": 0.07331,
+   "r32": 0.29898,
+   "r16": 0.21457,
+   "qf": 0.1032,
+   "fourth": 0.0212,
+   "third": 0.01595,
+   "runner_up": 0.01631,
+   "champion": 0.01095
+  },
+  "reach": {
+   "R32": 0.68116,
+   "R16": 0.38218,
+   "QF": 0.16761,
+   "SF": 0.06441,
+   "F": 0.02726
+  },
+  "opponents_by_round": {
+   "R32": [
+    {
+     "team": "IR",
+     "pct": 0.12455223442363028
+    },
+    {
+     "team": "BA",
+     "pct": 0.10451288977626402
+    },
+    {
+     "team": "EG",
+     "pct": 0.10429267719772153
+    }
+   ],
+   "R16": [
+    {
+     "team": "AR",
+     "pct": 0.22512952012140877
+    },
+    {
+     "team": "BE",
+     "pct": 0.15636611020984875
+    },
+    {
+     "team": "UY",
+     "pct": 0.08284054633942121
+    }
+   ],
+   "QF": [
+    {
+     "team": "ES",
+     "pct": 0.263528429091343
+    },
+    {
+     "team": "PT",
+     "pct": 0.10924169202314897
+    },
+    {
+     "team": "CO",
+     "pct": 0.10154525386313466
+    }
+   ],
+   "SF": [
+    {
+     "team": "FR",
+     "pct": 0.1375562800807328
+    },
+    {
+     "team": "BR",
+     "pct": 0.07793820835274026
+    },
+    {
+     "team": "NL",
+     "pct": 0.0752988666356156
+    }
+   ],
+   "3P": [
+    {
+     "team": "AR",
+     "pct": 0.08021534320323015
+    },
+    {
+     "team": "EN",
+     "pct": 0.06514131897711979
+    },
+    {
+     "team": "BR",
+     "pct": 0.05733512786002692
+    }
+   ],
+   "F": [
+    {
+     "team": "AR",
+     "pct": 0.13866471019809246
+    },
+    {
+     "team": "ES",
+     "pct": 0.11371973587674249
+    },
+    {
+     "team": "EN",
+     "pct": 0.07960381511371974
+    }
+   ]
+  },
+  "knocked_out_by": [
+   {
+    "team": "AR",
+    "pct": 0.11245728950627415
+   },
+   {
+    "team": "BE",
+    "pct": 0.10153533966965578
+   },
+   {
+    "team": "ES",
+    "pct": 0.07816952895361155
+   },
+   {
+    "team": "FR",
+    "pct": 0.07652825233881917
+   },
+   {
+    "team": "IR",
+    "pct": 0.07081362558004207
+   }
+  ],
+  "first_round_excerpt": {
+   "opponent": "AR",
+   "meet_in_r32_pct": 0.00292,
+   "win_pct_when_met": 0.3561643835616438
+  },
+  "name": "Paraguay",
+  "excerpt_text": "Paraguay's single biggest risk is the round of 32, where 29.9% of its runs end. Argentina is the team that ends its tournament most often, 11.2% of eliminations. The two meet in the round of 32 in 0.3% of all runs, and Paraguay wins 36% of those meetings."
+ },
+ "team_AU": {
+  "team": "AU",
+  "group": "D",
+  "elo": 1777.0,
+  "champion_pct": 0.00561,
+  "fates": {
+   "gs4": 0.34579,
+   "gs3_out": 0.08457,
+   "r32": 0.28726,
+   "r16": 0.17358,
+   "qf": 0.07016,
+   "fourth": 0.0152,
+   "third": 0.00899,
+   "runner_up": 0.00884,
+   "champion": 0.00561
+  },
+  "reach": {
+   "R32": 0.56964,
+   "R16": 0.28238,
+   "QF": 0.1088,
+   "SF": 0.03864,
+   "F": 0.01445
+  },
+  "opponents_by_round": {
+   "R32": [
+    {
+     "team": "IR",
+     "pct": 0.12521943683730075
+    },
+    {
+     "team": "EC",
+     "pct": 0.1067165227161014
+    },
+    {
+     "team": "DE",
+     "pct": 0.10332841794817779
+    }
+   ],
+   "R16": [
+    {
+     "team": "AR",
+     "pct": 0.23046957999858347
+    },
+    {
+     "team": "BE",
+     "pct": 0.14324668885898434
+    },
+    {
+     "team": "UY",
+     "pct": 0.08637297259012677
+    }
+   ],
+   "QF": [
+    {
+     "team": "ES",
+     "pct": 0.2516544117647059
+    },
+    {
+     "team": "PT",
+     "pct": 0.10707720588235294
+    },
+    {
+     "team": "CO",
+     "pct": 0.10689338235294117
+    }
+   ],
+   "SF": [
+    {
+     "team": "FR",
+     "pct": 0.1167184265010352
+    },
+    {
+     "team": "ES",
+     "pct": 0.07608695652173914
+    },
+    {
+     "team": "BR",
+     "pct": 0.07116977225672878
+    }
+   ],
+   "3P": [
+    {
+     "team": "AR",
+     "pct": 0.08433236874741629
+    },
+    {
+     "team": "EN",
+     "pct": 0.06118230673832162
+    },
+    {
+     "team": "FR",
+     "pct": 0.05704836709384043
+    }
+   ],
+   "F": [
+    {
+     "team": "AR",
+     "pct": 0.1301038062283737
+    },
+    {
+     "team": "ES",
+     "pct": 0.11003460207612457
+    },
+    {
+     "team": "FR",
+     "pct": 0.07750865051903114
+    }
+   ]
+  },
+  "knocked_out_by": [
+   {
+    "team": "AR",
+    "pct": 0.10238817084197649
+   },
+   {
+    "team": "BE",
+    "pct": 0.10102299523075013
+   },
+   {
+    "team": "EC",
+    "pct": 0.08416218995443504
+   },
+   {
+    "team": "FR",
+    "pct": 0.08235377550839494
+   },
+   {
+    "team": "DE",
+    "pct": 0.08075811570306544
+   }
+  ],
+  "first_round_excerpt": {
+   "opponent": "AR",
+   "meet_in_r32_pct": 0.00186,
+   "win_pct_when_met": 0.3333333333333333
+  },
+  "name": "Australia",
+  "excerpt_text": "Australia's most common ending is fourth in its group, 34.6% of its runs. It got out of the group in 57.0% of them, and when it did, Argentina was the team that ended its tournament most often (10.2% of eliminations)."
+ },
+ "team_US": {
+  "team": "US",
+  "group": "D",
+  "elo": 1726.0,
+  "champion_pct": 0.0097,
+  "fates": {
+   "gs4": 0.26379,
+   "gs3_out": 0.07178,
+   "r32": 0.29812,
+   "r16": 0.20957,
+   "qf": 0.09634,
+   "fourth": 0.02029,
+   "third": 0.015,
+   "runner_up": 0.01541,
+   "champion": 0.0097
+  },
+  "reach": {
+   "R32": 0.66443,
+   "R16": 0.36631,
+   "QF": 0.15674,
+   "SF": 0.0604,
+   "F": 0.02511
+  },
+  "opponents_by_round": {
+   "R32": [
+    {
+     "team": "IR",
+     "pct": 0.12482880062610056
+    },
+    {
+     "team": "BE",
+     "pct": 0.10554911728850293
+    },
+    {
+     "team": "BA",
+     "pct": 0.1016811402254564
+    }
+   ],
+   "R16": [
+    {
+     "team": "AR",
+     "pct": 0.22480958750784855
+    },
+    {
+     "team": "BE",
+     "pct": 0.15907291638229915
+    },
+    {
+     "team": "UY",
+     "pct": 0.08574704485272037
+    }
+   ],
+   "QF": [
+    {
+     "team": "ES",
+     "pct": 0.2589638892433329
+    },
+    {
+     "team": "PT",
+     "pct": 0.11113946663264004
+    },
+    {
+     "team": "CO",
+     "pct": 0.10418527497767002
+    }
+   ],
+   "SF": [
+    {
+     "team": "FR",
+     "pct": 0.13874172185430464
+    },
+    {
+     "team": "BR",
+     "pct": 0.07350993377483443
+    },
+    {
+     "team": "NL",
+     "pct": 0.07019867549668875
+    }
+   ],
+   "3P": [
+    {
+     "team": "AR",
+     "pct": 0.07877585718333806
+    },
+    {
+     "team": "EN",
+     "pct": 0.06460753754604703
+    },
+    {
+     "team": "BR",
+     "pct": 0.055256446585434965
+    }
+   ],
+   "F": [
+    {
+     "team": "AR",
+     "pct": 0.14894464356829948
+    },
+    {
+     "team": "ES",
+     "pct": 0.12624452409398645
+    },
+    {
+     "team": "EN",
+     "pct": 0.0724810832337714
+    }
+   ]
+  },
+  "knocked_out_by": [
+   {
+    "team": "AR",
+    "pct": 0.11135888076000794
+   },
+   {
+    "team": "BE",
+    "pct": 0.10489820231240359
+   },
+   {
+    "team": "FR",
+    "pct": 0.07587860644845967
+   },
+   {
+    "team": "ES",
+    "pct": 0.07438180624074046
+   },
+   {
+    "team": "EC",
+    "pct": 0.07160203442640478
+   }
+  ],
+  "first_round_excerpt": {
+   "opponent": "AR",
+   "meet_in_r32_pct": 0.0028,
+   "win_pct_when_met": 0.2892857142857143
+  },
+  "name": "USA",
+  "excerpt_text": "USA's single biggest risk is the round of 32, where 29.8% of its runs end. Argentina is the team that ends its tournament most often, 11.1% of eliminations. The two meet in the round of 32 in 0.3% of all runs, and USA wins 29% of those meetings."
+ },
+ "team_EC": {
+  "team": "EC",
+  "group": "E",
+  "elo": 1938.0,
+  "champion_pct": 0.03141,
+  "fates": {
+   "gs4": 0.02711,
+   "gs3_out": 0.02483,
+   "r32": 0.39608,
+   "r16": 0.28148,
+   "qf": 0.12266,
+   "fourth": 0.04031,
+   "third": 0.04027,
+   "runner_up": 0.03585,
+   "champion": 0.03141
+  },
+  "reach": {
+   "R32": 0.94806,
+   "R16": 0.55198,
+   "QF": 0.2705,
+   "SF": 0.14784,
+   "F": 0.06726
+  },
+  "opponents_by_round": {
+   "R32": [
+    {
+     "team": "NO",
+     "pct": 0.1347277598464232
+    },
+    {
+     "team": "SN",
+     "pct": 0.11491888699027487
+    },
+    {
+     "team": "FR",
+     "pct": 0.09957175706178933
+    }
+   ],
+   "R16": [
+    {
+     "team": "FR",
+     "pct": 0.2692307692307692
+    },
+    {
+     "team": "BR",
+     "pct": 0.12677995579549983
+    },
+    {
+     "team": "NO",
+     "pct": 0.10090945324105946
+    }
+   ],
+   "QF": [
+    {
+     "team": "NL",
+     "pct": 0.12802218114602587
+    },
+    {
+     "team": "MX",
+     "pct": 0.11866913123844731
+    },
+    {
+     "team": "JP",
+     "pct": 0.09456561922365989
+    }
+   ],
+   "SF": [
+    {
+     "team": "ES",
+     "pct": 0.24844426406926406
+    },
+    {
+     "team": "AR",
+     "pct": 0.13534902597402598
+    },
+    {
+     "team": "PT",
+     "pct": 0.07386363636363637
+    }
+   ],
+   "3P": [
+    {
+     "team": "DE",
+     "pct": 0.07073715562174236
+    },
+    {
+     "team": "AR",
+     "pct": 0.06614544551998014
+    },
+    {
+     "team": "FR",
+     "pct": 0.06577314470091834
+    }
+   ],
+   "F": [
+    {
+     "team": "AR",
+     "pct": 0.14510853404698187
+    },
+    {
+     "team": "ES",
+     "pct": 0.11492714837942314
+    },
+    {
+     "team": "FR",
+     "pct": 0.07612250966399048
+    }
+   ]
+  },
+  "knocked_out_by": [
+   {
+    "team": "FR",
+    "pct": 0.1711012927507773
+   },
+   {
+    "team": "NO",
+    "pct": 0.10442371679485081
+   },
+   {
+    "team": "SN",
+    "pct": 0.07512136584301533
+   },
+   {
+    "team": "BR",
+    "pct": 0.07339769813996617
+   },
+   {
+    "team": "MX",
+    "pct": 0.04953908252877325
+   }
+  ],
+  "first_round_excerpt": {
+   "opponent": "FR",
+   "meet_in_r32_pct": 0.0944,
+   "win_pct_when_met": 0.3771186440677966
+  },
+  "name": "Ecuador",
+  "excerpt_text": "Ecuador's single biggest risk is the round of 32, where 39.6% of its runs end. France is the team that ends its tournament most often, 17.1% of eliminations. The two meet in the round of 32 in 9.4% of all runs, and Ecuador wins 38% of those meetings."
+ },
+ "team_DE": {
+  "team": "DE",
+  "group": "E",
+  "elo": 1932.0,
+  "champion_pct": 0.02894,
+  "fates": {
+   "gs4": 0.02842,
+   "gs3_out": 0.02505,
+   "r32": 0.40244,
+   "r16": 0.27902,
+   "qf": 0.12153,
+   "fourth": 0.03993,
+   "third": 0.03886,
+   "runner_up": 0.03581,
+   "champion": 0.02894
+  },
+  "reach": {
+   "R32": 0.94653,
+   "R16": 0.54409,
+   "QF": 0.26507,
+   "SF": 0.14354,
+   "F": 0.06475
+  },
+  "opponents_by_round": {
+   "R32": [
+    {
+     "team": "NO",
+     "pct": 0.1399955627396913
+    },
+    {
+     "team": "SN",
+     "pct": 0.1197320739965981
+    },
+    {
+     "team": "FR",
+     "pct": 0.10344098972034695
+    }
+   ],
+   "R16": [
+    {
+     "team": "FR",
+     "pct": 0.25889099229906815
+    },
+    {
+     "team": "BR",
+     "pct": 0.12920656509033432
+    },
+    {
+     "team": "NO",
+     "pct": 0.09746549284125788
+    }
+   ],
+   "QF": [
+    {
+     "team": "NL",
+     "pct": 0.12502357867733052
+    },
+    {
+     "team": "MX",
+     "pct": 0.12294865507224506
+    },
+    {
+     "team": "EN",
+     "pct": 0.10167125664918701
+    }
+   ],
+   "SF": [
+    {
+     "team": "ES",
+     "pct": 0.2384701128605267
+    },
+    {
+     "team": "AR",
+     "pct": 0.14316566810645118
+    },
+    {
+     "team": "CO",
+     "pct": 0.07280200640936324
+    }
+   ],
+   "3P": [
+    {
+     "team": "EC",
+     "pct": 0.0723442061175276
+    },
+    {
+     "team": "AR",
+     "pct": 0.07069425053940856
+    },
+    {
+     "team": "FR",
+     "pct": 0.06447518720649828
+    }
+   ],
+   "F": [
+    {
+     "team": "AR",
+     "pct": 0.13575289575289576
+    },
+    {
+     "team": "ES",
+     "pct": 0.12138996138996139
+    },
+    {
+     "team": "FR",
+     "pct": 0.08200772200772201
+    }
+   ]
+  },
+  "knocked_out_by": [
+   {
+    "team": "FR",
+    "pct": 0.1697599145587899
+   },
+   {
+    "team": "NO",
+    "pct": 0.1053193692171885
+   },
+   {
+    "team": "SN",
+    "pct": 0.07763816083435958
+   },
+   {
+    "team": "BR",
+    "pct": 0.07397639468607983
+   },
+   {
+    "team": "MX",
+    "pct": 0.05222376006713238
+   }
+  ],
+  "first_round_excerpt": {
+   "opponent": "FR",
+   "meet_in_r32_pct": 0.09791,
+   "win_pct_when_met": 0.3678888775405985
+  },
+  "name": "Germany",
+  "excerpt_text": "Germany's single biggest risk is the round of 32, where 40.2% of its runs end. France is the team that ends its tournament most often, 17.0% of eliminations. The two meet in the round of 32 in 9.8% of all runs, and Germany wins 37% of those meetings."
+ },
+ "team_CI": {
+  "team": "CI",
+  "group": "E",
+  "elo": 1696.0,
+  "champion_pct": 0.00152,
+  "fates": {
+   "gs4": 0.17777,
+   "gs3_out": 0.15932,
+   "r32": 0.46217,
+   "r16": 0.1406,
+   "qf": 0.04126,
+   "fourth": 0.00894,
+   "third": 0.00459,
+   "runner_up": 0.00383,
+   "champion": 0.00152
+  },
+  "reach": {
+   "R32": 0.66291,
+   "R16": 0.20074,
+   "QF": 0.06014,
+   "SF": 0.01888,
+   "F": 0.00535
+  },
+  "opponents_by_round": {
+   "R32": [
+    {
+     "team": "MX",
+     "pct": 0.1851835090736299
+    },
+    {
+     "team": "NO",
+     "pct": 0.12137394216409467
+    },
+    {
+     "team": "SN",
+     "pct": 0.10401110256294217
+    }
+   ],
+   "R16": [
+    {
+     "team": "BR",
+     "pct": 0.13534920793065658
+    },
+    {
+     "team": "FR",
+     "pct": 0.11761482514695626
+    },
+    {
+     "team": "EN",
+     "pct": 0.10570887715452824
+    }
+   ],
+   "QF": [
+    {
+     "team": "EN",
+     "pct": 0.10409045560359162
+    },
+    {
+     "team": "MX",
+     "pct": 0.09860325906218823
+    },
+    {
+     "team": "BR",
+     "pct": 0.07615563684735617
+    }
+   ],
+   "SF": [
+    {
+     "team": "AR",
+     "pct": 0.18485169491525424
+    },
+    {
+     "team": "ES",
+     "pct": 0.1461864406779661
+    },
+    {
+     "team": "PT",
+     "pct": 0.0858050847457627
+    }
+   ],
+   "3P": [
+    {
+     "team": "ES",
+     "pct": 0.07760532150776053
+    },
+    {
+     "team": "FR",
+     "pct": 0.07390983000739099
+    },
+    {
+     "team": "EC",
+     "pct": 0.05543237250554324
+    }
+   ],
+   "F": [
+    {
+     "team": "ES",
+     "pct": 0.17196261682242991
+    },
+    {
+     "team": "AR",
+     "pct": 0.11401869158878504
+    },
+    {
+     "team": "FR",
+     "pct": 0.10654205607476636
+    }
+   ]
+  },
+  "knocked_out_by": [
+   {
+    "team": "MX",
+    "pct": 0.1579703352031328
+   },
+   {
+    "team": "FR",
+    "pct": 0.10648785134338287
+   },
+   {
+    "team": "NO",
+    "pct": 0.097597484086545
+   },
+   {
+    "team": "SN",
+    "pct": 0.07711032824808359
+   },
+   {
+    "team": "EN",
+    "pct": 0.05334220354102723
+   }
+  ],
+  "first_round_excerpt": {
+   "opponent": "MX",
+   "meet_in_r32_pct": 0.12276,
+   "win_pct_when_met": 0.1953405017921147
+  },
+  "name": "Ivory Coast",
+  "excerpt_text": "Ivory Coast's single biggest risk is the round of 32, where 46.2% of its runs end. Mexico is the team that ends its tournament most often, 15.8% of eliminations. The two meet in the round of 32 in 12.3% of all runs, and Ivory Coast wins 20% of those meetings."
+ },
+ "team_CW": {
+  "team": "CW",
+  "group": "E",
+  "elo": 1434.0,
+  "champion_pct": 1e-05,
+  "fates": {
+   "gs4": 0.7667,
+   "gs3_out": 0.09775,
+   "r32": 0.11859,
+   "r16": 0.01471,
+   "qf": 0.00196,
+   "fourth": 0.00022,
+   "third": 4e-05,
+   "runner_up": 2e-05,
+   "champion": 1e-05
+  },
+  "reach": {
+   "R32": 0.13555,
+   "R16": 0.01696,
+   "QF": 0.00225,
+   "SF": 0.00029,
+   "F": 3e-05
+  },
+  "opponents_by_round": {
+   "R32": [
+    {
+     "team": "MX",
+     "pct": 0.2317963850977499
+    },
+    {
+     "team": "NO",
+     "pct": 0.10800442641091848
+    },
+    {
+     "team": "SN",
+     "pct": 0.09280708225746957
+    }
+   ],
+   "R16": [
+    {
+     "team": "BR",
+     "pct": 0.13738207547169812
+    },
+    {
+     "team": "EN",
+     "pct": 0.12735849056603774
+    },
+    {
+     "team": "FR",
+     "pct": 0.07311320754716981
+    }
+   ],
+   "QF": [
+    {
+     "team": "ES",
+     "pct": 0.10222222222222223
+    },
+    {
+     "team": "BR",
+     "pct": 0.09777777777777778
+    },
+    {
+     "team": "MX",
+     "pct": 0.09333333333333334
+    }
+   ],
+   "SF": [
+    {
+     "team": "AR",
+     "pct": 0.3103448275862069
+    },
+    {
+     "team": "PT",
+     "pct": 0.20689655172413793
+    },
+    {
+     "team": "FR",
+     "pct": 0.06896551724137931
+    }
+   ],
+   "3P": [
+    {
+     "team": "ES",
+     "pct": 0.19230769230769232
+    },
+    {
+     "team": "EN",
+     "pct": 0.07692307692307693
+    },
+    {
+     "team": "CZ",
+     "pct": 0.07692307692307693
+    }
+   ],
+   "F": [
+    {
+     "team": "ES",
+     "pct": 0.3333333333333333
+    },
+    {
+     "team": "EC",
+     "pct": 0.3333333333333333
+    },
+    {
+     "team": "FR",
+     "pct": 0.3333333333333333
+    }
+   ]
+  },
+  "knocked_out_by": [
+   {
+    "team": "MX",
+    "pct": 0.21912350597609562
+   },
+   {
+    "team": "NO",
+    "pct": 0.09790467758595249
+   },
+   {
+    "team": "FR",
+    "pct": 0.08410801239486498
+   },
+   {
+    "team": "SN",
+    "pct": 0.08292754906300723
+   },
+   {
+    "team": "KR",
+    "pct": 0.05171904972701785
+   }
+  ],
+  "first_round_excerpt": {
+   "opponent": "MX",
+   "meet_in_r32_pct": 0.03142,
+   "win_pct_when_met": 0.0668364099299809
+  },
+  "name": "Cura\u00e7ao",
+  "excerpt_text": "Cura\u00e7ao's most common ending is fourth in its group, 76.7% of its runs. It got out of the group in 13.6% of them, and when it did, Mexico was the team that ended its tournament most often (21.9% of eliminations)."
+ },
+ "team_NL": {
+  "team": "NL",
+  "group": "F",
+  "elo": 1947.0,
+  "champion_pct": 0.03503,
+  "fates": {
+   "gs4": 0.0644,
+   "gs3_out": 0.032,
+   "r32": 0.40553,
+   "r16": 0.18482,
+   "qf": 0.15267,
+   "fourth": 0.04239,
+   "third": 0.04437,
+   "runner_up": 0.03879,
+   "champion": 0.03503
+  },
+  "reach": {
+   "R32": 0.9036,
+   "R16": 0.49807,
+   "QF": 0.31325,
+   "SF": 0.16058,
+   "F": 0.07382
+  },
+  "opponents_by_round": {
+   "R32": [
+    {
+     "team": "BR",
+     "pct": 0.3318725099601594
+    },
+    {
+     "team": "MA",
+     "pct": 0.25888667552014166
+    },
+    {
+     "team": "SQ",
+     "pct": 0.21677733510402833
+    }
+   ],
+   "R16": [
+    {
+     "team": "CH",
+     "pct": 0.13789226413957878
+    },
+    {
+     "team": "CA",
+     "pct": 0.11877848495191438
+    },
+    {
+     "team": "KR",
+     "pct": 0.11090810528640553
+    }
+   ],
+   "QF": [
+    {
+     "team": "FR",
+     "pct": 0.2176536312849162
+    },
+    {
+     "team": "EC",
+     "pct": 0.11055067837190742
+    },
+    {
+     "team": "DE",
+     "pct": 0.10579409417398244
+    }
+   ],
+   "SF": [
+    {
+     "team": "ES",
+     "pct": 0.28882799850541785
+    },
+    {
+     "team": "AR",
+     "pct": 0.11408643666708183
+    },
+    {
+     "team": "PT",
+     "pct": 0.06875077842819778
+    }
+   ],
+   "3P": [
+    {
+     "team": "AR",
+     "pct": 0.07976025818349469
+    },
+    {
+     "team": "BR",
+     "pct": 0.06857999077916091
+    },
+    {
+     "team": "EN",
+     "pct": 0.06719686491470724
+    }
+   ],
+   "F": [
+    {
+     "team": "AR",
+     "pct": 0.1614738553237605
+    },
+    {
+     "team": "ES",
+     "pct": 0.10173394743971824
+    },
+    {
+     "team": "EN",
+     "pct": 0.08371714982389597
+    }
+   ]
+  },
+  "knocked_out_by": [
+   {
+    "team": "BR",
+    "pct": 0.19670262615563514
+   },
+   {
+    "team": "FR",
+    "pct": 0.12323704479777105
+   },
+   {
+    "team": "MA",
+    "pct": 0.10437846114878478
+   },
+   {
+    "team": "SQ",
+    "pct": 0.07826657609634226
+   },
+   {
+    "team": "NO",
+    "pct": 0.04836685586653926
+   }
+  ],
+  "first_round_excerpt": {
+   "opponent": "BR",
+   "meet_in_r32_pct": 0.29988,
+   "win_pct_when_met": 0.4512471655328798
+  },
+  "name": "Netherlands",
+  "excerpt_text": "Netherlands's single biggest risk is the round of 32, where 40.6% of its runs end. Brazil is the team that ends its tournament most often, 19.7% of eliminations. The two meet in the round of 32 in 30.0% of all runs, and Netherlands wins 45% of those meetings."
+ },
+ "team_JP": {
+  "team": "JP",
+  "group": "F",
+  "elo": 1906.0,
+  "champion_pct": 0.02246,
+  "fates": {
+   "gs4": 0.08805,
+   "gs3_out": 0.04506,
+   "r32": 0.43687,
+   "r16": 0.18165,
+   "qf": 0.13037,
+   "fourth": 0.03473,
+   "third": 0.03259,
+   "runner_up": 0.02822,
+   "champion": 0.02246
+  },
+  "reach": {
+   "R32": 0.86689,
+   "R16": 0.43002,
+   "QF": 0.24837,
+   "SF": 0.118,
+   "F": 0.05068
+  },
+  "opponents_by_round": {
+   "R32": [
+    {
+     "team": "BR",
+     "pct": 0.34303083436191445
+    },
+    {
+     "team": "MA",
+     "pct": 0.236385239188363
+    },
+    {
+     "team": "SQ",
+     "pct": 0.19659933786293532
+    }
+   ],
+   "R16": [
+    {
+     "team": "CH",
+     "pct": 0.11832007813590066
+    },
+    {
+     "team": "CA",
+     "pct": 0.10099530254406772
+    },
+    {
+     "team": "DE",
+     "pct": 0.0956932235709967
+    }
+   ],
+   "QF": [
+    {
+     "team": "FR",
+     "pct": 0.19503160607158673
+    },
+    {
+     "team": "EC",
+     "pct": 0.10299150461005757
+    },
+    {
+     "team": "DE",
+     "pct": 0.0947376897370858
+    }
+   ],
+   "SF": [
+    {
+     "team": "ES",
+     "pct": 0.27305084745762714
+    },
+    {
+     "team": "AR",
+     "pct": 0.1252542372881356
+    },
+    {
+     "team": "PT",
+     "pct": 0.06745762711864407
+    }
+   ],
+   "3P": [
+    {
+     "team": "AR",
+     "pct": 0.07709447415329768
+    },
+    {
+     "team": "EN",
+     "pct": 0.06283422459893048
+    },
+    {
+     "team": "NL",
+     "pct": 0.06209150326797386
+    }
+   ],
+   "F": [
+    {
+     "team": "AR",
+     "pct": 0.14917127071823205
+    },
+    {
+     "team": "ES",
+     "pct": 0.10734017363851618
+    },
+    {
+     "team": "FR",
+     "pct": 0.07675611681136543
+    }
+   ]
+  },
+  "knocked_out_by": [
+   {
+    "team": "BR",
+    "pct": 0.2132799639993842
+   },
+   {
+    "team": "FR",
+    "pct": 0.12942458226259132
+   },
+   {
+    "team": "MA",
+    "pct": 0.10694788200324479
+   },
+   {
+    "team": "SQ",
+    "pct": 0.08035005861942375
+   },
+   {
+    "team": "NO",
+    "pct": 0.055374631408168826
+   }
+  ],
+  "first_round_excerpt": {
+   "opponent": "BR",
+   "meet_in_r32_pct": 0.29737,
+   "win_pct_when_met": 0.41170931835760166
+  },
+  "name": "Japan",
+  "excerpt_text": "Japan's single biggest risk is the round of 32, where 43.7% of its runs end. Brazil is the team that ends its tournament most often, 21.3% of eliminations. The two meet in the round of 32 in 29.7% of all runs, and Japan wins 41% of those meetings."
+ },
+ "team_SE": {
+  "team": "SE",
+  "group": "F",
+  "elo": 1712.0,
+  "champion_pct": 0.00213,
+  "fates": {
+   "gs4": 0.32347,
+   "gs3_out": 0.12487,
+   "r32": 0.39259,
+   "r16": 0.09566,
+   "qf": 0.04172,
+   "fourth": 0.01012,
+   "third": 0.00493,
+   "runner_up": 0.00451,
+   "champion": 0.00213
+  },
+  "reach": {
+   "R32": 0.55166,
+   "R16": 0.15907,
+   "QF": 0.06341,
+   "SF": 0.02169,
+   "F": 0.00664
+  },
+  "opponents_by_round": {
+   "R32": [
+    {
+     "team": "BR",
+     "pct": 0.2711633977449879
+    },
+    {
+     "team": "FR",
+     "pct": 0.2121959177754414
+    },
+    {
+     "team": "MA",
+     "pct": 0.15466047928071638
+    }
+   ],
+   "R16": [
+    {
+     "team": "EC",
+     "pct": 0.14949393348840134
+    },
+    {
+     "team": "DE",
+     "pct": 0.14811089457471555
+    },
+    {
+     "team": "NO",
+     "pct": 0.08543408562268184
+    }
+   ],
+   "QF": [
+    {
+     "team": "FR",
+     "pct": 0.12332439678284182
+    },
+    {
+     "team": "MX",
+     "pct": 0.10124586027440467
+    },
+    {
+     "team": "EN",
+     "pct": 0.10108815644220155
+    }
+   ],
+   "SF": [
+    {
+     "team": "ES",
+     "pct": 0.2512678653757492
+    },
+    {
+     "team": "AR",
+     "pct": 0.13600737667127707
+    },
+    {
+     "team": "PT",
+     "pct": 0.07976025818349469
+    }
+   ],
+   "3P": [
+    {
+     "team": "AR",
+     "pct": 0.07973421926910298
+    },
+    {
+     "team": "FR",
+     "pct": 0.06777408637873754
+    },
+    {
+     "team": "ES",
+     "pct": 0.06312292358803986
+    }
+   ],
+   "F": [
+    {
+     "team": "ES",
+     "pct": 0.13102409638554216
+    },
+    {
+     "team": "AR",
+     "pct": 0.12349397590361445
+    },
+    {
+     "team": "FR",
+     "pct": 0.08283132530120482
+    }
+   ]
+  },
+  "knocked_out_by": [
+   {
+    "team": "FR",
+    "pct": 0.21330955543828362
+   },
+   {
+    "team": "BR",
+    "pct": 0.20928793696431497
+   },
+   {
+    "team": "MA",
+    "pct": 0.09588193547213072
+   },
+   {
+    "team": "NO",
+    "pct": 0.08623733008207013
+   },
+   {
+    "team": "SQ",
+    "pct": 0.07226175095081251
+   }
+  ],
+  "first_round_excerpt": {
+   "opponent": "FR",
+   "meet_in_r32_pct": 0.11706,
+   "win_pct_when_met": 0.143089014180762
+  },
+  "name": "Sweden",
+  "excerpt_text": "Sweden's single biggest risk is the round of 32, where 39.3% of its runs end. France is the team that ends its tournament most often, 21.3% of eliminations. The two meet in the round of 32 in 11.7% of all runs, and Sweden wins 14% of those meetings."
+ },
+ "team_TN": {
+  "team": "TN",
+  "group": "F",
+  "elo": 1628.0,
+  "champion_pct": 0.00066,
+  "fates": {
+   "gs4": 0.52408,
+   "gs3_out": 0.11682,
+   "r32": 0.27891,
+   "r16": 0.05497,
+   "qf": 0.01743,
+   "fourth": 0.00427,
+   "third": 0.00151,
+   "runner_up": 0.00135,
+   "champion": 0.00066
+  },
+  "reach": {
+   "R32": 0.3591,
+   "R16": 0.08019,
+   "QF": 0.02522,
+   "SF": 0.00779,
+   "F": 0.00201
+  },
+  "opponents_by_round": {
+   "R32": [
+    {
+     "team": "BR",
+     "pct": 0.25605680868838765
+    },
+    {
+     "team": "FR",
+     "pct": 0.23355611250348093
+    },
+    {
+     "team": "MA",
+     "pct": 0.13686995265942634
+    }
+   ],
+   "R16": [
+    {
+     "team": "DE",
+     "pct": 0.1627384960718294
+    },
+    {
+     "team": "EC",
+     "pct": 0.15937149270482603
+    },
+    {
+     "team": "FR",
+     "pct": 0.09228083302157376
+    }
+   ],
+   "QF": [
+    {
+     "team": "FR",
+     "pct": 0.12490087232355274
+    },
+    {
+     "team": "EN",
+     "pct": 0.1070578905630452
+    },
+    {
+     "team": "MX",
+     "pct": 0.08406026962727994
+    }
+   ],
+   "SF": [
+    {
+     "team": "ES",
+     "pct": 0.21566110397946084
+    },
+    {
+     "team": "AR",
+     "pct": 0.13222079589216945
+    },
+    {
+     "team": "CO",
+     "pct": 0.0821566110397946
+    }
+   ],
+   "3P": [
+    {
+     "team": "FR",
+     "pct": 0.07439446366782007
+    },
+    {
+     "team": "AR",
+     "pct": 0.06055363321799308
+    },
+    {
+     "team": "ES",
+     "pct": 0.058823529411764705
+    }
+   ],
+   "F": [
+    {
+     "team": "AR",
+     "pct": 0.12935323383084577
+    },
+    {
+     "team": "ES",
+     "pct": 0.09950248756218906
+    },
+    {
+     "team": "FR",
+     "pct": 0.0945273631840796
+    }
+   ]
+  },
+  "knocked_out_by": [
+   {
+    "team": "FR",
+    "pct": 0.23381877022653721
+   },
+   {
+    "team": "BR",
+    "pct": 0.20935163486218056
+   },
+   {
+    "team": "NO",
+    "pct": 0.10032362459546926
+   },
+   {
+    "team": "MA",
+    "pct": 0.0946880928467805
+   },
+   {
+    "team": "SQ",
+    "pct": 0.0715879924115612
+   }
+  ],
+  "first_round_excerpt": {
+   "opponent": "FR",
+   "meet_in_r32_pct": 0.08387,
+   "win_pct_when_met": 0.10647430547275545
+  },
+  "name": "Tunisia",
+  "excerpt_text": "Tunisia's most common ending is fourth in its group, 52.4% of its runs. It got out of the group in 35.9% of them, and when it did, France was the team that ended its tournament most often (23.4% of eliminations)."
+ },
+ "team_BE": {
+  "team": "BE",
+  "group": "G",
+  "elo": 1893.0,
+  "champion_pct": 0.02024,
+  "fates": {
+   "gs4": 0.06126,
+   "gs3_out": 0.029,
+   "r32": 0.3581,
+   "r16": 0.28689,
+   "qf": 0.16247,
+   "fourth": 0.02951,
+   "third": 0.02529,
+   "runner_up": 0.02724,
+   "champion": 0.02024
+  },
+  "reach": {
+   "R32": 0.90974,
+   "R16": 0.55164,
+   "QF": 0.26475,
+   "SF": 0.10228,
+   "F": 0.04748
+  },
+  "opponents_by_round": {
+   "R32": [
+    {
+     "team": "CZ",
+     "pct": 0.13165299975817266
+    },
+    {
+     "team": "KR",
+     "pct": 0.1265746257172379
+    },
+    {
+     "team": "TR",
+     "pct": 0.08114406313891881
+    }
+   ],
+   "R16": [
+    {
+     "team": "TR",
+     "pct": 0.18985207744180987
+    },
+    {
+     "team": "AR",
+     "pct": 0.14299180625045319
+    },
+    {
+     "team": "PY",
+     "pct": 0.10833152055688493
+    }
+   ],
+   "QF": [
+    {
+     "team": "ES",
+     "pct": 0.3604532577903683
+    },
+    {
+     "team": "CO",
+     "pct": 0.09854579792256846
+    },
+    {
+     "team": "PT",
+     "pct": 0.09801699716713881
+    }
+   ],
+   "SF": [
+    {
+     "team": "FR",
+     "pct": 0.1859601095033242
+    },
+    {
+     "team": "NL",
+     "pct": 0.1009972624168948
+    },
+    {
+     "team": "EC",
+     "pct": 0.07880328509972624
+    }
+   ],
+   "3P": [
+    {
+     "team": "AR",
+     "pct": 0.08467153284671533
+    },
+    {
+     "team": "EN",
+     "pct": 0.07244525547445256
+    },
+    {
+     "team": "BR",
+     "pct": 0.05894160583941606
+    }
+   ],
+   "F": [
+    {
+     "team": "AR",
+     "pct": 0.15754001684919966
+    },
+    {
+     "team": "ES",
+     "pct": 0.09941027801179445
+    },
+    {
+     "team": "EN",
+     "pct": 0.07729570345408593
+    }
+   ]
+  },
+  "knocked_out_by": [
+   {
+    "team": "TR",
+    "pct": 0.10993816750983698
+   },
+   {
+    "team": "ES",
+    "pct": 0.09772906127037662
+   },
+   {
+    "team": "AR",
+    "pct": 0.09159078133783025
+   },
+   {
+    "team": "PY",
+    "pct": 0.07033164699269252
+   },
+   {
+    "team": "US",
+    "pct": 0.06942102304665543
+   }
+  ],
+  "first_round_excerpt": {
+   "opponent": "TR",
+   "meet_in_r32_pct": 0.07382,
+   "win_pct_when_met": 0.45854781901923597
+  },
+  "name": "Belgium",
+  "excerpt_text": "Belgium's single biggest risk is the round of 32, where 35.8% of its runs end. Turkey is the team that ends its tournament most often, 11.0% of eliminations. The two meet in the round of 32 in 7.4% of all runs, and Belgium wins 46% of those meetings."
+ },
+ "team_IR": {
+  "team": "IR",
+  "group": "G",
+  "elo": 1772.0,
+  "champion_pct": 0.00502,
+  "fates": {
+   "gs4": 0.15101,
+   "gs3_out": 0.06881,
+   "r32": 0.42776,
+   "r16": 0.22704,
+   "qf": 0.08565,
+   "fourth": 0.01536,
+   "third": 0.00949,
+   "runner_up": 0.00986,
+   "champion": 0.00502
+  },
+  "reach": {
+   "R32": 0.78018,
+   "R16": 0.35242,
+   "QF": 0.12538,
+   "SF": 0.03973,
+   "F": 0.01488
+  },
+  "opponents_by_round": {
+   "R32": [
+    {
+     "team": "TR",
+     "pct": 0.11308928708759516
+    },
+    {
+     "team": "PY",
+     "pct": 0.10874413596862263
+    },
+    {
+     "team": "US",
+     "pct": 0.10630880053321029
+    }
+   ],
+   "R16": [
+    {
+     "team": "AR",
+     "pct": 0.2111117416718688
+    },
+    {
+     "team": "TR",
+     "pct": 0.12811418194200103
+    },
+    {
+     "team": "PY",
+     "pct": 0.07845752227455877
+    }
+   ],
+   "QF": [
+    {
+     "team": "ES",
+     "pct": 0.2745254426543308
+    },
+    {
+     "team": "PT",
+     "pct": 0.10894879566118998
+    },
+    {
+     "team": "CO",
+     "pct": 0.10695485723400862
+    }
+   ],
+   "SF": [
+    {
+     "team": "FR",
+     "pct": 0.14145482003523785
+    },
+    {
+     "team": "BR",
+     "pct": 0.09438711301283664
+    },
+    {
+     "team": "EN",
+     "pct": 0.08180216461112509
+    }
+   ],
+   "3P": [
+    {
+     "team": "ES",
+     "pct": 0.07605633802816901
+    },
+    {
+     "team": "AR",
+     "pct": 0.0676056338028169
+    },
+    {
+     "team": "FR",
+     "pct": 0.055533199195171024
+    }
+   ],
+   "F": [
+    {
+     "team": "ES",
+     "pct": 0.1350806451612903
+    },
+    {
+     "team": "AR",
+     "pct": 0.1256720430107527
+    },
+    {
+     "team": "FR",
+     "pct": 0.0913978494623656
+    }
+   ]
+  },
+  "knocked_out_by": [
+   {
+    "team": "TR",
+    "pct": 0.11224779400381857
+   },
+   {
+    "team": "AR",
+    "pct": 0.09416120542855669
+   },
+   {
+    "team": "PY",
+    "pct": 0.08571133701429383
+   },
+   {
+    "team": "US",
+    "pct": 0.0792610557820321
+   },
+   {
+    "team": "CH",
+    "pct": 0.07487486454409412
+   }
+  ],
+  "first_round_excerpt": {
+   "opponent": "TR",
+   "meet_in_r32_pct": 0.08823,
+   "win_pct_when_met": 0.3518077751331747
+  },
+  "name": "Iran",
+  "excerpt_text": "Iran's single biggest risk is the round of 32, where 42.8% of its runs end. Turkey is the team that ends its tournament most often, 11.2% of eliminations. The two meet in the round of 32 in 8.8% of all runs, and Iran wins 35% of those meetings."
+ },
+ "team_EG": {
+  "team": "EG",
+  "group": "G",
+  "elo": 1696.0,
+  "champion_pct": 0.00176,
+  "fates": {
+   "gs4": 0.24868,
+   "gs3_out": 0.10185,
+   "r32": 0.41046,
+   "r16": 0.1691,
+   "qf": 0.0512,
+   "fourth": 0.00836,
+   "third": 0.00444,
+   "runner_up": 0.00415,
+   "champion": 0.00176
+  },
+  "reach": {
+   "R32": 0.64947,
+   "R16": 0.23901,
+   "QF": 0.06991,
+   "SF": 0.01871,
+   "F": 0.00591
+  },
+  "opponents_by_round": {
+   "R32": [
+    {
+     "team": "CH",
+     "pct": 0.13227708747132277
+    },
+    {
+     "team": "CA",
+     "pct": 0.1302600582013026
+    },
+    {
+     "team": "TR",
+     "pct": 0.10965864474109659
+    }
+   ],
+   "R16": [
+    {
+     "team": "AR",
+     "pct": 0.21722940462742144
+    },
+    {
+     "team": "TR",
+     "pct": 0.10710848918455294
+    },
+    {
+     "team": "UY",
+     "pct": 0.07518513869712565
+    }
+   ],
+   "QF": [
+    {
+     "team": "ES",
+     "pct": 0.24746102131311687
+    },
+    {
+     "team": "AR",
+     "pct": 0.11071377485338292
+    },
+    {
+     "team": "PT",
+     "pct": 0.10313259905592906
+    }
+   ],
+   "SF": [
+    {
+     "team": "FR",
+     "pct": 0.13361838588989844
+    },
+    {
+     "team": "EN",
+     "pct": 0.08391234633885623
+    },
+    {
+     "team": "BR",
+     "pct": 0.08177445216461784
+    }
+   ],
+   "3P": [
+    {
+     "team": "ES",
+     "pct": 0.08515625
+    },
+    {
+     "team": "FR",
+     "pct": 0.07109375
+    },
+    {
+     "team": "AR",
+     "pct": 0.06484375
+    }
+   ],
+   "F": [
+    {
+     "team": "ES",
+     "pct": 0.15228426395939088
+    },
+    {
+     "team": "AR",
+     "pct": 0.13705583756345177
+    },
+    {
+     "team": "FR",
+     "pct": 0.0829103214890017
+    }
+   ]
+  },
+  "knocked_out_by": [
+   {
+    "team": "CH",
+    "pct": 0.10558737706689722
+   },
+   {
+    "team": "TR",
+    "pct": 0.1051087678127557
+   },
+   {
+    "team": "CA",
+    "pct": 0.10270028253385002
+   },
+   {
+    "team": "PY",
+    "pct": 0.0868289821061895
+   },
+   {
+    "team": "AR",
+    "pct": 0.08161059733522719
+   }
+  ],
+  "first_round_excerpt": {
+   "opponent": "CH",
+   "meet_in_r32_pct": 0.08591,
+   "win_pct_when_met": 0.25387032941450355
+  },
+  "name": "Egypt",
+  "excerpt_text": "Egypt's single biggest risk is the round of 32, where 41.0% of its runs end. Switzerland is the team that ends its tournament most often, 10.6% of eliminations. The two meet in the round of 32 in 8.6% of all runs, and Egypt wins 25% of those meetings."
+ },
+ "team_NZ": {
+  "team": "NZ",
+  "group": "G",
+  "elo": 1562.0,
+  "champion_pct": 0.00025,
+  "fates": {
+   "gs4": 0.53905,
+   "gs3_out": 0.10486,
+   "r32": 0.26805,
+   "r16": 0.06964,
+   "qf": 0.01482,
+   "fourth": 0.00173,
+   "third": 0.00072,
+   "runner_up": 0.00088,
+   "champion": 0.00025
+  },
+  "reach": {
+   "R32": 0.35609,
+   "R16": 0.08804,
+   "QF": 0.0184,
+   "SF": 0.00358,
+   "F": 0.00113
+  },
+  "opponents_by_round": {
+   "R32": [
+    {
+     "team": "CH",
+     "pct": 0.1762194950714707
+    },
+    {
+     "team": "CA",
+     "pct": 0.17085568255216377
+    },
+    {
+     "team": "TR",
+     "pct": 0.10486113061304726
+    }
+   ],
+   "R16": [
+    {
+     "team": "AR",
+     "pct": 0.20695138573375738
+    },
+    {
+     "team": "PT",
+     "pct": 0.09075420263516583
+    },
+    {
+     "team": "CO",
+     "pct": 0.09041344843253067
+    }
+   ],
+   "QF": [
+    {
+     "team": "ES",
+     "pct": 0.23315217391304346
+    },
+    {
+     "team": "AR",
+     "pct": 0.11739130434782609
+    },
+    {
+     "team": "PT",
+     "pct": 0.0983695652173913
+    }
+   ],
+   "SF": [
+    {
+     "team": "FR",
+     "pct": 0.12011173184357542
+    },
+    {
+     "team": "EN",
+     "pct": 0.10614525139664804
+    },
+    {
+     "team": "BR",
+     "pct": 0.09497206703910614
+    }
+   ],
+   "3P": [
+    {
+     "team": "FR",
+     "pct": 0.09795918367346938
+    },
+    {
+     "team": "ES",
+     "pct": 0.07755102040816327
+    },
+    {
+     "team": "AR",
+     "pct": 0.061224489795918366
+    }
+   ],
+   "F": [
+    {
+     "team": "ES",
+     "pct": 0.10619469026548672
+    },
+    {
+     "team": "AR",
+     "pct": 0.10619469026548672
+    },
+    {
+     "team": "FR",
+     "pct": 0.09734513274336283
+    }
+   ]
+  },
+  "knocked_out_by": [
+   {
+    "team": "CH",
+    "pct": 0.15147257194244604
+   },
+   {
+    "team": "CA",
+    "pct": 0.1447841726618705
+   },
+   {
+    "team": "TR",
+    "pct": 0.09996065647482015
+   },
+   {
+    "team": "PY",
+    "pct": 0.08309914568345324
+   },
+   {
+    "team": "US",
+    "pct": 0.08079473920863309
+   }
+  ],
+  "first_round_excerpt": {
+   "opponent": "CH",
+   "meet_in_r32_pct": 0.06275,
+   "win_pct_when_met": 0.16557768924302788
+  },
+  "name": "New Zealand",
+  "excerpt_text": "New Zealand's most common ending is fourth in its group, 53.9% of its runs. It got out of the group in 35.6% of them, and when it did, Switzerland was the team that ended its tournament most often (15.1% of eliminations)."
+ },
+ "team_ES": {
+  "team": "ES",
+  "group": "H",
+  "elo": 2157.0,
+  "champion_pct": 0.18626,
+  "fates": {
+   "gs4": 0.0036,
+   "gs3_out": 0.00268,
+   "r32": 0.24681,
+   "r16": 0.18896,
+   "qf": 0.13244,
+   "fourth": 0.04346,
+   "third": 0.09339,
+   "runner_up": 0.1024,
+   "champion": 0.18626
+  },
+  "reach": {
+   "R32": 0.99372,
+   "R16": 0.74691,
+   "QF": 0.55795,
+   "SF": 0.42551,
+   "F": 0.28866
+  },
+  "opponents_by_round": {
+   "R32": [
+    {
+     "team": "AT",
+     "pct": 0.31562210683089803
+    },
+    {
+     "team": "AR",
+     "pct": 0.2781970776476271
+    },
+    {
+     "team": "DZ",
+     "pct": 0.23874934589220304
+    }
+   ],
+   "R16": [
+    {
+     "team": "HR",
+     "pct": 0.1830207120001071
+    },
+    {
+     "team": "CO",
+     "pct": 0.17798663828305955
+    },
+    {
+     "team": "PT",
+     "pct": 0.17102462144033417
+    }
+   ],
+   "QF": [
+    {
+     "team": "BE",
+     "pct": 0.1710368312572811
+    },
+    {
+     "team": "TR",
+     "pct": 0.15176987185231652
+    },
+    {
+     "team": "PY",
+     "pct": 0.07916479971323595
+    }
+   ],
+   "SF": [
+    {
+     "team": "FR",
+     "pct": 0.19527155648515898
+    },
+    {
+     "team": "NL",
+     "pct": 0.10899861342859157
+    },
+    {
+     "team": "EC",
+     "pct": 0.08631994547719207
+    }
+   ],
+   "3P": [
+    {
+     "team": "AR",
+     "pct": 0.10573620752648885
+    },
+    {
+     "team": "EN",
+     "pct": 0.07606868834490318
+    },
+    {
+     "team": "BR",
+     "pct": 0.06298867373036171
+    }
+   ],
+   "F": [
+    {
+     "team": "AR",
+     "pct": 0.19891914362918311
+    },
+    {
+     "team": "EN",
+     "pct": 0.09246171967020024
+    },
+    {
+     "team": "PT",
+     "pct": 0.07018637843830111
+    }
+   ]
+  },
+  "knocked_out_by": [
+   {
+    "team": "AR",
+    "pct": 0.19197235776385208
+   },
+   {
+    "team": "AT",
+    "pct": 0.07810913234092091
+   },
+   {
+    "team": "CO",
+    "pct": 0.06662868748916355
+   },
+   {
+    "team": "PT",
+    "pct": 0.06626953657147103
+   },
+   {
+    "team": "EN",
+    "pct": 0.06418893815173507
+   }
+  ],
+  "first_round_excerpt": {
+   "opponent": "AR",
+   "meet_in_r32_pct": 0.27645,
+   "win_pct_when_met": 0.5480557062759993
+  },
+  "name": "Spain",
+  "excerpt_text": "Spain's single biggest risk is the round of 32, where 24.7% of its runs end. Argentina is the team that ends its tournament most often, 19.2% of eliminations. The two meet in the round of 32 in 27.6% of all runs, and Spain wins 55% of those meetings."
+ },
+ "team_UY": {
+  "team": "UY",
+  "group": "H",
+  "elo": 1892.0,
+  "champion_pct": 0.01813,
+  "fates": {
+   "gs4": 0.05739,
+   "gs3_out": 0.05291,
+   "r32": 0.53976,
+   "r16": 0.16135,
+   "qf": 0.09533,
+   "fourth": 0.02776,
+   "third": 0.02218,
+   "runner_up": 0.02519,
+   "champion": 0.01813
+  },
+  "reach": {
+   "R32": 0.8897,
+   "R16": 0.34994,
+   "QF": 0.18859,
+   "SF": 0.09326,
+   "F": 0.04332
+  },
+  "opponents_by_round": {
+   "R32": [
+    {
+     "team": "AR",
+     "pct": 0.5211756771945599
+    },
+    {
+     "team": "AT",
+     "pct": 0.1617736315612004
+    },
+    {
+     "team": "DZ",
+     "pct": 0.11446555018545577
+    }
+   ],
+   "R16": [
+    {
+     "team": "TR",
+     "pct": 0.11396239355318055
+    },
+    {
+     "team": "PY",
+     "pct": 0.09047265245470652
+    },
+    {
+     "team": "US",
+     "pct": 0.08975824427044636
+    }
+   ],
+   "QF": [
+    {
+     "team": "PT",
+     "pct": 0.13293387772416354
+    },
+    {
+     "team": "CO",
+     "pct": 0.12519221591812926
+    },
+    {
+     "team": "CH",
+     "pct": 0.0961344716050692
+    }
+   ],
+   "SF": [
+    {
+     "team": "FR",
+     "pct": 0.12513403388376582
+    },
+    {
+     "team": "BR",
+     "pct": 0.09918507398670384
+    },
+    {
+     "team": "EN",
+     "pct": 0.09435985417113446
+    }
+   ],
+   "3P": [
+    {
+     "team": "ES",
+     "pct": 0.1145374449339207
+    },
+    {
+     "team": "FR",
+     "pct": 0.0816980376451742
+    },
+    {
+     "team": "AR",
+     "pct": 0.05366439727673208
+    }
+   ],
+   "F": [
+    {
+     "team": "ES",
+     "pct": 0.24930747922437674
+    },
+    {
+     "team": "AR",
+     "pct": 0.08748845798707294
+    },
+    {
+     "team": "FR",
+     "pct": 0.0865650969529086
+    }
+   ]
+  },
+  "knocked_out_by": [
+   {
+    "team": "AR",
+    "pct": 0.4009201785284028
+   },
+   {
+    "team": "AT",
+    "pct": 0.07841022522574205
+   },
+   {
+    "team": "DZ",
+    "pct": 0.04823479468086327
+   },
+   {
+    "team": "MX",
+    "pct": 0.037495554000252417
+   },
+   {
+    "team": "PT",
+    "pct": 0.03411085741822229
+   }
+  ],
+  "first_round_excerpt": {
+   "opponent": "AR",
+   "meet_in_r32_pct": 0.46369,
+   "win_pct_when_met": 0.2597856326424982
+  },
+  "name": "Uruguay",
+  "excerpt_text": "Uruguay's single biggest risk is the round of 32, where 54.0% of its runs end. Argentina is the team that ends its tournament most often, 40.1% of eliminations. The two meet in the round of 32 in 46.4% of all runs, and Uruguay wins 26% of those meetings."
+ },
+ "team_CV": {
+  "team": "CV",
+  "group": "H",
+  "elo": 1578.0,
+  "champion_pct": 0.00015,
+  "fates": {
+   "gs4": 0.46386,
+   "gs3_out": 0.21894,
+   "r32": 0.25968,
+   "r16": 0.04374,
+   "qf": 0.01065,
+   "fourth": 0.00177,
+   "third": 0.00058,
+   "runner_up": 0.00063,
+   "champion": 0.00015
+  },
+  "reach": {
+   "R32": 0.3172,
+   "R16": 0.05752,
+   "QF": 0.01378,
+   "SF": 0.00313,
+   "F": 0.00078
+  },
+  "opponents_by_round": {
+   "R32": [
+    {
+     "team": "AR",
+     "pct": 0.27887767969735183
+    },
+    {
+     "team": "MX",
+     "pct": 0.20993064312736445
+    },
+    {
+     "team": "BE",
+     "pct": 0.08092686002522068
+    }
+   ],
+   "R16": [
+    {
+     "team": "EN",
+     "pct": 0.1860222531293463
+    },
+    {
+     "team": "TR",
+     "pct": 0.10587621696801112
+    },
+    {
+     "team": "HR",
+     "pct": 0.10100834492350487
+    }
+   ],
+   "QF": [
+    {
+     "team": "PT",
+     "pct": 0.10377358490566038
+    },
+    {
+     "team": "ES",
+     "pct": 0.10159651669085631
+    },
+    {
+     "team": "CO",
+     "pct": 0.09216255442670537
+    }
+   ],
+   "SF": [
+    {
+     "team": "FR",
+     "pct": 0.08306709265175719
+    },
+    {
+     "team": "ES",
+     "pct": 0.07028753993610223
+    },
+    {
+     "team": "NL",
+     "pct": 0.0670926517571885
+    }
+   ],
+   "3P": [
+    {
+     "team": "FR",
+     "pct": 0.09787234042553192
+    },
+    {
+     "team": "ES",
+     "pct": 0.0851063829787234
+    },
+    {
+     "team": "BR",
+     "pct": 0.06382978723404255
+    }
+   ],
+   "F": [
+    {
+     "team": "ES",
+     "pct": 0.1794871794871795
+    },
+    {
+     "team": "AR",
+     "pct": 0.14102564102564102
+    },
+    {
+     "team": "FR",
+     "pct": 0.0641025641025641
+    }
+   ]
+  },
+  "knocked_out_by": [
+   {
+    "team": "AR",
+    "pct": 0.25838195868159597
+   },
+   {
+    "team": "MX",
+    "pct": 0.1809493770698628
+   },
+   {
+    "team": "BE",
+    "pct": 0.07109288755716764
+   },
+   {
+    "team": "AT",
+    "pct": 0.05156915313042107
+   },
+   {
+    "team": "FR",
+    "pct": 0.04696420123008989
+   }
+  ],
+  "first_round_excerpt": {
+   "opponent": "AR",
+   "meet_in_r32_pct": 0.08846,
+   "win_pct_when_met": 0.0815057653176577
+  },
+  "name": "Cape Verde",
+  "excerpt_text": "Cape Verde's most common ending is fourth in its group, 46.4% of its runs. It got out of the group in 31.7% of them, and when it did, Argentina was the team that ended its tournament most often (25.8% of eliminations)."
+ },
+ "team_SA": {
+  "team": "SA",
+  "group": "H",
+  "elo": 1576.0,
+  "champion_pct": 0.00018,
+  "fates": {
+   "gs4": 0.47515,
+   "gs3_out": 0.2113,
+   "r32": 0.25703,
+   "r16": 0.04252,
+   "qf": 0.01085,
+   "fourth": 0.00173,
+   "third": 0.00065,
+   "runner_up": 0.00059,
+   "champion": 0.00018
+  },
+  "reach": {
+   "R32": 0.31355,
+   "R16": 0.05652,
+   "QF": 0.014,
+   "SF": 0.00315,
+   "F": 0.00077
+  },
+  "opponents_by_round": {
+   "R32": [
+    {
+     "team": "AR",
+     "pct": 0.27718067293892523
+    },
+    {
+     "team": "MX",
+     "pct": 0.21298038590336468
+    },
+    {
+     "team": "BE",
+     "pct": 0.08103970658587147
+    }
+   ],
+   "R16": [
+    {
+     "team": "EN",
+     "pct": 0.17834394904458598
+    },
+    {
+     "team": "TR",
+     "pct": 0.11518046709129512
+    },
+    {
+     "team": "HR",
+     "pct": 0.09943382873319179
+    }
+   ],
+   "QF": [
+    {
+     "team": "ES",
+     "pct": 0.10071428571428571
+    },
+    {
+     "team": "CO",
+     "pct": 0.09928571428571428
+    },
+    {
+     "team": "PT",
+     "pct": 0.09785714285714285
+    }
+   ],
+   "SF": [
+    {
+     "team": "FR",
+     "pct": 0.12698412698412698
+    },
+    {
+     "team": "BR",
+     "pct": 0.09523809523809523
+    },
+    {
+     "team": "EN",
+     "pct": 0.08888888888888889
+    }
+   ],
+   "3P": [
+    {
+     "team": "ES",
+     "pct": 0.08823529411764706
+    },
+    {
+     "team": "FR",
+     "pct": 0.08823529411764706
+    },
+    {
+     "team": "AR",
+     "pct": 0.06302521008403361
+    }
+   ],
+   "F": [
+    {
+     "team": "ES",
+     "pct": 0.2597402597402597
+    },
+    {
+     "team": "AR",
+     "pct": 0.1038961038961039
+    },
+    {
+     "team": "FR",
+     "pct": 0.09090909090909091
+    }
+   ]
+  },
+  "knocked_out_by": [
+   {
+    "team": "AR",
+    "pct": 0.2547148737913648
+   },
+   {
+    "team": "MX",
+    "pct": 0.18524427992468967
+   },
+   {
+    "team": "BE",
+    "pct": 0.07205539777260107
+   },
+   {
+    "team": "AT",
+    "pct": 0.05198327855250981
+   },
+   {
+    "team": "KR",
+    "pct": 0.04729233813064428
+   }
+  ],
+  "first_round_excerpt": {
+   "opponent": "AR",
+   "meet_in_r32_pct": 0.08691,
+   "win_pct_when_met": 0.08756184558738925
+  },
+  "name": "Saudi Arabia",
+  "excerpt_text": "Saudi Arabia's most common ending is fourth in its group, 47.5% of its runs. It got out of the group in 31.4% of them, and when it did, Argentina was the team that ended its tournament most often (25.5% of eliminations)."
+ },
+ "team_FR": {
+  "team": "FR",
+  "group": "I",
+  "elo": 2064.0,
+  "champion_pct": 0.09752,
+  "fates": {
+   "gs4": 0.03426,
+   "gs3_out": 0.01992,
+   "r32": 0.23911,
+   "r16": 0.2455,
+   "qf": 0.15604,
+   "fourth": 0.05291,
+   "third": 0.08113,
+   "runner_up": 0.07361,
+   "champion": 0.09752
+  },
+  "reach": {
+   "R32": 0.94582,
+   "R16": 0.70671,
+   "QF": 0.46121,
+   "SF": 0.30517,
+   "F": 0.17113
+  },
+  "opponents_by_round": {
+   "R32": [
+    {
+     "team": "SE",
+     "pct": 0.12376562136558754
+    },
+    {
+     "team": "DE",
+     "pct": 0.10351863991034235
+    },
+    {
+     "team": "EC",
+     "pct": 0.09980757437990315
+    }
+   ],
+   "R16": [
+    {
+     "team": "EC",
+     "pct": 0.21028427502087135
+    },
+    {
+     "team": "DE",
+     "pct": 0.19931796635111998
+    },
+    {
+     "team": "BR",
+     "pct": 0.11924268794838053
+    }
+   ],
+   "QF": [
+    {
+     "team": "NL",
+     "pct": 0.14782853797619305
+    },
+    {
+     "team": "JP",
+     "pct": 0.1050280783157347
+    },
+    {
+     "team": "MX",
+     "pct": 0.09913054790659352
+    }
+   ],
+   "SF": [
+    {
+     "team": "ES",
+     "pct": 0.27227446996755905
+    },
+    {
+     "team": "AR",
+     "pct": 0.10925058164301865
+    },
+    {
+     "team": "PT",
+     "pct": 0.06330897532522856
+    }
+   ],
+   "3P": [
+    {
+     "team": "AR",
+     "pct": 0.0810205908683975
+    },
+    {
+     "team": "EN",
+     "pct": 0.07139659803043867
+    },
+    {
+     "team": "BR",
+     "pct": 0.06177260519247986
+    }
+   ],
+   "F": [
+    {
+     "team": "AR",
+     "pct": 0.16542979021796295
+    },
+    {
+     "team": "ES",
+     "pct": 0.10132647694734996
+    },
+    {
+     "team": "EN",
+     "pct": 0.08017296791912581
+    }
+   ]
+  },
+  "knocked_out_by": [
+   {
+    "team": "EC",
+    "pct": 0.11340327714252034
+   },
+   {
+    "team": "DE",
+    "pct": 0.11044441824826123
+   },
+   {
+    "team": "ES",
+    "pct": 0.0740304137687139
+   },
+   {
+    "team": "NL",
+    "pct": 0.06819521395732642
+   },
+   {
+    "team": "BR",
+    "pct": 0.06773547094188377
+   }
+  ],
+  "first_round_excerpt": {
+   "opponent": "EC",
+   "meet_in_r32_pct": 0.0944,
+   "win_pct_when_met": 0.6228813559322034
+  },
+  "name": "France",
+  "excerpt_text": "France's single biggest risk is the round of 16, where 24.6% of its runs end. Ecuador is the team that ends its tournament most often, 11.3% of eliminations. The two meet in the round of 32 in 9.4% of all runs, and France wins 62% of those meetings."
+ },
+ "team_NO": {
+  "team": "NO",
+  "group": "I",
+  "elo": 1914.0,
+  "champion_pct": 0.02501,
+  "fates": {
+   "gs4": 0.1108,
+   "gs3_out": 0.072,
+   "r32": 0.34895,
+   "r16": 0.22262,
+   "qf": 0.11878,
+   "fourth": 0.03661,
+   "third": 0.03369,
+   "runner_up": 0.03154,
+   "champion": 0.02501
+  },
+  "reach": {
+   "R32": 0.8172,
+   "R16": 0.46825,
+   "QF": 0.24563,
+   "SF": 0.12685,
+   "F": 0.05655
+  },
+  "opponents_by_round": {
+   "R32": [
+    {
+     "team": "DE",
+     "pct": 0.16215124816446402
+    },
+    {
+     "team": "EC",
+     "pct": 0.15630200685266765
+    },
+    {
+     "team": "CI",
+     "pct": 0.09845814977973569
+    }
+   ],
+   "R16": [
+    {
+     "team": "BR",
+     "pct": 0.18492258408969567
+    },
+    {
+     "team": "EC",
+     "pct": 0.1189535504538174
+    },
+    {
+     "team": "DE",
+     "pct": 0.11325146823278164
+    }
+   ],
+   "QF": [
+    {
+     "team": "EN",
+     "pct": 0.12140210886292391
+    },
+    {
+     "team": "MX",
+     "pct": 0.11985506656353051
+    },
+    {
+     "team": "NL",
+     "pct": 0.09331107763709645
+    }
+   ],
+   "SF": [
+    {
+     "team": "ES",
+     "pct": 0.18510051241623965
+    },
+    {
+     "team": "AR",
+     "pct": 0.15782420181316514
+    },
+    {
+     "team": "CO",
+     "pct": 0.07560110366574695
+    }
+   ],
+   "3P": [
+    {
+     "team": "FR",
+     "pct": 0.11322901849217638
+    },
+    {
+     "team": "ES",
+     "pct": 0.07496443812233286
+    },
+    {
+     "team": "AR",
+     "pct": 0.059317211948790895
+    }
+   ],
+   "F": [
+    {
+     "team": "ES",
+     "pct": 0.14412024756852343
+    },
+    {
+     "team": "FR",
+     "pct": 0.14217506631299734
+    },
+    {
+     "team": "AR",
+     "pct": 0.1129973474801061
+    }
+   ]
+  },
+  "knocked_out_by": [
+   {
+    "team": "DE",
+    "pct": 0.12053926457036822
+   },
+   {
+    "team": "EC",
+    "pct": 0.11839331473510142
+   },
+   {
+    "team": "BR",
+    "pct": 0.07542382509246519
+   },
+   {
+    "team": "EN",
+    "pct": 0.06869564119718755
+   },
+   {
+    "team": "NL",
+    "pct": 0.049621934131963294
+   }
+  ],
+  "first_round_excerpt": {
+   "opponent": "DE",
+   "meet_in_r32_pct": 0.13251,
+   "win_pct_when_met": 0.5061504792091163
+  },
+  "name": "Norway",
+  "excerpt_text": "Norway's single biggest risk is the round of 32, where 34.9% of its runs end. Germany is the team that ends its tournament most often, 12.1% of eliminations. The two meet in the round of 32 in 13.3% of all runs, and Norway wins 51% of those meetings."
+ },
+ "team_SN": {
+  "team": "SN",
+  "group": "I",
+  "elo": 1860.0,
+  "champion_pct": 0.01403,
+  "fates": {
+   "gs4": 0.16148,
+   "gs3_out": 0.10246,
+   "r32": 0.36302,
+   "r16": 0.1933,
+   "qf": 0.09671,
+   "fourth": 0.02631,
+   "third": 0.02241,
+   "runner_up": 0.02028,
+   "champion": 0.01403
+  },
+  "reach": {
+   "R32": 0.73606,
+   "R16": 0.37304,
+   "QF": 0.17974,
+   "SF": 0.08303,
+   "F": 0.03431
+  },
+  "opponents_by_round": {
+   "R32": [
+    {
+     "team": "DE",
+     "pct": 0.15396842648697118
+    },
+    {
+     "team": "EC",
+     "pct": 0.14801782463386137
+    },
+    {
+     "team": "CI",
+     "pct": 0.0936744287150504
+    }
+   ],
+   "R16": [
+    {
+     "team": "BR",
+     "pct": 0.17947137036242763
+    },
+    {
+     "team": "DE",
+     "pct": 0.09631674887411537
+    },
+    {
+     "team": "EC",
+     "pct": 0.09572699978554579
+    }
+   ],
+   "QF": [
+    {
+     "team": "EN",
+     "pct": 0.12028485590297096
+    },
+    {
+     "team": "MX",
+     "pct": 0.11811505507955937
+    },
+    {
+     "team": "NL",
+     "pct": 0.0781128296428174
+    }
+   ],
+   "SF": [
+    {
+     "team": "ES",
+     "pct": 0.16668673973262677
+    },
+    {
+     "team": "AR",
+     "pct": 0.16211008069372515
+    },
+    {
+     "team": "PT",
+     "pct": 0.07924846441045405
+    }
+   ],
+   "3P": [
+    {
+     "team": "FR",
+     "pct": 0.10385878489326765
+    },
+    {
+     "team": "ES",
+     "pct": 0.07491789819376027
+    },
+    {
+     "team": "AR",
+     "pct": 0.057060755336617405
+    }
+   ],
+   "F": [
+    {
+     "team": "ES",
+     "pct": 0.1638006412124745
+    },
+    {
+     "team": "FR",
+     "pct": 0.12736811425240455
+    },
+    {
+     "team": "AR",
+     "pct": 0.10346837656659866
+    }
+   ]
+  },
+  "knocked_out_by": [
+   {
+    "team": "DE",
+    "pct": 0.11489827292494771
+   },
+   {
+    "team": "EC",
+    "pct": 0.11193440715759732
+   },
+   {
+    "team": "EN",
+    "pct": 0.07841779427447614
+   },
+   {
+    "team": "BR",
+    "pct": 0.06855670817002063
+   },
+   {
+    "team": "NL",
+    "pct": 0.041452571222802374
+   }
+  ],
+  "first_round_excerpt": {
+   "opponent": "DE",
+   "meet_in_r32_pct": 0.11333,
+   "win_pct_when_met": 0.46280772963910705
+  },
+  "name": "Senegal",
+  "excerpt_text": "Senegal's single biggest risk is the round of 32, where 36.3% of its runs end. Germany is the team that ends its tournament most often, 11.5% of eliminations. The two meet in the round of 32 in 11.3% of all runs, and Senegal wins 46% of those meetings."
+ },
+ "team_IQ": {
+  "team": "IQ",
+  "group": "I",
+  "elo": 1607.0,
+  "champion_pct": 0.00032,
+  "fates": {
+   "gs4": 0.69346,
+   "gs3_out": 0.09511,
+   "r32": 0.15478,
+   "r16": 0.0397,
+   "qf": 0.01259,
+   "fourth": 0.00235,
+   "third": 0.0009,
+   "runner_up": 0.00079,
+   "champion": 0.00032
+  },
+  "reach": {
+   "R32": 0.21143,
+   "R16": 0.05665,
+   "QF": 0.01695,
+   "SF": 0.00436,
+   "F": 0.00111
+  },
+  "opponents_by_round": {
+   "R32": [
+    {
+     "team": "DE",
+     "pct": 0.13158019202572954
+    },
+    {
+     "team": "EC",
+     "pct": 0.13058695549354396
+    },
+    {
+     "team": "EN",
+     "pct": 0.1081208910750603
+    }
+   ],
+   "R16": [
+    {
+     "team": "BR",
+     "pct": 0.1703442188879082
+    },
+    {
+     "team": "EC",
+     "pct": 0.06425419240953222
+    },
+    {
+     "team": "MA",
+     "pct": 0.06425419240953222
+    }
+   ],
+   "QF": [
+    {
+     "team": "MX",
+     "pct": 0.13038348082595871
+    },
+    {
+     "team": "EN",
+     "pct": 0.11976401179941003
+    },
+    {
+     "team": "ES",
+     "pct": 0.08495575221238938
+    }
+   ],
+   "SF": [
+    {
+     "team": "AR",
+     "pct": 0.18807339449541285
+    },
+    {
+     "team": "ES",
+     "pct": 0.13302752293577982
+    },
+    {
+     "team": "CO",
+     "pct": 0.10091743119266056
+    }
+   ],
+   "3P": [
+    {
+     "team": "FR",
+     "pct": 0.10153846153846154
+    },
+    {
+     "team": "ES",
+     "pct": 0.06769230769230769
+    },
+    {
+     "team": "EC",
+     "pct": 0.052307692307692305
+    }
+   ],
+   "F": [
+    {
+     "team": "ES",
+     "pct": 0.23423423423423423
+    },
+    {
+     "team": "FR",
+     "pct": 0.11711711711711711
+    },
+    {
+     "team": "AR",
+     "pct": 0.11711711711711711
+    }
+   ]
+  },
+  "knocked_out_by": [
+   {
+    "team": "EC",
+    "pct": 0.11297427881199375
+   },
+   {
+    "team": "DE",
+    "pct": 0.11093742598645256
+   },
+   {
+    "team": "EN",
+    "pct": 0.10515844820235896
+   },
+   {
+    "team": "PT",
+    "pct": 0.06143716545876557
+   },
+   {
+    "team": "CO",
+    "pct": 0.057031879115153235
+   }
+  ],
+  "first_round_excerpt": {
+   "opponent": "EC",
+   "meet_in_r32_pct": 0.02761,
+   "win_pct_when_met": 0.2448388265121333
+  },
+  "name": "Iraq",
+  "excerpt_text": "Iraq's most common ending is fourth in its group, 69.3% of its runs. It got out of the group in 21.1% of them, and when it did, Ecuador was the team that ended its tournament most often (11.3% of eliminations)."
+ },
+ "team_AR": {
+  "team": "AR",
+  "group": "J",
+  "elo": 2115.0,
+  "champion_pct": 0.13668,
+  "fates": {
+   "gs4": 0.01996,
+   "gs3_out": 0.00898,
+   "r32": 0.30715,
+   "r16": 0.15685,
+   "qf": 0.15453,
+   "fourth": 0.04482,
+   "third": 0.07817,
+   "runner_up": 0.09286,
+   "champion": 0.13668
+  },
+  "reach": {
+   "R32": 0.97106,
+   "R16": 0.66391,
+   "QF": 0.50706,
+   "SF": 0.35253,
+   "F": 0.22954
+  },
+  "opponents_by_round": {
+   "R32": [
+    {
+     "team": "UY",
+     "pct": 0.47750911375198235
+    },
+    {
+     "team": "ES",
+     "pct": 0.2846888966696188
+    },
+    {
+     "team": "CV",
+     "pct": 0.09109632772434247
+    }
+   ],
+   "R16": [
+    {
+     "team": "TR",
+     "pct": 0.14608907833893148
+    },
+    {
+     "team": "PY",
+     "pct": 0.12959587895949753
+    },
+    {
+     "team": "US",
+     "pct": 0.12403789670286636
+    }
+   ],
+   "QF": [
+    {
+     "team": "PT",
+     "pct": 0.18966197294205814
+    },
+    {
+     "team": "CO",
+     "pct": 0.1764091034591567
+    },
+    {
+     "team": "CH",
+     "pct": 0.12775608409261233
+    }
+   ],
+   "SF": [
+    {
+     "team": "EN",
+     "pct": 0.15051201316200039
+    },
+    {
+     "team": "BR",
+     "pct": 0.13048534876464415
+    },
+    {
+     "team": "MX",
+     "pct": 0.09811930899497916
+    }
+   ],
+   "3P": [
+    {
+     "team": "ES",
+     "pct": 0.11765184161313928
+    },
+    {
+     "team": "FR",
+     "pct": 0.08829986177738028
+    },
+    {
+     "team": "NL",
+     "pct": 0.0562647369704854
+    }
+   ],
+   "F": [
+    {
+     "team": "ES",
+     "pct": 0.25015247887078507
+    },
+    {
+     "team": "FR",
+     "pct": 0.12333362376927769
+    },
+    {
+     "team": "NL",
+     "pct": 0.05192994685022218
+    }
+   ]
+  },
+  "knocked_out_by": [
+   {
+    "team": "ES",
+    "pct": 0.22368704906637263
+   },
+   {
+    "team": "UY",
+    "pct": 0.1477384405187085
+   },
+   {
+    "team": "PT",
+    "pct": 0.06207004002972267
+   },
+   {
+    "team": "CO",
+    "pct": 0.05722812147942185
+   },
+   {
+    "team": "EN",
+    "pct": 0.0439008605191879
+   }
+  ],
+  "first_round_excerpt": {
+   "opponent": "ES",
+   "meet_in_r32_pct": 0.27645,
+   "win_pct_when_met": 0.45194429372400075
+  },
+  "name": "Argentina",
+  "excerpt_text": "Argentina's single biggest risk is the round of 32, where 30.7% of its runs end. Spain is the team that ends its tournament most often, 22.4% of eliminations. The two meet in the round of 32 in 27.6% of all runs, and Argentina wins 45% of those meetings."
+ },
+ "team_AT": {
+  "team": "AT",
+  "group": "J",
+  "elo": 1830.0,
+  "champion_pct": 0.00784,
+  "fates": {
+   "gs4": 0.19964,
+   "gs3_out": 0.10295,
+   "r32": 0.45846,
+   "r16": 0.12462,
+   "qf": 0.06479,
+   "fourth": 0.01565,
+   "third": 0.01211,
+   "runner_up": 0.01394,
+   "champion": 0.00784
+  },
+  "reach": {
+   "R32": 0.69741,
+   "R16": 0.23895,
+   "QF": 0.11433,
+   "SF": 0.04954,
+   "F": 0.02178
+  },
+  "opponents_by_round": {
+   "R32": [
+    {
+     "team": "ES",
+     "pct": 0.44972111096772344
+    },
+    {
+     "team": "UY",
+     "pct": 0.20637788388465894
+    },
+    {
+     "team": "CH",
+     "pct": 0.07046070460704607
+    }
+   ],
+   "R16": [
+    {
+     "team": "PT",
+     "pct": 0.1372672107135384
+    },
+    {
+     "team": "CO",
+     "pct": 0.13224523958987236
+    },
+    {
+     "team": "HR",
+     "pct": 0.0886377903327056
+    }
+   ],
+   "QF": [
+    {
+     "team": "AR",
+     "pct": 0.08991515787632293
+    },
+    {
+     "team": "PT",
+     "pct": 0.08676637802851395
+    },
+    {
+     "team": "CO",
+     "pct": 0.0844922592495408
+    }
+   ],
+   "SF": [
+    {
+     "team": "FR",
+     "pct": 0.14170367379895035
+    },
+    {
+     "team": "BR",
+     "pct": 0.09951554299555915
+    },
+    {
+     "team": "EN",
+     "pct": 0.08538554703270085
+    }
+   ],
+   "3P": [
+    {
+     "team": "AR",
+     "pct": 0.08789625360230548
+    },
+    {
+     "team": "ES",
+     "pct": 0.07672910662824207
+    },
+    {
+     "team": "FR",
+     "pct": 0.06159942363112392
+    }
+   ],
+   "F": [
+    {
+     "team": "AR",
+     "pct": 0.16299357208448118
+    },
+    {
+     "team": "ES",
+     "pct": 0.15335169880624427
+    },
+    {
+     "team": "FR",
+     "pct": 0.09366391184573003
+    }
+   ]
+  },
+  "knocked_out_by": [
+   {
+    "team": "ES",
+    "pct": 0.38119407746856737
+   },
+   {
+    "team": "UY",
+    "pct": 0.11570979015908464
+   },
+   {
+    "team": "CH",
+    "pct": 0.051220325710225216
+   },
+   {
+    "team": "CA",
+    "pct": 0.04885653378192207
+   },
+   {
+    "team": "PT",
+    "pct": 0.042664269037226095
+   }
+  ],
+  "first_round_excerpt": {
+   "opponent": "ES",
+   "meet_in_r32_pct": 0.31364,
+   "win_pct_when_met": 0.19315138375207244
+  },
+  "name": "Austria",
+  "excerpt_text": "Austria's single biggest risk is the round of 32, where 45.8% of its runs end. Spain is the team that ends its tournament most often, 38.1% of eliminations. The two meet in the round of 32 in 31.4% of all runs, and Austria wins 19% of those meetings."
+ },
+ "team_DZ": {
+  "team": "DZ",
+  "group": "J",
+  "elo": 1772.0,
+  "champion_pct": 0.0038,
+  "fates": {
+   "gs4": 0.28869,
+   "gs3_out": 0.12782,
+   "r32": 0.40781,
+   "r16": 0.10182,
+   "qf": 0.04573,
+   "fourth": 0.01017,
+   "third": 0.00694,
+   "runner_up": 0.00722,
+   "champion": 0.0038
+  },
+  "reach": {
+   "R32": 0.58349,
+   "R16": 0.17568,
+   "QF": 0.07386,
+   "SF": 0.02813,
+   "F": 0.01102
+  },
+  "opponents_by_round": {
+   "R32": [
+    {
+     "team": "ES",
+     "pct": 0.4066050832062246
+    },
+    {
+     "team": "UY",
+     "pct": 0.17453598176489743
+    },
+    {
+     "team": "CH",
+     "pct": 0.09054139745325541
+    }
+   ],
+   "R16": [
+    {
+     "team": "CO",
+     "pct": 0.1423611111111111
+    },
+    {
+     "team": "PT",
+     "pct": 0.1415072859744991
+    },
+    {
+     "team": "HR",
+     "pct": 0.08196721311475409
+    }
+   ],
+   "QF": [
+    {
+     "team": "AR",
+     "pct": 0.11846737070132683
+    },
+    {
+     "team": "ES",
+     "pct": 0.10032493907392363
+    },
+    {
+     "team": "PT",
+     "pct": 0.08489033306255077
+    }
+   ],
+   "SF": [
+    {
+     "team": "FR",
+     "pct": 0.15854959118378956
+    },
+    {
+     "team": "BR",
+     "pct": 0.10131532172058301
+    },
+    {
+     "team": "EN",
+     "pct": 0.08460718094560966
+    }
+   ],
+   "3P": [
+    {
+     "team": "AR",
+     "pct": 0.08357685563997662
+    },
+    {
+     "team": "FR",
+     "pct": 0.0701344243132671
+    },
+    {
+     "team": "ES",
+     "pct": 0.06545879602571596
+    }
+   ],
+   "F": [
+    {
+     "team": "ES",
+     "pct": 0.1588021778584392
+    },
+    {
+     "team": "AR",
+     "pct": 0.14156079854809436
+    },
+    {
+     "team": "FR",
+     "pct": 0.08257713248638839
+    }
+   ]
+  },
+  "knocked_out_by": [
+   {
+    "team": "ES",
+    "pct": 0.3589677241284135
+   },
+   {
+    "team": "UY",
+    "pct": 0.10852352119236143
+   },
+   {
+    "team": "CH",
+    "pct": 0.0665010609118667
+   },
+   {
+    "team": "CA",
+    "pct": 0.06337870240990874
+   },
+   {
+    "team": "PT",
+    "pct": 0.04041815453086995
+   }
+  ],
+  "first_round_excerpt": {
+   "opponent": "ES",
+   "meet_in_r32_pct": 0.23725,
+   "win_pct_when_met": 0.15629083245521602
+  },
+  "name": "Algeria",
+  "excerpt_text": "Algeria's single biggest risk is the round of 32, where 40.8% of its runs end. Spain is the team that ends its tournament most often, 35.9% of eliminations. The two meet in the round of 32 in 23.7% of all runs, and Algeria wins 16% of those meetings."
+ },
+ "team_JO": {
+  "team": "JO",
+  "group": "J",
+  "elo": 1680.0,
+  "champion_pct": 0.00098,
+  "fates": {
+   "gs4": 0.49171,
+   "gs3_out": 0.12748,
+   "r32": 0.28665,
+   "r16": 0.06097,
+   "qf": 0.0234,
+   "fourth": 0.00433,
+   "third": 0.0021,
+   "runner_up": 0.00238,
+   "champion": 0.00098
+  },
+  "reach": {
+   "R32": 0.38081,
+   "R16": 0.09416,
+   "QF": 0.03319,
+   "SF": 0.00979,
+   "F": 0.00336
+  },
+  "opponents_by_round": {
+   "R32": [
+    {
+     "team": "ES",
+     "pct": 0.37653948163125966
+    },
+    {
+     "team": "UY",
+     "pct": 0.14881436937055226
+    },
+    {
+     "team": "CH",
+     "pct": 0.10871563246763478
+    }
+   ],
+   "R16": [
+    {
+     "team": "PT",
+     "pct": 0.15367459643160578
+    },
+    {
+     "team": "CO",
+     "pct": 0.149214103653356
+    },
+    {
+     "team": "HR",
+     "pct": 0.07933305012744266
+    }
+   ],
+   "QF": [
+    {
+     "team": "ES",
+     "pct": 0.12413377523350407
+    },
+    {
+     "team": "AR",
+     "pct": 0.12292859294968364
+    },
+    {
+     "team": "BE",
+     "pct": 0.07231093702922567
+    }
+   ],
+   "SF": [
+    {
+     "team": "FR",
+     "pct": 0.13789581205311544
+    },
+    {
+     "team": "BR",
+     "pct": 0.09397344228804903
+    },
+    {
+     "team": "NL",
+     "pct": 0.08273748723186926
+    }
+   ],
+   "3P": [
+    {
+     "team": "AR",
+     "pct": 0.08398133748055987
+    },
+    {
+     "team": "FR",
+     "pct": 0.06687402799377916
+    },
+    {
+     "team": "ES",
+     "pct": 0.06376360808709176
+    }
+   ],
+   "F": [
+    {
+     "team": "AR",
+     "pct": 0.18452380952380953
+    },
+    {
+     "team": "ES",
+     "pct": 0.16071428571428573
+    },
+    {
+     "team": "FR",
+     "pct": 0.09821428571428571
+    }
+   ]
+  },
+  "knocked_out_by": [
+   {
+    "team": "ES",
+    "pct": 0.34489113550799044
+   },
+   {
+    "team": "UY",
+    "pct": 0.10270384119211226
+   },
+   {
+    "team": "CH",
+    "pct": 0.08287918279230182
+   },
+   {
+    "team": "CA",
+    "pct": 0.07921965089645368
+   },
+   {
+    "team": "TR",
+    "pct": 0.04064976436827002
+   }
+  ],
+  "first_round_excerpt": {
+   "opponent": "ES",
+   "meet_in_r32_pct": 0.14339,
+   "win_pct_when_met": 0.11534974544947346
+  },
+  "name": "Jordan",
+  "excerpt_text": "Jordan's most common ending is fourth in its group, 49.2% of its runs. It got out of the group in 38.1% of them, and when it did, Spain was the team that ended its tournament most often (34.5% of eliminations)."
+ },
+ "team_PT": {
+  "team": "PT",
+  "group": "K",
+  "elo": 1989.0,
+  "champion_pct": 0.04889,
+  "fates": {
+   "gs4": 0.05447,
+   "gs3_out": 0.03121,
+   "r32": 0.32302,
+   "r16": 0.26123,
+   "qf": 0.15178,
+   "fourth": 0.03713,
+   "third": 0.04335,
+   "runner_up": 0.04892,
+   "champion": 0.04889
+  },
+  "reach": {
+   "R32": 0.91432,
+   "R16": 0.5913,
+   "QF": 0.33007,
+   "SF": 0.17829,
+   "F": 0.09781
+  },
+  "opponents_by_round": {
+   "R32": [
+    {
+     "team": "HR",
+     "pct": 0.27970513605739783
+    },
+    {
+     "team": "PA",
+     "pct": 0.25343424621576693
+    },
+    {
+     "team": "EN",
+     "pct": 0.22938358561553943
+    }
+   ],
+   "R16": [
+    {
+     "team": "ES",
+     "pct": 0.21603247082699137
+    },
+    {
+     "team": "CH",
+     "pct": 0.18290208016235412
+    },
+    {
+     "team": "CA",
+     "pct": 0.1791645526805344
+    }
+   ],
+   "QF": [
+    {
+     "team": "AR",
+     "pct": 0.2913624382706699
+    },
+    {
+     "team": "TR",
+     "pct": 0.08870845578210683
+    },
+    {
+     "team": "BE",
+     "pct": 0.07861968673311721
+    }
+   ],
+   "SF": [
+    {
+     "team": "EN",
+     "pct": 0.1154860059453699
+    },
+    {
+     "team": "FR",
+     "pct": 0.10836277974087162
+    },
+    {
+     "team": "BR",
+     "pct": 0.1038757081159908
+    }
+   ],
+   "3P": [
+    {
+     "team": "ES",
+     "pct": 0.09281809145129225
+    },
+    {
+     "team": "FR",
+     "pct": 0.08250497017892644
+    },
+    {
+     "team": "CO",
+     "pct": 0.0536779324055666
+    }
+   ],
+   "F": [
+    {
+     "team": "ES",
+     "pct": 0.20713628463347306
+    },
+    {
+     "team": "FR",
+     "pct": 0.10714650853695941
+    },
+    {
+     "team": "AR",
+     "pct": 0.07535016869440753
+    }
+   ]
+  },
+  "knocked_out_by": [
+   {
+    "team": "EN",
+    "pct": 0.14642432085783946
+   },
+   {
+    "team": "ES",
+    "pct": 0.13125267208208635
+   },
+   {
+    "team": "HR",
+    "pct": 0.12789018175935662
+   },
+   {
+    "team": "AR",
+    "pct": 0.09313289347491999
+   },
+   {
+    "team": "PA",
+    "pct": 0.06307846966247993
+   }
+  ],
+  "first_round_excerpt": {
+   "opponent": "EN",
+   "meet_in_r32_pct": 0.20973,
+   "win_pct_when_met": 0.45954322223811567
+  },
+  "name": "Portugal",
+  "excerpt_text": "Portugal's single biggest risk is the round of 32, where 32.3% of its runs end. England is the team that ends its tournament most often, 14.6% of eliminations. The two meet in the round of 32 in 21.0% of all runs, and Portugal wins 46% of those meetings."
+ },
+ "team_CO": {
+  "team": "CO",
+  "group": "K",
+  "elo": 1982.0,
+  "champion_pct": 0.04495,
+  "fates": {
+   "gs4": 0.05815,
+   "gs3_out": 0.03272,
+   "r32": 0.33029,
+   "r16": 0.26262,
+   "qf": 0.14623,
+   "fourth": 0.03577,
+   "third": 0.04241,
+   "runner_up": 0.04686,
+   "champion": 0.04495
+  },
+  "reach": {
+   "R32": 0.90913,
+   "R16": 0.57884,
+   "QF": 0.31622,
+   "SF": 0.16999,
+   "F": 0.09181
+  },
+  "opponents_by_round": {
+   "R32": [
+    {
+     "team": "HR",
+     "pct": 0.28757163441971995
+    },
+    {
+     "team": "PA",
+     "pct": 0.2503822335639567
+    },
+    {
+     "team": "EN",
+     "pct": 0.2363468370860053
+    }
+   ],
+   "R16": [
+    {
+     "team": "ES",
+     "pct": 0.22966622900974362
+    },
+    {
+     "team": "CH",
+     "pct": 0.1767673277589662
+    },
+    {
+     "team": "CA",
+     "pct": 0.16997788680809894
+    }
+   ],
+   "QF": [
+    {
+     "team": "AR",
+     "pct": 0.28287268357472645
+    },
+    {
+     "team": "TR",
+     "pct": 0.0864904180633736
+    },
+    {
+     "team": "BE",
+     "pct": 0.08250585035734616
+    }
+   ],
+   "SF": [
+    {
+     "team": "FR",
+     "pct": 0.11265368551091241
+    },
+    {
+     "team": "EN",
+     "pct": 0.10871227719277604
+    },
+    {
+     "team": "BR",
+     "pct": 0.10524148479322314
+    }
+   ],
+   "3P": [
+    {
+     "team": "ES",
+     "pct": 0.09183934510104887
+    },
+    {
+     "team": "FR",
+     "pct": 0.07278076234331031
+    },
+    {
+     "team": "PT",
+     "pct": 0.05525709900230238
+    }
+   ],
+   "F": [
+    {
+     "team": "ES",
+     "pct": 0.19453218603637948
+    },
+    {
+     "team": "FR",
+     "pct": 0.10554405838143993
+    },
+    {
+     "team": "AR",
+     "pct": 0.07842282975710707
+    }
+   ]
+  },
+  "knocked_out_by": [
+   {
+    "team": "EN",
+    "pct": 0.14951746163993612
+   },
+   {
+    "team": "ES",
+    "pct": 0.1325765465528015
+   },
+   {
+    "team": "HR",
+    "pct": 0.13094494202596682
+   },
+   {
+    "team": "AR",
+    "pct": 0.08912495082043093
+   },
+   {
+    "team": "PA",
+    "pct": 0.06579647758568817
+   }
+  ],
+  "first_round_excerpt": {
+   "opponent": "EN",
+   "meet_in_r32_pct": 0.21487,
+   "win_pct_when_met": 0.4567412854283986
+  },
+  "name": "Colombia",
+  "excerpt_text": "Colombia's single biggest risk is the round of 32, where 33.0% of its runs end. England is the team that ends its tournament most often, 15.0% of eliminations. The two meet in the round of 32 in 21.5% of all runs, and Colombia wins 46% of those meetings."
+ },
+ "team_UZ": {
+  "team": "UZ",
+  "group": "K",
+  "elo": 1714.0,
+  "champion_pct": 0.00198,
+  "fates": {
+   "gs4": 0.36601,
+   "gs3_out": 0.14691,
+   "r32": 0.3273,
+   "r16": 0.10834,
+   "qf": 0.03395,
+   "fourth": 0.00727,
+   "third": 0.00421,
+   "runner_up": 0.00403,
+   "champion": 0.00198
+  },
+  "reach": {
+   "R32": 0.48708,
+   "R16": 0.15978,
+   "QF": 0.05144,
+   "SF": 0.01749,
+   "F": 0.00601
+  },
+  "opponents_by_round": {
+   "R32": [
+    {
+     "team": "EN",
+     "pct": 0.40159727354849306
+    },
+    {
+     "team": "HR",
+     "pct": 0.3298842079329884
+    },
+    {
+     "team": "PA",
+     "pct": 0.1747762174591443
+    }
+   ],
+   "R16": [
+    {
+     "team": "ES",
+     "pct": 0.2723119289022406
+    },
+    {
+     "team": "MX",
+     "pct": 0.16447615471273
+    },
+    {
+     "team": "CH",
+     "pct": 0.07648016022030292
+    }
+   ],
+   "QF": [
+    {
+     "team": "AR",
+     "pct": 0.14793934681181958
+    },
+    {
+     "team": "BR",
+     "pct": 0.08942457231726283
+    },
+    {
+     "team": "TR",
+     "pct": 0.06901244167962675
+    }
+   ],
+   "SF": [
+    {
+     "team": "AR",
+     "pct": 0.09719839908519154
+    },
+    {
+     "team": "FR",
+     "pct": 0.09662664379645512
+    },
+    {
+     "team": "EN",
+     "pct": 0.062321326472269865
+    }
+   ],
+   "3P": [
+    {
+     "team": "FR",
+     "pct": 0.08623693379790941
+    },
+    {
+     "team": "ES",
+     "pct": 0.08101045296167247
+    },
+    {
+     "team": "NL",
+     "pct": 0.05662020905923345
+    }
+   ],
+   "F": [
+    {
+     "team": "ES",
+     "pct": 0.16805324459234608
+    },
+    {
+     "team": "AR",
+     "pct": 0.11980033277870217
+    },
+    {
+     "team": "FR",
+     "pct": 0.10815307820299501
+    }
+   ]
+  },
+  "knocked_out_by": [
+   {
+    "team": "EN",
+    "pct": 0.3214388785817357
+   },
+   {
+    "team": "HR",
+    "pct": 0.22857142857142856
+   },
+   {
+    "team": "PA",
+    "pct": 0.08841475984333128
+   },
+   {
+    "team": "ES",
+    "pct": 0.0816120387548959
+   },
+   {
+    "team": "MX",
+    "pct": 0.04079571222428365
+   }
+  ],
+  "first_round_excerpt": {
+   "opponent": "EN",
+   "meet_in_r32_pct": 0.19561,
+   "win_pct_when_met": 0.2073002402740146
+  },
+  "name": "Uzbekistan",
+  "excerpt_text": "Uzbekistan's most common ending is fourth in its group, 36.6% of its runs. It got out of the group in 48.7% of them, and when it did, England was the team that ended its tournament most often (32.1% of eliminations)."
+ },
+ "team_CD": {
+  "team": "CD",
+  "group": "K",
+  "elo": 1652.0,
+  "champion_pct": 0.0006,
+  "fates": {
+   "gs4": 0.52137,
+   "gs3_out": 0.13174,
+   "r32": 0.25072,
+   "r16": 0.0699,
+   "qf": 0.01851,
+   "fourth": 0.00374,
+   "third": 0.00173,
+   "runner_up": 0.00169,
+   "champion": 0.0006
+  },
+  "reach": {
+   "R32": 0.34689,
+   "R16": 0.09617,
+   "QF": 0.02627,
+   "SF": 0.00776,
+   "F": 0.00229
+  },
+  "opponents_by_round": {
+   "R32": [
+    {
+     "team": "EN",
+     "pct": 0.41557842543745854
+    },
+    {
+     "team": "HR",
+     "pct": 0.331661333563954
+    },
+    {
+     "team": "PA",
+     "pct": 0.16725763210239558
+    }
+   ],
+   "R16": [
+    {
+     "team": "ES",
+     "pct": 0.2677550171571176
+    },
+    {
+     "team": "MX",
+     "pct": 0.1789539357387959
+    },
+    {
+     "team": "CA",
+     "pct": 0.07060413850473121
+    }
+   ],
+   "QF": [
+    {
+     "team": "AR",
+     "pct": 0.13894175866006853
+    },
+    {
+     "team": "BR",
+     "pct": 0.09668823753330795
+    },
+    {
+     "team": "TR",
+     "pct": 0.07803578226113438
+    }
+   ],
+   "SF": [
+    {
+     "team": "AR",
+     "pct": 0.13015463917525774
+    },
+    {
+     "team": "FR",
+     "pct": 0.10438144329896908
+    },
+    {
+     "team": "BR",
+     "pct": 0.06829896907216494
+    }
+   ],
+   "3P": [
+    {
+     "team": "ES",
+     "pct": 0.08226691042047532
+    },
+    {
+     "team": "FR",
+     "pct": 0.06398537477148081
+    },
+    {
+     "team": "NL",
+     "pct": 0.06398537477148081
+    }
+   ],
+   "F": [
+    {
+     "team": "ES",
+     "pct": 0.24017467248908297
+    },
+    {
+     "team": "FR",
+     "pct": 0.13100436681222707
+    },
+    {
+     "team": "AR",
+     "pct": 0.07423580786026202
+    }
+   ]
+  },
+  "knocked_out_by": [
+   {
+    "team": "EN",
+    "pct": 0.34696352767911287
+   },
+   {
+    "team": "HR",
+    "pct": 0.24361084640041583
+   },
+   {
+    "team": "PA",
+    "pct": 0.09460278956943602
+   },
+   {
+    "team": "ES",
+    "pct": 0.06956597071818418
+   },
+   {
+    "team": "MX",
+    "pct": 0.039764359351988215
+   }
+  ],
+  "first_round_excerpt": {
+   "opponent": "EN",
+   "meet_in_r32_pct": 0.14416,
+   "win_pct_when_met": 0.16939511653718092
+  },
+  "name": "DR Congo",
+  "excerpt_text": "DR Congo's most common ending is fourth in its group, 52.1% of its runs. It got out of the group in 34.7% of them, and when it did, England was the team that ended its tournament most often (34.7% of eliminations)."
+ },
+ "team_EN": {
+  "team": "EN",
+  "group": "L",
+  "elo": 2024.0,
+  "champion_pct": 0.06518,
+  "fates": {
+   "gs4": 0.02178,
+   "gs3_out": 0.01541,
+   "r32": 0.31435,
+   "r16": 0.26703,
+   "qf": 0.15299,
+   "fourth": 0.04556,
+   "third": 0.0591,
+   "runner_up": 0.0586,
+   "champion": 0.06518
+  },
+  "reach": {
+   "R32": 0.96281,
+   "R16": 0.64846,
+   "QF": 0.38143,
+   "SF": 0.22844,
+   "F": 0.12378
+  },
+  "opponents_by_round": {
+   "R32": [
+    {
+     "team": "CO",
+     "pct": 0.2231696804146197
+    },
+    {
+     "team": "PT",
+     "pct": 0.21783114010033133
+    },
+    {
+     "team": "UZ",
+     "pct": 0.2031657336338426
+    }
+   ],
+   "R16": [
+    {
+     "team": "MX",
+     "pct": 0.32109921968972643
+    },
+    {
+     "team": "ES",
+     "pct": 0.17339542917065046
+    },
+    {
+     "team": "KR",
+     "pct": 0.07093729759738457
+    }
+   ],
+   "QF": [
+    {
+     "team": "BR",
+     "pct": 0.17253493432608866
+    },
+    {
+     "team": "FR",
+     "pct": 0.08457646226044097
+    },
+    {
+     "team": "NO",
+     "pct": 0.07817948247384841
+    }
+   ],
+   "SF": [
+    {
+     "team": "AR",
+     "pct": 0.23227105585711785
+    },
+    {
+     "team": "PT",
+     "pct": 0.09013307651899842
+    },
+    {
+     "team": "CO",
+     "pct": 0.08089651549641044
+    }
+   ],
+   "3P": [
+    {
+     "team": "ES",
+     "pct": 0.0994649340722339
+    },
+    {
+     "team": "FR",
+     "pct": 0.0914389451557424
+    },
+    {
+     "team": "NL",
+     "pct": 0.055704184979935026
+    }
+   ],
+   "F": [
+    {
+     "team": "ES",
+     "pct": 0.21562449507190176
+    },
+    {
+     "team": "FR",
+     "pct": 0.11084181612538374
+    },
+    {
+     "team": "AR",
+     "pct": 0.06333818064307642
+    }
+   ]
+  },
+  "knocked_out_by": [
+   {
+    "team": "CO",
+    "pct": 0.1216982498356784
+   },
+   {
+    "team": "PT",
+    "pct": 0.1208515758163163
+   },
+   {
+    "team": "ES",
+    "pct": 0.11049095952675378
+   },
+   {
+    "team": "MX",
+    "pct": 0.10330537080979914
+   },
+   {
+    "team": "AR",
+    "pct": 0.060024731793723474
+   }
+  ],
+  "first_round_excerpt": {
+   "opponent": "CO",
+   "meet_in_r32_pct": 0.21487,
+   "win_pct_when_met": 0.5432587145716015
+  },
+  "name": "England",
+  "excerpt_text": "England's single biggest risk is the round of 32, where 31.4% of its runs end. Colombia is the team that ends its tournament most often, 12.2% of eliminations. The two meet in the round of 32 in 21.5% of all runs, and England wins 54% of those meetings."
+ },
+ "team_HR": {
+  "team": "HR",
+  "group": "L",
+  "elo": 1911.0,
+  "champion_pct": 0.02317,
+  "fates": {
+   "gs4": 0.05589,
+   "gs3_out": 0.04437,
+   "r32": 0.4211,
+   "r16": 0.25758,
+   "qf": 0.10887,
+   "fourth": 0.03093,
+   "third": 0.02875,
+   "runner_up": 0.02934,
+   "champion": 0.02317
+  },
+  "reach": {
+   "R32": 0.89974,
+   "R16": 0.47864,
+   "QF": 0.22106,
+   "SF": 0.11219,
+   "F": 0.05251
+  },
+  "opponents_by_round": {
+   "R32": [
+    {
+     "team": "CO",
+     "pct": 0.2905728321515104
+    },
+    {
+     "team": "PT",
+     "pct": 0.2842376686598351
+    },
+    {
+     "team": "UZ",
+     "pct": 0.17858492453375419
+    }
+   ],
+   "R16": [
+    {
+     "team": "ES",
+     "pct": 0.2856008691291994
+    },
+    {
+     "team": "MX",
+     "pct": 0.20416179174327262
+    },
+    {
+     "team": "UY",
+     "pct": 0.05968995487213773
+    }
+   ],
+   "QF": [
+    {
+     "team": "BR",
+     "pct": 0.1260291323622546
+    },
+    {
+     "team": "BE",
+     "pct": 0.07061431285623812
+    },
+    {
+     "team": "TR",
+     "pct": 0.06916674206097892
+    }
+   ],
+   "SF": [
+    {
+     "team": "AR",
+     "pct": 0.16409662180229967
+    },
+    {
+     "team": "FR",
+     "pct": 0.08895623495855245
+    },
+    {
+     "team": "PT",
+     "pct": 0.06257242178447277
+    }
+   ],
+   "3P": [
+    {
+     "team": "ES",
+     "pct": 0.08076407506702413
+    },
+    {
+     "team": "EN",
+     "pct": 0.07758042895442359
+    },
+    {
+     "team": "FR",
+     "pct": 0.07473190348525469
+    }
+   ],
+   "F": [
+    {
+     "team": "ES",
+     "pct": 0.1719672443344125
+    },
+    {
+     "team": "AR",
+     "pct": 0.10340887450009521
+    },
+    {
+     "team": "FR",
+     "pct": 0.09979051609217292
+    }
+   ]
+  },
+  "knocked_out_by": [
+   {
+    "team": "CO",
+    "pct": 0.17876495887379218
+   },
+   {
+    "team": "PT",
+    "pct": 0.1760498305896848
+   },
+   {
+    "team": "ES",
+    "pct": 0.12823847496492008
+   },
+   {
+    "team": "MX",
+    "pct": 0.061957402147004806
+   },
+   {
+    "team": "UZ",
+    "pct": 0.05737134512931084
+   }
+  ],
+  "first_round_excerpt": {
+   "opponent": "CO",
+   "meet_in_r32_pct": 0.26144,
+   "win_pct_when_met": 0.41848990208078335
+  },
+  "name": "Croatia",
+  "excerpt_text": "Croatia's single biggest risk is the round of 32, where 42.1% of its runs end. Colombia is the team that ends its tournament most often, 17.9% of eliminations. The two meet in the round of 32 in 26.1% of all runs, and Croatia wins 42% of those meetings."
+ },
+ "team_PA": {
+  "team": "PA",
+  "group": "L",
+  "elo": 1730.0,
+  "champion_pct": 0.00247,
+  "fates": {
+   "gs4": 0.21026,
+   "gs3_out": 0.1547,
+   "r32": 0.43272,
+   "r16": 0.13741,
+   "qf": 0.04219,
+   "fourth": 0.00974,
+   "third": 0.00534,
+   "runner_up": 0.00517,
+   "champion": 0.00247
+  },
+  "reach": {
+   "R32": 0.63504,
+   "R16": 0.20232,
+   "QF": 0.06491,
+   "SF": 0.02272,
+   "F": 0.00764
+  },
+  "opponents_by_round": {
+   "R32": [
+    {
+     "team": "PT",
+     "pct": 0.3648904006046863
+    },
+    {
+     "team": "CO",
+     "pct": 0.3584498614260519
+    },
+    {
+     "team": "UZ",
+     "pct": 0.13405454774502393
+    }
+   ],
+   "R16": [
+    {
+     "team": "ES",
+     "pct": 0.26294978252273626
+    },
+    {
+     "team": "CH",
+     "pct": 0.11536180308422302
+    },
+    {
+     "team": "MX",
+     "pct": 0.11155595096876236
+    }
+   ],
+   "QF": [
+    {
+     "team": "AR",
+     "pct": 0.18117393313819133
+    },
+    {
+     "team": "TR",
+     "pct": 0.07733785241103065
+    },
+    {
+     "team": "BR",
+     "pct": 0.07302418733631182
+    }
+   ],
+   "SF": [
+    {
+     "team": "AR",
+     "pct": 0.10123239436619719
+    },
+    {
+     "team": "FR",
+     "pct": 0.09595070422535211
+    },
+    {
+     "team": "BR",
+     "pct": 0.06734154929577464
+    }
+   ],
+   "3P": [
+    {
+     "team": "ES",
+     "pct": 0.09681697612732096
+    },
+    {
+     "team": "FR",
+     "pct": 0.07957559681697612
+    },
+    {
+     "team": "EN",
+     "pct": 0.0629973474801061
+    }
+   ],
+   "F": [
+    {
+     "team": "ES",
+     "pct": 0.17801047120418848
+    },
+    {
+     "team": "FR",
+     "pct": 0.10732984293193717
+    },
+    {
+     "team": "AR",
+     "pct": 0.0968586387434555
+    }
+   ]
+  },
+  "knocked_out_by": [
+   {
+    "team": "PT",
+    "pct": 0.28172376179711334
+   },
+   {
+    "team": "CO",
+    "pct": 0.271716964130452
+   },
+   {
+    "team": "ES",
+    "pct": 0.07780957048231817
+   },
+   {
+    "team": "UZ",
+    "pct": 0.06688587824272413
+   },
+   {
+    "team": "CD",
+    "pct": 0.03996395655816747
+   }
+  ],
+  "first_round_excerpt": {
+   "opponent": "PT",
+   "meet_in_r32_pct": 0.23172,
+   "win_pct_when_met": 0.23416191955808735
+  },
+  "name": "Panama",
+  "excerpt_text": "Panama's single biggest risk is the round of 32, where 43.3% of its runs end. Portugal is the team that ends its tournament most often, 28.2% of eliminations. The two meet in the round of 32 in 23.2% of all runs, and Panama wins 23% of those meetings."
+ },
+ "team_GH": {
+  "team": "GH",
+  "group": "L",
+  "elo": 1511.0,
+  "champion_pct": 4e-05,
+  "fates": {
+   "gs4": 0.71207,
+   "gs3_out": 0.10957,
+   "r32": 0.15091,
+   "r16": 0.0225,
+   "qf": 0.0039,
+   "fourth": 0.00071,
+   "third": 0.00015,
+   "runner_up": 0.00015,
+   "champion": 4e-05
+  },
+  "reach": {
+   "R32": 0.17836,
+   "R16": 0.02745,
+   "QF": 0.00495,
+   "SF": 0.00105,
+   "F": 0.00019
+  },
+  "opponents_by_round": {
+   "R32": [
+    {
+     "team": "PT",
+     "pct": 0.39493159901323166
+    },
+    {
+     "team": "CO",
+     "pct": 0.37906481273828213
+    },
+    {
+     "team": "UZ",
+     "pct": 0.1172908723929132
+    }
+   ],
+   "R16": [
+    {
+     "team": "ES",
+     "pct": 0.26812386156648454
+    },
+    {
+     "team": "CH",
+     "pct": 0.14353369763205828
+    },
+    {
+     "team": "CA",
+     "pct": 0.12276867030965391
+    }
+   ],
+   "QF": [
+    {
+     "team": "AR",
+     "pct": 0.23030303030303031
+    },
+    {
+     "team": "BE",
+     "pct": 0.08888888888888889
+    },
+    {
+     "team": "TR",
+     "pct": 0.0707070707070707
+    }
+   ],
+   "SF": [
+    {
+     "team": "FR",
+     "pct": 0.11428571428571428
+    },
+    {
+     "team": "AR",
+     "pct": 0.10476190476190476
+    },
+    {
+     "team": "EC",
+     "pct": 0.08571428571428572
+    }
+   ],
+   "3P": [
+    {
+     "team": "ES",
+     "pct": 0.11627906976744186
+    },
+    {
+     "team": "FR",
+     "pct": 0.08139534883720931
+    },
+    {
+     "team": "JP",
+     "pct": 0.05813953488372093
+    }
+   ],
+   "F": [
+    {
+     "team": "FR",
+     "pct": 0.3157894736842105
+    },
+    {
+     "team": "ES",
+     "pct": 0.2631578947368421
+    },
+    {
+     "team": "TR",
+     "pct": 0.10526315789473684
+    }
+   ]
+  },
+  "knocked_out_by": [
+   {
+    "team": "PT",
+    "pct": 0.35385823239120684
+   },
+   {
+    "team": "CO",
+    "pct": 0.3366980708838044
+   },
+   {
+    "team": "UZ",
+    "pct": 0.08462314939434724
+   },
+   {
+    "team": "CD",
+    "pct": 0.05288245850157021
+   },
+   {
+    "team": "ES",
+    "pct": 0.040264692687303726
+   }
+  ],
+  "first_round_excerpt": {
+   "opponent": "PT",
+   "meet_in_r32_pct": 0.07044,
+   "win_pct_when_met": 0.10491198182850653
+  },
+  "name": "Ghana",
+  "excerpt_text": "Ghana's most common ending is fourth in its group, 71.2% of its runs. It got out of the group in 17.8% of them, and when it did, Portugal was the team that ended its tournament most often (35.4% of eliminations)."
+ },
+ "bracket": {
+  "groups": {
+   "A": [
+    {
+     "team": "MX",
+     "pos": 1,
+     "adv_pct": 0.95585
+    },
+    {
+     "team": "KR",
+     "pos": 2,
+     "adv_pct": 0.75058
+    },
+    {
+     "team": "CZ",
+     "pos": 3,
+     "adv_pct": 0.72089
+    },
+    {
+     "team": "ZA",
+     "pos": 4,
+     "adv_pct": 0.25411
+    }
+   ],
+   "B": [
+    {
+     "team": "CH",
+     "pos": 1,
+     "adv_pct": 0.94773
+    },
+    {
+     "team": "CA",
+     "pos": 2,
+     "adv_pct": 0.94893
+    },
+    {
+     "team": "BA",
+     "pos": 3,
+     "adv_pct": 0.54875
+    },
+    {
+     "team": "QA",
+     "pos": 4,
+     "adv_pct": 0.18991
+    }
+   ],
+   "C": [
+    {
+     "team": "BR",
+     "pos": 1,
+     "adv_pct": 0.94561
+    },
+    {
+     "team": "MA",
+     "pos": 2,
+     "adv_pct": 0.79337
+    },
+    {
+     "team": "SQ",
+     "pos": 3,
+     "adv_pct": 0.72658
+    },
+    {
+     "team": "HT",
+     "pos": 4,
+     "adv_pct": 0.23456
+    }
+   ],
+   "D": [
+    {
+     "team": "TR",
+     "pos": 1,
+     "adv_pct": 0.8073
+    },
+    {
+     "team": "PY",
+     "pos": 2,
+     "adv_pct": 0.68116
+    },
+    {
+     "team": "AU",
+     "pos": 3,
+     "adv_pct": 0.56964
+    },
+    {
+     "team": "US",
+     "pos": 4,
+     "adv_pct": 0.66443
+    }
+   ],
+   "E": [
+    {
+     "team": "EC",
+     "pos": 1,
+     "adv_pct": 0.94806
+    },
+    {
+     "team": "DE",
+     "pos": 2,
+     "adv_pct": 0.94653
+    },
+    {
+     "team": "CI",
+     "pos": 3,
+     "adv_pct": 0.66291
+    },
+    {
+     "team": "CW",
+     "pos": 4,
+     "adv_pct": 0.13555
+    }
+   ],
+   "F": [
+    {
+     "team": "NL",
+     "pos": 1,
+     "adv_pct": 0.9036
+    },
+    {
+     "team": "JP",
+     "pos": 2,
+     "adv_pct": 0.86689
+    },
+    {
+     "team": "SE",
+     "pos": 3,
+     "adv_pct": 0.55166
+    },
+    {
+     "team": "TN",
+     "pos": 4,
+     "adv_pct": 0.3591
+    }
+   ],
+   "G": [
+    {
+     "team": "BE",
+     "pos": 1,
+     "adv_pct": 0.90974
+    },
+    {
+     "team": "IR",
+     "pos": 2,
+     "adv_pct": 0.78018
+    },
+    {
+     "team": "EG",
+     "pos": 3,
+     "adv_pct": 0.64947
+    },
+    {
+     "team": "NZ",
+     "pos": 4,
+     "adv_pct": 0.35609
+    }
+   ],
+   "H": [
+    {
+     "team": "ES",
+     "pos": 1,
+     "adv_pct": 0.99372
+    },
+    {
+     "team": "UY",
+     "pos": 2,
+     "adv_pct": 0.8897
+    },
+    {
+     "team": "CV",
+     "pos": 3,
+     "adv_pct": 0.3172
+    },
+    {
+     "team": "SA",
+     "pos": 4,
+     "adv_pct": 0.31355
+    }
+   ],
+   "I": [
+    {
+     "team": "FR",
+     "pos": 1,
+     "adv_pct": 0.94582
+    },
+    {
+     "team": "NO",
+     "pos": 2,
+     "adv_pct": 0.8172
+    },
+    {
+     "team": "SN",
+     "pos": 3,
+     "adv_pct": 0.73606
+    },
+    {
+     "team": "IQ",
+     "pos": 4,
+     "adv_pct": 0.21143
+    }
+   ],
+   "J": [
+    {
+     "team": "AR",
+     "pos": 1,
+     "adv_pct": 0.97106
+    },
+    {
+     "team": "AT",
+     "pos": 2,
+     "adv_pct": 0.69741
+    },
+    {
+     "team": "DZ",
+     "pos": 3,
+     "adv_pct": 0.58349
+    },
+    {
+     "team": "JO",
+     "pos": 4,
+     "adv_pct": 0.38081
+    }
+   ],
+   "K": [
+    {
+     "team": "PT",
+     "pos": 1,
+     "adv_pct": 0.91432
+    },
+    {
+     "team": "CO",
+     "pos": 2,
+     "adv_pct": 0.90913
+    },
+    {
+     "team": "UZ",
+     "pos": 3,
+     "adv_pct": 0.48708
+    },
+    {
+     "team": "CD",
+     "pos": 4,
+     "adv_pct": 0.34689
+    }
+   ],
+   "L": [
+    {
+     "team": "EN",
+     "pos": 1,
+     "adv_pct": 0.96281
+    },
+    {
+     "team": "HR",
+     "pos": 2,
+     "adv_pct": 0.89974
+    },
+    {
+     "team": "PA",
+     "pos": 3,
+     "adv_pct": 0.63504
+    },
+    {
+     "team": "GH",
+     "pos": 4,
+     "adv_pct": 0.17836
+    }
+   ]
+  },
+  "best_third_groups": [
+   "A",
+   "C",
+   "D",
+   "E",
+   "F",
+   "G",
+   "I",
+   "L"
+  ],
+  "matches": [
+   {
+    "number": 73,
+    "round": "R32",
+    "home": "KR",
+    "away": "CA",
+    "p_home": 0.5110959630387033,
+    "n_met": 13203,
+    "source": "store",
+    "winner": "KR"
+   },
+   {
+    "number": 74,
+    "round": "R32",
+    "home": "EC",
+    "away": "AU",
+    "p_home": 0.7073760580411125,
+    "n_met": 5789,
+    "source": "store",
+    "winner": "EC"
+   },
+   {
+    "number": 75,
+    "round": "R32",
+    "home": "NL",
+    "away": "MA",
+    "p_home": 0.6542520926847022,
+    "n_met": 16486,
+    "source": "store",
+    "winner": "NL"
+   },
+   {
+    "number": 76,
+    "round": "R32",
+    "home": "BR",
+    "away": "JP",
+    "p_home": 0.6264839730906213,
+    "n_met": 20216,
+    "source": "store",
+    "winner": "BR"
+   },
+   {
+    "number": 77,
+    "round": "R32",
+    "home": "FR",
+    "away": "SE",
+    "p_home": 0.856910985819238,
+    "n_met": 11706,
+    "source": "store",
+    "winner": "FR"
+   },
+   {
+    "number": 78,
+    "round": "R32",
+    "home": "DE",
+    "away": "NO",
+    "p_home": 0.49384952079088373,
+    "n_met": 13251,
+    "source": "store",
+    "winner": "NO"
+   },
+   {
+    "number": 79,
+    "round": "R32",
+    "home": "MX",
+    "away": "SQ",
+    "p_home": 0.7432742782152231,
+    "n_met": 6096,
+    "source": "store",
+    "winner": "MX"
+   },
+   {
+    "number": 80,
+    "round": "R32",
+    "home": "EN",
+    "away": "SN",
+    "p_home": 0.704635761589404,
+    "n_met": 5285,
+    "source": "store",
+    "winner": "EN"
+   },
+   {
+    "number": 81,
+    "round": "R32",
+    "home": "TR",
+    "away": "CI",
+    "p_home": 0.7595878649112765,
+    "n_met": 1747,
+    "source": "store",
+    "winner": "TR"
+   },
+   {
+    "number": 82,
+    "round": "R32",
+    "home": "BE",
+    "away": "CZ",
+    "p_home": 0.7064373382316106,
+    "n_met": 11977,
+    "source": "store",
+    "winner": "BE"
+   },
+   {
+    "number": 83,
+    "round": "R32",
+    "home": "CO",
+    "away": "HR",
+    "p_home": 0.5741610738255034,
+    "n_met": 14900,
+    "source": "store",
+    "winner": "CO"
+   },
+   {
+    "number": 84,
+    "round": "R32",
+    "home": "ES",
+    "away": "AT",
+    "p_home": 0.8141311486743407,
+    "n_met": 28929,
+    "source": "store",
+    "winner": "ES"
+   },
+   {
+    "number": 85,
+    "round": "R32",
+    "home": "CH",
+    "away": "EG",
+    "p_home": 0.7461296705854964,
+    "n_met": 8591,
+    "source": "store",
+    "winner": "CH"
+   },
+   {
+    "number": 86,
+    "round": "R32",
+    "home": "AR",
+    "away": "UY",
+    "p_home": 0.7476220377218075,
+    "n_met": 42999,
+    "source": "store",
+    "winner": "AR"
+   },
+   {
+    "number": 87,
+    "round": "R32",
+    "home": "PT",
+    "away": "PA",
+    "p_home": 0.8010897254457968,
+    "n_met": 14132,
+    "source": "store",
+    "winner": "PT"
+   },
+   {
+    "number": 88,
+    "round": "R32",
+    "home": "PY",
+    "away": "IR",
+    "p_home": 0.583922677982084,
+    "n_met": 8484,
+    "source": "store",
+    "winner": "PY"
+   },
+   {
+    "number": 89,
+    "round": "R16",
+    "home": "EC",
+    "away": "FR",
+    "p_home": 0.38229920833615266,
+    "n_met": 14779,
+    "source": "store",
+    "winner": "FR"
+   },
+   {
+    "number": 90,
+    "round": "R16",
+    "home": "KR",
+    "away": "NL",
+    "p_home": 0.2918181818181818,
+    "n_met": 5500,
+    "source": "store",
+    "winner": "NL"
+   },
+   {
+    "number": 91,
+    "round": "R16",
+    "home": "BR",
+    "away": "NO",
+    "p_home": 0.5850931677018634,
+    "n_met": 8050,
+    "source": "store",
+    "winner": "BR"
+   },
+   {
+    "number": 92,
+    "round": "R16",
+    "home": "MX",
+    "away": "EN",
+    "p_home": 0.4358370953798867,
+    "n_met": 20822,
+    "source": "store",
+    "winner": "EN"
+   },
+   {
+    "number": 93,
+    "round": "R16",
+    "home": "CO",
+    "away": "ES",
+    "p_home": 0.3018099547511312,
+    "n_met": 13260,
+    "source": "store",
+    "winner": "ES"
+   },
+   {
+    "number": 94,
+    "round": "R16",
+    "home": "TR",
+    "away": "BE",
+    "p_home": 0.533761133990997,
+    "n_met": 10441,
+    "source": "store",
+    "winner": "TR"
+   },
+   {
+    "number": 95,
+    "round": "R16",
+    "home": "AR",
+    "away": "PY",
+    "p_home": 0.7654539032144119,
+    "n_met": 8493,
+    "source": "store",
+    "winner": "AR"
+   },
+   {
+    "number": 96,
+    "round": "R16",
+    "home": "CH",
+    "away": "PT",
+    "p_home": 0.3851132686084142,
+    "n_met": 10815,
+    "source": "store",
+    "winner": "PT"
+   },
+   {
+    "number": 97,
+    "round": "QF",
+    "home": "FR",
+    "away": "NL",
+    "p_home": 0.6140638996715437,
+    "n_met": 6698,
+    "source": "store",
+    "winner": "FR"
+   },
+   {
+    "number": 98,
+    "round": "QF",
+    "home": "ES",
+    "away": "TR",
+    "p_home": 0.715281881574282,
+    "n_met": 8461,
+    "source": "store",
+    "winner": "ES"
+   },
+   {
+    "number": 99,
+    "round": "QF",
+    "home": "BR",
+    "away": "EN",
+    "p_home": 0.46740616927518613,
+    "n_met": 6581,
+    "source": "store",
+    "winner": "EN"
+   },
+   {
+    "number": 100,
+    "round": "QF",
+    "home": "AR",
+    "away": "PT",
+    "p_home": 0.6136196961760084,
+    "n_met": 9545,
+    "source": "store",
+    "winner": "AR"
+   },
+   {
+    "number": 101,
+    "round": "SF",
+    "home": "FR",
+    "away": "ES",
+    "p_home": 0.43430518742900415,
+    "n_met": 7923,
+    "source": "store",
+    "winner": "ES"
+   },
+   {
+    "number": 102,
+    "round": "SF",
+    "home": "EN",
+    "away": "AR",
+    "p_home": 0.4166980776479457,
+    "n_met": 5306,
+    "source": "store",
+    "winner": "AR"
+   },
+   {
+    "number": 103,
+    "round": "3P",
+    "home": "FR",
+    "away": "EN",
+    "p_home": 0.5350052246603971,
+    "n_met": 957,
+    "source": "store",
+    "winner": "FR"
+   },
+   {
+    "number": 104,
+    "round": "F",
+    "home": "ES",
+    "away": "AR",
+    "p_home": 0.529954719609892,
+    "n_met": 5742,
+    "source": "store",
+    "winner": "ES"
+   }
+  ],
+  "champion": "ES"
+ },
+ "reality": {
+  "real": {
+   "orders": {
+    "A": [
+     "MX",
+     "ZA",
+     "KR",
+     "CZ"
+    ],
+    "B": [
+     "CH",
+     "CA",
+     "BA",
+     "QA"
+    ],
+    "C": [
+     "BR",
+     "MA",
+     "SQ",
+     "HT"
+    ],
+    "D": [
+     "US",
+     "AU",
+     "PY",
+     "TR"
+    ],
+    "E": [
+     "DE",
+     "CI",
+     "EC",
+     "CW"
+    ],
+    "F": [
+     "NL",
+     "JP",
+     "SE",
+     "TN"
+    ],
+    "G": [
+     "BE",
+     "EG",
+     "IR",
+     "NZ"
+    ],
+    "H": [
+     "ES",
+     "CV",
+     "UY",
+     "SA"
+    ],
+    "I": [
+     "FR",
+     "NO",
+     "SN",
+     "IQ"
+    ],
+    "J": [
+     "AR",
+     "AT",
+     "DZ",
+     "JO"
+    ],
+    "K": [
+     "CO",
+     "PT",
+     "CD",
+     "UZ"
+    ],
+    "L": [
+     "EN",
+     "HR",
+     "GH",
+     "PA"
+    ]
+   },
+   "best_thirds": [
+    [
+     "K",
+     "CD"
+    ],
+    [
+     "F",
+     "SE"
+    ],
+    [
+     "E",
+     "EC"
+    ],
+    [
+     "L",
+     "GH"
+    ],
+    [
+     "B",
+     "BA"
+    ],
+    [
+     "J",
+     "DZ"
+    ],
+    [
+     "D",
+     "PY"
+    ],
+    [
+     "I",
+     "SN"
+    ]
+   ],
+   "matches": [
+    {
+     "number": 73,
+     "round": "R32",
+     "home": "ZA",
+     "away": "CA",
+     "winner": "CA"
+    },
+    {
+     "number": 74,
+     "round": "R32",
+     "home": "DE",
+     "away": "PY",
+     "winner": "PY"
+    },
+    {
+     "number": 75,
+     "round": "R32",
+     "home": "NL",
+     "away": "MA",
+     "winner": "MA"
+    },
+    {
+     "number": 76,
+     "round": "R32",
+     "home": "BR",
+     "away": "JP",
+     "winner": "BR"
+    },
+    {
+     "number": 77,
+     "round": "R32",
+     "home": "FR",
+     "away": "SE",
+     "winner": "FR"
+    },
+    {
+     "number": 78,
+     "round": "R32",
+     "home": "CI",
+     "away": "NO",
+     "winner": "NO"
+    },
+    {
+     "number": 79,
+     "round": "R32",
+     "home": "MX",
+     "away": "EC",
+     "winner": "MX"
+    },
+    {
+     "number": 80,
+     "round": "R32",
+     "home": "EN",
+     "away": "CD",
+     "winner": "EN"
+    },
+    {
+     "number": 81,
+     "round": "R32",
+     "home": "US",
+     "away": "BA",
+     "winner": "US"
+    },
+    {
+     "number": 82,
+     "round": "R32",
+     "home": "BE",
+     "away": "SN",
+     "winner": "BE"
+    },
+    {
+     "number": 83,
+     "round": "R32",
+     "home": "PT",
+     "away": "HR",
+     "winner": "PT"
+    },
+    {
+     "number": 84,
+     "round": "R32",
+     "home": "ES",
+     "away": "AT",
+     "winner": "ES"
+    },
+    {
+     "number": 85,
+     "round": "R32",
+     "home": "CH",
+     "away": "DZ",
+     "winner": "CH"
+    },
+    {
+     "number": 86,
+     "round": "R32",
+     "home": "AR",
+     "away": "CV",
+     "winner": "AR"
+    },
+    {
+     "number": 87,
+     "round": "R32",
+     "home": "CO",
+     "away": "GH",
+     "winner": "CO"
+    },
+    {
+     "number": 88,
+     "round": "R32",
+     "home": "AU",
+     "away": "EG",
+     "winner": "EG"
+    },
+    {
+     "number": 89,
+     "round": "R16",
+     "home": "PY",
+     "away": "FR",
+     "winner": "FR"
+    },
+    {
+     "number": 90,
+     "round": "R16",
+     "home": "CA",
+     "away": "MA",
+     "winner": "MA"
+    },
+    {
+     "number": 91,
+     "round": "R16",
+     "home": "BR",
+     "away": "NO",
+     "winner": "NO"
+    },
+    {
+     "number": 92,
+     "round": "R16",
+     "home": "MX",
+     "away": "EN",
+     "winner": "EN"
+    },
+    {
+     "number": 93,
+     "round": "R16",
+     "home": "PT",
+     "away": "ES",
+     "winner": "ES"
+    },
+    {
+     "number": 94,
+     "round": "R16",
+     "home": "US",
+     "away": "BE",
+     "winner": "BE"
+    },
+    {
+     "number": 95,
+     "round": "R16",
+     "home": "AR",
+     "away": "EG",
+     "winner": "AR"
+    },
+    {
+     "number": 96,
+     "round": "R16",
+     "home": "CH",
+     "away": "CO",
+     "winner": "CH"
+    },
+    {
+     "number": 97,
+     "round": "QF",
+     "home": "FR",
+     "away": "MA",
+     "winner": "FR"
+    },
+    {
+     "number": 98,
+     "round": "QF",
+     "home": "ES",
+     "away": "BE",
+     "winner": "ES"
+    },
+    {
+     "number": 99,
+     "round": "QF",
+     "home": "NO",
+     "away": "EN",
+     "winner": "EN"
+    },
+    {
+     "number": 100,
+     "round": "QF",
+     "home": "AR",
+     "away": "CH",
+     "winner": "AR"
+    },
+    {
+     "number": 101,
+     "round": "SF",
+     "home": "FR",
+     "away": "ES",
+     "winner": "ES"
+    },
+    {
+     "number": 102,
+     "round": "SF",
+     "home": "EN",
+     "away": "AR",
+     "winner": "AR"
+    },
+    {
+     "number": 103,
+     "round": "3P",
+     "home": "FR",
+     "away": "EN",
+     "winner": "EN"
+    },
+    {
+     "number": 104,
+     "round": "F",
+     "home": "ES",
+     "away": "AR",
+     "winner": "ES"
+    }
+   ],
+   "champion": "ES"
+  },
+  "top_finals": [
+   {
+    "champion": "ES",
+    "runner_up": "AR",
+    "pct": 0.03043,
+    "real": true
+   },
+   {
+    "champion": "AR",
+    "runner_up": "ES",
+    "pct": 0.02699,
+    "real": false
+   },
+   {
+    "champion": "ES",
+    "runner_up": "EN",
+    "pct": 0.01617,
+    "real": false
+   },
+   {
+    "champion": "AR",
+    "runner_up": "FR",
+    "pct": 0.0153,
+    "real": false
+   },
+   {
+    "champion": "FR",
+    "runner_up": "AR",
+    "pct": 0.01301,
+    "real": false
+   }
+  ],
+  "closest": {
+   "closest_group_stage": {
+    "sim": 24327,
+    "scores": {
+     "group_positions": 38,
+     "knockout_results": 6,
+     "final_eight": 2
+    },
+    "orders": {
+     "A": [
+      "MX",
+      "ZA",
+      "KR",
+      "CZ"
+     ],
+     "B": [
+      "CH",
+      "CA",
+      "BA",
+      "QA"
+     ],
+     "C": [
+      "BR",
+      "MA",
+      "SQ",
+      "HT"
+     ],
+     "D": [
+      "TR",
+      "AU",
+      "PY",
+      "US"
+     ],
+     "E": [
+      "DE",
+      "CI",
+      "EC",
+      "CW"
+     ],
+     "F": [
+      "NL",
+      "JP",
+      "SE",
+      "TN"
+     ],
+     "G": [
+      "BE",
+      "IR",
+      "EG",
+      "NZ"
+     ],
+     "H": [
+      "ES",
+      "UY",
+      "CV",
+      "SA"
+     ],
+     "I": [
+      "FR",
+      "IQ",
+      "SN",
+      "NO"
+     ],
+     "J": [
+      "AR",
+      "AT",
+      "DZ",
+      "JO"
+     ],
+     "K": [
+      "CO",
+      "PT",
+      "CD",
+      "UZ"
+     ],
+     "L": [
+      "HR",
+      "EN",
+      "GH",
+      "PA"
+     ]
+    },
+    "matches": [
+     {
+      "number": 73,
+      "round": "R32",
+      "home": "ZA",
+      "away": "CA",
+      "winner": "CA",
+      "matches_reality": true
+     },
+     {
+      "number": 74,
+      "round": "R32",
+      "home": "DE",
+      "away": "SQ",
+      "winner": "DE",
+      "matches_reality": false
+     },
+     {
+      "number": 75,
+      "round": "R32",
+      "home": "NL",
+      "away": "MA",
+      "winner": "MA",
+      "matches_reality": true
+     },
+     {
+      "number": 76,
+      "round": "R32",
+      "home": "BR",
+      "away": "JP",
+      "winner": "BR",
+      "matches_reality": true
+     },
+     {
+      "number": 77,
+      "round": "R32",
+      "home": "FR",
+      "away": "SE",
+      "winner": "FR",
+      "matches_reality": true
+     },
+     {
+      "number": 78,
+      "round": "R32",
+      "home": "CI",
+      "away": "IQ",
+      "winner": "CI",
+      "matches_reality": false
+     },
+     {
+      "number": 79,
+      "round": "R32",
+      "home": "MX",
+      "away": "CV",
+      "winner": "MX",
+      "matches_reality": false
+     },
+     {
+      "number": 80,
+      "round": "R32",
+      "home": "HR",
+      "away": "EC",
+      "winner": "HR",
+      "matches_reality": false
+     },
+     {
+      "number": 81,
+      "round": "R32",
+      "home": "TR",
+      "away": "BA",
+      "winner": "TR",
+      "matches_reality": false
+     },
+     {
+      "number": 82,
+      "round": "R32",
+      "home": "BE",
+      "away": "DZ",
+      "winner": "DZ",
+      "matches_reality": false
+     },
+     {
+      "number": 83,
+      "round": "R32",
+      "home": "PT",
+      "away": "EN",
+      "winner": "PT",
+      "matches_reality": false
+     },
+     {
+      "number": 84,
+      "round": "R32",
+      "home": "ES",
+      "away": "AT",
+      "winner": "ES",
+      "matches_reality": true
+     },
+     {
+      "number": 85,
+      "round": "R32",
+      "home": "CH",
+      "away": "EG",
+      "winner": "CH",
+      "matches_reality": false
+     },
+     {
+      "number": 86,
+      "round": "R32",
+      "home": "AR",
+      "away": "UY",
+      "winner": "AR",
+      "matches_reality": false
+     },
+     {
+      "number": 87,
+      "round": "R32",
+      "home": "CO",
+      "away": "PY",
+      "winner": "CO",
+      "matches_reality": false
+     },
+     {
+      "number": 88,
+      "round": "R32",
+      "home": "AU",
+      "away": "IR",
+      "winner": "AU",
+      "matches_reality": false
+     },
+     {
+      "number": 89,
+      "round": "R16",
+      "home": "DE",
+      "away": "FR",
+      "winner": "FR",
+      "matches_reality": false
+     },
+     {
+      "number": 90,
+      "round": "R16",
+      "home": "CA",
+      "away": "MA",
+      "winner": "MA",
+      "matches_reality": true
+     },
+     {
+      "number": 91,
+      "round": "R16",
+      "home": "BR",
+      "away": "CI",
+      "winner": "CI",
+      "matches_reality": false
+     },
+     {
+      "number": 92,
+      "round": "R16",
+      "home": "MX",
+      "away": "HR",
+      "winner": "MX",
+      "matches_reality": false
+     },
+     {
+      "number": 93,
+      "round": "R16",
+      "home": "PT",
+      "away": "ES",
+      "winner": "PT",
+      "matches_reality": false
+     },
+     {
+      "number": 94,
+      "round": "R16",
+      "home": "TR",
+      "away": "DZ",
+      "winner": "DZ",
+      "matches_reality": false
+     },
+     {
+      "number": 95,
+      "round": "R16",
+      "home": "AR",
+      "away": "AU",
+      "winner": "AU",
+      "matches_reality": false
+     },
+     {
+      "number": 96,
+      "round": "R16",
+      "home": "CH",
+      "away": "CO",
+      "winner": "CO",
+      "matches_reality": false
+     },
+     {
+      "number": 97,
+      "round": "QF",
+      "home": "FR",
+      "away": "MA",
+      "winner": "MA",
+      "matches_reality": false
+     },
+     {
+      "number": 98,
+      "round": "QF",
+      "home": "PT",
+      "away": "DZ",
+      "winner": "PT",
+      "matches_reality": false
+     },
+     {
+      "number": 99,
+      "round": "QF",
+      "home": "CI",
+      "away": "MX",
+      "winner": "CI",
+      "matches_reality": false
+     },
+     {
+      "number": 100,
+      "round": "QF",
+      "home": "AU",
+      "away": "CO",
+      "winner": "CO",
+      "matches_reality": false
+     },
+     {
+      "number": 101,
+      "round": "SF",
+      "home": "MA",
+      "away": "PT",
+      "winner": "PT",
+      "matches_reality": false
+     },
+     {
+      "number": 102,
+      "round": "SF",
+      "home": "CI",
+      "away": "CO",
+      "winner": "CO",
+      "matches_reality": false
+     },
+     {
+      "number": 103,
+      "round": "3P",
+      "home": "MA",
+      "away": "CI",
+      "winner": "CI",
+      "matches_reality": false
+     },
+     {
+      "number": 104,
+      "round": "F",
+      "home": "PT",
+      "away": "CO",
+      "winner": "CO",
+      "matches_reality": false
+     }
+    ]
+   },
+   "closest_knockouts": {
+    "sim": 72802,
+    "scores": {
+     "group_positions": 28,
+     "knockout_results": 12,
+     "final_eight": 14
+    },
+    "orders": {
+     "A": [
+      "KR",
+      "MX",
+      "CZ",
+      "ZA"
+     ],
+     "B": [
+      "CA",
+      "CH",
+      "BA",
+      "QA"
+     ],
+     "C": [
+      "BR",
+      "MA",
+      "SQ",
+      "HT"
+     ],
+     "D": [
+      "TR",
+      "PY",
+      "US",
+      "AU"
+     ],
+     "E": [
+      "EC",
+      "CI",
+      "DE",
+      "CW"
+     ],
+     "F": [
+      "JP",
+      "NL",
+      "TN",
+      "SE"
+     ],
+     "G": [
+      "BE",
+      "EG",
+      "NZ",
+      "IR"
+     ],
+     "H": [
+      "ES",
+      "CV",
+      "SA",
+      "UY"
+     ],
+     "I": [
+      "FR",
+      "NO",
+      "SN",
+      "IQ"
+     ],
+     "J": [
+      "AR",
+      "AT",
+      "DZ",
+      "JO"
+     ],
+     "K": [
+      "CO",
+      "PT",
+      "CD",
+      "UZ"
+     ],
+     "L": [
+      "EN",
+      "HR",
+      "GH",
+      "PA"
+     ]
+    },
+    "matches": [
+     {
+      "number": 73,
+      "round": "R32",
+      "home": "MX",
+      "away": "CH",
+      "winner": "CH",
+      "matches_reality": false
+     },
+     {
+      "number": 74,
+      "round": "R32",
+      "home": "EC",
+      "away": "SQ",
+      "winner": "EC",
+      "matches_reality": false
+     },
+     {
+      "number": 75,
+      "round": "R32",
+      "home": "JP",
+      "away": "MA",
+      "winner": "MA",
+      "matches_reality": false
+     },
+     {
+      "number": 76,
+      "round": "R32",
+      "home": "BR",
+      "away": "NL",
+      "winner": "NL",
+      "matches_reality": false
+     },
+     {
+      "number": 77,
+      "round": "R32",
+      "home": "FR",
+      "away": "US",
+      "winner": "FR",
+      "matches_reality": false
+     },
+     {
+      "number": 78,
+      "round": "R32",
+      "home": "CI",
+      "away": "NO",
+      "winner": "NO",
+      "matches_reality": true
+     },
+     {
+      "number": 79,
+      "round": "R32",
+      "home": "KR",
+      "away": "SA",
+      "winner": "KR",
+      "matches_reality": false
+     },
+     {
+      "number": 80,
+      "round": "R32",
+      "home": "EN",
+      "away": "CD",
+      "winner": "EN",
+      "matches_reality": true
+     },
+     {
+      "number": 81,
+      "round": "R32",
+      "home": "TR",
+      "away": "BA",
+      "winner": "TR",
+      "matches_reality": false
+     },
+     {
+      "number": 82,
+      "round": "R32",
+      "home": "BE",
+      "away": "CZ",
+      "winner": "CZ",
+      "matches_reality": false
+     },
+     {
+      "number": 83,
+      "round": "R32",
+      "home": "PT",
+      "away": "HR",
+      "winner": "PT",
+      "matches_reality": true
+     },
+     {
+      "number": 84,
+      "round": "R32",
+      "home": "ES",
+      "away": "AT",
+      "winner": "ES",
+      "matches_reality": true
+     },
+     {
+      "number": 85,
+      "round": "R32",
+      "home": "CA",
+      "away": "SN",
+      "winner": "SN",
+      "matches_reality": false
+     },
+     {
+      "number": 86,
+      "round": "R32",
+      "home": "AR",
+      "away": "CV",
+      "winner": "AR",
+      "matches_reality": true
+     },
+     {
+      "number": 87,
+      "round": "R32",
+      "home": "CO",
+      "away": "GH",
+      "winner": "CO",
+      "matches_reality": true
+     },
+     {
+      "number": 88,
+      "round": "R32",
+      "home": "PY",
+      "away": "EG",
+      "winner": "PY",
+      "matches_reality": false
+     },
+     {
+      "number": 89,
+      "round": "R16",
+      "home": "EC",
+      "away": "FR",
+      "winner": "FR",
+      "matches_reality": false
+     },
+     {
+      "number": 90,
+      "round": "R16",
+      "home": "CH",
+      "away": "MA",
+      "winner": "CH",
+      "matches_reality": false
+     },
+     {
+      "number": 91,
+      "round": "R16",
+      "home": "NL",
+      "away": "NO",
+      "winner": "NO",
+      "matches_reality": false
+     },
+     {
+      "number": 92,
+      "round": "R16",
+      "home": "KR",
+      "away": "EN",
+      "winner": "EN",
+      "matches_reality": false
+     },
+     {
+      "number": 93,
+      "round": "R16",
+      "home": "PT",
+      "away": "ES",
+      "winner": "ES",
+      "matches_reality": true
+     },
+     {
+      "number": 94,
+      "round": "R16",
+      "home": "TR",
+      "away": "CZ",
+      "winner": "CZ",
+      "matches_reality": false
+     },
+     {
+      "number": 95,
+      "round": "R16",
+      "home": "AR",
+      "away": "PY",
+      "winner": "AR",
+      "matches_reality": false
+     },
+     {
+      "number": 96,
+      "round": "R16",
+      "home": "SN",
+      "away": "CO",
+      "winner": "SN",
+      "matches_reality": false
+     },
+     {
+      "number": 97,
+      "round": "QF",
+      "home": "FR",
+      "away": "CH",
+      "winner": "FR",
+      "matches_reality": false
+     },
+     {
+      "number": 98,
+      "round": "QF",
+      "home": "ES",
+      "away": "CZ",
+      "winner": "ES",
+      "matches_reality": false
+     },
+     {
+      "number": 99,
+      "round": "QF",
+      "home": "NO",
+      "away": "EN",
+      "winner": "EN",
+      "matches_reality": true
+     },
+     {
+      "number": 100,
+      "round": "QF",
+      "home": "AR",
+      "away": "SN",
+      "winner": "AR",
+      "matches_reality": false
+     },
+     {
+      "number": 101,
+      "round": "SF",
+      "home": "FR",
+      "away": "ES",
+      "winner": "ES",
+      "matches_reality": true
+     },
+     {
+      "number": 102,
+      "round": "SF",
+      "home": "EN",
+      "away": "AR",
+      "winner": "AR",
+      "matches_reality": true
+     },
+     {
+      "number": 103,
+      "round": "3P",
+      "home": "FR",
+      "away": "EN",
+      "winner": "EN",
+      "matches_reality": true
+     },
+     {
+      "number": 104,
+      "round": "F",
+      "home": "ES",
+      "away": "AR",
+      "winner": "ES",
+      "matches_reality": true
+     }
+    ]
+   },
+   "closest_final_eight": {
+    "sim": 68560,
+    "scores": {
+     "group_positions": 15,
+     "knockout_results": 7,
+     "final_eight": 15
+    },
+    "orders": {
+     "A": [
+      "MX",
+      "KR",
+      "CZ",
+      "ZA"
+     ],
+     "B": [
+      "CH",
+      "CA",
+      "BA",
+      "QA"
+     ],
+     "C": [
+      "MA",
+      "BR",
+      "HT",
+      "SQ"
+     ],
+     "D": [
+      "TR",
+      "AU",
+      "PY",
+      "US"
+     ],
+     "E": [
+      "CI",
+      "EC",
+      "CW",
+      "DE"
+     ],
+     "F": [
+      "JP",
+      "SE",
+      "NL",
+      "TN"
+     ],
+     "G": [
+      "BE",
+      "IR",
+      "NZ",
+      "EG"
+     ],
+     "H": [
+      "ES",
+      "UY",
+      "SA",
+      "CV"
+     ],
+     "I": [
+      "FR",
+      "SN",
+      "IQ",
+      "NO"
+     ],
+     "J": [
+      "AR",
+      "JO",
+      "AT",
+      "DZ"
+     ],
+     "K": [
+      "PT",
+      "CO",
+      "CD",
+      "UZ"
+     ],
+     "L": [
+      "EN",
+      "PA",
+      "HR",
+      "GH"
+     ]
+    },
+    "matches": [
+     {
+      "number": 73,
+      "round": "R32",
+      "home": "KR",
+      "away": "CA",
+      "winner": "CA",
+      "matches_reality": false
+     },
+     {
+      "number": 74,
+      "round": "R32",
+      "home": "CI",
+      "away": "HT",
+      "winner": "CI",
+      "matches_reality": false
+     },
+     {
+      "number": 75,
+      "round": "R32",
+      "home": "JP",
+      "away": "BR",
+      "winner": "BR",
+      "matches_reality": false
+     },
+     {
+      "number": 76,
+      "round": "R32",
+      "home": "MA",
+      "away": "SE",
+      "winner": "MA",
+      "matches_reality": false
+     },
+     {
+      "number": 77,
+      "round": "R32",
+      "home": "FR",
+      "away": "NL",
+      "winner": "FR",
+      "matches_reality": false
+     },
+     {
+      "number": 78,
+      "round": "R32",
+      "home": "EC",
+      "away": "SN",
+      "winner": "EC",
+      "matches_reality": false
+     },
+     {
+      "number": 79,
+      "round": "R32",
+      "home": "MX",
+      "away": "SA",
+      "winner": "SA",
+      "matches_reality": false
+     },
+     {
+      "number": 80,
+      "round": "R32",
+      "home": "EN",
+      "away": "CD",
+      "winner": "EN",
+      "matches_reality": true
+     },
+     {
+      "number": 81,
+      "round": "R32",
+      "home": "TR",
+      "away": "BA",
+      "winner": "TR",
+      "matches_reality": false
+     },
+     {
+      "number": 82,
+      "round": "R32",
+      "home": "BE",
+      "away": "CZ",
+      "winner": "BE",
+      "matches_reality": false
+     },
+     {
+      "number": 83,
+      "round": "R32",
+      "home": "CO",
+      "away": "PA",
+      "winner": "CO",
+      "matches_reality": false
+     },
+     {
+      "number": 84,
+      "round": "R32",
+      "home": "ES",
+      "away": "JO",
+      "winner": "ES",
+      "matches_reality": false
+     },
+     {
+      "number": 85,
+      "round": "R32",
+      "home": "CH",
+      "away": "CW",
+      "winner": "CH",
+      "matches_reality": false
+     },
+     {
+      "number": 86,
+      "round": "R32",
+      "home": "AR",
+      "away": "UY",
+      "winner": "AR",
+      "matches_reality": false
+     },
+     {
+      "number": 87,
+      "round": "R32",
+      "home": "PT",
+      "away": "HR",
+      "winner": "HR",
+      "matches_reality": false
+     },
+     {
+      "number": 88,
+      "round": "R32",
+      "home": "AU",
+      "away": "IR",
+      "winner": "AU",
+      "matches_reality": false
+     },
+     {
+      "number": 89,
+      "round": "R16",
+      "home": "CI",
+      "away": "FR",
+      "winner": "FR",
+      "matches_reality": false
+     },
+     {
+      "number": 90,
+      "round": "R16",
+      "home": "CA",
+      "away": "BR",
+      "winner": "BR",
+      "matches_reality": false
+     },
+     {
+      "number": 91,
+      "round": "R16",
+      "home": "MA",
+      "away": "EC",
+      "winner": "MA",
+      "matches_reality": false
+     },
+     {
+      "number": 92,
+      "round": "R16",
+      "home": "SA",
+      "away": "EN",
+      "winner": "EN",
+      "matches_reality": false
+     },
+     {
+      "number": 93,
+      "round": "R16",
+      "home": "CO",
+      "away": "ES",
+      "winner": "ES",
+      "matches_reality": false
+     },
+     {
+      "number": 94,
+      "round": "R16",
+      "home": "TR",
+      "away": "BE",
+      "winner": "BE",
+      "matches_reality": false
+     },
+     {
+      "number": 95,
+      "round": "R16",
+      "home": "AR",
+      "away": "AU",
+      "winner": "AR",
+      "matches_reality": false
+     },
+     {
+      "number": 96,
+      "round": "R16",
+      "home": "CH",
+      "away": "HR",
+      "winner": "CH",
+      "matches_reality": false
+     },
+     {
+      "number": 97,
+      "round": "QF",
+      "home": "FR",
+      "away": "BR",
+      "winner": "FR",
+      "matches_reality": false
+     },
+     {
+      "number": 98,
+      "round": "QF",
+      "home": "ES",
+      "away": "BE",
+      "winner": "ES",
+      "matches_reality": true
+     },
+     {
+      "number": 99,
+      "round": "QF",
+      "home": "MA",
+      "away": "EN",
+      "winner": "EN",
+      "matches_reality": false
+     },
+     {
+      "number": 100,
+      "round": "QF",
+      "home": "AR",
+      "away": "CH",
+      "winner": "AR",
+      "matches_reality": true
+     },
+     {
+      "number": 101,
+      "round": "SF",
+      "home": "FR",
+      "away": "ES",
+      "winner": "ES",
+      "matches_reality": true
+     },
+     {
+      "number": 102,
+      "round": "SF",
+      "home": "EN",
+      "away": "AR",
+      "winner": "AR",
+      "matches_reality": true
+     },
+     {
+      "number": 103,
+      "round": "3P",
+      "home": "FR",
+      "away": "EN",
+      "winner": "EN",
+      "matches_reality": true
+     },
+     {
+      "number": 104,
+      "round": "F",
+      "home": "ES",
+      "away": "AR",
+      "winner": "ES",
+      "matches_reality": true
+     }
+    ]
+   },
+   "averages": {
+    "group_positions": 19.2873,
+    "knockout_results": 1.7073,
+    "final_eight": 4.55337
+   },
+   "maxima": {
+    "group_positions": 48,
+    "knockout_results": 32,
+    "final_eight": 16
+   }
+  }
+ },
+ "teams": [
+  {
+   "code": "ES",
+   "iso": "es",
+   "name": "Spain",
+   "group": "H",
+   "elo": 2157.0,
+   "champion_pct": 0.18626
+  },
+  {
+   "code": "AR",
+   "iso": "ar",
+   "name": "Argentina",
+   "group": "J",
+   "elo": 2115.0,
+   "champion_pct": 0.13668
+  },
+  {
+   "code": "FR",
+   "iso": "fr",
+   "name": "France",
+   "group": "I",
+   "elo": 2064.0,
+   "champion_pct": 0.09752
+  },
+  {
+   "code": "EN",
+   "iso": "gb-eng",
+   "name": "England",
+   "group": "L",
+   "elo": 2024.0,
+   "champion_pct": 0.06518
+  },
+  {
+   "code": "PT",
+   "iso": "pt",
+   "name": "Portugal",
+   "group": "K",
+   "elo": 1989.0,
+   "champion_pct": 0.04889
+  },
+  {
+   "code": "BR",
+   "iso": "br",
+   "name": "Brazil",
+   "group": "C",
+   "elo": 1991.0,
+   "champion_pct": 0.04834
+  },
+  {
+   "code": "CO",
+   "iso": "co",
+   "name": "Colombia",
+   "group": "K",
+   "elo": 1982.0,
+   "champion_pct": 0.04495
+  },
+  {
+   "code": "NL",
+   "iso": "nl",
+   "name": "Netherlands",
+   "group": "F",
+   "elo": 1947.0,
+   "champion_pct": 0.03503
+  },
+  {
+   "code": "EC",
+   "iso": "ec",
+   "name": "Ecuador",
+   "group": "E",
+   "elo": 1938.0,
+   "champion_pct": 0.03141
+  },
+  {
+   "code": "DE",
+   "iso": "de",
+   "name": "Germany",
+   "group": "E",
+   "elo": 1932.0,
+   "champion_pct": 0.02894
+  },
+  {
+   "code": "NO",
+   "iso": "no",
+   "name": "Norway",
+   "group": "I",
+   "elo": 1914.0,
+   "champion_pct": 0.02501
+  },
+  {
+   "code": "TR",
+   "iso": "tr",
+   "name": "Turkey",
+   "group": "D",
+   "elo": 1910.0,
+   "champion_pct": 0.02476
+  },
+  {
+   "code": "HR",
+   "iso": "hr",
+   "name": "Croatia",
+   "group": "L",
+   "elo": 1911.0,
+   "champion_pct": 0.02317
+  },
+  {
+   "code": "JP",
+   "iso": "jp",
+   "name": "Japan",
+   "group": "F",
+   "elo": 1906.0,
+   "champion_pct": 0.02246
+  },
+  {
+   "code": "MX",
+   "iso": "mx",
+   "name": "Mexico",
+   "group": "A",
+   "elo": 1875.0,
+   "champion_pct": 0.0212
+  },
+  {
+   "code": "BE",
+   "iso": "be",
+   "name": "Belgium",
+   "group": "G",
+   "elo": 1893.0,
+   "champion_pct": 0.02024
+  },
+  {
+   "code": "CH",
+   "iso": "ch",
+   "name": "Switzerland",
+   "group": "B",
+   "elo": 1891.0,
+   "champion_pct": 0.02006
+  },
+  {
+   "code": "UY",
+   "iso": "uy",
+   "name": "Uruguay",
+   "group": "H",
+   "elo": 1892.0,
+   "champion_pct": 0.01813
+  },
+  {
+   "code": "SN",
+   "iso": "sn",
+   "name": "Senegal",
+   "group": "I",
+   "elo": 1860.0,
+   "champion_pct": 0.01403
+  },
+  {
+   "code": "PY",
+   "iso": "py",
+   "name": "Paraguay",
+   "group": "D",
+   "elo": 1833.0,
+   "champion_pct": 0.01095
+  },
+  {
+   "code": "US",
+   "iso": "us",
+   "name": "USA",
+   "group": "D",
+   "elo": 1726.0,
+   "champion_pct": 0.0097
+  },
+  {
+   "code": "MA",
+   "iso": "ma",
+   "name": "Morocco",
+   "group": "C",
+   "elo": 1827.0,
+   "champion_pct": 0.00965
+  },
+  {
+   "code": "CA",
+   "iso": "ca",
+   "name": "Canada",
+   "group": "B",
+   "elo": 1788.0,
+   "champion_pct": 0.0082
+  },
+  {
+   "code": "AT",
+   "iso": "at",
+   "name": "Austria",
+   "group": "J",
+   "elo": 1830.0,
+   "champion_pct": 0.00784
+  },
+  {
+   "code": "AU",
+   "iso": "au",
+   "name": "Australia",
+   "group": "D",
+   "elo": 1777.0,
+   "champion_pct": 0.00561
+  },
+  {
+   "code": "SQ",
+   "iso": "gb-sct",
+   "name": "Scotland",
+   "group": "C",
+   "elo": 1782.0,
+   "champion_pct": 0.0056
+  },
+  {
+   "code": "IR",
+   "iso": "ir",
+   "name": "Iran",
+   "group": "G",
+   "elo": 1772.0,
+   "champion_pct": 0.00502
+  },
+  {
+   "code": "KR",
+   "iso": "kr",
+   "name": "South Korea",
+   "group": "A",
+   "elo": 1758.0,
+   "champion_pct": 0.00426
+  },
+  {
+   "code": "DZ",
+   "iso": "dz",
+   "name": "Algeria",
+   "group": "J",
+   "elo": 1772.0,
+   "champion_pct": 0.0038
+  },
+  {
+   "code": "CZ",
+   "iso": "cz",
+   "name": "Czechia",
+   "group": "A",
+   "elo": 1740.0,
+   "champion_pct": 0.00346
+  },
+  {
+   "code": "PA",
+   "iso": "pa",
+   "name": "Panama",
+   "group": "L",
+   "elo": 1730.0,
+   "champion_pct": 0.00247
+  },
+  {
+   "code": "SE",
+   "iso": "se",
+   "name": "Sweden",
+   "group": "F",
+   "elo": 1712.0,
+   "champion_pct": 0.00213
+  },
+  {
+   "code": "UZ",
+   "iso": "uz",
+   "name": "Uzbekistan",
+   "group": "K",
+   "elo": 1714.0,
+   "champion_pct": 0.00198
+  },
+  {
+   "code": "EG",
+   "iso": "eg",
+   "name": "Egypt",
+   "group": "G",
+   "elo": 1696.0,
+   "champion_pct": 0.00176
+  },
+  {
+   "code": "CI",
+   "iso": "ci",
+   "name": "Ivory Coast",
+   "group": "E",
+   "elo": 1696.0,
+   "champion_pct": 0.00152
+  },
+  {
+   "code": "JO",
+   "iso": "jo",
+   "name": "Jordan",
+   "group": "J",
+   "elo": 1680.0,
+   "champion_pct": 0.00098
+  },
+  {
+   "code": "TN",
+   "iso": "tn",
+   "name": "Tunisia",
+   "group": "F",
+   "elo": 1628.0,
+   "champion_pct": 0.00066
+  },
+  {
+   "code": "CD",
+   "iso": "cd",
+   "name": "DR Congo",
+   "group": "K",
+   "elo": 1652.0,
+   "champion_pct": 0.0006
+  },
+  {
+   "code": "BA",
+   "iso": "ba",
+   "name": "Bosnia & Herz.",
+   "group": "B",
+   "elo": 1594.0,
+   "champion_pct": 0.00043
+  },
+  {
+   "code": "IQ",
+   "iso": "iq",
+   "name": "Iraq",
+   "group": "I",
+   "elo": 1607.0,
+   "champion_pct": 0.00032
+  },
+  {
+   "code": "NZ",
+   "iso": "nz",
+   "name": "New Zealand",
+   "group": "G",
+   "elo": 1562.0,
+   "champion_pct": 0.00025
+  },
+  {
+   "code": "SA",
+   "iso": "sa",
+   "name": "Saudi Arabia",
+   "group": "H",
+   "elo": 1576.0,
+   "champion_pct": 0.00018
+  },
+  {
+   "code": "CV",
+   "iso": "cv",
+   "name": "Cape Verde",
+   "group": "H",
+   "elo": 1578.0,
+   "champion_pct": 0.00015
+  },
+  {
+   "code": "HT",
+   "iso": "ht",
+   "name": "Haiti",
+   "group": "C",
+   "elo": 1548.0,
+   "champion_pct": 0.00011
+  },
+  {
+   "code": "ZA",
+   "iso": "za",
+   "name": "South Africa",
+   "group": "A",
+   "elo": 1518.0,
+   "champion_pct": 6e-05
+  },
+  {
+   "code": "GH",
+   "iso": "gh",
+   "name": "Ghana",
+   "group": "L",
+   "elo": 1511.0,
+   "champion_pct": 4e-05
+  },
+  {
+   "code": "CW",
+   "iso": "cw",
+   "name": "Cura\u00e7ao",
+   "group": "E",
+   "elo": 1434.0,
+   "champion_pct": 1e-05
+  },
+  {
+   "code": "QA",
+   "iso": "qa",
+   "name": "Qatar",
+   "group": "B",
+   "elo": 1421.0,
+   "champion_pct": 0.0
+  }
+ ]
+}

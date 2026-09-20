@@ -1,0 +1,139 @@
+{
+ "team": "BE",
+ "group": "G",
+ "elo": 1893.0,
+ "champion_pct": 0.02024,
+ "fates": {
+  "gs4": 0.06126,
+  "gs3_out": 0.029,
+  "r32": 0.3581,
+  "r16": 0.28689,
+  "qf": 0.16247,
+  "fourth": 0.02951,
+  "third": 0.02529,
+  "runner_up": 0.02724,
+  "champion": 0.02024
+ },
+ "reach": {
+  "R32": 0.90974,
+  "R16": 0.55164,
+  "QF": 0.26475,
+  "SF": 0.10228,
+  "F": 0.04748
+ },
+ "opponents_by_round": {
+  "R32": [
+   {
+    "team": "CZ",
+    "pct": 0.13165299975817266
+   },
+   {
+    "team": "KR",
+    "pct": 0.1265746257172379
+   },
+   {
+    "team": "TR",
+    "pct": 0.08114406313891881
+   }
+  ],
+  "R16": [
+   {
+    "team": "TR",
+    "pct": 0.18985207744180987
+   },
+   {
+    "team": "AR",
+    "pct": 0.14299180625045319
+   },
+   {
+    "team": "PY",
+    "pct": 0.10833152055688493
+   }
+  ],
+  "QF": [
+   {
+    "team": "ES",
+    "pct": 0.3604532577903683
+   },
+   {
+    "team": "CO",
+    "pct": 0.09854579792256846
+   },
+   {
+    "team": "PT",
+    "pct": 0.09801699716713881
+   }
+  ],
+  "SF": [
+   {
+    "team": "FR",
+    "pct": 0.1859601095033242
+   },
+   {
+    "team": "NL",
+    "pct": 0.1009972624168948
+   },
+   {
+    "team": "EC",
+    "pct": 0.07880328509972624
+   }
+  ],
+  "3P": [
+   {
+    "team": "AR",
+    "pct": 0.08467153284671533
+   },
+   {
+    "team": "EN",
+    "pct": 0.07244525547445256
+   },
+   {
+    "team": "BR",
+    "pct": 0.05894160583941606
+   }
+  ],
+  "F": [
+   {
+    "team": "AR",
+    "pct": 0.15754001684919966
+   },
+   {
+    "team": "ES",
+    "pct": 0.09941027801179445
+   },
+   {
+    "team": "EN",
+    "pct": 0.07729570345408593
+   }
+  ]
+ },
+ "knocked_out_by": [
+  {
+   "team": "TR",
+   "pct": 0.10993816750983698
+  },
+  {
+   "team": "ES",
+   "pct": 0.09772906127037662
+  },
+  {
+   "team": "AR",
+   "pct": 0.09159078133783025
+  },
+  {
+   "team": "PY",
+   "pct": 0.07033164699269252
+  },
+  {
+   "team": "US",
+   "pct": 0.06942102304665543
+  }
+ ],
+ "first_round_excerpt": {
+  "opponent": "TR",
+  "meet_in_r32_pct": 0.07382,
+  "win_pct_when_met": 0.45854781901923597
+ },
+ "name": "Belgium",
+ "excerpt_text": "Belgium's single biggest risk is the round of 32, where 35.8% of its runs end. Turkey is the team that ends its tournament most often, 11.0% of eliminations. The two meet in the round of 32 in 7.4% of all runs, and Belgium wins 46% of those meetings."
+}

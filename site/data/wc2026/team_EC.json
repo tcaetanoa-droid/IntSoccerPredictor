@@ -1,0 +1,139 @@
+{
+ "team": "EC",
+ "group": "E",
+ "elo": 1938.0,
+ "champion_pct": 0.03141,
+ "fates": {
+  "gs4": 0.02711,
+  "gs3_out": 0.02483,
+  "r32": 0.39608,
+  "r16": 0.28148,
+  "qf": 0.12266,
+  "fourth": 0.04031,
+  "third": 0.04027,
+  "runner_up": 0.03585,
+  "champion": 0.03141
+ },
+ "reach": {
+  "R32": 0.94806,
+  "R16": 0.55198,
+  "QF": 0.2705,
+  "SF": 0.14784,
+  "F": 0.06726
+ },
+ "opponents_by_round": {
+  "R32": [
+   {
+    "team": "NO",
+    "pct": 0.1347277598464232
+   },
+   {
+    "team": "SN",
+    "pct": 0.11491888699027487
+   },
+   {
+    "team": "FR",
+    "pct": 0.09957175706178933
+   }
+  ],
+  "R16": [
+   {
+    "team": "FR",
+    "pct": 0.2692307692307692
+   },
+   {
+    "team": "BR",
+    "pct": 0.12677995579549983
+   },
+   {
+    "team": "NO",
+    "pct": 0.10090945324105946
+   }
+  ],
+  "QF": [
+   {
+    "team": "NL",
+    "pct": 0.12802218114602587
+   },
+   {
+    "team": "MX",
+    "pct": 0.11866913123844731
+   },
+   {
+    "team": "JP",
+    "pct": 0.09456561922365989
+   }
+  ],
+  "SF": [
+   {
+    "team": "ES",
+    "pct": 0.24844426406926406
+   },
+   {
+    "team": "AR",
+    "pct": 0.13534902597402598
+   },
+   {
+    "team": "PT",
+    "pct": 0.07386363636363637
+   }
+  ],
+  "3P": [
+   {
+    "team": "DE",
+    "pct": 0.07073715562174236
+   },
+   {
+    "team": "AR",
+    "pct": 0.06614544551998014
+   },
+   {
+    "team": "FR",
+    "pct": 0.06577314470091834
+   }
+  ],
+  "F": [
+   {
+    "team": "AR",
+    "pct": 0.14510853404698187
+   },
+   {
+    "team": "ES",
+    "pct": 0.11492714837942314
+   },
+   {
+    "team": "FR",
+    "pct": 0.07612250966399048
+   }
+  ]
+ },
+ "knocked_out_by": [
+  {
+   "team": "FR",
+   "pct": 0.1711012927507773
+  },
+  {
+   "team": "NO",
+   "pct": 0.10442371679485081
+  },
+  {
+   "team": "SN",
+   "pct": 0.07512136584301533
+  },
+  {
+   "team": "BR",
+   "pct": 0.07339769813996617
+  },
+  {
+   "team": "MX",
+   "pct": 0.04953908252877325
+  }
+ ],
+ "first_round_excerpt": {
+  "opponent": "FR",
+  "meet_in_r32_pct": 0.0944,
+  "win_pct_when_met": 0.3771186440677966
+ },
+ "name": "Ecuador",
+ "excerpt_text": "Ecuador's single biggest risk is the round of 32, where 39.6% of its runs end. France is the team that ends its tournament most often, 17.1% of eliminations. The two meet in the round of 32 in 9.4% of all runs, and Ecuador wins 38% of those meetings."
+}

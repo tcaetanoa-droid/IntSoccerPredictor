@@ -1,0 +1,139 @@
+{
+ "team": "CZ",
+ "group": "A",
+ "elo": 1740.0,
+ "champion_pct": 0.00346,
+ "fates": {
+  "gs4": 0.17656,
+  "gs3_out": 0.10255,
+  "r32": 0.38576,
+  "r16": 0.21876,
+  "qf": 0.0816,
+  "fourth": 0.01543,
+  "third": 0.00833,
+  "runner_up": 0.00755,
+  "champion": 0.00346
+ },
+ "reach": {
+  "R32": 0.72089,
+  "R16": 0.33513,
+  "QF": 0.11637,
+  "SF": 0.03477,
+  "F": 0.01101
+ },
+ "opponents_by_round": {
+  "R32": [
+   {
+    "team": "CA",
+    "pct": 0.17302223640222503
+   },
+   {
+    "team": "CH",
+    "pct": 0.1663776720442786
+   },
+   {
+    "team": "BE",
+    "pct": 0.16614185243240995
+   }
+  ],
+  "R16": [
+   {
+    "team": "NL",
+    "pct": 0.14537642109032317
+   },
+   {
+    "team": "EN",
+    "pct": 0.11494047086205353
+   },
+   {
+    "team": "JP",
+    "pct": 0.10670486080028646
+   }
+  ],
+  "QF": [
+   {
+    "team": "FR",
+    "pct": 0.1794276875483372
+   },
+   {
+    "team": "ES",
+    "pct": 0.1194465927644582
+   },
+   {
+    "team": "EC",
+    "pct": 0.09633066941651629
+   }
+  ],
+  "SF": [
+   {
+    "team": "ES",
+    "pct": 0.1895312050618349
+   },
+   {
+    "team": "AR",
+    "pct": 0.12280701754385964
+   },
+   {
+    "team": "PT",
+    "pct": 0.06298533218291631
+   }
+  ],
+  "3P": [
+   {
+    "team": "AR",
+    "pct": 0.07196969696969698
+   },
+   {
+    "team": "MX",
+    "pct": 0.06944444444444445
+   },
+   {
+    "team": "FR",
+    "pct": 0.06691919191919192
+   }
+  ],
+  "F": [
+   {
+    "team": "AR",
+    "pct": 0.15349682107175294
+   },
+   {
+    "team": "ES",
+    "pct": 0.11534968210717529
+   },
+   {
+    "team": "FR",
+    "pct": 0.07629427792915532
+   }
+  ]
+ },
+ "knocked_out_by": [
+  {
+   "team": "BE",
+   "pct": 0.11944022413336493
+  },
+  {
+   "team": "CH",
+   "pct": 0.10671424389835941
+  },
+  {
+   "team": "CA",
+   "pct": 0.08962546868684053
+  },
+  {
+   "team": "NL",
+   "pct": 0.05371952664371437
+  },
+  {
+   "team": "IR",
+   "pct": 0.052311723791868193
+  }
+ ],
+ "first_round_excerpt": {
+  "opponent": "BE",
+  "meet_in_r32_pct": 0.11977,
+  "win_pct_when_met": 0.2935626617683894
+ },
+ "name": "Czechia",
+ "excerpt_text": "Czechia's single biggest risk is the round of 32, where 38.6% of its runs end. Belgium is the team that ends its tournament most often, 11.9% of eliminations. The two meet in the round of 32 in 12.0% of all runs, and Czechia wins 29% of those meetings."
+}

@@ -1,0 +1,139 @@
+{
+ "team": "UZ",
+ "group": "K",
+ "elo": 1714.0,
+ "champion_pct": 0.00198,
+ "fates": {
+  "gs4": 0.36601,
+  "gs3_out": 0.14691,
+  "r32": 0.3273,
+  "r16": 0.10834,
+  "qf": 0.03395,
+  "fourth": 0.00727,
+  "third": 0.00421,
+  "runner_up": 0.00403,
+  "champion": 0.00198
+ },
+ "reach": {
+  "R32": 0.48708,
+  "R16": 0.15978,
+  "QF": 0.05144,
+  "SF": 0.01749,
+  "F": 0.00601
+ },
+ "opponents_by_round": {
+  "R32": [
+   {
+    "team": "EN",
+    "pct": 0.40159727354849306
+   },
+   {
+    "team": "HR",
+    "pct": 0.3298842079329884
+   },
+   {
+    "team": "PA",
+    "pct": 0.1747762174591443
+   }
+  ],
+  "R16": [
+   {
+    "team": "ES",
+    "pct": 0.2723119289022406
+   },
+   {
+    "team": "MX",
+    "pct": 0.16447615471273
+   },
+   {
+    "team": "CH",
+    "pct": 0.07648016022030292
+   }
+  ],
+  "QF": [
+   {
+    "team": "AR",
+    "pct": 0.14793934681181958
+   },
+   {
+    "team": "BR",
+    "pct": 0.08942457231726283
+   },
+   {
+    "team": "TR",
+    "pct": 0.06901244167962675
+   }
+  ],
+  "SF": [
+   {
+    "team": "AR",
+    "pct": 0.09719839908519154
+   },
+   {
+    "team": "FR",
+    "pct": 0.09662664379645512
+   },
+   {
+    "team": "EN",
+    "pct": 0.062321326472269865
+   }
+  ],
+  "3P": [
+   {
+    "team": "FR",
+    "pct": 0.08623693379790941
+   },
+   {
+    "team": "ES",
+    "pct": 0.08101045296167247
+   },
+   {
+    "team": "NL",
+    "pct": 0.05662020905923345
+   }
+  ],
+  "F": [
+   {
+    "team": "ES",
+    "pct": 0.16805324459234608
+   },
+   {
+    "team": "AR",
+    "pct": 0.11980033277870217
+   },
+   {
+    "team": "FR",
+    "pct": 0.10815307820299501
+   }
+  ]
+ },
+ "knocked_out_by": [
+  {
+   "team": "EN",
+   "pct": 0.3214388785817357
+  },
+  {
+   "team": "HR",
+   "pct": 0.22857142857142856
+  },
+  {
+   "team": "PA",
+   "pct": 0.08841475984333128
+  },
+  {
+   "team": "ES",
+   "pct": 0.0816120387548959
+  },
+  {
+   "team": "MX",
+   "pct": 0.04079571222428365
+  }
+ ],
+ "first_round_excerpt": {
+  "opponent": "EN",
+  "meet_in_r32_pct": 0.19561,
+  "win_pct_when_met": 0.2073002402740146
+ },
+ "name": "Uzbekistan",
+ "excerpt_text": "Uzbekistan's most common ending is fourth in its group, 36.6% of its runs. It got out of the group in 48.7% of them, and when it did, England was the team that ended its tournament most often (32.1% of eliminations)."
+}

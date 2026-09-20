@@ -2,6 +2,9 @@
 calibration export and the copy into site/data/. Pure functions over report outputs."""
 from __future__ import annotations
 
+import shutil
+from pathlib import Path
+
 from . import tables
 
 # eloratings.net code -> ISO 3166 / flagcdn code. Traps: SQ Scotland, IE Ireland, IR Iran.
@@ -98,3 +101,20 @@ def team_pages(ctx: tables.Context, names: dict[str, str]) -> dict[str, dict]:
         page["excerpt_text"] = excerpt_text(page, names)
         out[f"team_{code}"] = page
     return out
+
+
+def copy_site_data(report_dir: Path, site_dir: Path, name: str,
+                   calibration: Path = Path("data") / "calibration.json") -> list[Path]:
+    """Copy the files the website fetches into <site_dir>/data/<name>/. Returns written paths."""
+    dest = Path(site_dir) / "data" / name
+    dest.mkdir(parents=True, exist_ok=True)
+    sources = [Path(report_dir) / "report.json", Path(report_dir) / "teams.json",
+               *sorted(Path(report_dir).glob("team_*.json"))]
+    if Path(calibration).exists():
+        sources.append(Path(calibration))
+    written = []
+    for src in sources:
+        target = dest / src.name
+        shutil.copyfile(src, target)
+        written.append(target)
+    return written

@@ -1,0 +1,139 @@
+{
+ "team": "ZA",
+ "group": "A",
+ "elo": 1518.0,
+ "champion_pct": 6e-05,
+ "fates": {
+  "gs4": 0.63931,
+  "gs3_out": 0.10658,
+  "r32": 0.18491,
+  "r16": 0.05538,
+  "qf": 0.01161,
+  "fourth": 0.00136,
+  "third": 0.00034,
+  "runner_up": 0.00045,
+  "champion": 6e-05
+ },
+ "reach": {
+  "R32": 0.25411,
+  "R16": 0.0692,
+  "QF": 0.01382,
+  "SF": 0.00221,
+  "F": 0.00051
+ },
+ "opponents_by_round": {
+  "R32": [
+   {
+    "team": "BE",
+    "pct": 0.2513871945220574
+   },
+   {
+    "team": "CA",
+    "pct": 0.1526110739443548
+   },
+   {
+    "team": "CH",
+    "pct": 0.1454488213765692
+   }
+  ],
+  "R16": [
+   {
+    "team": "NL",
+    "pct": 0.14523121387283236
+   },
+   {
+    "team": "TR",
+    "pct": 0.10809248554913295
+   },
+   {
+    "team": "JP",
+    "pct": 0.10245664739884393
+   }
+  ],
+  "QF": [
+   {
+    "team": "ES",
+    "pct": 0.19030390738060782
+   },
+   {
+    "team": "FR",
+    "pct": 0.15991316931982633
+   },
+   {
+    "team": "EC",
+    "pct": 0.08031837916063676
+   }
+  ],
+  "SF": [
+   {
+    "team": "ES",
+    "pct": 0.17194570135746606
+   },
+   {
+    "team": "AR",
+    "pct": 0.08144796380090498
+   },
+   {
+    "team": "FR",
+    "pct": 0.06787330316742081
+   }
+  ],
+  "3P": [
+   {
+    "team": "AR",
+    "pct": 0.1
+   },
+   {
+    "team": "EN",
+    "pct": 0.08235294117647059
+   },
+   {
+    "team": "ES",
+    "pct": 0.07058823529411765
+   }
+  ],
+  "F": [
+   {
+    "team": "AR",
+    "pct": 0.1568627450980392
+   },
+   {
+    "team": "ES",
+    "pct": 0.11764705882352941
+   },
+   {
+    "team": "CO",
+    "pct": 0.0784313725490196
+   }
+  ]
+ },
+ "knocked_out_by": [
+  {
+   "team": "BE",
+   "pct": 0.2131076559732336
+  },
+  {
+   "team": "CH",
+   "pct": 0.11781145443810273
+  },
+  {
+   "team": "CA",
+   "pct": 0.10647510332611691
+  },
+  {
+   "team": "IR",
+   "pct": 0.09419405628813225
+  },
+  {
+   "team": "EG",
+   "pct": 0.05479236370793151
+  }
+ ],
+ "first_round_excerpt": {
+  "opponent": "BE",
+  "meet_in_r32_pct": 0.06388,
+  "win_pct_when_met": 0.1541953663118347
+ },
+ "name": "South Africa",
+ "excerpt_text": "South Africa's most common ending is fourth in its group, 63.9% of its runs. It got out of the group in 25.4% of them, and when it did, Belgium was the team that ended its tournament most often (21.3% of eliminations)."
+}

@@ -1,0 +1,139 @@
+{
+ "team": "NZ",
+ "group": "G",
+ "elo": 1562.0,
+ "champion_pct": 0.00025,
+ "fates": {
+  "gs4": 0.53905,
+  "gs3_out": 0.10486,
+  "r32": 0.26805,
+  "r16": 0.06964,
+  "qf": 0.01482,
+  "fourth": 0.00173,
+  "third": 0.00072,
+  "runner_up": 0.00088,
+  "champion": 0.00025
+ },
+ "reach": {
+  "R32": 0.35609,
+  "R16": 0.08804,
+  "QF": 0.0184,
+  "SF": 0.00358,
+  "F": 0.00113
+ },
+ "opponents_by_round": {
+  "R32": [
+   {
+    "team": "CH",
+    "pct": 0.1762194950714707
+   },
+   {
+    "team": "CA",
+    "pct": 0.17085568255216377
+   },
+   {
+    "team": "TR",
+    "pct": 0.10486113061304726
+   }
+  ],
+  "R16": [
+   {
+    "team": "AR",
+    "pct": 0.20695138573375738
+   },
+   {
+    "team": "PT",
+    "pct": 0.09075420263516583
+   },
+   {
+    "team": "CO",
+    "pct": 0.09041344843253067
+   }
+  ],
+  "QF": [
+   {
+    "team": "ES",
+    "pct": 0.23315217391304346
+   },
+   {
+    "team": "AR",
+    "pct": 0.11739130434782609
+   },
+   {
+    "team": "PT",
+    "pct": 0.0983695652173913
+   }
+  ],
+  "SF": [
+   {
+    "team": "FR",
+    "pct": 0.12011173184357542
+   },
+   {
+    "team": "EN",
+    "pct": 0.10614525139664804
+   },
+   {
+    "team": "BR",
+    "pct": 0.09497206703910614
+   }
+  ],
+  "3P": [
+   {
+    "team": "FR",
+    "pct": 0.09795918367346938
+   },
+   {
+    "team": "ES",
+    "pct": 0.07755102040816327
+   },
+   {
+    "team": "AR",
+    "pct": 0.061224489795918366
+   }
+  ],
+  "F": [
+   {
+    "team": "ES",
+    "pct": 0.10619469026548672
+   },
+   {
+    "team": "AR",
+    "pct": 0.10619469026548672
+   },
+   {
+    "team": "FR",
+    "pct": 0.09734513274336283
+   }
+  ]
+ },
+ "knocked_out_by": [
+  {
+   "team": "CH",
+   "pct": 0.15147257194244604
+  },
+  {
+   "team": "CA",
+   "pct": 0.1447841726618705
+  },
+  {
+   "team": "TR",
+   "pct": 0.09996065647482015
+  },
+  {
+   "team": "PY",
+   "pct": 0.08309914568345324
+  },
+  {
+   "team": "US",
+   "pct": 0.08079473920863309
+  }
+ ],
+ "first_round_excerpt": {
+  "opponent": "CH",
+  "meet_in_r32_pct": 0.06275,
+  "win_pct_when_met": 0.16557768924302788
+ },
+ "name": "New Zealand",
+ "excerpt_text": "New Zealand's most common ending is fourth in its group, 53.9% of its runs. It got out of the group in 35.6% of them, and when it did, Switzerland was the team that ended its tournament most often (15.1% of eliminations)."
+}

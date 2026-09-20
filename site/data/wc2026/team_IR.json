@@ -1,0 +1,139 @@
+{
+ "team": "IR",
+ "group": "G",
+ "elo": 1772.0,
+ "champion_pct": 0.00502,
+ "fates": {
+  "gs4": 0.15101,
+  "gs3_out": 0.06881,
+  "r32": 0.42776,
+  "r16": 0.22704,
+  "qf": 0.08565,
+  "fourth": 0.01536,
+  "third": 0.00949,
+  "runner_up": 0.00986,
+  "champion": 0.00502
+ },
+ "reach": {
+  "R32": 0.78018,
+  "R16": 0.35242,
+  "QF": 0.12538,
+  "SF": 0.03973,
+  "F": 0.01488
+ },
+ "opponents_by_round": {
+  "R32": [
+   {
+    "team": "TR",
+    "pct": 0.11308928708759516
+   },
+   {
+    "team": "PY",
+    "pct": 0.10874413596862263
+   },
+   {
+    "team": "US",
+    "pct": 0.10630880053321029
+   }
+  ],
+  "R16": [
+   {
+    "team": "AR",
+    "pct": 0.2111117416718688
+   },
+   {
+    "team": "TR",
+    "pct": 0.12811418194200103
+   },
+   {
+    "team": "PY",
+    "pct": 0.07845752227455877
+   }
+  ],
+  "QF": [
+   {
+    "team": "ES",
+    "pct": 0.2745254426543308
+   },
+   {
+    "team": "PT",
+    "pct": 0.10894879566118998
+   },
+   {
+    "team": "CO",
+    "pct": 0.10695485723400862
+   }
+  ],
+  "SF": [
+   {
+    "team": "FR",
+    "pct": 0.14145482003523785
+   },
+   {
+    "team": "BR",
+    "pct": 0.09438711301283664
+   },
+   {
+    "team": "EN",
+    "pct": 0.08180216461112509
+   }
+  ],
+  "3P": [
+   {
+    "team": "ES",
+    "pct": 0.07605633802816901
+   },
+   {
+    "team": "AR",
+    "pct": 0.0676056338028169
+   },
+   {
+    "team": "FR",
+    "pct": 0.055533199195171024
+   }
+  ],
+  "F": [
+   {
+    "team": "ES",
+    "pct": 0.1350806451612903
+   },
+   {
+    "team": "AR",
+    "pct": 0.1256720430107527
+   },
+   {
+    "team": "FR",
+    "pct": 0.0913978494623656
+   }
+  ]
+ },
+ "knocked_out_by": [
+  {
+   "team": "TR",
+   "pct": 0.11224779400381857
+  },
+  {
+   "team": "AR",
+   "pct": 0.09416120542855669
+  },
+  {
+   "team": "PY",
+   "pct": 0.08571133701429383
+  },
+  {
+   "team": "US",
+   "pct": 0.0792610557820321
+  },
+  {
+   "team": "CH",
+   "pct": 0.07487486454409412
+  }
+ ],
+ "first_round_excerpt": {
+  "opponent": "TR",
+  "meet_in_r32_pct": 0.08823,
+  "win_pct_when_met": 0.3518077751331747
+ },
+ "name": "Iran",
+ "excerpt_text": "Iran's single biggest risk is the round of 32, where 42.8% of its runs end. Turkey is the team that ends its tournament most often, 11.2% of eliminations. The two meet in the round of 32 in 8.8% of all runs, and Iran wins 35% of those meetings."
+}

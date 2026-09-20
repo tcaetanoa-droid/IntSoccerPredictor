@@ -1,0 +1,139 @@
+{
+ "team": "HT",
+ "group": "C",
+ "elo": 1548.0,
+ "champion_pct": 0.00011,
+ "fates": {
+  "gs4": 0.66665,
+  "gs3_out": 0.09879,
+  "r32": 0.18993,
+  "r16": 0.03349,
+  "qf": 0.0085,
+  "fourth": 0.00165,
+  "third": 0.0004,
+  "runner_up": 0.00048,
+  "champion": 0.00011
+ },
+ "reach": {
+  "R32": 0.23456,
+  "R16": 0.04463,
+  "QF": 0.01114,
+  "SF": 0.00264,
+  "F": 0.00059
+ },
+ "opponents_by_round": {
+  "R32": [
+   {
+    "team": "NL",
+    "pct": 0.209924965893588
+   },
+   {
+    "team": "JP",
+    "pct": 0.18131821282401092
+   },
+   {
+    "team": "DE",
+    "pct": 0.14375852660300137
+   }
+  ],
+  "R16": [
+   {
+    "team": "FR",
+    "pct": 0.15505265516468744
+   },
+   {
+    "team": "CH",
+    "pct": 0.09097019941743222
+   },
+   {
+    "team": "EN",
+    "pct": 0.08312794084696393
+   }
+  ],
+  "QF": [
+   {
+    "team": "FR",
+    "pct": 0.16696588868940754
+   },
+   {
+    "team": "EC",
+    "pct": 0.10323159784560143
+   },
+   {
+    "team": "DE",
+    "pct": 0.08348294434470377
+   }
+  ],
+  "SF": [
+   {
+    "team": "ES",
+    "pct": 0.24242424242424243
+   },
+   {
+    "team": "AR",
+    "pct": 0.17803030303030304
+   },
+   {
+    "team": "CO",
+    "pct": 0.07575757575757576
+   }
+  ],
+  "3P": [
+   {
+    "team": "BR",
+    "pct": 0.07804878048780488
+   },
+   {
+    "team": "EN",
+    "pct": 0.06829268292682927
+   },
+   {
+    "team": "NL",
+    "pct": 0.06829268292682927
+   }
+  ],
+  "F": [
+   {
+    "team": "EN",
+    "pct": 0.11864406779661017
+   },
+   {
+    "team": "AR",
+    "pct": 0.1016949152542373
+   },
+   {
+    "team": "ES",
+    "pct": 0.0847457627118644
+   }
+  ]
+ },
+ "knocked_out_by": [
+  {
+   "team": "NL",
+   "pct": 0.17846022606099382
+  },
+  {
+   "team": "JP",
+   "pct": 0.14787801236937514
+  },
+  {
+   "team": "DE",
+   "pct": 0.13324802729793134
+  },
+  {
+   "team": "EC",
+   "pct": 0.13175517167839626
+  },
+  {
+   "team": "MX",
+   "pct": 0.11558967796971635
+  }
+ ],
+ "first_round_excerpt": {
+  "opponent": "NL",
+  "meet_in_r32_pct": 0.04924,
+  "win_pct_when_met": 0.16673436230706742
+ },
+ "name": "Haiti",
+ "excerpt_text": "Haiti's most common ending is fourth in its group, 66.7% of its runs. It got out of the group in 23.5% of them, and when it did, Netherlands was the team that ended its tournament most often (17.8% of eliminations)."
+}

@@ -1,0 +1,139 @@
+{
+ "team": "EG",
+ "group": "G",
+ "elo": 1696.0,
+ "champion_pct": 0.00176,
+ "fates": {
+  "gs4": 0.24868,
+  "gs3_out": 0.10185,
+  "r32": 0.41046,
+  "r16": 0.1691,
+  "qf": 0.0512,
+  "fourth": 0.00836,
+  "third": 0.00444,
+  "runner_up": 0.00415,
+  "champion": 0.00176
+ },
+ "reach": {
+  "R32": 0.64947,
+  "R16": 0.23901,
+  "QF": 0.06991,
+  "SF": 0.01871,
+  "F": 0.00591
+ },
+ "opponents_by_round": {
+  "R32": [
+   {
+    "team": "CH",
+    "pct": 0.13227708747132277
+   },
+   {
+    "team": "CA",
+    "pct": 0.1302600582013026
+   },
+   {
+    "team": "TR",
+    "pct": 0.10965864474109659
+   }
+  ],
+  "R16": [
+   {
+    "team": "AR",
+    "pct": 0.21722940462742144
+   },
+   {
+    "team": "TR",
+    "pct": 0.10710848918455294
+   },
+   {
+    "team": "UY",
+    "pct": 0.07518513869712565
+   }
+  ],
+  "QF": [
+   {
+    "team": "ES",
+    "pct": 0.24746102131311687
+   },
+   {
+    "team": "AR",
+    "pct": 0.11071377485338292
+   },
+   {
+    "team": "PT",
+    "pct": 0.10313259905592906
+   }
+  ],
+  "SF": [
+   {
+    "team": "FR",
+    "pct": 0.13361838588989844
+   },
+   {
+    "team": "EN",
+    "pct": 0.08391234633885623
+   },
+   {
+    "team": "BR",
+    "pct": 0.08177445216461784
+   }
+  ],
+  "3P": [
+   {
+    "team": "ES",
+    "pct": 0.08515625
+   },
+   {
+    "team": "FR",
+    "pct": 0.07109375
+   },
+   {
+    "team": "AR",
+    "pct": 0.06484375
+   }
+  ],
+  "F": [
+   {
+    "team": "ES",
+    "pct": 0.15228426395939088
+   },
+   {
+    "team": "AR",
+    "pct": 0.13705583756345177
+   },
+   {
+    "team": "FR",
+    "pct": 0.0829103214890017
+   }
+  ]
+ },
+ "knocked_out_by": [
+  {
+   "team": "CH",
+   "pct": 0.10558737706689722
+  },
+  {
+   "team": "TR",
+   "pct": 0.1051087678127557
+  },
+  {
+   "team": "CA",
+   "pct": 0.10270028253385002
+  },
+  {
+   "team": "PY",
+   "pct": 0.0868289821061895
+  },
+  {
+   "team": "AR",
+   "pct": 0.08161059733522719
+  }
+ ],
+ "first_round_excerpt": {
+  "opponent": "CH",
+  "meet_in_r32_pct": 0.08591,
+  "win_pct_when_met": 0.25387032941450355
+ },
+ "name": "Egypt",
+ "excerpt_text": "Egypt's single biggest risk is the round of 32, where 41.0% of its runs end. Switzerland is the team that ends its tournament most often, 10.6% of eliminations. The two meet in the round of 32 in 8.6% of all runs, and Egypt wins 25% of those meetings."
+}

@@ -100,3 +100,16 @@ def test_a_team_file_is_written_for_all_48_with_text(built, wc):
     page = json.loads((out / "team_ES.json").read_text())
     assert page["name"] == "ES" and page["excerpt_text"].startswith("ES")
     assert "team_ES" in views and views["team_ES"]["excerpt_text"] == page["excerpt_text"]
+
+
+def test_copy_site_data_copies_only_what_the_site_reads(built, tmp_path):
+    _, out = built
+    cal = tmp_path / "calibration.json"
+    cal.write_text("[]")
+    written = site.copy_site_data(out, tmp_path / "site", "wc2026", calibration=cal)
+    dest = tmp_path / "site" / "data" / "wc2026"
+    names = sorted(p.name for p in dest.iterdir())
+    assert "report.json" in names and "teams.json" in names and "calibration.json" in names
+    assert len([n for n in names if n.startswith("team_")]) == 48
+    assert not any(n.endswith(".csv") for n in names) and "reality.json" not in names
+    assert sorted(written) == sorted(dest.iterdir())

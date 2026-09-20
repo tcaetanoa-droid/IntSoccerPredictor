@@ -1,0 +1,139 @@
+{
+ "team": "CW",
+ "group": "E",
+ "elo": 1434.0,
+ "champion_pct": 1e-05,
+ "fates": {
+  "gs4": 0.7667,
+  "gs3_out": 0.09775,
+  "r32": 0.11859,
+  "r16": 0.01471,
+  "qf": 0.00196,
+  "fourth": 0.00022,
+  "third": 4e-05,
+  "runner_up": 2e-05,
+  "champion": 1e-05
+ },
+ "reach": {
+  "R32": 0.13555,
+  "R16": 0.01696,
+  "QF": 0.00225,
+  "SF": 0.00029,
+  "F": 3e-05
+ },
+ "opponents_by_round": {
+  "R32": [
+   {
+    "team": "MX",
+    "pct": 0.2317963850977499
+   },
+   {
+    "team": "NO",
+    "pct": 0.10800442641091848
+   },
+   {
+    "team": "SN",
+    "pct": 0.09280708225746957
+   }
+  ],
+  "R16": [
+   {
+    "team": "BR",
+    "pct": 0.13738207547169812
+   },
+   {
+    "team": "EN",
+    "pct": 0.12735849056603774
+   },
+   {
+    "team": "FR",
+    "pct": 0.07311320754716981
+   }
+  ],
+  "QF": [
+   {
+    "team": "ES",
+    "pct": 0.10222222222222223
+   },
+   {
+    "team": "BR",
+    "pct": 0.09777777777777778
+   },
+   {
+    "team": "MX",
+    "pct": 0.09333333333333334
+   }
+  ],
+  "SF": [
+   {
+    "team": "AR",
+    "pct": 0.3103448275862069
+   },
+   {
+    "team": "PT",
+    "pct": 0.20689655172413793
+   },
+   {
+    "team": "FR",
+    "pct": 0.06896551724137931
+   }
+  ],
+  "3P": [
+   {
+    "team": "ES",
+    "pct": 0.19230769230769232
+   },
+   {
+    "team": "EN",
+    "pct": 0.07692307692307693
+   },
+   {
+    "team": "CZ",
+    "pct": 0.07692307692307693
+   }
+  ],
+  "F": [
+   {
+    "team": "ES",
+    "pct": 0.3333333333333333
+   },
+   {
+    "team": "EC",
+    "pct": 0.3333333333333333
+   },
+   {
+    "team": "FR",
+    "pct": 0.3333333333333333
+   }
+  ]
+ },
+ "knocked_out_by": [
+  {
+   "team": "MX",
+   "pct": 0.21912350597609562
+  },
+  {
+   "team": "NO",
+   "pct": 0.09790467758595249
+  },
+  {
+   "team": "FR",
+   "pct": 0.08410801239486498
+  },
+  {
+   "team": "SN",
+   "pct": 0.08292754906300723
+  },
+  {
+   "team": "KR",
+   "pct": 0.05171904972701785
+  }
+ ],
+ "first_round_excerpt": {
+  "opponent": "MX",
+  "meet_in_r32_pct": 0.03142,
+  "win_pct_when_met": 0.0668364099299809
+ },
+ "name": "Cura\u00e7ao",
+ "excerpt_text": "Cura\u00e7ao's most common ending is fourth in its group, 76.7% of its runs. It got out of the group in 13.6% of them, and when it did, Mexico was the team that ended its tournament most often (21.9% of eliminations)."
+}

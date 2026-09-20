@@ -1,0 +1,139 @@
+{
+ "team": "GH",
+ "group": "L",
+ "elo": 1511.0,
+ "champion_pct": 4e-05,
+ "fates": {
+  "gs4": 0.71207,
+  "gs3_out": 0.10957,
+  "r32": 0.15091,
+  "r16": 0.0225,
+  "qf": 0.0039,
+  "fourth": 0.00071,
+  "third": 0.00015,
+  "runner_up": 0.00015,
+  "champion": 4e-05
+ },
+ "reach": {
+  "R32": 0.17836,
+  "R16": 0.02745,
+  "QF": 0.00495,
+  "SF": 0.00105,
+  "F": 0.00019
+ },
+ "opponents_by_round": {
+  "R32": [
+   {
+    "team": "PT",
+    "pct": 0.39493159901323166
+   },
+   {
+    "team": "CO",
+    "pct": 0.37906481273828213
+   },
+   {
+    "team": "UZ",
+    "pct": 0.1172908723929132
+   }
+  ],
+  "R16": [
+   {
+    "team": "ES",
+    "pct": 0.26812386156648454
+   },
+   {
+    "team": "CH",
+    "pct": 0.14353369763205828
+   },
+   {
+    "team": "CA",
+    "pct": 0.12276867030965391
+   }
+  ],
+  "QF": [
+   {
+    "team": "AR",
+    "pct": 0.23030303030303031
+   },
+   {
+    "team": "BE",
+    "pct": 0.08888888888888889
+   },
+   {
+    "team": "TR",
+    "pct": 0.0707070707070707
+   }
+  ],
+  "SF": [
+   {
+    "team": "FR",
+    "pct": 0.11428571428571428
+   },
+   {
+    "team": "AR",
+    "pct": 0.10476190476190476
+   },
+   {
+    "team": "EC",
+    "pct": 0.08571428571428572
+   }
+  ],
+  "3P": [
+   {
+    "team": "ES",
+    "pct": 0.11627906976744186
+   },
+   {
+    "team": "FR",
+    "pct": 0.08139534883720931
+   },
+   {
+    "team": "JP",
+    "pct": 0.05813953488372093
+   }
+  ],
+  "F": [
+   {
+    "team": "FR",
+    "pct": 0.3157894736842105
+   },
+   {
+    "team": "ES",
+    "pct": 0.2631578947368421
+   },
+   {
+    "team": "TR",
+    "pct": 0.10526315789473684
+   }
+  ]
+ },
+ "knocked_out_by": [
+  {
+   "team": "PT",
+   "pct": 0.35385823239120684
+  },
+  {
+   "team": "CO",
+   "pct": 0.3366980708838044
+  },
+  {
+   "team": "UZ",
+   "pct": 0.08462314939434724
+  },
+  {
+   "team": "CD",
+   "pct": 0.05288245850157021
+  },
+  {
+   "team": "ES",
+   "pct": 0.040264692687303726
+  }
+ ],
+ "first_round_excerpt": {
+  "opponent": "PT",
+  "meet_in_r32_pct": 0.07044,
+  "win_pct_when_met": 0.10491198182850653
+ },
+ "name": "Ghana",
+ "excerpt_text": "Ghana's most common ending is fourth in its group, 71.2% of its runs. It got out of the group in 17.8% of them, and when it did, Portugal was the team that ended its tournament most often (35.4% of eliminations)."
+}

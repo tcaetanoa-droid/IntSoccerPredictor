@@ -1,0 +1,139 @@
+{
+ "team": "CV",
+ "group": "H",
+ "elo": 1578.0,
+ "champion_pct": 0.00015,
+ "fates": {
+  "gs4": 0.46386,
+  "gs3_out": 0.21894,
+  "r32": 0.25968,
+  "r16": 0.04374,
+  "qf": 0.01065,
+  "fourth": 0.00177,
+  "third": 0.00058,
+  "runner_up": 0.00063,
+  "champion": 0.00015
+ },
+ "reach": {
+  "R32": 0.3172,
+  "R16": 0.05752,
+  "QF": 0.01378,
+  "SF": 0.00313,
+  "F": 0.00078
+ },
+ "opponents_by_round": {
+  "R32": [
+   {
+    "team": "AR",
+    "pct": 0.27887767969735183
+   },
+   {
+    "team": "MX",
+    "pct": 0.20993064312736445
+   },
+   {
+    "team": "BE",
+    "pct": 0.08092686002522068
+   }
+  ],
+  "R16": [
+   {
+    "team": "EN",
+    "pct": 0.1860222531293463
+   },
+   {
+    "team": "TR",
+    "pct": 0.10587621696801112
+   },
+   {
+    "team": "HR",
+    "pct": 0.10100834492350487
+   }
+  ],
+  "QF": [
+   {
+    "team": "PT",
+    "pct": 0.10377358490566038
+   },
+   {
+    "team": "ES",
+    "pct": 0.10159651669085631
+   },
+   {
+    "team": "CO",
+    "pct": 0.09216255442670537
+   }
+  ],
+  "SF": [
+   {
+    "team": "FR",
+    "pct": 0.08306709265175719
+   },
+   {
+    "team": "ES",
+    "pct": 0.07028753993610223
+   },
+   {
+    "team": "NL",
+    "pct": 0.0670926517571885
+   }
+  ],
+  "3P": [
+   {
+    "team": "FR",
+    "pct": 0.09787234042553192
+   },
+   {
+    "team": "ES",
+    "pct": 0.0851063829787234
+   },
+   {
+    "team": "BR",
+    "pct": 0.06382978723404255
+   }
+  ],
+  "F": [
+   {
+    "team": "ES",
+    "pct": 0.1794871794871795
+   },
+   {
+    "team": "AR",
+    "pct": 0.14102564102564102
+   },
+   {
+    "team": "FR",
+    "pct": 0.0641025641025641
+   }
+  ]
+ },
+ "knocked_out_by": [
+  {
+   "team": "AR",
+   "pct": 0.25838195868159597
+  },
+  {
+   "team": "MX",
+   "pct": 0.1809493770698628
+  },
+  {
+   "team": "BE",
+   "pct": 0.07109288755716764
+  },
+  {
+   "team": "AT",
+   "pct": 0.05156915313042107
+  },
+  {
+   "team": "FR",
+   "pct": 0.04696420123008989
+  }
+ ],
+ "first_round_excerpt": {
+  "opponent": "AR",
+  "meet_in_r32_pct": 0.08846,
+  "win_pct_when_met": 0.0815057653176577
+ },
+ "name": "Cape Verde",
+ "excerpt_text": "Cape Verde's most common ending is fourth in its group, 46.4% of its runs. It got out of the group in 31.7% of them, and when it did, Argentina was the team that ended its tournament most often (25.8% of eliminations)."
+}
