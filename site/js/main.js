@@ -19,8 +19,14 @@ async function boot() {
   for (const { id, mod } of CHAPTERS) {
     const section = document.getElementById(id);
     if (!section) continue;
-    const { render } = await import(mod);
-    await render(section, ctx);
+    // One chapter that throws must not blank the ones after it, nor overwrite the hero.
+    try {
+      const { render } = await import(mod);
+      await render(section, ctx);
+    } catch (e) {
+      console.error(e);
+      section.textContent = 'This chapter could not be drawn.';
+    }
   }
 }
 boot().catch((e) => {

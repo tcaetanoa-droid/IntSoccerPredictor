@@ -68,15 +68,18 @@ export async function render(section, ctx) {
     else if (e.key === 'Enter') { e.preventDefault(); const t = matches[hi < 0 ? 0 : hi]; if (t) pick(t.code); }
     else if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); closeList(true); }  // the rail's Escape listens on document
   }
-  function pick(c) {
+  async function pick(c) {
     code = c;
     history.replaceState(null, '', `#team=${code}`);
+    // show() rebuilds the chip row, so a chip that was activated is removed from the document
+    // and focus would fall to <body>. From a row or the keyboard the focus is already on the
+    // input, so it stays there; from a tap on a chip it must not go to the input, which would
+    // open the on-screen keyboard, so it goes to the rebuilt team header instead.
+    const onInput = document.activeElement === input;
     closeList(false);
-    // Always: show() rebuilds the chip row, so a chip that was activated is removed from the
-    // document and focus would fall to <body>. From a row or the keyboard the focus is already
-    // here, so moving it back to the input is a no-op there.
-    input.focus();
-    show();
+    if (onInput) input.focus();
+    await show();
+    if (!onInput) body.querySelector('.th').focus();
   }
 
   async function show() {
@@ -100,7 +103,7 @@ export async function render(section, ctx) {
     const kmax = t.knocked_out_by.length ? t.knocked_out_by[0].pct : 1;
     const ko = t.knocked_out_by.map((o) => h('div', { class: 'ko' }, h('span', { class: 'oc' }, flag(o.team, ctx.byCode, 20), name(o.team, ctx.byCode)), h('i', {}, h('b', { style: `width:${Math.round(o.pct / kmax * 100)}%` })), h('span', { class: 'n' }, fmtPct(o.pct, 0))));
     body.replaceChildren(
-      h('div', { class: 'th' }, flag(code, ctx.byCode, 80), h('div', {}, h('div', { class: 'tn' }, nm), h('div', { class: 'tm n' }, `Group ${t.group} · Elo ${Math.round(t.elo)}${top ? ', highest in the field' : ''}`)), h('div', { class: 'tc' }, h('b', { class: 'n' }, cnt(t.champion_pct)), h('span', {}, 'won the tournament'))),
+      h('div', { class: 'th', tabindex: '-1' }, flag(code, ctx.byCode, 80), h('div', {}, h('div', { class: 'tn' }, nm), h('div', { class: 'tm n' }, `Group ${t.group} · Elo ${Math.round(t.elo)}${top ? ', highest in the field' : ''}`)), h('div', { class: 'tc' }, h('b', { class: 'n' }, cnt(t.champion_pct)), h('span', {}, 'won the tournament'))),
       h('div', { class: 'cards4' },
         h('div', { class: 'card cd wide' }, h('div', { class: 'sh' }, `How ${nm}'s ${runs} runs ended`), h('div', { class: 'fs' }, ...segs), legend),
         h('div', { class: 'card cd' }, h('div', { class: 'sh' }, `How far ${nm} gets`), h('div', { class: 'steps' }, ...steps)),

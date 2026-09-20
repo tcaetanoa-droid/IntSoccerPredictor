@@ -94,8 +94,8 @@ Team columns are pandas categoricals. ~65 MB for 100k World Cups; `output/` is g
 
 **11 Reports.** The views are specified in `docs/REPORTS.md` (agreed with Thiago view by view).
 11a, `report/tables.py` (views 1–8), `report/bracket.py` (9–10) and `report/build.py`, turns a
-saved run into one CSV/JSON per view plus `report.json`; editorial choices per tournament (focus
-team, faded giants, paradox pairs, real-results file) live in `build.FOCUS`. Tests check the
+saved run into one CSV/JSON per view plus `report.json`; editorial choices per tournament (faded
+giants, paradox pairs, real-results file) live in `build.FOCUS`. Tests check the
 structural invariants on a fresh 300-run store and, when `output/wc2026/` holds the seed-2026
 100k run, the exact numbers quoted in the doc. 11b draws one PNG per view from those files.
 

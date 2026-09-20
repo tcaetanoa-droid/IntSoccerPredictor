@@ -11,10 +11,9 @@ from ..montecarlo import Run, load_run
 from ..tournament.format import TOURNAMENT_DIR
 from . import bracket, site, tables
 
-# Editorial choices per tournament (which team gets the focus page, which giants, which pairs).
+# Editorial choices per tournament (which giants, which pairs, where the real results live).
 FOCUS = {
     "wc2026": {
-        "team": "ES",
         "giants": ["DE", "UY"],
         "absent_giants": ["IT"],
         "paradox_a": ("AR", "FR"),

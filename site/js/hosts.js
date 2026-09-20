@@ -17,7 +17,7 @@ export function render(section, ctx) {
     barChart({ values: FATES.map((f) => ({ label: f.label, value: by[code][f.key] * 100, text: countOf(by[code][f.key], ctx.n), colour })), ymax: 45, ticks })));
   section.replaceChildren(
     h('div', { class: 'num' }, '04 · The hosts'), h('h2', {}, 'Home advantage only goes so far.'),
-    h('p', { class: 'lede', html: 'The United States, Mexico and Canada were seeded into their own groups and got the home-advantage bonus in their own stadiums (Canada\'s knockout games were in the United States, so no bonus there). None of them was a contender. <b>Mexico was the strongest of the three</b>, the most likely to reach a quarter-final and the only one with a title chance above 2%. Canada almost always got out of its group and almost always went out in the next two rounds. The United States were the outlier: one run in four finished bottom of Group D.' }),
+    h('p', { class: 'lede', html: 'The United States, Mexico and Canada were seeded into their own groups and got the home-advantage bonus in their own stadiums (Canada\'s knockout games were in the United States, so no bonus there). None of them was a contender. <b>Mexico was the strongest of the three</b>, the most likely to reach a quarter-final and the only one with a title chance above 2%. Canada almost always got out of its group and usually went out in the next two rounds. The United States were the outlier: one run in four finished bottom of Group D.' }),
     h('div', { class: 'sh' }, 'How far the hosts go'),
     h('div', { class: 'cst' }, `How often each host's World Cup ended at each stage, in runs out of ${fmtCount(ctx.n)}`),
     h('div', { class: 'sm3' }, ...charts));
