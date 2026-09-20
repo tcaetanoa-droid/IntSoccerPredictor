@@ -143,6 +143,71 @@ site's own points column. The match-simulator tests run 200,000 simulations and 
 frequencies with the analytic Poisson probabilities. The loader tests read the real `wc2026.yaml`
 and cross-check its groups against the real results and the ratings snapshot.
 
+## Working notes
+
+The decisions behind the code and the things that bite. Formulas are in
+[docs/ELO_FORMULA.md](docs/ELO_FORMULA.md), endpoints and column layouts in
+[docs/DATA_SOURCES.md](docs/DATA_SOURCES.md), the 2026 standings and bracket rules in
+[docs/WC2026_FORMAT.md](docs/WC2026_FORMAT.md), the plan and status in
+[docs/ROADMAP.md](docs/ROADMAP.md). Code comments point there rather than repeating them.
+
+### Design decisions
+
+- **Outcomes come from the scoreline model, never from Elo's win expectancy `We`.** `We` is an
+  expected score, not a probability, and sampling from it produces no draws. This is the one idea
+  that must survive every refactor.
+- **One match, one pipeline.** Pre-match Elo, gap `dr` (+100 home), expected goals, Poisson
+  scores, result from the score, Elo update with the site's formula, new ratings carried into the
+  next match of *that* simulation. Every stage is a pure function so each can be checked against
+  real data.
+- **Reproducibility.** Every simulation takes an explicit `np.random.default_rng(seed)`. No global
+  RNG state anywhere.
+- **Rules live in data, not in loops.** Groups, hosts, tiebreaker ruleset, bracket and the
+  third-place table are YAML/CSV under `data/tournaments/`, interpreted by `tournament/`. The
+  simulator loop never contains a tournament-specific `if`. `euro2028.yaml` and `copa2028.yaml`
+  are `TBD` placeholders the loader rejects by design until the draws happen.
+- **Honest backtest.** The goals model is fitted only on matches before 11 June 2026. Never widen
+  the training window into the World Cup.
+- **Tiebreaker rulesets.** Two named orders: `head_to_head_first` (World Cup 2026 and UEFA:
+  points, head-to-head among the tied teams, then overall GD, GF) and `overall_first` (CONMEBOL).
+  2026 is the first World Cup with head-to-head before overall GD. Fair play and FIFA ranking
+  cannot be modelled: fall back to pre-tournament Elo, then a seeded draw.
+
+### Implementation details
+
+- Paths in a tournament YAML (`ratings_snapshot`, `third_place_table`) resolve against the
+  project root; every module finds it as `Path(__file__).resolve().parents[3]`.
+- `simulate_match` broadcasts scalars to length-n arrays; downstream code should assume arrays.
+- Elo update in knockouts uses the score **after extra time**; a shootout is `W = 0.5`, `G = 1`.
+- An empty venue column in a history row means a true home game (+100). A venue code means
+  neutral, even for a host playing elsewhere in the host region (Canada's knockouts were in the USA).
+- `K` comes from the tournament's `match_type` via `elo.k_factor()` (WC 60, EC/CA 50, F 20).
+
+### Gotchas
+
+1. **Quote every team code in YAML.** Bare `NO` (Norway) parses as `false`.
+2. **Team codes are eloratings.net's, not ISO.** The trap list is under "Data and credits"; the
+   lookup is `data/raw/en.teams.tsv`. Check before typing one.
+3. **TSV quirks.** No header row, Unicode minus sign, UTF-8 without a charset header: read
+   `resp.content`, never `resp.text`. Team history filenames strip accents.
+4. **Ruff is not the gate, pytest is.** `ruff check` reports import-wrapping style in older files;
+   keep new files clean for `--select F,E` and leave the rest alone.
+
+### Conventions
+
+Work through [docs/ROADMAP.md](docs/ROADMAP.md) one component per sitting and validate against
+reality whenever the data allows:
+
+```
+Elo update      → points exchanged match the site within ±1 on real rows
+Group standings → the 72 real 2026 group results yield the real 32 qualifiers
+Bracket         → the real standings yield all 16 real round-of-32 pairings
+```
+
+A component is done when `pytest` passes, its ROADMAP row is updated and the docs reflect any
+formula, endpoint or rule change. Commits are `Component N: <what>`. The website is light-themed
+and reads `site/data/<name>/*.json`; the views are specified in [docs/REPORTS.md](docs/REPORTS.md).
+
 ## Data and credits
 
 All ratings and match histories come from [eloratings.net](https://eloratings.net) (World Football
