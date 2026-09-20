@@ -16,4 +16,6 @@ export function initRail(rail, sections) {
   // into the rail (no ring for a mouse click, the browser keeps its focus-visible state).
   toggle.addEventListener('click', () => { const open = !rail.classList.contains('open'); set(open); if (open) links[0].focus(); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && rail.classList.contains('open')) { set(false); toggle.focus(); } });
+  // A chapter chosen from the open rail closes it; the hash navigation itself proceeds.
+  links.forEach((a) => a.addEventListener('click', () => { if (rail.classList.contains('open')) set(false); }));
 }

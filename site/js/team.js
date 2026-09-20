@@ -40,7 +40,10 @@ export async function render(section, ctx) {
         flag(t.code, ctx.byCode, 20), t.name, h('b', { class: 'n' }, cnt(t.champion_pct))))
       : [h('div', { class: 'r none', role: 'presentation' }, 'No team matches')]));
     results.hidden = false;
-    if (hi >= 0) results.children[hi].scrollIntoView({ block: 'nearest' });
+    // Scroll the list box itself, never scrollIntoView: that walks up to the document and would
+    // smooth-scroll the page on every keystroke when the list is below the fold.
+    if (hi >= 0) { const r = results.children[hi], lo = r.offsetTop, hiEdge = lo + r.offsetHeight;
+      if (lo < results.scrollTop) results.scrollTop = lo; else if (hiEdge > results.scrollTop + results.clientHeight) results.scrollTop = hiEdge - results.clientHeight; }
     input.setAttribute('aria-expanded', 'true');
     if (hi >= 0) input.setAttribute('aria-activedescendant', `tr-${matches[hi].code}`);
     else input.removeAttribute('aria-activedescendant');
@@ -63,7 +66,7 @@ export async function render(section, ctx) {
     if (e.key === 'ArrowDown') { e.preventDefault(); if (results.hidden) openList(''); else if (hi < matches.length - 1) { hi++; drawList(); } }
     else if (e.key === 'ArrowUp') { e.preventDefault(); if (!results.hidden && hi > 0) { hi--; drawList(); } }
     else if (e.key === 'Enter') { e.preventDefault(); const t = matches[hi < 0 ? 0 : hi]; if (t) pick(t.code); }
-    else if (e.key === 'Escape') { e.preventDefault(); closeList(true); }
+    else if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); closeList(true); }  // the rail's Escape listens on document
   }
   function pick(c) {
     code = c;
