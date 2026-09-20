@@ -58,3 +58,17 @@ def test_save_and_load_roundtrip(tmp_path):
     m = GoalsModel(a=0.3, b=0.002, c_friendly=-0.05)
     p = m.save(tmp_path / "params.yaml", meta={"note": "test"})
     assert GoalsModel.load(p) == m
+
+
+def test_calibration_records_drop_small_bins_and_keep_bin_as_a_column():
+    import pandas as pd
+    from intsoccer.model import fit as fitmod
+    diag = pd.DataFrame({
+        "n": [10, 40, 1000], "obs_goals": [0.1, 0.5, 1.2], "pred_goals": [0.2, 0.5, 1.2],
+        "obs_win": [0, .1, .4], "pred_win": [0, .1, .4], "obs_draw": [0, .1, .3],
+        "pred_draw": [0, .1, .28], "elo_we": [.1, .2, .5], "obs_score": [0, .15, .55],
+    }, index=pd.Index([-1000, -500, 0], name="bin"))
+    recs = fitmod.calibration_records(diag, min_n=30)
+    assert [r["bin"] for r in recs] == [-500, 0]
+    assert recs[1]["n"] == 1000 and recs[1]["pred_draw"] == 0.28
+    assert all(isinstance(r["bin"], int) and isinstance(r["obs_goals"], float) for r in recs)

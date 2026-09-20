@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import sys
 
 from pathlib import Path
@@ -65,6 +66,9 @@ def cmd_fit(args: argparse.Namespace) -> int:
     model.save(out, meta={"fitted_on": {"start": args.start, "end": args.end, "table": args.table,
                                         "matches": n_matches, "friendly_types": sorted(fitmod.FRIENDLY_TYPES)}})
     chart = fitmod.plot_diagnostics(diag, Path("output") / "goals_model_diagnostics.png")
+    cal = Path("data") / "calibration.json"
+    cal.write_text(json.dumps(fitmod.calibration_records(diag), indent=1))
+    print(f"saved {cal}")
     print(f"\nsaved {out} and {chart}")
     return 0
 
