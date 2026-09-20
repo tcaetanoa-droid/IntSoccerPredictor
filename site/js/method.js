@@ -32,7 +32,7 @@ const STEPS = [
   },
   {
     title: 'What it gets wrong',
-    prose: String.raw`Draws are slightly under-predicted (0.28 against 0.30 observed for equal teams), the standard weakness of two independent Poissons. The known fix is the Dixon–Coles correction, a single extra parameter that nudges the four low-scoring lines (0–0, 1–0, 0–1, 1–1) towards their real frequencies. It will be added for the Euro 2028 and Copa América 2028 simulations. Home advantage is a flat 100 points for everyone. Squads, injuries, form and the weather in Monterrey in June do not exist. Predicted and observed goals agree within about 0.05 per team for every rating-gap bin between −700 and +700, and win rates within about 0.02, which is as much as a two-parameter model can be asked for.`,
+    prose: String.raw`Draws are slightly under-predicted (0.28 against 0.30 observed for equal teams), the standard weakness of two independent Poissons. The known fix is the Dixon–Coles correction, a single extra parameter that nudges the four low-scoring lines (0–0, 1–0, 0–1, 1–1) towards their real frequencies. It will be added for the Euro 2028 and Copa América 2028 simulations. Home advantage is a flat 100 points for everyone. Squads, injuries, form and the weather in Monterrey in June do not exist. Predicted and observed goals agree within about 0.07 per team for every rating-gap bin between −500 and +500, and win rates within about 0.02, which is as much as a two-parameter model can be asked for.`,
     maths: '',
   },
 ];

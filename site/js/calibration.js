@@ -11,7 +11,9 @@ function panel(title, bins, series, ymax, ylab, W = 620, H = 300, L = 44, T = 28
   const X = (x) => L + (x - xmin) / (xmax - xmin) * pw, Y = (y) => T + ph - y / ymax * ph;
   const svg = svgEl('svg', { viewBox: `0 0 ${W} ${H}`, width: '100%', class: 'chart' }, svgEl('text', { class: 'ttl', x: L, y: 14, 'font-size': 12, 'font-weight': 600 }, title));
   for (let i = 0; i <= 4; i++) { const t = i * ymax / 4; svg.append(svgEl('line', { class: 'grid', x1: L, x2: W - R, y1: Y(t), y2: Y(t) }), svgEl('text', { class: 'tick n', x: L - 6, y: Y(t) + 4, 'font-size': 10, 'text-anchor': 'end' }, ylab(t))); }
-  for (let x = -1000; x <= 1000; x += 250) svg.append(svgEl('text', { class: 'tick n', x: X(x), y: H - B + 16, 'font-size': 10, 'text-anchor': 'middle' }, (x > 0 ? '+' : '') + x));
+  // The two end labels sit on the panel edges, so centring them (as the mock-up does) clips half
+  // of "+1000" against the viewBox; anchor those two inwards and leave the interior ones centred.
+  for (let x = -1000; x <= 1000; x += 250) svg.append(svgEl('text', { class: 'tick n', x: X(x), y: H - B + 16, 'font-size': 10, 'text-anchor': x === -1000 ? 'start' : x === 1000 ? 'end' : 'middle' }, (x > 0 ? '+' : '') + x));
   svg.append(svgEl('line', { class: 'zero', x1: X(0), x2: X(0), y1: T, y2: T + ph, 'stroke-dasharray': '3 3' }),
     svgEl('text', { class: 'lab', x: (L + W - R) / 2, y: H - 4, 'font-size': 10, 'text-anchor': 'middle' }, "rating gap, from the team's point of view (home +100 included)"));
   for (const [pred, obs, col] of series) {
