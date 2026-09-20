@@ -23,7 +23,7 @@ For every match in a simulated tournament:
 
 1. Take both teams' current Elo ratings (already updated by earlier simulated matches).
 2. Compute the rating gap, adding 100 points to a host playing at home.
-3. Convert the gap into expected goals for each side using a curve fitted to 7,500 real matches
+3. Convert the gap into expected goals for each side using a curve fitted to 7,526 real matches
    from 2010 to June 2026: `goals = exp(0.136 + 0.00176 × gap)`. Equal teams expect 1.15 goals
    each; every 100 rating points multiplies a team's rate by 1.19.
 4. Draw both scores from Poisson distributions. Win, draw or loss follows from the score, so draws
@@ -58,7 +58,7 @@ Details and the full component list are in [docs/ROADMAP.md](docs/ROADMAP.md).
 
 ### Website
 
-The simulations are published at [intsoccerpredictor.vercel.app](https://intsoccerpredictor.vercel.app):
+The simulations are published at [int-soccer-predictor.vercel.app](https://int-soccer-predictor.vercel.app):
 the 2026 World Cup in eight chapters — who wins it, the group stage, the bracket, the hosts, the
 underdogs, the paradoxes, pick a team, and how it works. It is plain HTML, CSS and JavaScript under
 `site/`, with no build step and no framework. Every number on it is read from
