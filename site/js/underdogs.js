@@ -21,5 +21,5 @@ export function render(section, ctx) {
     h('div', { class: 'sh' }, 'Trapped in the group stage'), h('div', { class: 'row5' }, ...weak),
     h('p', { class: 'foot' }, `For all five, the most common outcome is fourth in the group: ${(worst.gs4_pct * 100).toFixed(1)}% of runs for ${name(worst.team, ctx.byCode)}.`),
     h('div', { class: 'sh' }, 'Most likely first-time champions'), h('div', { class: 'row3' }, ...first),
-    h('p', { class: 'foot' }, 'Among the 40 teams that have never won the World Cup. Portugal, Colombia and the Netherlands are all top-eight teams by rating; none has ever gone all the way.'));
+    h('p', { class: 'foot' }, 'Among the 41 teams that have never won the World Cup. Portugal, Colombia and the Netherlands are all top-eight teams by rating; none has ever gone all the way.'));
 }

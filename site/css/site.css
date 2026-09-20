@@ -243,7 +243,9 @@ main { min-width: 0; }
 #paradoxes .chart { min-width: 830px; }
 #paradoxes .chart .tn { fill: var(--ink); }
 #paradoxes .chart .tt { fill: var(--muted); }
-#paradoxes .chart .tt.first { fill: var(--gold-text); }
+/* --gold-text (#8A6D12) is 4.49:1 on the paper, just under AA, and these 11px labels sit on
+   it; this one use is a shade deeper, 5.54:1, still gold and still not --muted. */
+#paradoxes .chart .tt.first { fill: #7A5F0E; }
 #paradoxes .chart .dv { stroke: var(--ink); }
 #paradoxes .chart .dl { fill: var(--ink-soft); }
 #paradoxes .vs { padding: 14px 16px 12px; font-size: 12.5px; }
