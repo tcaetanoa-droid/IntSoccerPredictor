@@ -279,9 +279,10 @@ main { min-width: 0; }
 #pick-a-team .tc span { font-size: 12px; color: var(--ink-soft); }
 #pick-a-team .fs { display: flex; height: 40px; border-radius: 4px; overflow: hidden; }
 #pick-a-team .fs i { display: flex; align-items: center; justify-content: center; font-style: normal; font-size: 12px; font-family: var(--mono); overflow: hidden; white-space: nowrap; }
-/* 3rd place (#B87333, 4.21:1) and 4th place (#3F8F57, 4.02:1) are too dark for a 12px ink
-   count; white clears AA on both (4.79:1 and 5.01:1). The other seven segments stay ink. */
-#pick-a-team .fs i.dk { color: #fff; }
+/* No single text colour clears 4.5:1 on all nine fate colours, so every count sits on the same
+   translucent paper chip and stays ink: 12.4:1 on the two darkest segments (3rd place #B87333
+   and 4th place #3F8F57), 14.3:1 on the palest. On those pale segments the chip is invisible. */
+#pick-a-team .fs i span { background: rgba(242, 246, 241, .85); padding: 0 3px; border-radius: 2px; color: var(--ink); }
 #pick-a-team .legend.fl { margin-top: 8px; gap: 14px; font-size: 11.5px; }
 #pick-a-team .legend.fl b { margin-left: 3px; }
 #pick-a-team .st { display: grid; grid-template-columns: 110px 1fr 64px; gap: 12px; align-items: center; padding: 5px 0; font-size: 13px; }
@@ -303,9 +304,10 @@ main { min-width: 0; }
 #pick-a-team .cd.wide { grid-column: 1 / -1; }
 #pick-a-team .cd .sh { margin-top: 14px; }
 @media (max-width: 900px) { #pick-a-team .cards4 { grid-template-columns: 1fr; } }
-/* Below 700px a 6%-wide segment is under 25px, too narrow for a five-figure count; the strip
-   keeps its colours and the legend under it carries every number. */
-@media (max-width: 700px) { #pick-a-team .fs i span { display: none; } }
+/* Below 800px a 6%-wide segment is under 44px, too narrow for a five-figure count on its chip
+   (measured: the tightest 6% segments in the 48 team files need 42px and get 38-41px at 701px
+   wide); the strip keeps its colours and the legend under it carries every number. */
+@media (max-width: 800px) { #pick-a-team .fs i span { display: none; } }
 /* On a phone the three opponents cannot sit beside a 100px round label without pushing the
    card past the screen, so the label takes its own line and the opponents wrap under it. */
 @media (max-width: 600px) {
