@@ -18,7 +18,7 @@ export function render(section, ctx) {
     h('div', { class: 'hero-split' },
       h('div', {},
         h('div', { class: 'kicker' }, `FIFA World Cup 2026 · ${runs} replays · Elo + Poisson + Monte Carlo`),
-        h('h1', { html: `I simulated the 2026 World Cup ${runs} times. <em>Spain won ${fmtCount(rows[0].champion)} of them.</em>` }),
+        h('h1', { html: `I simulated the 2026 World Cup ${runs} times. <em>${name(rows[0].team, ctx.byCode)} won ${fmtCount(rows[0].champion)} of them.</em>` }),
         h('p', { class: 'lede', html: `No betting odds, no pundits, no FIFA ranking. Just the <b>eloratings.net</b> ratings from 10 June 2026, a Poisson model for goals fitted on 7,500 real matches, and ${runs} seeded replays of the full tournament. Every number on this page is counted from those runs.` }),
         h('div', { class: 'strip' },
           h('div', {}, h('b', { class: 'n' }, runs), h('span', {}, 'simulated tournaments')),
@@ -29,6 +29,6 @@ export function render(section, ctx) {
         h('div', { class: 'st' }, 'Number of runs each team lifted the trophy'),
         ...bars,
         h('div', { class: 'others', html: `The other ${rows.length - 8} teams won the remaining <span class="n">${fmtCount(rest)}</span> runs between them. Nobody outside this list clears ${fmtCount(rows[8].champion)}.` }))),
-    h('div', { class: 'chapters' }, ...['who-wins-it', 'group-stage', 'bracket', 'hosts', 'underdogs', 'paradoxes', 'pick-a-team', 'how-it-works']
-      .map((id, i) => h('a', { href: `#${id}` }, h('i', {}, String(i + 1).padStart(2, '0')), document.querySelector(`.rail a[href="#${id}"]`).textContent.slice(2)))));
+    h('div', { class: 'chapters' }, ...[...document.querySelectorAll('.rail a')]
+      .map((a) => h('a', { href: a.getAttribute('href') }, h('i', {}, a.querySelector('i').textContent), a.lastChild.textContent))));
 }
