@@ -4,6 +4,7 @@ import { initRail } from './rail.js';
 
 const CHAPTERS = [];  // Tasks 7-15 push {id, mod} here, e.g. {id: 'hero', mod: './hero.js'}
 CHAPTERS.push({ id: 'hero', mod: './hero.js' });
+CHAPTERS.push({ id: 'who-wins-it', mod: './fate-table.js' });
 
 async function boot() {
   initRail(document.querySelector('.rail'), [...document.querySelectorAll('main section[id]')]);

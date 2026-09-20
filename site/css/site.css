@@ -105,3 +105,18 @@ main { min-width: 0; }
   #hero .hero-split { grid-template-columns: 1fr; }
   #hero h1 { font-size: 34px; }
 }
+
+/* chapter 1: the fate table */
+#who-wins-it .scroll-x { overflow-x: auto; }
+#who-wins-it table { border-collapse: collapse; width: 100%; min-width: 980px; font-size: 12.5px; }
+#who-wins-it th { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; text-align: right; padding: 8px; color: var(--ink-soft); font-weight: 500; border-bottom: 1px solid var(--ink); white-space: nowrap; }
+#who-wins-it th[role="button"] { cursor: pointer; }
+#who-wins-it th.sorted { color: var(--ink); text-decoration: underline; }
+#who-wins-it th i { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 5px; vertical-align: 0; }
+#who-wins-it th.tm, #who-wins-it td.tm { text-align: left; white-space: nowrap; }
+#who-wins-it td { padding: 5px 8px; text-align: right; border-bottom: 1px solid var(--rule); }
+#who-wins-it td.g { color: var(--ink-soft); }
+#who-wins-it td.w { font-weight: 600; }
+#who-wins-it .sub { color: var(--ink-soft); opacity: .85; }
+#who-wins-it th.sub { border-left: 1px solid var(--border); }
+#who-wins-it tr:hover td { filter: brightness(.97); }
