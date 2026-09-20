@@ -48,6 +48,7 @@ def test_teams_index_is_written_sorted_by_title_chance(built, wc):
     views, out = built
     rows = json.loads((out / "teams.json").read_text())
     assert len(rows) == 48 and rows == views["teams"]
-    assert [r["code"] for r in rows] == sorted(wc.teams, key=lambda c: -views["fate_table"].set_index("team").loc[c, "champion"])
+    champion = views["fate_table"].set_index("team")["champion"]
+    assert [r["code"] for r in rows] == sorted(wc.teams, key=lambda c: -champion.loc[c])
     assert set(rows[0]) == {"code", "iso", "name", "group", "elo", "champion_pct"}
     assert all(r["iso"] == site.ISO[r["code"]] for r in rows)
