@@ -235,3 +235,27 @@ main { min-width: 0; }
 @media (max-width: 1261px) { #underdogs .row5 { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 800px) { #underdogs .row3 { grid-template-columns: 1fr; } }
 @media (max-width: 600px) { #underdogs .row5 { grid-template-columns: 1fr; } }
+
+/* chapter 6: paradoxes */
+/* The chart's smallest labels are 11px in a 1300-wide viewBox, so they drop under 7px once it
+   is squeezed below 830px; give it that floor and let the section scroll instead. */
+#paradoxes .scroll-x { overflow-x: auto; }
+#paradoxes .chart { min-width: 830px; }
+#paradoxes .chart .tn { fill: var(--ink); }
+#paradoxes .chart .tt { fill: var(--muted); }
+#paradoxes .chart .tt.first { fill: var(--gold-text); }
+#paradoxes .chart .dv { stroke: var(--ink); }
+#paradoxes .chart .dl { fill: var(--ink-soft); }
+#paradoxes .vs { padding: 14px 16px 12px; font-size: 12.5px; }
+#paradoxes .vm { font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 12px; line-height: 1.4; }
+#paradoxes .vs-grid { display: grid; grid-template-columns: 1fr 28px 1fr; gap: 8px; align-items: end; }
+#paradoxes .vsx { text-align: center; font-family: var(--serif); font-style: italic; color: var(--faint); padding-bottom: 6px; }
+#paradoxes .vh { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
+#paradoxes .vh b { font-family: var(--serif); font-size: 18px; font-weight: 500; }
+#paradoxes .vh .n { font-size: 11px; color: var(--muted); }
+#paradoxes .vb { height: 8px; background: var(--rule); border-radius: 2px; overflow: hidden; margin-bottom: 6px; }
+#paradoxes .vb i { display: block; height: 100%; }
+#paradoxes .vv { font-family: var(--serif); font-size: 26px; line-height: 1; color: var(--muted); }
+#paradoxes .vv.hi { color: var(--orange); }
+#paradoxes .vn { font-size: 11.5px; color: var(--ink-soft); line-height: 1.45; margin: 12px 0 0; border-top: 1px solid var(--rule); padding-top: 8px; }
+@media (max-width: 900px) { #paradoxes .row3 { grid-template-columns: 1fr; } }
