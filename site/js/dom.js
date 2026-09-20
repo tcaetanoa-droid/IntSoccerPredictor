@@ -18,4 +18,4 @@ export function flag(code, byCode, width = 40) {
 }
 export const fmtCount = (n) => Math.round(n).toLocaleString('en-GB');
 export const fmtPct = (x, dec = 1) => `${(x * 100).toFixed(dec)}%`;
-export const countOf = (share, n = 100000) => fmtCount(share * n);
+export const countOf = (share, n) => fmtCount(share * n);  // n: ctx.n, the simulation count

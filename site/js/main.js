@@ -5,6 +5,7 @@ import { initRail } from './rail.js';
 const CHAPTERS = [];  // Tasks 7-15 push {id, mod} here, e.g. {id: 'hero', mod: './hero.js'}
 
 async function boot() {
+  initRail(document.querySelector('.rail'), [...document.querySelectorAll('main section[id]')]);
   const ctx = await loadSiteData('wc2026');
   for (const { id, mod } of CHAPTERS) {
     const section = document.getElementById(id);
@@ -12,6 +13,9 @@ async function boot() {
     const { render } = await import(mod);
     await render(section, ctx);
   }
-  initRail(document.querySelector('.rail'), [...document.querySelectorAll('main section[id]')]);
 }
-boot().catch((e) => { console.error(e); document.getElementById('hero').textContent = `Could not load the data: ${e.message}`; });
+boot().catch((e) => {
+  console.error(e);
+  const hero = document.getElementById('hero');
+  if (hero) hero.textContent = `Could not load the data: ${e.message}`;
+});
