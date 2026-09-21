@@ -480,6 +480,10 @@ and three share the champion metric, so their box labels read the same; the box 
 module's full sentence in caps; the section keeps id="paradoxes", delete the legacy "chapter 6:
 paradoxes" block (with .card, .row3 and the flag-colour bars) from site.css; below about 900px
 the chart needs a scroll wrapper or three bars per row, and the boxes step to one column.
+Copy note (21 September 2026, found on the transition-7 screen): the box label for pairs two
+and three reads "Lower rating, more titles: chance of winning the tournament", but their
+paradox is home advantage, not titles; that first half comes from the screen builder's metric
+map. The build writes each pair's label from its own paradox; the metric half is right.
 Motion amendment (21 September 2026, companion screen transition-6): the six bars print one
 after another, left to right, each growing out of the baseline while its label counts up,
 Portugal first and Italy last, from the moment the chart crosses the reading line; the chart's
