@@ -67,6 +67,10 @@ so the site never computes a statistic of its own; the views themselves are spec
 [docs/REPORTS.md](docs/REPORTS.md). Vercel deploys it from `main` through its GitHub integration,
 with the project's root directory set to `site/`; every pull request gets a preview deployment.
 
+Design: [PRODUCT.md](PRODUCT.md) holds the product truth (audience, purpose, voice, brand
+commitments), `DESIGN.md` the visual system (written at the end of the restyle), and
+`.impeccable/surfaces/` the per-page design briefs.
+
 ## Quick start
 
 ```bash
