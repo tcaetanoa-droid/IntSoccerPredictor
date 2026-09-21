@@ -420,6 +420,16 @@ fifth of the hold. Reduced motion: the finished sheet, no hold.
 bars per fate or a nine-row fate list with the chapter-one cell encoding, one per host; how the
 counts and the axis are labelled. Motion: each host's nine values print in fate order, fourth
 in the group to champion, as the region crosses the reading line.
+Amendment (21 September 2026, companion screen chapter-4): three regions side by side in
+equal columns (402px each at the sheet's width), each host's nine fates as a small chart of nine
+plain ink bars in fate order, fourth in the group to champion, the fate name under each bar (the
+real names, which turn and read up the page at this column width). A shared axis in runs behind
+the bars: hairlines at 0, 10,000, 20,000, 30,000 and 40,000, topping out at 45,000, and only each
+host's tallest bar labelled with its count (Mexico out in the round of 16, 32,508; Canada out in
+the round of 32, 41,113; the USA fourth in Group D, 26,379); no other counts on the chart. The
+region head is the flag and the system's team name (USA, not "The United States"; the lede
+keeps its own words). Build note: the section keeps id="hosts"; delete the legacy
+"chapter 4: the hosts" block from site.css.
 
 **Underdogs.** Fixed: the five weakest and the three first-time champions as two ruled agate
 tables under League Gothic sub-heads (no cards, no big-number tiles); fate columns carry the

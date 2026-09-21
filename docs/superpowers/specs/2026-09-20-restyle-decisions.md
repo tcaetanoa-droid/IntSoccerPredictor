@@ -96,3 +96,9 @@
 - Pace: a screen and a half of hold travel, 0.3 of a screen per round and a 0.3 beat (A, kept as pre-selected). Near-misses: one screen (B), two and a half (C), neither clicked.
 - Told before Submit: the round-of-32 rows start printing 12 to 34px under the fold; the beat is fixed at a fifth of the hold. Neither vetoed.
 - This makes the bracket the sheet's second pinned moment; spec §4 amended the same day, with the one-moment rule in front of him.
+
+## Chapter four, the hosts (21 Sep 2026, companion screen chapter-4, Submit pressed)
+- Form: nine plain ink bars per host, the fate name under each (A). Near-misses: a nine-row fate list per host tinted by share (B, once), one agate table for all three hosts (C, once).
+- Numbers: a shared axis in runs, hairlines every 10,000, only each host's tallest bar labelled (B, clicked three times). Near-misses: the count on every bar and no axis (A, once), count and percentage everywhere (C, once).
+- Layout: side by side, equal widths (A). Near-misses: stacked full width with the fate names flat (B, once), Mexico large with Canada and the USA stacked beside it (C, once).
+- Told before Submit: the fate names turn vertical in layouts A and C; the region head reads "USA". Neither vetoed.
