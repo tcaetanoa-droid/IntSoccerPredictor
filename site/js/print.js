@@ -145,5 +145,15 @@ export function boot() {
   window.addEventListener('resize', () => { H = window.innerHeight; layoutPin(); schedule(); });
   document.fonts.ready.then(() => { layoutPin(); schedule(); });   // the held screen's height settles with the faces
   layoutPin();
+  // Seed pass: a deep-load position (a hash, scroll restoration) can land above units the
+  // observer has not yet reported live; paint them now from their real position so a unit
+  // already above the reading line on load is painted complete, per spec §4.2.
+  if (tickPin(window.scrollY)) {
+    for (const u of units) {
+      if (u.manual || !u.el.isConnected) continue;
+      const top = u.el.getBoundingClientRect().top;
+      set(u, u.kind === 'block' ? blockProgress(H, top) : lineProgress(H, top));
+    }
+  }
   tick();
 }
