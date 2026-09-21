@@ -21,3 +21,5 @@ export const scrollX = (label, ...children) => h('div', { class: 'scroll-x', tab
 export const fmtCount = (n) => Math.round(n).toLocaleString('en-GB');
 export const fmtPct = (x, dec = 1) => `${(x * 100).toFixed(dec)}%`;
 export const countOf = (share, n) => fmtCount(share * n);  // n: ctx.n, the simulation count
+// A printed count: the final value for assistive technology, then the display that counts up.
+export const count = (n) => [h('span', { class: 'sr' }, fmtCount(n)), h('span', { class: 'ct', 'aria-hidden': 'true' }, '0')];
