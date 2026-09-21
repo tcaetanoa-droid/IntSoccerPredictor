@@ -362,6 +362,10 @@ the percentage after it. The modal finishing position is a figure 1 to 4 in mute
 left of each row. Copy: the intro is rewritten to match (no "green rows", no "paler third
 row"): the bar is how often a team reached the round of 32; the rows in lighter ink usually go
 out; the foot note keeps the Group D example.
+Motion amendment (21 September 2026, companion screen transition-2): as proposed. The boxes
+print one by one, A to L, as each crosses the reading line (a wave across each row of four,
+each box starting a half band after its neighbour); inside a box each row prints with its bar
+filling as its percentage climbs; the spec's band of 18% of a screen.
 
 **The bracket.** Fixed: the nine-column grid and the connectors stay; tie boxes become ruled
 boxes; round heads in News Cycle caps; match numbers in News Cycle 0.75rem muted; the winner's

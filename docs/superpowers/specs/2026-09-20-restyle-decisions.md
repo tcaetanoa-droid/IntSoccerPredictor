@@ -76,3 +76,8 @@
 - Places: no cut lines; the rows that usually go out in muted ink (C). Near-misses: a 1px cut under row two (A, toggled three times), a green tint by share on every row (B, once).
 - Share: a thin ink bar in its own column beside the percentage (A). Near-misses: percentage only (B, twice), the count with the percentage muted after it (C, once).
 - Position: a figure 1 to 4 in muted ink at the left (A). Near-misses: "usually 1st" after the name (B, once), dropped to the foot note (C, once).
+
+## Chapter two, the transition from chapter one (21 Sep 2026, companion screen transition-2, Submit pressed)
+- How the wall prints: box by box A to L as each crosses the reading line (A, the spec). Near-misses: none (A clicked twice).
+- Inside a box: row and bar together as the percentage climbs (A). Near-miss: the four rows then the four bars (B, once).
+- Pace: the spec's 18% band (A). Near-misses: slower 30% (C, once), quicker 10% (B, once).
