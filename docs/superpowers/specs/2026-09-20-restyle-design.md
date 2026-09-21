@@ -161,6 +161,13 @@ Thesis (fixed): the sheet is filled in as you read it. Ink prints and counts cou
 slides, rises or fades in from below. Fill is scrubbed to the scroll on the way down and never
 un-prints on the way up. One authored moment, the pinned hero; each chapter varies the thesis
 with its own content, never the same reveal twice.
+Amendment (21 September 2026, companion screen transition-3-hold): two authored moments, not
+one. The bracket (section 8, The bracket, motion amendment) is the second: once the round of
+32 has printed on the scroll, the page holds still with the whole bracket in view while the
+knockout rounds print round by round over one and a half screens of wheel travel, then a beat,
+then the release. Thiago's decision, made with the one-moment rule in front of him. The hero
+stays the first moment; the mechanism is the same `pin(held, rows)`, and the bracket's pin
+engages only when the bracket fits the viewport.
 
 - **Focal moment:** the pinned hero (section 6). The page holds still while the champion
   column fills, row by row, over one screen of wheel travel.
@@ -385,6 +392,29 @@ measures 3.07:1 for 12px text, under AA's 4.5:1 (unfaded muted is 4.99:1); Thiag
 that number in front of him, the loser being the secondary row. The third-place match keeps a
 "Third place" label in News Cycle caps with a rule under it and its own box under the final, no
 other mark.
+Motion amendment (21 September 2026, companion screen transition-3-hold; replaces the motion
+line above): the bracket is the sheet's second authored moment (section 4 amendment). As the
+bracket rises through the window only the round of 32 prints, row by row, both sides in step
+(74 with 76, 77 with 78, and so on down the module's feed order), each box printing as any
+unit does (rule, number and rows, the percentages counting up, the winner ending in full ink on
+its tint, the loser at 0.75). The eight rows are scheduled on wheel travel from the bracket's
+top crossing the reading line to its top reaching the top of the viewport, where the bracket
+pins with the whole grid in view; the eighth row completes exactly as the pin engages, and no
+later box or connector moves before it. Inside the hold the wheel spends one and a half screens
+of travel in five equal parts: the round of 16, the quarter-finals, the semi-finals, the final
+(the third-place box, the champion mark and the caption print with it), then a beat with the
+finished bracket; then the release. Within a round the rows print top to bottom, both sides in
+step; each box's two connectors draw from the feeders' boxes along their elbows into it
+(stroke-dashoffset from the path's own length to 0) before its rule prints, then its rows. The
+eight connectors on the two finalists' routes (Spain 84, 93, 98, 101, 104; Argentina 86, 95,
+100, 102, 104; derived from the data, never typed) draw at 2px and stay 2px, so the road to the
+final remains readable after the hold; the other twenty-two are 1px. Nothing un-prints on the
+way back up. Build notes: the pin engages only when the bracket fits the viewport (its height at
+most the viewport's less a small margin); otherwise the same schedule runs on the travel with no
+pin, and the foot note then keys on its own entry rather than on the release. The round-of-32
+rows begin printing while their box top is still just under the fold (12 to 34px in the 620px
+demo): shown to Thiago and not vetoed, open to change at the chapter's checkpoint. The beat is a
+fifth of the hold. Reduced motion: the finished sheet, no hold.
 
 **The hosts.** Fixed: three regions, one per host, in News Cycle; flag-colour bars go. Open: ink
 bars per fate or a nine-row fate list with the chapter-one cell encoding, one per host; how the
