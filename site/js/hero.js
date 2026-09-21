@@ -1,5 +1,5 @@
 // site/js/hero.js
-import { h, flag, name, fmtCount, count } from './dom.js';
+import { h, name, fmtCount, count } from './dom.js';
 import { pin, paintDensityRow } from './print.js';
 
 // The first viewport: chart masthead, headline and lede left, the champion column right, a 3px
@@ -13,7 +13,7 @@ export function render(section, ctx) {
   const row = (label, n, share, cls) => h('div', { class: cls ? `hr ${cls}` : 'hr', 'data-share': share.toFixed(4) },
     h('span', { class: 'nm' }, ...label), h('span', { class: 'ct-cell', 'data-count': n }, count(n)));
   const list = [
-    ...top.map((r, i) => row([flag(r.team, ctx.byCode), name(r.team, ctx.byCode)], r.champion, r.champion / max, i === 0 ? 'hot' : '')),
+    ...top.map((r, i) => row([name(r.team, ctx.byCode)], r.champion, r.champion / max, i === 0 ? 'hot' : '')),
     row([`The other ${rows.length - 12} teams, between them`], rest, 1, 'rest'),
   ];
   const held = h('div', { class: 'held' },
