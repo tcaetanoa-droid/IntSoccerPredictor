@@ -468,8 +468,8 @@ the ledger's deferred code-quality minors that the touched modules do not reach.
   faintest row measures 5.65:1); no flags in the column; the hover lift to full ink stays; the
   bottom rule bleeds to the sheet edge while the masthead rule spans the content, as built; News
   Cycle has no tabular figures, so digits shift sideways while a count climbs, accepted.
-- Chapter one: the claim sentence as the intro's bold lead-in (this spec) or as a deck line under
-  the title; the group inline after the team name versus its own column; flags in the Team cell
-  (none, as the approved screen) or added.
+- Chapter one, decided at its checkpoint (20 September 2026): approved as built; the claim as
+  the intro's bold lead-in, the group inline after the name, no flags in the Team cell, the
+  subtotal columns in muted ink.
 - Closing: the paper footer; the placeholder pages' key list.
 - Chapters two to eight: the open lines of section 8, each at its own screen.

@@ -67,3 +67,7 @@
 - Hover on an unprinted row lifting it to full ink: kept.
 - The bottom rule bleeding to the sheet edge while the masthead rule spans the content: kept as built (the mock did the same).
 - Count jitter (News Cycle has no tabular figures): accepted.
+
+## Chapter one checkpoint (20 Sep 2026, localhost)
+- Approved as built: no flags in the Team cell; the claim as the intro's bold lead-in; the group inline after the name; the two subtotal columns in muted ink.
+- Lesson: the browser cached the old chapter script across the hero checkpoint; the local server now sends Cache-Control: no-store (serve-nocache.py in the session scratchpad; ports 8000 and 8001).
