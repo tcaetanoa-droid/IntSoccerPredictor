@@ -1,6 +1,5 @@
 // site/js/main.js
 import { loadSiteData } from './data.js';
-import { initRail } from './rail.js';
 
 const CHAPTERS = [];  // Tasks 7-15 push {id, mod} here, e.g. {id: 'hero', mod: './hero.js'}
 CHAPTERS.push({ id: 'hero', mod: './hero.js' });
@@ -14,7 +13,6 @@ CHAPTERS.push({ id: 'pick-a-team', mod: './team.js' });
 CHAPTERS.push({ id: 'how-it-works', mod: './method.js' });
 
 async function boot() {
-  initRail(document.querySelector('.rail'), [...document.querySelectorAll('main section[id]')]);
   const ctx = await loadSiteData('wc2026');
   for (const { id, mod } of CHAPTERS) {
     const section = document.getElementById(id);
