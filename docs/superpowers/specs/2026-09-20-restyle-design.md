@@ -168,6 +168,10 @@ knockout rounds print round by round over one and a half screens of wheel travel
 then the release. Thiago's decision, made with the one-moment rule in front of him. The hero
 stays the first moment; the mechanism is the same `pin(held, rows)`, and the bracket's pin
 engages only when the bracket fits the viewport.
+Amendment (21 September 2026, companion screen transition-7): one exception to "nothing fades".
+On a pick in chapter seven the old team's ink fades to paper over 150 ms before the new team
+prints, so two teams are never on the sheet together. Thiago's choice over the reprint in
+place the spec proposed. Everything else still prints and never un-prints.
 
 - **Focal moment:** the pinned hero (section 6). The page holds still while the champion
   column fills, row by row, over one screen of wheel travel.
@@ -517,6 +521,16 @@ against the runs in which the team went out), which their sub-lines say; the opp
 may use a container query (container-type: inline-size) for its narrow column; delete the
 legacy "chapter 7: pick a team" block with .card, .legend, the segmented bar and the chip rules;
 at phone width the two columns step to one and the lists' label columns need checking at 360px.
+Motion amendment (21 September 2026, companion screen transition-7): on first reading the head
+prints as it enters and then each region's rows print as they cross the reading line, as every
+other chapter does, over a band of 10% of a screen (quicker than the 18% elsewhere: the rows
+snap in and the count-ups are a flicker). On a pick the old team's ink fades to paper over
+150 ms, then the new team prints over 400 ms ease-out (counts climbing from zero, tints
+blooming), the head arriving with its regions; nothing of the old team is on the sheet while
+the new one arrives. That fade-out is a material the motion thesis did not name; section 4 is
+amended. Reduced motion: the new team printed complete, no fade. Build notes: the head's
+champion count climbs on first reading and is replaced on a pick; the picker's list, keyboard
+behaviour and no-match state are unchanged by the restyle.
 
 **How it works.** Fixed: the six steps keep their two-column layout and their numbers, "1." to
 "6." in the step title, because the pipeline order is the content (no mono kicker); step titles

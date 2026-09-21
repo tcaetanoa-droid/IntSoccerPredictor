@@ -137,3 +137,9 @@
 - Columns: two columns (A, the spec). Near-miss: one column (B, twice); a row of three (C) not clicked.
 - Favourites: above the field as the region's opening line (C). Near-misses: under the field on its own line (A, the spec, twice), in the team head at the right (B, once).
 - Told before Submit: whole-percent ties in the lists (one decimal fixes it, carried as a build note); no flags on the favourites line. Neither vetoed.
+
+## Chapter seven, the transition from chapter six (21 Sep 2026, companion screen transition-7, Submit pressed)
+- Arrive: the head, then each region as it is reached (A, the spec, kept as pre-selected). Near-misses: the whole page when the head enters (B), the fate row then the regions one by one (C), neither clicked.
+- Pick: the old ink fades to paper over 150 ms, then the new team prints over 400 ms (B, one click). Near-misses: the regions reprint in place (A, the spec) and the new team just there with the clicked favourite bold for a beat (C), neither clicked.
+- Pace: 10% of a screen, quicker (B, one click). Near-misses: 18% (A, the spec) and 30% (C), neither clicked.
+- Told before Submit: Pick B adds a fade-out the thesis does not name. Chosen anyway; spec §4 amended the same day.
