@@ -432,6 +432,13 @@ localhost checkpoint). The
 region head is the flag and the system's team name (USA, not "The United States"; the lede
 keeps its own words). Build note: the section keeps id="hosts"; delete the legacy
 "chapter 4: the hosts" block from site.css.
+Motion amendment (21 September 2026, companion screen transition-4): as proposed. The three
+regions print together, fate by fate, fourth in the group first and champion last, nine steps as
+the block crosses the reading line, successive values 0.35 of a band apart (a region's nine take
+3.8 bands). Each bar grows from the baseline while its count climbs to the run count, the count
+riding up with the bar; the spec's band of 18% of a screen. The chart's chrome (the baseline,
+the fate names, the axis hairlines) prints with the region head, before the first bar grows, so
+a bar never rises out of nothing.
 
 **Underdogs.** Fixed: the five weakest and the three first-time champions as two ruled agate
 tables under League Gothic sub-heads (no cards, no big-number tiles); fate columns carry the

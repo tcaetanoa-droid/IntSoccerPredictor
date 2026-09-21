@@ -103,3 +103,8 @@
 - Layout: side by side, equal widths (A). Near-misses: stacked full width with the fate names flat (B, once), Mexico large with Canada and the USA stacked beside it (C, once).
 - Told before Submit: the fate names turn vertical in layouts A and C; the region head reads "USA". Neither vetoed.
 - Correction after Submit (same sitting, from the terminal): Thiago expected the count on every bar together with the axis; option B labelled only the tallest bar. Recorded as the count above every bar plus the shared axis, to be seen at the chapter's localhost checkpoint.
+
+## Chapter four, the transition from chapter three (21 Sep 2026, companion screen transition-4; picks stated from the terminal, order A, bars A, pace A)
+- Order: all three together, fate by fate (A, the spec). Near-misses: host by host (B, once), each region as a whole as it arrives (C, once).
+- Values: the bar grows from the baseline while its count climbs (A, the spec). Near-miss: the bar darkens from faint to full ink at full height (C, once); the bar stamped at full height (B) not clicked.
+- Pace: 18% of a screen (A, the spec). Near-miss: 10% (B, once); 30% (C) not clicked.
