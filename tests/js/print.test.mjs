@@ -2,7 +2,7 @@
 // Run: node --test tests/js/
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { clamp, fmt, rowWindow, blockProgress, lineProgress, densityTarget, tintStrength } from '../../site/js/print.js';
+import { clamp, fmt, rowWindow, blockProgress, lineProgress, densityTarget, tintStrength, holdPhase, roundProgress } from '../../site/js/print.js';
 
 const near = (a, b) => assert.ok(Math.abs(a - b) < 1e-9, `${a} is not near ${b}`);
 
@@ -60,4 +60,30 @@ test('tintStrength: the fate colour follows the share and saturates at 40%', () 
 
 test('a lead of half a band (0.09 of a screen) delays a row by half its progress', () => {
   near(lineProgress(900, 700 + 0.09 * 900), lineProgress(900, 700) - 0.5);
+});
+
+test('holdPhase: the round of 32 fills the approach, its last row ending exactly at the pin', () => {
+  const H = 900;
+  assert.equal(holdPhase(0, H).p1, 0);
+  near(holdPhase(0.46 * H, H).p1, 0.5);
+  near(holdPhase(0.92 * H, H).p1, 1);                      // the pin engages as phase one ends
+  near(rowWindow(holdPhase(0.92 * H, H).p1, 7, 8), 1);     // the eighth row completes there
+  assert.ok(rowWindow(holdPhase(0.91 * H, H).p1, 7, 8) < 1);
+  assert.equal(holdPhase(0.92 * H, H).q, 0);               // and the hold starts with nothing held yet
+});
+
+test('holdPhase: the hold spends one and a half screens after the pin', () => {
+  const H = 900;
+  near(holdPhase(0.92 * H + 0.75 * H, H).q, 0.5);
+  near(holdPhase(0.92 * H + 1.5 * H, H).q, 1);
+  assert.equal(holdPhase(Infinity, H).p1, 1);              // reduced motion: the finished sheet
+  assert.equal(holdPhase(Infinity, H).q, 1);
+});
+
+test('roundProgress: five equal parts, four rounds then a beat', () => {
+  near(roundProgress(0.2, 0), 1);          // the round of 16 fills the first fifth
+  assert.equal(roundProgress(0.2, 1), 0);  // and the quarter-finals start exactly there
+  near(roundProgress(0.8, 3), 1);          // the final completes at four fifths
+  assert.ok(roundProgress(0.79, 3) < 1);
+  assert.equal(roundProgress(1, 3), 1);    // the last fifth is the beat: nothing left to print
 });

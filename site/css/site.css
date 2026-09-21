@@ -167,40 +167,51 @@ img.flag { width: 20px; height: 14px; object-fit: cover; vertical-align: -2px; m
 @media (max-width: 899px) { #group-stage .wall { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 559px) { #group-stage .wall { grid-template-columns: 1fr; } }
 
-/* chapter 3: the bracket */
-/* One grid holds the round headers and the nine columns: the 1fr tracks size to their content
-   (the widest name needs ~125px, an equal ninth of 1120px would be 117px and clip it), and a
-   header in the same grid stays centred over its column whatever width that gives. The floor
-   is the grid's measured min-content with the 8px gap and 5px row padding (1103.2px), so it
-   fills the 1126px main column at the 1440 design width, still with a 15px scrollbar. */
-#bracket .bracket { position: relative; display: grid; grid-template-columns: repeat(9, 1fr); grid-template-rows: auto 560px; gap: 8px; min-width: 1104px; }
-#bracket .bh { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); font-family: var(--mono); text-align: center; }
+/* chapter 3: the bracket. Nine columns of ruled tie boxes with the round heads as cells of the
+   same grid, so a head centres over its own column whatever width the content gives it. The
+   grid's floor is its measured min-content (1104px), so it fills the sheet's 1264px main column
+   and only scrolls sideways on narrow screens. The bracket is the sheet's second authored
+   moment: js/bracket.js holds the screen with the whole grid in view and prints the knockout
+   rounds inside the hold, so the region sticks inside a taller block, as the hero does. */
+#bracket .pin { position: relative; }
+#bracket .held { position: sticky; top: 0; }
+#bracket .pin.flow .held { position: static; }
+#bracket .bracket { position: relative; display: grid; grid-template-columns: repeat(4, 1fr) 1.3fr repeat(4, 1fr); grid-template-rows: auto 560px; gap: 10px 8px; min-width: 1104px; }
+#bracket .bh { font-weight: 700; font-size: .75rem; line-height: 1.2; text-transform: uppercase; letter-spacing: .06em; text-align: center; padding-bottom: .2rem; border-bottom: 1px solid var(--ink); }
 #bracket .col { display: flex; flex-direction: column; }
 #bracket .slot { flex: 1; display: flex; align-items: center; }
 /* Equal tracks above and below the final keep it on the semi-finals' mid-line, so the two
-   connectors into it run straight; the champion card and the third-place match hug it. */
+   connectors into it run straight; the champion mark and the third-place match hug it. */
 #bracket .col.fin .slot { display: grid; grid-template-rows: 1fr auto 1fr; align-items: end; }
 #bracket .col.fin .third { align-self: start; }
-#bracket .m { width: 100%; background: var(--card); border: 1px solid var(--border); border-radius: 5px; font-size: 11.5px; position: relative; }
-#bracket .m .mn { position: absolute; right: 4px; top: -9px; font-size: 8.5px; color: var(--muted); background: var(--paper); padding: 0 3px; }
-#bracket .tie { display: flex; align-items: center; gap: 5px; padding: 5px; color: var(--muted); }
-#bracket .tie + .tie { border-top: 1px solid #EEF2EC; }
-#bracket .tie.win { color: var(--ink); font-weight: 600; background: #E4F0E5; }
-#bracket .tie .nm { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-#bracket .tie .p { font-size: 10.5px; font-weight: 400; }
-#bracket .tie.win .p { font-weight: 600; color: var(--green); }
-#bracket .tie img.flag { width: 18px; height: 12px; margin-right: 0; }
-#bracket .lbl { font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-soft); font-family: var(--mono); }
-#bracket .champ { text-align: center; margin-bottom: 14px; }
-#bracket .champ b { display: block; font-family: var(--serif); font-size: 24px; font-weight: 500; margin-top: 4px; }
-#bracket .champ img.flag { width: 34px; height: 23px; margin: 8px 0 0; }
-#bracket .champ .sub { font-size: 10.5px; color: var(--ink-soft); margin-top: 4px; line-height: 1.3; }
-/* Only the final wears gold, as one clean 1px line; its number tab sits wholly above the box so
-   the line runs unbroken. The third-place match (inside .third) is a plain box. */
-#bracket .col.fin .slot > .m { border-color: var(--gold); }
-#bracket .col.fin .slot > .m .mn { top: -14px; background: none; }
+/* A box's rule prints with it: --bp is the rule's ink, set by js/bracket.js. */
+#bracket .m { width: 100%; border: 1px solid color-mix(in srgb, var(--ink) calc(var(--bp, 1) * 100%), transparent); font-size: .75rem; position: relative; }
+#bracket .m .mn { position: absolute; right: 3px; top: -10px; font-size: .75rem; line-height: 1; color: var(--muted); background: var(--paper); padding: 0 3px; }
+#bracket .tie { display: flex; align-items: center; gap: 4px; padding: 5px; color: var(--muted); }
+#bracket .tie + .tie { border-top: 1px solid var(--hair); }
+/* The winner of every tie: full ink and bold on a flat 9% ink tint, the same depth on every tie.
+   The loser stays muted and js/bracket.js fades it to .75. No orange anywhere in the bracket. */
+#bracket .tie.win { color: var(--ink); font-weight: 700; background: color-mix(in srgb, var(--ink) 9%, transparent); }
+#bracket .tie .nm { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#bracket .tie .p { font-variant-numeric: tabular-nums; }
+#bracket .bracket img.flag { width: 18px; height: 12px; margin-right: 0; flex: 0 0 auto; }
+/* The caption hangs from the final's box instead of sitting in the flow, so the final keeps the
+   semi-finals' mid-line and its two connectors stay straight; the third-place block starts low
+   enough to clear it. */
+#bracket .finwrap { position: relative; }
+#bracket .realcap { position: absolute; top: 100%; left: 0; right: 0; margin: .35rem 0 0; font-size: .75rem; line-height: 1.3; color: var(--muted); }
+#bracket .third .lbl { font-weight: 700; font-size: .75rem; line-height: 1.2; text-transform: uppercase; letter-spacing: .06em; border-bottom: 1px solid var(--ink); padding-bottom: .15rem; margin: 3.4rem 0 .5rem; }
+#bracket .champ { text-align: center; margin-bottom: .9rem; }
+#bracket .champ img.flag { width: 30px; height: 21px; margin-right: 0; }
+#bracket .champ .cn { display: block; font: 1.5rem/1 var(--display); font-weight: 400; text-transform: uppercase; margin-top: .25rem; }
+#bracket .champ .sub { font-size: .75rem; line-height: 1.3; color: var(--muted); margin-top: .2rem; }
 #bracket .conn { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
-#bracket .conn path { fill: none; stroke: var(--f-r16); stroke-width: 1.5; }
+#bracket .conn path { fill: none; stroke: var(--ink); stroke-width: 1; }
+/* The road to the final: the eight connectors on the two finalists' routes stay at 2px. */
+#bracket .conn path.on { stroke-width: 2; }
+/* Feedback: a hovered tie darkens its ink; the loser's fade is a design state, not a print
+   state, so hover does not undo it. */
+#bracket .tie:hover { filter: brightness(.94); }
 
 /* chapter 4: the hosts */
 #hosts .sm3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
