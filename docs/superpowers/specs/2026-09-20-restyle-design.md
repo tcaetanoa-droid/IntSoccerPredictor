@@ -424,9 +424,11 @@ Amendment (21 September 2026, companion screen chapter-4): three regions side by
 equal columns (402px each at the sheet's width), each host's nine fates as a small chart of nine
 plain ink bars in fate order, fourth in the group to champion, the fate name under each bar (the
 real names, which turn and read up the page at this column width). A shared axis in runs behind
-the bars: hairlines at 0, 10,000, 20,000, 30,000 and 40,000, topping out at 45,000, and only each
-host's tallest bar labelled with its count (Mexico out in the round of 16, 32,508; Canada out in
-the round of 32, 41,113; the USA fourth in Group D, 26,379); no other counts on the chart. The
+the bars: hairlines at 0, 10,000, 20,000, 30,000 and 40,000, topping out at 45,000, and the count
+above every bar (Thiago's correction after Submit, 21 September: the screen's option labelled
+only each host's tallest bar, Mexico 32,508, Canada 41,113, the USA 26,379; he expects every
+bar's count with the axis kept, a combination the screen did not offer; confirm at the chapter's
+localhost checkpoint). The
 region head is the flag and the system's team name (USA, not "The United States"; the lede
 keeps its own words). Build note: the section keeps id="hosts"; delete the legacy
 "chapter 4: the hosts" block from site.css.

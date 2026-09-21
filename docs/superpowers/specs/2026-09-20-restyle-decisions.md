@@ -102,3 +102,4 @@
 - Numbers: a shared axis in runs, hairlines every 10,000, only each host's tallest bar labelled (B, clicked three times). Near-misses: the count on every bar and no axis (A, once), count and percentage everywhere (C, once).
 - Layout: side by side, equal widths (A). Near-misses: stacked full width with the fate names flat (B, once), Mexico large with Canada and the USA stacked beside it (C, once).
 - Told before Submit: the fate names turn vertical in layouts A and C; the region head reads "USA". Neither vetoed.
+- Correction after Submit (same sitting, from the terminal): Thiago expected the count on every bar together with the axis; option B labelled only the tallest bar. Recorded as the count above every bar plus the shared axis, to be seen at the chapter's localhost checkpoint.
