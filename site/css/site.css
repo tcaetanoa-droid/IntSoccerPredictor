@@ -88,7 +88,7 @@ img.flag { width: 20px; height: 14px; object-fit: cover; vertical-align: -2px; m
 #hero .lede { font: 1.05rem/1.55 var(--reading); color: var(--ink-soft); max-width: 60ch; margin: 1rem 0 0; }
 #hero .col { width: 100%; max-width: 560px; justify-self: end; border-top: 3px solid var(--ink); }
 #hero .cl { display: flex; justify-content: space-between; font-weight: 700; font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; padding: .3rem 0 .2rem; }
-#hero .hr { display: grid; grid-template-columns: 1fr auto; gap: .6rem; align-items: center; font-size: 1rem; line-height: 1.8; border-bottom: 1px solid var(--hair); }
+#hero .hr { display: grid; grid-template-columns: 1fr auto; gap: .6rem; align-items: center; font-size: 1rem; line-height: 1.5; padding: .15rem 0; border-bottom: 1px solid var(--hair); }
 #hero .hr .ct { font-variant-numeric: tabular-nums; }
 #hero .hr.hot { color: var(--orange); }
 #hero .hr.hot .ct { font-weight: 700; }
@@ -98,7 +98,7 @@ img.flag { width: 20px; height: 14px; object-fit: cover; vertical-align: -2px; m
 @media (max-width: 1023px) {
   #hero .hero-grid { grid-template-columns: 1fr; gap: 1.5rem; margin-top: 1rem; }
   #hero .col { max-width: none; }
-  #hero .hr { font-size: .95rem; line-height: 1.7; }
+  #hero .hr { font-size: .95rem; line-height: 1.4; padding: .15rem 0; }
 }
 
 /* LEGACY PATTERN: rules the not-yet-restyled chapters and the footer still use. Each chapter's
