@@ -108,3 +108,9 @@
 - Order: all three together, fate by fate (A, the spec). Near-misses: host by host (B, once), each region as a whole as it arrives (C, once).
 - Values: the bar grows from the baseline while its count climbs (A, the spec). Near-miss: the bar darkens from faint to full ink at full height (C, once); the bar stamped at full height (B) not clicked.
 - Pace: 18% of a screen (A, the spec). Near-miss: 10% (B, once); 30% (C) not clicked.
+
+## Chapter five, underdogs (21 Sep 2026, companion screen chapter-5, Submit pressed)
+- Split: no strip, the three tinted cells with their counts (A, the spec). Near-misses: a thin ink strip before the counts (B, toggled five times), an extra column with the got-out share (C, twice).
+- Columns: Team with the group after it, then an Elo column, as chapter one (A, the spec). Near-misses: the Elo after the name and no Elo column (B, three times), Team and group first with Elo last (C, twice).
+- Mark: the sub-head alone (A, the spec). Near-misses: a muted note under the table (B, six times), a titles column reading "none" (C, twice).
+- All three the spec's proposals, after the longest toggling of any screen so far (33 clicks).

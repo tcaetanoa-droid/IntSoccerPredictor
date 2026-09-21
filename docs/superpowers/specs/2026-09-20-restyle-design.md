@@ -444,6 +444,15 @@ a bar never rises out of nothing.
 tables under League Gothic sub-heads (no cards, no big-number tiles); fate columns carry the
 chapter-one encoding. Open: whether the stacked fourth / third / advanced strip survives as an
 ink strip; the columns; the "no World Cup title" mark. Motion: both tables print row by row.
+Amendment (21 September 2026, companion screen chapter-5): as proposed. The five weakest as a
+ruled agate table whose three group-stage fates are tinted cells carrying their counts (no ink
+strip, no extra share column); the champion column prints even where it is a real 0 (Qatar) or
+1 (Curaçao). Team columns as chapter one: Team with the group in muted type after the name, then
+an Elo column, on both tables. The "never won a World Cup" mark is the sub-head alone ("Most
+likely first-time champions"); the foot note keeps its verbatim sourcing line. Build notes: add
+a unit line ("Counts of runs, out of 100,000") as chapter one has, since neither foot note says
+it; the section keeps id="underdogs", delete the legacy "chapter 5: underdogs" block from
+site.css.
 
 **Paradoxes.** Fixed: the trophy chart's bars in ink (Italy a hairline stub), labels in News
 Cycle, the divider a dashed ink rule; the three versus pairs as ruled boxes; the better number in
