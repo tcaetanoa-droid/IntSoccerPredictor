@@ -55,12 +55,15 @@ function set(u, p) {
   if (u.key) memo.set(u.key, p);
 }
 
-// register(el, painter, { kind, key, manual })
+// register(el, painter, { kind, key, manual, lead })
 //   kind    'row' (prints across the reading line, default) or 'block' (prints on entry);
 //   key     a stable id, such as a team code, so a re-drawn unit keeps its progress;
-//   manual  excluded from scroll progress; driven by reprint() instead.
-export function register(el, painter, { kind = 'row', key = null, manual = false } = {}) {
-  const u = { el, painter, kind, key, manual, p: 0, painted: false, live: false };
+//   manual  excluded from scroll progress; driven by reprint() instead;
+//   lead    a fraction of the viewport height (a number, or a function returning one) added to
+//           the unit's top before its progress is measured: the unit prints that much later, as
+//           if it sat that much lower on the sheet (chapter two's wave across a wall row).
+export function register(el, painter, { kind = 'row', key = null, manual = false, lead = 0 } = {}) {
+  const u = { el, painter, kind, key, manual, lead, p: 0, painted: false, live: false };
   units.push(u); byEl.set(el, u);
   set(u, reduced() ? 1 : (key && memo.has(key) ? memo.get(key) : 0));
   if (io && !manual) io.observe(el);
@@ -101,14 +104,20 @@ function tickPin(y) {
   }
   return true;
 }
+// A unit's progress from its own position: its top, pushed down by its lead, through the block
+// formula or the reading-line formula.
+function progressOf(u) {
+  const lead = typeof u.lead === 'function' ? u.lead() : u.lead;
+  const top = u.el.getBoundingClientRect().top + lead * H;
+  return u.kind === 'block' ? blockProgress(H, top) : lineProgress(H, top);
+}
 function tick() {
   raf = null;
   if (!tickPin(window.scrollY)) return;     // nothing below the hero prints until its column is complete
   units = units.filter((u) => u.el.isConnected);
   for (const u of units) {
     if (u.manual || !u.live) continue;
-    const top = u.el.getBoundingClientRect().top;
-    set(u, u.kind === 'block' ? blockProgress(H, top) : lineProgress(H, top));
+    set(u, progressOf(u));
   }
 }
 const schedule = () => { if (!raf) raf = requestAnimationFrame(tick); };
@@ -151,8 +160,7 @@ export function boot() {
   if (tickPin(window.scrollY)) {
     for (const u of units) {
       if (u.manual || !u.el.isConnected) continue;
-      const top = u.el.getBoundingClientRect().top;
-      set(u, u.kind === 'block' ? blockProgress(H, top) : lineProgress(H, top));
+      set(u, progressOf(u));
     }
   }
   tick();

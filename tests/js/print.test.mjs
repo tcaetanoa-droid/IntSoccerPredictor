@@ -57,3 +57,7 @@ test('tintStrength: the fate colour follows the share and saturates at 40%', () 
   near(tintStrength(0.4), 1);
   assert.equal(tintStrength(0.8), 1);
 });
+
+test('a lead of half a band (0.09 of a screen) delays a row by half its progress', () => {
+  near(lineProgress(900, 700 + 0.09 * 900), lineProgress(900, 700) - 0.5);
+});

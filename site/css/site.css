@@ -142,39 +142,30 @@ img.flag { width: 20px; height: 14px; object-fit: cover; vertical-align: -2px; m
 #who-wins-it th.sub { border-left: 1px solid var(--ink); }
 #who-wins-it td.sub { border-left: 1px solid var(--hair); color: var(--muted); }
 
-/* chapter 2: the group stage */
-#group-stage { --adv: #E4F0E5; --third: #F1F6EF; }
-/* The row tints are far too pale to read as swatches on the paper, so every one gets the thin
-   border that the white "usually out" swatch needs anyway. */
-#group-stage .legend i { box-shadow: 0 0 0 1px var(--border) inset; }
-#group-stage .ggrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-#group-stage .gcard { overflow: hidden; }
-#group-stage .gh { display: flex; justify-content: space-between; align-items: baseline; padding: 10px 12px 8px; border-bottom: 1px solid var(--ink); font-family: var(--serif); font-size: 19px; font-weight: 500; }
-#group-stage .gh .th { font-family: var(--sans); font-size: 10.5px; color: var(--ink-soft); letter-spacing: .02em; }
-/* Narrower than the mock-up's 70/44 columns: the rail costs each card 54px, and the team name
-   needs 113px ("Bosnia & Herz.") before the host tag starts being clipped away. */
-#group-stage .row { display: grid; grid-template-columns: 16px 1fr 52px 38px; gap: 6px; align-items: center; padding: 7px 12px; font-size: 13px; border-bottom: 1px solid #EEF2EC; }
-#group-stage .row:last-child { border-bottom: 0; }
-#group-stage .row.adv { background: var(--adv); }
-#group-stage .row.third { background: var(--third); }
-#group-stage .row.out { color: var(--muted); }
-#group-stage .row.out img { opacity: .7; }
-#group-stage .pos { font-size: 10px; color: var(--ink-soft); }
-#group-stage .tm { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-/* A darker --orange: at 9px the tag has no large-text exemption, and #C2410C is 4.41:1 on the
-   green row tint. #9A3412 clears 4.5:1 on all three row backgrounds. */
-#group-stage .tm em { font-style: normal; font-size: 9px; letter-spacing: .08em; text-transform: uppercase; color: #9A3412; margin-left: 5px; vertical-align: 1px; }
-#group-stage .bar { display: block; height: 8px; background: var(--rule); border-radius: 2px; overflow: hidden; }
-#group-stage .bar i { display: block; height: 100%; background: #3F8F57; }
-#group-stage .row.third .bar i { background: #6BAE7C; }
-#group-stage .row.out .bar i { background: #B9CBBB; }
-#group-stage .v { text-align: right; font-weight: 600; }
-#group-stage .row.out .v { font-weight: 400; }
-/* A card needs ~265px before the names start being clipped, and the rail takes 218px out of the
-   page above 1023px, so four columns only fit from the 1440 design width down. */
-@media (max-width: 1439px) { #group-stage .ggrid { grid-template-columns: repeat(3, 1fr); } }
-@media (max-width: 1160px) { #group-stage .ggrid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 600px) { #group-stage .ggrid { grid-template-columns: 1fr; } }
+/* chapter 2: the group stage. Twelve ruled boxes, four across, stepping to three, two and one.
+   A box is one printed unit: js/groups.js sets --bp (its border's ink) with the label, then its rows. */
+#group-stage .wall { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.1rem .9rem; }
+#group-stage .box { border: 1px solid color-mix(in srgb, var(--ink) calc(var(--bp, 1) * 100%), transparent); padding: .4rem .5rem .45rem; }
+#group-stage .label { display: flex; justify-content: space-between; align-items: baseline; gap: .4rem; padding-bottom: .2rem; border-bottom: 1px solid var(--ink); font-size: .75rem; line-height: 1.2; }
+#group-stage .label b { text-transform: uppercase; letter-spacing: .06em; }
+#group-stage .label span { color: var(--muted); text-align: right; white-space: nowrap; }
+#group-stage .box table { table-layout: fixed; }
+#group-stage .box tbody th, #group-stage .box tbody td { padding: .24rem .18rem; }
+#group-stage .box tbody th:first-child, #group-stage .box tbody td:first-child { padding-left: 0; }
+#group-stage .box tbody th:last-child, #group-stage .box tbody td:last-child { padding-right: 0; }
+#group-stage .box tbody tr:last-child > * { border-bottom: 0; }
+#group-stage .tm { overflow: hidden; text-overflow: ellipsis; }
+#group-stage em.host { font-style: normal; font-weight: 700; font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; margin-left: .3rem; }
+#group-stage .ps { text-align: left; color: var(--muted); }
+#group-stage .bar { display: block; height: 6px; background: var(--hair); }
+#group-stage .bar i { display: block; height: 100%; width: 0; background: var(--ink); }
+/* The rows that usually go out print in muted ink, bar included: no cut lines, no tint. */
+#group-stage tr.out th, #group-stage tr.out td { color: var(--muted); }
+#group-stage tr.out .bar i { background: var(--muted); }
+#group-stage tr.out img.flag { opacity: .75; }
+@media (max-width: 1299px) { #group-stage .wall { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 899px) { #group-stage .wall { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 559px) { #group-stage .wall { grid-template-columns: 1fr; } }
 
 /* chapter 3: the bracket */
 /* One grid holds the round headers and the nine columns: the 1fr tracks size to their content
