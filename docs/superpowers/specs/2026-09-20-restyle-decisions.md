@@ -81,3 +81,9 @@
 - How the wall prints: box by box A to L as each crosses the reading line (A, the spec). Near-misses: none (A clicked twice).
 - Inside a box: row and bar together as the percentage climbs (A). Near-miss: the four rows then the four bars (B, once).
 - Pace: the spec's 18% band (A). Near-misses: slower 30% (C, once), quicker 10% (B, once).
+
+## Chapter three, the bracket (21 Sep 2026, companion screen chapter-3, Submit pressed)
+- The final's box: ink like every other box, a muted caption under it naming the real final (B). Near-misses: an orange rule on the final (A, the spec's proposal, toggled three times), "the real final" in orange caps as the corner label (C, twice).
+- The champion mark: the name in the display face with the flag and the 53% line under it (A). Near-misses: one boxed line in the label face (B, once), no mark with "champion" after the name in the final's row (C, once).
+- The winner mark: a light ink-grey tint on the winner's row, the loser's row faded to 0.75 (B). Thiago asked for this variant from the terminal after the first showing, and the winner group was rebuilt around it. Near-misses, first showing: a green tint by share on the winner (the old B, clicked three times), a bar under the winner's name (the old C, once). Near-misses, rebuilt screen: the same grey by share, 53% pale to 86% darkest (C, toggled eleven times against B), weight only (A, twice).
+- Contrast: the faded loser row is 3.07:1 at 12px, under AA; even a 0.85 fade is 3.70:1. Told to Thiago before Submit; recorded as his call.

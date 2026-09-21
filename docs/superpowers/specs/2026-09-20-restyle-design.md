@@ -374,6 +374,17 @@ rule for the real final, or ink), the champion mark above the final, the third-p
 mark, how the winner row is marked beyond weight. Motion: the most likely path draws from the
 round of 32 to the final along its connectors as the bracket crosses the reading line; boxes
 print with their column.
+Amendment (21 September 2026, companion screen chapter-3): the final's box is ink like every
+other box, no orange anywhere in the bracket; a line in muted ink hangs under the box and says
+the real tournament produced this final (Spain v Argentina). The champion mark above the final
+is the name in the display face: the flag, Spain in League Gothic caps, and under it "wins the
+final in 53% of the runs that got here" in muted News Cycle. The winner of every tie is marked
+by a light ink-grey tint on its row (ink at 9% over the paper, the same depth on every tie; the
+row itself full ink and bold) and the loser's row is muted ink faded to 0.75 opacity. That fade
+measures 3.07:1 for 12px text, under AA's 4.5:1 (unfaded muted is 4.99:1); Thiago chose it with
+that number in front of him, the loser being the secondary row. The third-place match keeps a
+"Third place" label in News Cycle caps with a rule under it and its own box under the final, no
+other mark.
 
 **The hosts.** Fixed: three regions, one per host, in News Cycle; flag-colour bars go. Open: ink
 bars per fate or a nine-row fate list with the chapter-one cell encoding, one per host; how the
