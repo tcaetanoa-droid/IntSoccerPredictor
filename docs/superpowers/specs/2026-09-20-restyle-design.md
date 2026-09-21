@@ -539,6 +539,23 @@ agate; KaTeX unchanged; the five commands in the system monospace; the calibrati
 ink (model line ink, observed hollow dots ink, grid hairlines). Open: whether a key is a box or
 a bare ruled list; where the calibration caption sits. Motion: feedback only; the chapter is
 printed complete.
+Amendment (21 September 2026, companion screen chapter-8): each symbol key is a two-column
+agate table, Symbol and What it means, with the 3px rule over its head; the symbol cell stays
+News Cycle 700 at 1rem so KaTeX's script level never drops under 12px. The calibration caption
+sits above the chart as a foot-style line with the legend flush right on the same line; with
+colour gone the rate panel's win and draw lines are both ink, each labelled in place at its
+right end ("win rate", "draw rate", News Cycle 700 at 12px), and the legend drops to two items
+(model, observed). The chapter closes with "Reproduce it" as a two-column list: the label line,
+the opening sentence, then the five commands down the left in the system monospace with what
+each one does on the right, hairlines between them, and "The repository link is in the footer."
+as a foot note. Those five descriptions are new editorial copy, built from the steps' prose and
+the run's own numbers (the snapshot date, the 7,526 matches, n_sims, the seed, the 104
+matches); they belong in method.js. Build notes: inline KaTeX at 1.21em outsizes the prose (a
+1.05em on the prose's .katex is the one-line fix if it reads loud); HTML sub- and superscripts
+are held at max(12px, .72em); step 6's maths column is empty, as the module has it; the step
+grid's stack points are re-decided at the build (the calibration panel needs about 600px at
+12px axis text); delete the legacy "chapter 8: how it works" block, including its h3, .eq and
+code rules.
 
 ## 9. Files and build order
 

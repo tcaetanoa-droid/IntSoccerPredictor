@@ -143,3 +143,9 @@
 - Pick: the old ink fades to paper over 150 ms, then the new team prints over 400 ms (B, one click). Near-misses: the regions reprint in place (A, the spec) and the new team just there with the clicked favourite bold for a beat (C), neither clicked.
 - Pace: 10% of a screen, quicker (B, one click). Near-misses: 18% (A, the spec) and 30% (C), neither clicked.
 - Told before Submit: Pick B adds a fade-out the thesis does not name. Chosen anyway; spec §4 amended the same day.
+
+## Chapter eight, how it works (21 Sep 2026, companion screen chapter-8, Submit pressed)
+- Key: a two-column agate table, Symbol and What it means (C). Near-misses: a ruled box with "What the symbols mean" as its label (B, five times), a bare ruled list (A, the spec, twice).
+- Caption: above the chart with the legend beside it (A, the spec). Near-miss: below the chart (B, twice); legend above and sentence below (C) not clicked.
+- Reproduce: a two-column list, each command with what it does (C). Near-misses: a ruled box with the commands in the paragraph (A, the spec, once), a closing paragraph with the commands in mono (B, once).
+- Told before Submit: the rate panel's in-place line labels are new copy; Repro C's five descriptions are new editorial copy for method.js. Neither vetoed.
