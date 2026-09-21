@@ -453,6 +453,15 @@ likely first-time champions"); the foot note keeps its verbatim sourcing line. B
 a unit line ("Counts of runs, out of 100,000") as chapter one has, since neither foot note says
 it; the section keeps id="underdogs", delete the legacy "chapter 5: underdogs" block from
 site.css.
+Motion amendment (21 September 2026, companion screen transition-5): a table at a time. Each
+of the two tables prints as a whole when its sub-head crosses the reading line, its rows top to
+bottom half a band apart, so the table is finished before the reader reaches its rows. Inside a
+row the counts climb first, on plain paper, over the first two thirds of the row's band, then
+the fate tints bloom behind them. The spec's band of 18% of a screen. Build notes: the sub-head
+crosses the reading line about a fifth printed, so rows can be printing under a heading still
+coming up (shown, not vetoed); the Elo column prints with the row's ink and does not climb, a
+rating not being a count of runs; the ruled frame and the table heads are printed from the
+start.
 
 **Paradoxes.** Fixed: the trophy chart's bars in ink (Italy a hairline stub), labels in News
 Cycle, the divider a dashed ink rule; the three versus pairs as ruled boxes; the better number in

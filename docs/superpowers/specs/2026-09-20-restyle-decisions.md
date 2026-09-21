@@ -114,3 +114,9 @@
 - Columns: Team with the group after it, then an Elo column, as chapter one (A, the spec). Near-misses: the Elo after the name and no Elo column (B, three times), Team and group first with Elo last (C, twice).
 - Mark: the sub-head alone (A, the spec). Near-misses: a muted note under the table (B, six times), a titles column reading "none" (C, twice).
 - All three the spec's proposals, after the longest toggling of any screen so far (33 clicks).
+
+## Chapter five, the transition from chapter four (21 Sep 2026, companion screen transition-5, Submit pressed)
+- Order: a table at a time, printed as a whole when its sub-head crosses the reading line (B). Near-miss: row by row as each row arrives (A, the spec, once); both tables as the chapter enters (C) not clicked.
+- Inside a row: the counts climb first, then the tints bloom behind them (B). Near-miss: tints and counts together (A, the spec, once); tints first (C) not clicked.
+- Pace: 18% of a screen (A, the spec, kept as pre-selected); 10% (B) and 30% (C) not clicked.
+- Told before Submit: order B's count-ups run partly before the rows reach the reading line; the Elo column does not climb. Neither vetoed.
