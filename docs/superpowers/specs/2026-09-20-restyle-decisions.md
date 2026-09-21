@@ -149,3 +149,9 @@
 - Caption: above the chart with the legend beside it (A, the spec). Near-miss: below the chart (B, twice); legend above and sentence below (C) not clicked.
 - Reproduce: a two-column list, each command with what it does (C). Near-misses: a ruled box with the commands in the paragraph (A, the spec, once), a closing paragraph with the commands in mono (B, once).
 - Told before Submit: the rate panel's in-place line labels are new copy; Repro C's five descriptions are new editorial copy for method.js. Neither vetoed.
+
+## Chapter eight, the transition from chapter seven (21 Sep 2026, companion screen transition-8, Submit pressed)
+- Steps: each step prints in reading order, title, prose, then the formula and its key (C). Near-misses: printed complete (A, the spec) and the words printing with the formulas already there (B), neither clicked.
+- Chart: the dots land first, then the lines draw over them (C). Near-miss: the lines draw and the dots land behind them (B, once); printed complete (A, the spec) not clicked.
+- Boxes: keys and tables print row by row, the worked example stays printed (B). Near-misses: printed complete (A, the spec) and the worked example counting up (C), neither clicked.
+- This reverses the spec's "read, not watched" for the method chapter; the screen said so and he chose it.

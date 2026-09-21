@@ -556,6 +556,19 @@ are held at max(12px, .72em); step 6's maths column is empty, as the module has 
 grid's stack points are re-decided at the build (the calibration panel needs about 600px at
 12px axis text); delete the legacy "chapter 8: how it works" block, including its h3, .eq and
 code rules.
+Motion amendment (21 September 2026, companion screen transition-8): the chapter prints after
+all, replacing "feedback only; the chapter is printed complete". Each step prints in reading
+order as it comes up the page: the title first, then the prose, then the formula and its key
+beside them, three overlapping windows over the first 40% of a screen after the step's top
+enters (the engine's block rule). The calibration chart prints as it crosses the reading line
+over a band of its own height: the 60 observed dots land first, left to right, then the three
+model lines draw over them (a dash-offset over each line's own length). The 31 rows of the four
+symbol keys and the three parameter tables print row by row as they cross the reading line,
+like agate rows (heading 0.15 to 1, cell 0.2 to 1, the hairline with the row); the worked
+example stays printed and its numbers never climb. Label lines and table heads are the ruled
+frame, printed from the start. Build notes: step 5 has only a footnote and step 6 no maths, so
+their third window prints nothing; both chart panels share one progress; KaTeX is never
+re-rendered per frame; reduced motion is the finished chapter.
 
 ## 9. Files and build order
 
