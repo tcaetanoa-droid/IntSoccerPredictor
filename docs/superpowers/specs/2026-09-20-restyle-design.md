@@ -82,8 +82,10 @@ Colour rules:
   measures the tinted cells; the dark fates (4th place green, 3rd place bronze) never reach the
   strength where ink would fail because their shares are small, and the strength is capped at
   the last value that clears 4.5:1 if a data refresh ever changes that.
-- Flag colours are gone from every chart and bar. Flags themselves stay, as the team's mark
-  beside its name (PRODUCT.md: teams are shown by name and flag).
+- Flag colours are gone from every chart and bar. Flags themselves stay as the team's mark
+  beside its name in the chapters (PRODUCT.md: teams are shown by name and flag), except where
+  the approved companion screens showed none: the hero column (decided at the hero checkpoint)
+  and chapter one's fate table (to confirm at its checkpoint).
 
 Retired tokens: `--green` (no element uses it once the rail, kickers and labels go; the paper
 and the fate scale carry the green), `--faint` (2.71:1; hairlines use `--hair`), `--card`,
@@ -264,7 +266,8 @@ and the team name are read from the data as today; the stat strip and the chapte
   100,000 seeded replays of the full tournament. Every number on this page is counted from
   those runs." Printed on load.
 - Champion column: a 3px rule on top, then the label row "Champion" / "Runs won", then twelve
-  rows (flag, name, count) for the twelve teams with the most titles in the fate table's order,
+  rows (name and count, no flag: Thiago at the hero checkpoint, 20 September 2026, matching the
+  approved companion screen) for the twelve teams with the most titles in the fate table's order,
   then "The other 36 teams, between them" with their summed count in muted ink (the 36 is
   `teams − 12`, the sum a display aggregate as today's "other 40" is). Spain's row is orange with
   its count in bold. Rows are 1rem on 1.8 with hairlines. Blank on load: every row at 6% ink,
@@ -321,8 +324,8 @@ Every chapter:
 
 Chapter one, Who wins it:
 
-- Table columns: Team (flag, name, then the group in muted News Cycle after the name, as in the
-  approved screen), Elo, the nine fates (4th in group, 3rd out, R32, R16, QF, 4th place, 3rd
+- Table columns: Team (name, then the group in muted News Cycle after the name, no flag, as in
+  the approved screen; flags to confirm at the chapter-one checkpoint), Elo, the nine fates (4th in group, 3rd out, R32, R16, QF, 4th place, 3rd
   place, Runner-up, Champion), Advanced, 3rd in group. The champion column is bold. The two
   subtotal columns are untinted with a 1px ink rule on their left, as today.
 - Sorting stays: every numeric head is a button in its `th` with `aria-sort`, Enter and Space,
@@ -461,10 +464,12 @@ the ledger's deferred code-quality minors that the touched modules do not reach.
 
 ## 12. Decisions carried to checkpoints
 
-- Hero: the champion column's ink floor (65%, or full ink with a champion-gold tint by share as
-  the fate cells do) once the real column is seen; the flags in the column (the mocks omitted
-  them for speed); the exact headline size at 1440 and 390; tabular figures in News Cycle.
+- Hero, decided at its checkpoint (20 September 2026): the ink floor stays at 65% (the
+  faintest row measures 5.65:1); no flags in the column; the hover lift to full ink stays; the
+  bottom rule bleeds to the sheet edge while the masthead rule spans the content, as built; News
+  Cycle has no tabular figures, so digits shift sideways while a count climbs, accepted.
 - Chapter one: the claim sentence as the intro's bold lead-in (this spec) or as a deck line under
-  the title; the group inline after the team name versus its own column.
+  the title; the group inline after the team name versus its own column; flags in the Team cell
+  (none, as the approved screen) or added.
 - Closing: the paper footer; the placeholder pages' key list.
 - Chapters two to eight: the open lines of section 8, each at its own screen.

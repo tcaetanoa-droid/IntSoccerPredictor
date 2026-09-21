@@ -60,3 +60,10 @@
 - Chapter one: not present at all until the hero is released (hidden gate); arrives row by row as each
   row crosses the reading line; the boundary between the held screen and chapter one is air (no second
   rule; the chapter title carries its own two rules).
+
+## Hero checkpoint (20 Sep 2026, localhost)
+- Ink floor: 65% kept (built at 65% because 55% failed AA at 3.55:1; the faintest row measures 5.65:1).
+- Flags in the champion column: none, as the approved companion screen. Chapter one's table follows the same screen; confirm at its checkpoint.
+- Hover on an unprinted row lifting it to full ink: kept.
+- The bottom rule bleeding to the sheet edge while the masthead rule spans the content: kept as built (the mock did the same).
+- Count jitter (News Cycle has no tabular figures): accepted.
