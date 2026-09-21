@@ -354,6 +354,14 @@ eight "third usually through" groups are marked (a 1px ink rule under row two; a
 share on each row; a muted fourth row); whether the advance bar survives as an ink bar or the
 share is printed as a count; where the modal finishing position goes. Motion: the boxes print in
 group order, A to L, as each crosses the reading line, rows top to bottom within a box.
+Amendment (20 September 2026, companion screen chapter-2): the places are marked by ink,
+not lines: the rows that usually go out (the fourth row everywhere; the third row too in the
+four groups whose third usually goes out) print in muted ink, the rows that go through in full
+ink; no cut lines, no tint. The advance share is a thin bar of solid ink in its own column with
+the percentage after it. The modal finishing position is a figure 1 to 4 in muted ink at the
+left of each row. Copy: the intro is rewritten to match (no "green rows", no "paler third
+row"): the bar is how often a team reached the round of 32; the rows in lighter ink usually go
+out; the foot note keeps the Group D example.
 
 **The bracket.** Fixed: the nine-column grid and the connectors stay; tie boxes become ruled
 boxes; round heads in News Cycle caps; match numbers in News Cycle 0.75rem muted; the winner's

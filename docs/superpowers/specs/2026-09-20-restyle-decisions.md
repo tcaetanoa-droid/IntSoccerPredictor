@@ -71,3 +71,8 @@
 ## Chapter one checkpoint (20 Sep 2026, localhost)
 - Approved as built: no flags in the Team cell; the claim as the intro's bold lead-in; the group inline after the name; the two subtotal columns in muted ink.
 - Lesson: the browser cached the old chapter script across the hero checkpoint; the local server now sends Cache-Control: no-store (serve-nocache.py in the session scratchpad; ports 8000 and 8001).
+
+## Chapter two, the group stage (20 Sep 2026, companion screen chapter-2, Submit pressed)
+- Places: no cut lines; the rows that usually go out in muted ink (C). Near-misses: a 1px cut under row two (A, toggled three times), a green tint by share on every row (B, once).
+- Share: a thin ink bar in its own column beside the percentage (A). Near-misses: percentage only (B, twice), the count with the percentage muted after it (C, once).
+- Position: a figure 1 to 4 in muted ink at the left (A). Near-misses: "usually 1st" after the name (B, once), dropped to the foot note (C, once).
