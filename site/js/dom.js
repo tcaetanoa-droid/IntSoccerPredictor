@@ -1,4 +1,5 @@
 // site/js/dom.js
+import { register, paintBlock } from './print.js';
 export function h(tag, attrs = {}, ...children) {
   const el = document.createElement(tag);
   for (const [k, v] of Object.entries(attrs)) {
@@ -23,3 +24,13 @@ export const fmtPct = (x, dec = 1) => `${(x * 100).toFixed(dec)}%`;
 export const countOf = (share, n) => fmtCount(share * n);  // n: ctx.n, the simulation count
 // A printed count: the final value for assistive technology, then the display that counts up.
 export const count = (n) => [h('span', { class: 'sr' }, fmtCount(n)), h('span', { class: 'ct', 'aria-hidden': 'true' }, '0')];
+
+// Every chapter opens the same way: its name between two rules, then the intro in the reading
+// face with the chapter's claim as a bold lead-in. Both print as blocks when the chapter enters.
+export function chapterHead(title, claim, ...intro) {
+  const h2 = h('h2', {}, title);
+  const p = h('p', { class: 'intro' }, h('b', {}, claim), ' ', ...intro);
+  register(h2, paintBlock, { kind: 'block' });
+  register(p, paintBlock, { kind: 'block' });
+  return [h2, p];
+}
