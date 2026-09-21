@@ -503,6 +503,20 @@ two dark segments). Open: the "how far it gets" and "who knocked it out" lists (
 counts only); one or two columns for the regions. Motion: on a pick, the chapter reprints once
 (`reprint`, 400 ms, ease-out): counts climb from zero and tints print; reduced motion prints
 the new team complete.
+Amendment (21 September 2026, companion screen chapter-7): the "how far it gets" and "who
+knocked it out" lists carry a thin ink bar beside each number, solid ink, no track, no radius;
+for "how far" the bar is the share of the 100,000 runs, for "knocked out" it is measured against
+the biggest eliminator, as the module measures it. Two columns: the fate row full width, then
+"how far" and the opponents down the left, "who knocked it out" and "the one thing to know"
+down the right. The favourites line is the picker region's opening line above the field, "Pick
+a team, or one of the favourites: …", names only, no flags; the field's visible "Team" label
+becomes screen-reader-only text, since the opening line names the field. Build notes: print
+the list shares with one decimal so the whole-percent ties (Colombia and Portugal both 7%,
+Croatia and Colombia both 18%) resolve; the two lists have different denominators (100,000 runs
+against the runs in which the team went out), which their sub-lines say; the opponents region
+may use a container query (container-type: inline-size) for its narrow column; delete the
+legacy "chapter 7: pick a team" block with .card, .legend, the segmented bar and the chip rules;
+at phone width the two columns step to one and the lists' label columns need checking at 360px.
 
 **How it works.** Fixed: the six steps keep their two-column layout and their numbers, "1." to
 "6." in the step title, because the pipeline order is the content (no mono kicker); step titles

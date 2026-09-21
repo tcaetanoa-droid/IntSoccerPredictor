@@ -131,3 +131,9 @@
 - Bars: one after another, left to right (A, the spec). Near-miss: the two sides in turn (B, once); all six at once (C) not clicked.
 - Boxes: the names first, then the numbers count up, the bigger one last (C). Near-misses: each box as it arrives with both numbers together (A, the spec) and all three when the row enters (B), neither clicked.
 - Pace: 18% of a screen (A, the spec). Near-miss: 30% (C, once); 10% (B) not clicked.
+
+## Chapter seven, pick a team (21 Sep 2026, companion screen chapter-7, Submit pressed)
+- Lists: a thin ink bar beside the number (A, the spec). Near-misses: the number only, right-aligned (B, four times), the row tinted by its share (C, once).
+- Columns: two columns (A, the spec). Near-miss: one column (B, twice); a row of three (C) not clicked.
+- Favourites: above the field as the region's opening line (C). Near-misses: under the field on its own line (A, the spec, twice), in the team head at the right (B, once).
+- Told before Submit: whole-percent ties in the lists (one decimal fixes it, carried as a build note); no flags on the favourites line. Neither vetoed.
