@@ -120,3 +120,9 @@
 - Inside a row: the counts climb first, then the tints bloom behind them (B). Near-miss: tints and counts together (A, the spec, once); tints first (C) not clicked.
 - Pace: 18% of a screen (A, the spec, kept as pre-selected); 10% (B) and 30% (C) not clicked.
 - Told before Submit: order B's count-ups run partly before the rows reach the reading line; the Elo column does not climb. Neither vetoed.
+
+## Chapter six, paradoxes (21 Sep 2026, companion screen chapter-6, Submit pressed)
+- Versus: a two-row agate inside the box, the bigger row in bold (B). Near-misses: two sides left and right with "vs" between them (A, the spec, three times), one table for all three pairs (C, twice).
+- Bars: the percentage above each bar (A, the spec). Near-misses: the count of runs (B, three times), count and percentage together (C, once).
+- Reason: under the pair inside its box, in the reading face (A, the spec). Near-misses: one numbered foot note under the row of boxes (B, three times), the box's opening line in News Cycle (C, twice).
+- Told before Submit: bold marks the bigger number, in pair one the worse outcome; pairs two and three carry the same label. Neither vetoed.

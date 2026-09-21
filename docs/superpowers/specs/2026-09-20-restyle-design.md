@@ -468,6 +468,18 @@ Cycle, the divider a dashed ink rule; the three versus pairs as ruled boxes; the
 bold ink, not orange. Open: the versus box composition (two sides, or a two-row table); how the
 bars are labelled. Motion: the six bars print in order; each versus box's numbers count up as it
 crosses the reading line.
+Amendment (21 September 2026, companion screen chapter-6): each versus pair is a small two-row
+agate inside its ruled box, one row per team with the flag, the name, the Elo and the number,
+the bigger number's row in bold; the box label's rule closes the head, so the agate drops its
+own 3px rule. The trophy chart's bars are labelled with the percentage above each (4.9%, 4.5%,
+3.5%, 2.9%, 1.8%, 0.0%), the axis in percent as fixed. Each pair's reason line sits under the
+pair inside its box, in Old Standard TT 0.95rem ink-soft. Rulings carried to the build: bold
+marks the bigger number, the one that makes the point (in pair one Argentina's 31.6% chance of
+going out), not the better outcome, unless Thiago says otherwise at the checkpoint; pairs two
+and three share the champion metric, so their box labels read the same; the box label stays the
+module's full sentence in caps; the section keeps id="paradoxes", delete the legacy "chapter 6:
+paradoxes" block (with .card, .row3 and the flag-colour bars) from site.css; below about 900px
+the chart needs a scroll wrapper or three bars per row, and the boxes step to one column.
 
 **Pick a team.** Fixed: the search combobox as a printed field (1px ink box, News Cycle, no
 radius, the same keyboard behaviour); the favourites as a printed line of links, not chips; the
