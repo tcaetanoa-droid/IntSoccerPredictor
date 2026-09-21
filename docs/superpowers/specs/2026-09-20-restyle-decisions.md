@@ -126,3 +126,8 @@
 - Bars: the percentage above each bar (A, the spec). Near-misses: the count of runs (B, three times), count and percentage together (C, once).
 - Reason: under the pair inside its box, in the reading face (A, the spec). Near-misses: one numbered foot note under the row of boxes (B, three times), the box's opening line in News Cycle (C, twice).
 - Told before Submit: bold marks the bigger number, in pair one the worse outcome; pairs two and three carry the same label. Neither vetoed.
+
+## Chapter six, the transition from chapter five (21 Sep 2026, companion screen transition-6, Submit pressed)
+- Bars: one after another, left to right (A, the spec). Near-miss: the two sides in turn (B, once); all six at once (C) not clicked.
+- Boxes: the names first, then the numbers count up, the bigger one last (C). Near-misses: each box as it arrives with both numbers together (A, the spec) and all three when the row enters (B), neither clicked.
+- Pace: 18% of a screen (A, the spec). Near-miss: 30% (C, once); 10% (B) not clicked.

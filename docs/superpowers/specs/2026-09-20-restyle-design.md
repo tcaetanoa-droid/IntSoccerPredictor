@@ -480,6 +480,15 @@ and three share the champion metric, so their box labels read the same; the box 
 module's full sentence in caps; the section keeps id="paradoxes", delete the legacy "chapter 6:
 paradoxes" block (with .card, .row3 and the flag-colour bars) from site.css; below about 900px
 the chart needs a scroll wrapper or three bars per row, and the boxes step to one column.
+Motion amendment (21 September 2026, companion screen transition-6): the six bars print one
+after another, left to right, each growing out of the baseline while its label counts up,
+Portugal first and Italy last, from the moment the chart crosses the reading line; the chart's
+ticks, baseline and dashed divider with its two side labels are printed from the start. Each
+versus box prints as it crosses the reading line in three windows inside its band: the two
+names first, then the numbers count up, the bigger one last and landing in bold; the reason
+line prints on the box's own band. The spec's band of 18% of a screen. Build notes: the three
+boxes share a top, so they print together; the bold lands as a step when the unit finishes; the
+Elo prints with the row's ink and does not climb; Italy's unit grows only its 3px stub.
 
 **Pick a team.** Fixed: the search combobox as a printed field (1px ink box, News Cycle, no
 radius, the same keyboard behaviour); the favourites as a printed line of links, not chips; the
