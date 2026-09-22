@@ -1,7 +1,7 @@
 /* site/css/site.css */
 /* The printed sheet: tokens, faces and the shell first, then the hero, the chapter pattern and
-   one block per chapter in page order. Design: PRODUCT.md, .impeccable/surfaces/, and the
-   restyle spec under docs/superpowers/specs/. */
+   one block per chapter in page order. Design: PRODUCT.md, DESIGN.md, and the restyle spec
+   under docs/superpowers/specs/. */
 :root {
   --paper: #F2F6F1; --ink: #10261A; --ink-soft: #2C4A38; --muted: #5B6E62; --orange: #C2410C;
   --hair: rgba(16, 38, 26, .18);
