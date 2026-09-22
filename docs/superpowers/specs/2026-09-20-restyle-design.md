@@ -419,6 +419,17 @@ pin, and the foot note then keys on its own entry rather than on the release. Th
 rows begin printing while their box top is still just under the fold (12 to 34px in the 620px
 demo): shown to Thiago and not vetoed, open to change at the chapter's checkpoint. The beat is a
 fifth of the hold. Reduced motion: the finished sheet, no hold.
+Checkpoint amendment (21 September 2026, localhost): the lock sits at the chapter's title,
+not at the round heads. The held region is the title, the intro and the grid together whenever
+their height fits the viewport (at most the viewport less a small margin, about 860px at the
+sheet's width); when it does not, the grid alone is held, as first built, so a laptop window
+keeps its lock. The round of 32 still prints from the grid's top crossing the reading line to the
+held region's top reaching the top of the viewport, the eighth row completing exactly at the pin,
+so with the title held the approach is shorter (about 0.62 of a screen at 900px instead of 0.92).
+The beat is halved: the hold is 1.35 screens of travel, four rounds of 0.3 and a beat of 0.15
+(Thiago: the fifth was "kind of long"). Kept as built at the checkpoint: the loser's row at 0.75,
+the round-of-32 rows starting inside the fold, the tie row's 5px padding, the half-pixel road
+lines, the rule inking as its lines arrive; short windows and phones were not judged.
 
 **The hosts.** Fixed: three regions, one per host, in News Cycle; flag-colour bars go. Open: ink
 bars per fate or a nine-row fate list with the chapter-one cell encoding, one per host; how the

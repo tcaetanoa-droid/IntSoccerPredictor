@@ -155,3 +155,8 @@
 - Chart: the dots land first, then the lines draw over them (C). Near-miss: the lines draw and the dots land behind them (B, once); printed complete (A, the spec) not clicked.
 - Boxes: keys and tables print row by row, the worked example stays printed (B). Near-misses: printed complete (A, the spec) and the worked example counting up (C), neither clicked.
 - This reverses the spec's "read, not watched" for the method chapter; the screen said so and he chose it.
+
+## Chapter three checkpoint (21 Sep 2026, localhost)
+- The lock point: with the chapter's title at the top of the window, not the round heads. Chosen: the title, intro and grid held together when they fit, otherwise the grid alone as first built (option A). Near-misses: always the title lock with no lock where it does not fit (B); the intro moved under the bracket so title and grid always fit (C, breaks the chapter pattern).
+- The beat: "kind of long" at a fifth of the hold; halved to a tenth (the hold 1.35 screens: four rounds of 0.3, a beat of 0.15).
+- Kept as built: the loser's fade at 0.75 (his call again, with the sheet in front of him); the round-of-32 rows starting inside the fold; the 5px tie padding; the half-pixel road lines; the rule inking as its lines arrive. Short windows and phones: not judged ("no idea").
