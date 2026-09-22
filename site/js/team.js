@@ -84,7 +84,7 @@ export async function render(section, ctx) {
         'aria-selected': i === hi ? 'true' : 'false',
         onmousedown: (e) => e.preventDefault(),  // keep the focus so the blur restore does not fire first
         onclick: () => pick(t.code) },
-        flag(t.code, ctx.byCode, 20), t.name, h('b', {}, countOf(t.champion_pct, ctx.n))))
+        flag(t.code, ctx.byCode, 40), t.name, h('b', {}, countOf(t.champion_pct, ctx.n))))
       : [h('div', { class: 'r none', role: 'presentation' }, 'No team matches')]));
     results.hidden = false;
     // Scroll the list box itself, never scrollIntoView: that walks up to the document and would
@@ -155,7 +155,7 @@ export async function render(section, ctx) {
     favs.replaceChildren(...ctx.teams.slice(0, 6).filter((z) => z.code !== code).slice(0, 5)
       .flatMap((z, i) => (i ? [h('span', { class: 'sep' }, '·'), link(z)] : [link(z)])));
 
-    const head = h('div', { class: 'th', tabindex: '-1' }, flag(code, ctx.byCode, 80),
+    const head = h('div', { class: 'th', tabindex: '-1' }, flag(code, ctx.byCode, 160),
       h('div', {}, h('div', { class: 'tn' }, nm),
         h('div', { class: 'tm' }, `Group ${t.group} · Elo ${Math.round(t.elo)}${top ? ', highest in the field' : ''}`)),
       h('div', { class: 'tc' }, h('b', { 'data-count': Math.round(t.champion_pct * ctx.n) }, count(t.champion_pct * ctx.n)),
@@ -179,14 +179,14 @@ export async function render(section, ctx) {
     const opps = region('opp', 'Most common opponent, round by round', `Share of the runs in which ${nm} reached that round`,
       ROUNDS.map(([k, lab]) => row(h('div', { class: 'orow' }, h('span', { class: 'lb olb' }, lab),
         h('span', { class: 'olist' }, ...(t.opponents_by_round[k] || []).map((o) => h('span', { class: 'oitem' },
-          flag(o.team, ctx.byCode, 20), name(o.team, ctx.byCode), h('b', { 'data-pct': o.pct }, pct(o.pct)))))), paintListRow)));
+          flag(o.team, ctx.byCode, 40), name(o.team, ctx.byCode), h('b', { 'data-pct': o.pct }, pct(o.pct)))))), paintListRow)));
     // Who knocked it out: shares of the runs that ended in an elimination, and the bars are
     // measured against the biggest eliminator, so the first one runs the full width.
     const kmax = t.knocked_out_by.length ? t.knocked_out_by[0].pct : 1;
     const ko = region(null, `Who knocked ${nm} out`,
       `Share of the runs in which ${nm} was eliminated, ${countOf(1 - t.champion_pct, ctx.n)} runs. The bars are measured against the biggest eliminator.`,
       t.knocked_out_by.map((o) => row(h('div', { class: 'krow' },
-        h('span', { class: 'lb nm' }, flag(o.team, ctx.byCode, 20), name(o.team, ctx.byCode)),
+        h('span', { class: 'lb nm' }, flag(o.team, ctx.byCode, 40), name(o.team, ctx.byCode)),
         h('span', { class: 'bar', 'data-w': (o.pct / kmax * 100).toFixed(1) }),
         h('span', { class: 'val', 'data-pct': o.pct }, pct(o.pct))), paintListRow)));
     const one = region(null, 'The one thing to know', null, [blk(h('p', { class: 'ex' }, t.excerpt_text))]);

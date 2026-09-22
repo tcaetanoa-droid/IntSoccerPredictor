@@ -32,6 +32,8 @@ img.flag { width: 20px; height: 14px; object-fit: cover; vertical-align: -2px; m
 .site-header nav { display: flex; gap: 1.1rem; flex-wrap: wrap; align-items: baseline; }
 .site-header nav a { text-decoration: none; }
 .site-header nav a[aria-current="page"] { border-bottom: 2px solid var(--orange); padding-bottom: .1rem; }
+/* Feedback, as every row on the sheet has one: a hovered nav link takes the sheet's own underline. */
+.site-header nav a:not([aria-current]):hover { text-decoration: underline; }
 .site-header nav .soon { color: var(--muted); }
 .chapters-btn { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
 /* The chapter list: a box on paper under the masthead's right edge. Escape and light dismiss
@@ -39,12 +41,14 @@ img.flag { width: 20px; height: 14px; object-fit: cover; vertical-align: -2px; m
 #chapters { position: fixed; inset: 3.4rem var(--gutter) auto auto; margin: 0; padding: .35rem .9rem .4rem; min-width: 12rem; background: var(--paper); color: var(--ink); border: 1px solid var(--ink); }
 #chapters a { display: block; padding: .3rem 0; font-size: .85rem; text-decoration: none; border-top: 1px solid var(--hair); }
 #chapters a:first-child { border-top: 0; }
+/* Feedback: a hovered chapter takes the 9% ink tint a highlighted list row prints on. */
+#chapters a:hover { background: color-mix(in srgb, var(--ink) 9%, transparent); }
 
 /* the sheet */
 .sheet { max-width: var(--sheet); margin: 0 auto; padding: 0 var(--gutter); }
 /* A chart masthead: the hero's and the placeholder pages'. */
 .mast { display: flex; justify-content: space-between; align-items: baseline; gap: .5rem 1.5rem; flex-wrap: wrap; border-bottom: 3px solid var(--ink); padding: 1rem 0 .35rem; }
-.mast .mt { font: 1.75rem/1 var(--display); text-transform: uppercase; }
+.mast .mt { margin: 0; font: 1.75rem/1 var(--display); text-transform: uppercase; }
 .mast .mi { font-size: .8rem; color: var(--muted); text-align: right; }
 
 /* chapter pattern: title between rules, intro in the reading face, agate tables */
@@ -52,7 +56,7 @@ img.flag { width: 20px; height: 14px; object-fit: cover; vertical-align: -2px; m
 .chapter h2 { font: 2.6rem/.95 var(--display); font-weight: 400; text-transform: uppercase; text-align: center; margin: 0 0 1rem; padding: .35rem 0 .3rem; border-top: 3px solid var(--ink); border-bottom: 3px solid var(--ink); }
 .chapter .intro { font: 1.05rem/1.55 var(--reading); color: var(--ink-soft); max-width: 60ch; margin: 0 0 1.2rem; }
 .chapter .intro b { color: var(--ink); }
-.chapter h3 { font: 1.5rem/1 var(--display); font-weight: 400; text-transform: uppercase; margin: 1.6rem 0 .6rem; }
+.chapter h3, .chapter .mast ~ h2 { font: 1.5rem/1 var(--display); font-weight: 400; text-transform: uppercase; margin: 1.6rem 0 .6rem; }
 .chapter .foot { font-size: .8rem; color: var(--muted); margin-top: .6rem; }
 .agate { border-collapse: collapse; width: 100%; font-size: .8rem; }
 .agate thead th { font-weight: 700; font-size: .75rem; text-transform: uppercase; letter-spacing: .06em; text-align: right; padding: .3rem .3rem .2rem; border-top: 3px solid var(--ink); border-bottom: 1px solid var(--ink); white-space: nowrap; }
@@ -252,7 +256,7 @@ img.flag { width: 20px; height: 14px; object-fit: cover; vertical-align: -2px; m
 #paradoxes .vst tbody th { font-weight: 400; }
 #paradoxes .vst tbody .el { color: var(--muted); }
 #paradoxes .vst tbody tr.hi th, #paradoxes .vst tbody tr.hi td { font-weight: 700; }
-#paradoxes .prz { font: .95rem/1.5 var(--reading); color: var(--ink-soft); margin: .6rem 0 0; }
+#paradoxes .prz { font: .95rem/1.55 var(--reading); color: var(--ink-soft); margin: .6rem 0 0; }
 @media (max-width: 900px) { #paradoxes .pairs { grid-template-columns: minmax(0, 1fr); gap: 1.4rem; } }
 
 /* chapter 7: pick a team. The picker is a printed field under its line of favourites; the team
@@ -329,7 +333,7 @@ img.flag { width: 20px; height: 14px; object-fit: cover; vertical-align: -2px; m
 #how-it-works .mstep { display: grid; grid-template-columns: 1fr 1.12fr; gap: 0 44px; border-top: 1px solid var(--ink); padding: 1.05rem 0 .85rem; }
 #how-it-works .mcol { min-width: 0; }
 #how-it-works h3 { margin: 0 0 .5rem; }
-#how-it-works .mprose { font: 1.05rem/1.6 var(--reading); color: var(--ink-soft); max-width: 62ch; margin: 0; }
+#how-it-works .mprose { font: 1.05rem/1.55 var(--reading); color: var(--ink-soft); max-width: 62ch; margin: 0; }
 #how-it-works .mprose b, #how-it-works .mprose em { color: var(--ink); }
 /* A superscript or subscript in running text still has to clear the 12px floor. */
 #how-it-works sup, #how-it-works sub { font-size: max(12px, .72em); }
@@ -354,7 +358,7 @@ img.flag { width: 20px; height: 14px; object-fit: cover; vertical-align: -2px; m
 #how-it-works .two th, #how-it-works .two td { text-align: left; padding-right: 1.4rem; }
 /* The worked example: a 1px ink box under its label line, its numbers in full ink. */
 #how-it-works .ex { border: 1px solid var(--ink); padding: .55rem .75rem .7rem; margin: .8rem 0 .2rem; }
-#how-it-works .ex p { font: .95rem/1.6 var(--reading); color: var(--ink-soft); margin: .5rem 0 0; }
+#how-it-works .ex p { font: .95rem/1.55 var(--reading); color: var(--ink-soft); margin: .5rem 0 0; }
 #how-it-works .ex b { color: var(--ink); font-weight: 700; font-variant-numeric: tabular-nums; }
 /* The calibration chart: ink lines, hollow ink dots, hairline grid. The caption reads over the two
    panels with the legend flush right on the same line. */
@@ -400,10 +404,16 @@ img.flag { width: 20px; height: 14px; object-fit: cover; vertical-align: -2px; m
 /* footer: the sheet's colophon */
 .site-footer { max-width: var(--sheet); margin: 3rem auto 0; padding: 1rem var(--gutter) 2rem; border-top: 3px solid var(--ink); display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 2.5rem; font-size: .85rem; line-height: 1.5; }
 .site-footer p { margin: .5rem 0 0; }
+/* The three column heads share one line box, so the three columns' text starts on one line. */
+.site-footer .wordmark, .site-footer .fh { display: block; line-height: 1.35rem; }
 .site-footer .fh { font-weight: 700; font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; }
 @media (max-width: 1023px) { .site-footer { grid-template-columns: 1fr; gap: 1.25rem; } }
 
-/* placeholder pages: a ruled key list of what is known */
+/* placeholder pages: a ruled key list of what is known. The chart masthead's title is the page's
+   h1, so a sub-head under it is an h2 at the chapter sub-head's size, not a chapter title. */
+.chapter .mast ~ h2 { text-align: left; padding: 0; border: 0; }
+/* A page whose masthead is followed straight by its one sentence needs the air .facts carries. */
+.mast + .intro { margin-top: 1.2rem; }
 .facts { margin: 1.2rem 0 0; max-width: 70ch; }
 .facts div { display: grid; grid-template-columns: 7rem 1fr; gap: 1rem; padding: .35rem 0; border-bottom: 1px solid var(--hair); font-size: .85rem; }
 .facts dt { font-weight: 700; font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; margin: 0; }
