@@ -136,9 +136,12 @@ function tickHold(o, y) {
   // top reaches the top of the viewport; the half-pixel snap there makes the approach's last
   // unit complete exactly at the pin rather than a fraction short. A deep load below the block
   // lands with the travel already past the release, so the schedule paints the finished sheet.
-  const top = r.top + y, t = y - top + APPROACH * H;
+  const top = r.top + y, t = y - top + APPROACH * H, was = o.t;
   o.t = Math.max(o.t, y >= top - 0.5 ? Math.max(t, APPROACH * H) : t);
-  if (o.done) return;                          // the schedule has run out; nothing left to paint
+  // Only a schedule that moved is painted (spec §4, the budget: only units whose progress
+  // changed are painted). Travel never decreases, so scrolling back up inside the hold leaves
+  // it equal and paints nothing at all.
+  if (o.done || o.t === was) return;           // the schedule has run out, or it did not advance
   o.done = o.t >= (APPROACH + HOLD_TRAVEL) * H;
   o.paint(o.t, H);
 }

@@ -88,20 +88,42 @@ export function render(section, ctx) {
       paintCounts(row, pw);
     }
   };
+  // The last value written to each piece, so a paint touches only what moved (spec §4, the
+  // budget: only units whose progress changed are painted). A connector keeps its own on the
+  // path record, which is rebuilt with the path on every redraw, so a fresh path is always
+  // written even where the progress is unchanged.
+  const doneRule = new Map(), doneRows = new Map(), doneHead = new Map();
+  let doneFin = -1, doneThird = -1;
   const paintAll = () => {
-    for (const el of boxes) { const n = +el.dataset.match; paintBox(el, ruleP.get(n) ?? 0, rowsP.get(n) ?? 0); }
+    for (const el of boxes) {
+      const n = +el.dataset.match, pr = ruleP.get(n) ?? 0, pw = rowsP.get(n) ?? 0;
+      if (doneRule.get(n) === pr && doneRows.get(n) === pw) continue;
+      doneRule.set(n, pr); doneRows.set(n, pw);
+      paintBox(el, pr, pw);
+    }
     // A connector draws by its own length: the dash is the path's length and the offset runs from
     // that length to zero, so the line grows out of the feeder into the box it feeds.
     for (const p of paths) {
+      const v = lineP.get(p.key) ?? 0;
+      if (p.drawn === v) continue;
+      p.drawn = v;
       p.el.style.strokeDasharray = p.len.toFixed(2);
-      p.el.style.strokeDashoffset = (p.len * (1 - (lineP.get(p.key) ?? 0))).toFixed(2);
+      p.el.style.strokeDashoffset = (p.len * (1 - v)).toFixed(2);
     }
-    heads.forEach((el, k) => { el.style.opacity = (0.15 + 0.85 * (rowsP.get(headBox[k]) ?? 0)).toFixed(3); });
+    heads.forEach((el, k) => {
+      const v = rowsP.get(headBox[k]) ?? 0;
+      if (doneHead.get(k) === v) return;
+      doneHead.set(k, v);
+      el.style.opacity = (0.15 + 0.85 * v).toFixed(3);
+    });
     const pf = rowsP.get(104) ?? 0, pt = rowsP.get(103) ?? 0;
-    champMark.style.opacity = (0.04 + 0.96 * pf).toFixed(3);
-    paintCounts(champMark, pf);
-    cap.style.opacity = (0.04 + 0.96 * pf).toFixed(3);
-    thirdLbl.style.opacity = (0.15 + 0.85 * pt).toFixed(3);
+    if (pf !== doneFin) {
+      doneFin = pf;
+      champMark.style.opacity = (0.04 + 0.96 * pf).toFixed(3);
+      paintCounts(champMark, pf);
+      cap.style.opacity = (0.04 + 0.96 * pf).toFixed(3);
+    }
+    if (pt !== doneThird) { doneThird = pt; thirdLbl.style.opacity = (0.15 + 0.85 * pt).toFixed(3); }
   };
   const paint = (t, H) => {
     const { p1, q } = holdPhase(t, H);
