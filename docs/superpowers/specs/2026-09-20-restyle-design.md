@@ -425,7 +425,12 @@ their height fits the viewport (at most the viewport less a small margin, about 
 sheet's width); when it does not, the grid alone is held, as first built, so a laptop window
 keeps its lock. The round of 32 still prints from the grid's top crossing the reading line to the
 held region's top reaching the top of the viewport, the eighth row completing exactly at the pin,
-so with the title held the approach is shorter (about 0.62 of a screen at 900px instead of 0.92).
+so with the title held the approach is shorter (0.645 of a screen at 900px instead of 0.92). That
+approach is shorter than the round-of-32 column, so the later rows open lower in the window than
+before: at 900px the eighth opens with its box on the fold, and in windows between about 840px
+(where the title lock first fits) and 954px the last rows open just under it and arrive on screen
+part printed. Accepted as built (Thiago: rows starting low is fine); the grid-only lock below
+840px keeps every row above the fold.
 The beat is halved: the hold is 1.35 screens of travel, four rounds of 0.3 and a beat of 0.15
 (Thiago: the fifth was "kind of long"). Kept as built at the checkpoint: the loser's row at 0.75,
 the round-of-32 rows starting inside the fold, the tie row's 5px padding, the half-pixel road
