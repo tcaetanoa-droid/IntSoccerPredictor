@@ -213,8 +213,13 @@ function tickPin(y) {
   if (!pinned) return true;
   if (pinned.active) {
     // The held screen sticks at the header's bottom edge, so the column starts filling there.
+    // The half-pixel snap tickHold makes at its own pin point: the masthead's height is measured
+    // and rounded into --hdr (45.656px reads as 46 on a phone), so the pin point can sit a
+    // fraction of a pixel above scroll 0 and the column would start filling on an unscrolled
+    // sheet. Nothing prints until the scroll has passed the pin point by half a pixel; past that
+    // the progress is the same formula it has always been.
     const top = pinned.block.getBoundingClientRect().top + y - HD;
-    const p = Math.max(pinned.p, clamp((y - top) / H));
+    const p = Math.max(pinned.p, y >= top + 0.5 ? clamp((y - top) / H) : 0);
     if (p !== pinned.p) { pinned.p = p; pinned.rows.forEach((r) => pinned.painter(r.el, rowWindow(p, r.i, pinned.rows.length))); }
     return p >= 1;
   }
