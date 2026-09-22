@@ -6,14 +6,13 @@ the pre-tournament ratings) and returns a DataFrame or a JSON-ready dict. No plo
 
 from __future__ import annotations
 
-from pathlib import Path
 from typing import NamedTuple
 
 import numpy as np
 import pandas as pd
 
 from ..data.snapshot import load_snapshot
-from ..montecarlo import Run
+from ..montecarlo import Run, resolve_meta_path
 from ..tournament import Tournament, load_tournament
 
 PLACE_FATE = {1: "champion", 2: "runner_up", 3: "third", 4: "fourth"}
@@ -58,8 +57,8 @@ def with_fates(teams: pd.DataFrame, rounds: list[str]) -> pd.DataFrame:
 
 
 def context(run: Run, tournament: Tournament | None = None) -> Context:
-    t = tournament or load_tournament(run.meta["tournament_yaml"])
-    ratings = load_snapshot(Path(run.meta["ratings_snapshot"]))
+    t = tournament or load_tournament(resolve_meta_path(run.meta["tournament_yaml"]))
+    ratings = load_snapshot(resolve_meta_path(run.meta["ratings_snapshot"]))
     rounds = list(run.meta["rounds"])
     teams = with_fates(run.teams, rounds)
     matches = run.matches.copy()

@@ -221,6 +221,7 @@ Three parts:
    nearest misses by three different measures.
 
 Formal scoring (Brier, log-loss, calibration) is ROADMAP component 12, not this view.
+Component 12 is done; the scored record is `docs/BACKTEST.md`.
 
 Data: `sims.parquet`, `teams.parquet`, `matches.parquet`, `wc2026_results.csv` through the
 component-7/8 code. Output: `reality.json` (finals table, real path, three closest runs with

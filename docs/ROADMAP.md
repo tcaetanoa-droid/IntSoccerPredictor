@@ -22,7 +22,7 @@ its own. Update the status column as things land.
 | 9 | Full single-tournament simulation | `tournament/simulate.py` | done (~4 ms per tournament; hosts get +100 in group games and in knockout matches whose YAML `venues` entry is their country) |
 | 10 | Monte Carlo runner: N sims, seeds, aggregation (P(win), P(reach round), group finish) | `montecarlo/` | done (every match, team-fate and sim stored as Parquet under `output/<name>/`; any sim regenerable from `[seed, i]`; `intsoccer simulate`; ~225 sims/s) |
 | 11 | Reports: CSV/JSON tables + charts | `report/` | 11a done (data layer: the ten views of `docs/REPORTS.md` as CSV/JSON under `output/<name>/report/`, `intsoccer report`); 11b website done (site/, deployed on Vercel from main; data via intsoccer report --site) ; 11c restyle done (the tournament wall chart: spec docs/superpowers/specs/2026-09-20-restyle-design.md, DESIGN.md at the root); 11d mark done (the pitch favicon with PNG fallbacks for Safari and iOS, and the mark before the wordmark in the masthead; DESIGN.md "The mark"); 11e done (visitor-facing hardening: KaTeX integrity, the calibration table for assistive technology, a reload keeps the place; How it works on its own page; clean addresses through site/vercel.json, /world-cup-2026 with the root redirecting, tools/serve.py locally); 11f todo (internal hardening from PR #2's final review, with the backtest sitting; the list below); 11g todo (the Reality check unit and the lede clause, parked 22 Sep 2026, once 12 has scored the runs) |
-| 12 | 2026 World Cup: transcribe groups/bracket/results to YAML, snapshot ratings at 2026-06-10, run the sim, score it (Brier / log-loss, calibration) | `backtest/` + `data/tournaments/wc2026.yaml` | todo (main goal) |
+| 12 | 2026 World Cup: transcribe groups/bracket/results to YAML, snapshot ratings at 2026-06-10, run the sim, score it (Brier / log-loss, RPS, calibration) | `backtest/` + `data/tournaments/wc2026.yaml` | done 22 Sep 2026 (the seed-2026 run scored against the real 104 matches and 48 fates: match Brier and log-loss for the day-of and the runs' forecasts against a shrug and plain Elo, fate-ladder RPS 0.0816 vs the structural shrug's 0.1208, the three hits, five-bin calibration; `intsoccer backtest`, record in docs/BACKTEST.md; spec docs/superpowers/specs/2026-09-22-backtest-design.md; a re-simulation from the real round of 32 deferred as 12b) |
 | 13 | Euro 2028 run | `data/tournaments/euro2028.yaml` | deferred until draw + format known |
 | 14 | Copa América 2028 run | `data/tournaments/copa2028.yaml` | deferred until CONMEBOL announces format |
 | 15 | GitHub remote, README polish, CI (pytest on push) | — | later |
@@ -116,7 +116,11 @@ first (PR #4, same day) and parked the rest here:
 - two stale spec lines (§4's 120 ms hover transition against the build's none; §6's 1rem on 1.8
   against the ruling's 1rem/1.5 with padding);
 - the 516px gap in chapter two that the 0.045 lead rests on lives only in a comment;
-- whether the CSS sort arrows and the × glyph fall under the glyph ban (passed twice already).
+- whether the CSS sort arrows and the × glyph fall under the glyph ban (passed twice already);
+- `resolve_meta_path`'s fallback substitutes this checkout's own `data/tournaments/<name>.yaml`
+  silently when the recorded path is gone, which could mask a run pointed at a variant tournament
+  file rather than the one meant; make the substitution visible, or have `report.tables.context`
+  assert the loaded tournament's rounds match `run.meta["rounds"]`.
 
 **11g Reality check.** From impeccable's critique of 22 September 2026 ("the reality check is a
 whisper"): the sheet's only statement of how the runs compared with the real tournament is a clause
@@ -126,6 +130,7 @@ semi-finalists against the bracket's, Spain's 18,626 against the real winner) pl
 hero lede saying the runs were checked. Copy and unit are Thiago's; ruled "later, not now" at the
 PR #2 review. It needs 12's scored result, so it belongs to that sitting.
 
-**12 Backtest metrics.** For each match: Brier score over (W/D/L) and log-loss. For the tournament:
-did the sim's most-likely champion / semi-finalists match? Rank-probability skill vs a naive
-"equal odds" baseline and vs a plain-Elo `We` baseline.
+**12 Backtest.** Done as specified in docs/BACKTEST.md: two forecasts per match (day-of, the runs'
+frequencies) against two baselines (shrug, plain Elo), the fate ladders by RPS against a structural
+shrug, the three hits, the reach-the-round calibration. Approach A, scoring the stored run;
+approach B, a re-simulation from the real round of 32 with day-of ratings, is the possible 12b.

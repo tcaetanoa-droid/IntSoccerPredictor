@@ -116,3 +116,19 @@ def test_runs_with_different_seeds_differ_and_same_seed_repeats(wc, ratings):
     c = run(wc, ratings, MODEL, n_sims=3, seed=2)
     pd.testing.assert_frame_equal(a.matches, b.matches)
     assert not a.matches["home_goals"].equals(c.matches["home_goals"])
+
+
+def test_resolve_meta_path_falls_back_to_this_checkouts_data_folder(tmp_path):
+    from intsoccer.montecarlo import resolve_meta_path
+    from intsoccer.tournament.format import TOURNAMENT_DIR
+
+    stale = "/Users/someone/OldPlace/IntSoccerPredictor/data/tournaments/wc2026.yaml"
+    assert resolve_meta_path(stale) == TOURNAMENT_DIR / "wc2026.yaml"
+    stale_snapshot = "/Users/someone/OldPlace/data/snapshots/2026-06-10_wc2026.csv"
+    assert resolve_meta_path(stale_snapshot).name == "2026-06-10_wc2026.csv"
+    assert resolve_meta_path(stale_snapshot).exists()
+    here = tmp_path / "meta.yaml"
+    here.write_text("x")
+    assert resolve_meta_path(here) == here
+    with pytest.raises(FileNotFoundError):
+        resolve_meta_path("/nowhere/data/tournaments/no_such_tournament.yaml")

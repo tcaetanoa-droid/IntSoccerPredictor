@@ -43,7 +43,7 @@ often a favourite actually gets the result.
 
 | Done | Next |
 |---|---|
-| Data layer for eloratings.net TSV files | The 2026 backtest (component 12), with the internal hardening (11f) and the Reality check unit (11g) alongside |
+| Data layer for eloratings.net TSV files | The Reality check unit on the sheet (11g) and the internal hardening (11f), then hiatus until the 2028 draws |
 | Elo engine, verified against the site's own point exchanges | |
 | Pre-tournament ratings for all 48 teams, groups, all 104 real results, full bracket and FIFA's 495-row third-place table | |
 | Goals model fitted and calibrated | |
@@ -54,6 +54,7 @@ often a favourite actually gets the result.
 | Monte Carlo runner that stores every match of every simulation as Parquet | |
 | Report data layer: ten views (group odds, fate table, paradoxes, most-probable bracket, reality check) as CSV/JSON | |
 | The website: the World Cup sheet as a newspaper wall chart, the pitch mark, How it works on its own page, clean addresses; live on Vercel | |
+| The 2026 backtest: the run scored against the real 104 matches and 48 fates, published in [docs/BACKTEST.md](docs/BACKTEST.md) | |
 
 Details and the full component list are in [docs/ROADMAP.md](docs/ROADMAP.md).
 
@@ -92,6 +93,7 @@ intsoccer snapshot --date 2026-06-11 --label wc2026   # ratings as of the eve of
 intsoccer fit                            # refit the goals model and draw the calibration chart
 intsoccer simulate --n 100000 --seed 2026   # 100k World Cups -> output/wc2026/ (~8 min)
 intsoccer report --run output/wc2026        # the report views -> output/wc2026/report/
+intsoccer backtest --run output/wc2026 --site   # score the run -> output/wc2026/backtest/
 ```
 
 Requires Python 3.11 or newer. Downloads are cached in `data/raw/` and simulation runs are
@@ -116,8 +118,10 @@ src/intsoccer/
   report/      tables.py (views 1-8), bracket.py (most-probable bracket, reality overlay),
                build.py (writes output/<name>/report/*.csv|json); the views are specified in
                docs/REPORTS.md
-  backtest/    not started
-  cli.py       intsoccer fetch | snapshot | fit | simulate | report
+  backtest/    scores.py (Brier, log-loss, RPS, skill), forecasts.py (day-of, the runs'
+               frequencies, baselines), fates.py (real fates, ladders, hits, calibration),
+               build.py (output/<name>/backtest/, site JSON); the record is docs/BACKTEST.md
+  cli.py       intsoccer fetch | snapshot | fit | simulate | report | backtest
 site/               the static website (plain HTML/CSS/JS), reads site/data/<name>/*.json
 data/tournaments/   wc2026.yaml (annotated schema example), wc2026_results.csv (all 104 real
                     results with pre-match ratings), wc2026_third_place_table.csv (FIFA Annex C,
@@ -146,7 +150,8 @@ data/tournaments/<name>.yaml + snapshot + params
     ↓  model/match.py         (one match, vectorised over simulations)
     ↓  montecarlo/            (n runs → output/<name>/{matches,teams,sims}.parquet + summary.csv)
     ↓  report/                (output/<name>/report/: one CSV/JSON per view, charts to come)
-    ↓  backtest/              (Brier / log-loss vs the real 2026 results)         [todo]
+    ↓  backtest/              (output/<name>/backtest/: match scores, fate ladders,
+                               calibration against the real results; docs/BACKTEST.md)
 ```
 
 Tests check the code against reality wherever the data allows. `tests/fixtures/` holds small real
@@ -180,6 +185,8 @@ The decisions behind the code and the things that bite. Formulas are in
   are `TBD` placeholders the loader rejects by design until the draws happen.
 - **Honest backtest.** The goals model is fitted only on matches before 11 June 2026. Never widen
   the training window into the World Cup.
+- **Scored, not just simulated.** [docs/BACKTEST.md](docs/BACKTEST.md) is the record: the runs
+  against the real 2026 results, with the baselines and the misses.
 - **Tiebreaker rulesets.** Two named orders: `head_to_head_first` (World Cup 2026 and UEFA:
   points, head-to-head among the tied teams, then overall GD, GF) and `overall_first` (CONMEBOL).
   2026 is the first World Cup with head-to-head before overall GD. Fair play and FIFA ranking

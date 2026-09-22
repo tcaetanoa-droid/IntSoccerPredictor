@@ -31,6 +31,19 @@ from ..tournament import (MatchRef, SimulatedTournament, Tournament, load_tourna
 from ..tournament.simulate import schedule
 
 OUTPUT_DIR = Path(__file__).resolve().parents[3] / "output"
+DATA_DIR = Path(__file__).resolve().parents[3] / "data"
+
+
+def resolve_meta_path(path: str | Path) -> Path:
+    """A path recorded in meta.yaml: as recorded if it exists, else the same file under this
+    checkout's data/<folder>/ (runs record absolute paths, and the project folder has moved)."""
+    p = Path(path)
+    if p.exists():
+        return p
+    local = DATA_DIR / p.parent.name / p.name
+    if local.exists():
+        return local
+    raise FileNotFoundError(f"{p} is not on disk, and neither is {local}")
 
 
 class Run(NamedTuple):
@@ -234,8 +247,8 @@ def regenerate(r: Run, i: int, model: GoalsModel | None = None) -> SimulatedTour
     """Re-simulate run number i from the stored seed, e.g. to inspect it or check the store."""
     from ..data.snapshot import load_snapshot
 
-    t = load_tournament(r.meta["tournament_yaml"])
-    ratings = load_snapshot(Path(r.meta["ratings_snapshot"]))
+    t = load_tournament(resolve_meta_path(r.meta["tournament_yaml"]))
+    ratings = load_snapshot(resolve_meta_path(r.meta["ratings_snapshot"]))
     model = model or GoalsModel(**r.meta["goals_model"])
     return simulate_tournament(t, ratings, model, sim_rng(r.meta["seed"], i))
 
