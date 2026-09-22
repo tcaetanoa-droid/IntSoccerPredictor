@@ -37,7 +37,9 @@ Process, agreed with Thiago on 20 September 2026 (option C):
 - Detector baseline: 8 findings on 20 Sep 2026, rendered-DOM scan (6 cramped-padding legend
   swatches, 1 tiny-text 11px, 1 flat-type-hierarchy unverified); source scan 10
   undersized-ui-text
-- Critique snapshot: none
+- Critique snapshot: .impeccable/critique/2026-09-22T07-51-55Z__site-index-html.md (22 September
+  2026, dual-agent, 29/40, 0 P0, 3 P1; detector 7 on the rendered index.html, all on the .plab
+  and .klab label classes)
 
 The direction contract in the surface brief is a development-only document. Nothing from it
 ships: no HTML comment, data attribute, hidden DOM, JSON or served file carries its text. Code
