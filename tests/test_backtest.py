@@ -1,13 +1,15 @@
 import json
 
 import numpy as np
+import pandas as pd
 import pytest
 
-from intsoccer.backtest import forecasts
+from intsoccer.backtest import fates, forecasts
 from intsoccer.data.snapshot import load_snapshot
 from intsoccer.model import GoalsModel, simulate_match
 from intsoccer.montecarlo import run
 from intsoccer.report import bracket, tables
+from intsoccer.report.tables import fate_order
 from intsoccer.tournament import load_tournament
 from intsoccer.tournament.format import TOURNAMENT_DIR
 
@@ -160,3 +162,76 @@ def test_match_summary_averages_and_skills(ctx, results, model):
     assert sk["brier_vs_shrug"] == pytest.approx(1 - s["dayof"]["all"]["brier"]
                                                  / s["shrug"]["all"]["brier"])
     assert "skill" not in s["shrug"]["all"] and "skill" not in s["elo"]["all"]
+
+
+@pytest.fixture(scope="module")
+def real_fates(ctx, real):
+    return fates.real_fates(ctx, real)
+
+
+def test_real_fates_are_exactly_48_and_match_the_replay(real_fates, wc, real):
+    assert len(real_fates) == 48 and set(real_fates) == set(wc.teams)
+    by_fate = pd.Series(real_fates).value_counts()
+    assert by_fate["champion"] == 1 and real_fates["ES"] == "champion"
+    assert real_fates["AR"] == "runner_up"
+    assert real_fates["EN"] == "third" and real_fates["FR"] == "fourth"
+    assert by_fate["gs4"] == 12 and by_fate["gs3_out"] == 4
+    assert by_fate["r32"] == 16 and by_fate["r16"] == 8 and by_fate["qf"] == 4
+    for m in real["matches"]:
+        if m["round"] == "R32":
+            loser = m["away"] if m["winner"] == m["home"] else m["home"]
+            assert real_fates[loser] == "r32"
+
+
+def test_structural_shrug_is_the_slot_counts(real_fates, wc):
+    order = fate_order(list(wc.rounds))
+    s = fates.structural_shrug(real_fates, order)
+    assert list(s * 48) == pytest.approx([12, 4, 16, 8, 4, 1, 1, 1, 1])
+
+
+def test_team_table_ladders_sum_to_one_and_reach_columns_nest(ctx, real_fates, wc):
+    t = fates.team_table(ctx, real_fates, names={"ES": "Spain"})
+    order = fate_order(list(wc.rounds))
+    assert len(t) == 48 and list(t.columns[:5]) == ["team", "name", "group", "elo_snapshot",
+                                                     "real_fate"]
+    assert t.set_index("team").loc["ES", "name"] == "Spain"
+    assert t.set_index("team").loc["AR", "name"] == "AR"
+    assert t[order].sum(axis=1).round(9).eq(1).all()
+    reach = t[[f"reach_{r}" for r in fates.THRESHOLDS]]
+    assert (reach.diff(axis=1).iloc[:, 1:] <= 1e-12).all().all()      # r32 >= r16 >= ... >= w
+    assert (t["reach_w"] == t["champion"]).all()
+    assert (t["reach_sf"] == t[["fourth", "third", "runner_up", "champion"]].sum(axis=1)).all()
+    es = t.set_index("team").loc["ES"]
+    assert es["reached_w"] == 1 and es["reached_r32"] == 1
+    assert t["reached_r32"].sum() == 32 and t["reached_sf"].sum() == 4 and t["reached_w"].sum() == 1
+    assert (t["rps"] >= 0).all() and (t["rps_shrug"] > 0).all()
+    ladder = es[order].to_numpy(dtype=float)
+    from intsoccer.backtest import scores
+    assert es["rps"] == pytest.approx(scores.rps(ladder, order.index("champion")))
+
+
+def test_hits_name_the_modal_and_the_real(ctx, real, real_fates, model):
+    t = fates.team_table(ctx, real_fates, names={})
+    modal = bracket.modal_bracket(ctx, model)
+    h = fates.hits(real, t, modal)
+    assert h["champion"]["real"] == "ES"
+    assert h["champion"]["hit"] == (h["champion"]["modal"] == "ES")
+    assert len(h["semi_finalists"]["modal"]) == 4 and len(h["semi_finalists"]["real"]) == 4
+    assert 0 <= h["semi_finalists"]["matched"] <= 4
+    assert h["r32_pairings"]["of"] == 16 and 0 <= h["r32_pairings"]["matched"] <= 16
+    assert h["r32_pairings"]["matched"] == len(h["r32_pairings"]["pairs"])
+
+
+def test_calibration_bins_cover_all_288_predictions(ctx, real_fates, wc):
+    t = fates.team_table(ctx, real_fates, names={})
+    order = fate_order(list(wc.rounds))
+    c = fates.calibration(t, fates.structural_shrug(real_fates, order), order)
+    assert [b["bin"] for b in c["bins"]] == list(fates.BIN_LABELS)
+    assert sum(b["n"] for b in c["bins"]) == 288
+    assert all(0 <= b["observed"] <= 1 and 0 <= b["mean_p"] <= 1 for b in c["bins"] if b["n"])
+    assert [r["bin"] for r in c["thresholds"]] == [f"reach_{r}" for r in fates.THRESHOLDS]
+    assert all(r["n"] == 48 for r in c["thresholds"])
+    assert c["thresholds"][0]["observed"] == pytest.approx(32 / 48)
+    assert c["thresholds"][-1]["observed"] == pytest.approx(1 / 48)
+    assert 0 <= c["brier"] <= 1 and 0 < c["brier_shrug"] <= 1
+    assert c["skill"] == pytest.approx(1 - c["brier"] / c["brier_shrug"])
