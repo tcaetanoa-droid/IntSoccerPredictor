@@ -4,6 +4,8 @@ import { boot as bootPrint } from './print.js';
 
 // A reload's place is the engine's to restore, once the sheet stands (land() in print.js).
 history.scrollRestoration = 'manual';
+// The method chapter is its own page now; a link to its old place on the sheet follows it there.
+if (location.hash === '#how-it-works') location.replace('how-it-works.html');
 
 const CHAPTERS = [
   { id: 'hero', mod: './hero.js' },
@@ -14,7 +16,6 @@ const CHAPTERS = [
   { id: 'underdogs', mod: './underdogs.js' },
   { id: 'paradoxes', mod: './paradoxes.js' },
   { id: 'pick-a-team', mod: './team.js' },
-  { id: 'how-it-works', mod: './method.js' },
 ];
 
 async function start() {

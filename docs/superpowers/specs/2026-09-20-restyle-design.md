@@ -711,6 +711,14 @@ ink, the rule beneath unchanged), as chapter six's box labels. The calibration c
 SVG panel titles keep their caps and tracking (short labels; the detector's two remaining
 `wide-tracking` findings, ruled a false positive).
 
+Owner amendment (22 September 2026, after the merge): How it works is its own page, `/how-it-works`,
+in the placeholder pages' shell: the masthead, the Chapters popover listing the sheet's chapters, a
+chart masthead with the title and the line "Two fitted parameters and four formulas.", the chapter's
+intro under it, then the steps, the calibration chart and "Reproduce it" as built, printing as they
+cross the reading line. KaTeX loads on that page alone. The sheet ends at chapter seven and its
+chapter list runs to Pick a team; "How it works" sits among the site links on every page, and an old
+`#how-it-works` link on the sheet forwards to the page.
+
 ## 9. Files and build order
 
 Files:
