@@ -18,15 +18,17 @@ export const lineProgress = (H, top) => clamp((0.92 * H - top) / (0.18 * H));
 export const densityTarget = (share, floor = 0.65) => floor + (1 - floor) * share;
 // A fate cell's colour strength follows the share and saturates at a 40% share.
 export const tintStrength = (share) => Math.min(1, 2.5 * share);
-// The bracket's hold (spec §4 amendment and §8, The bracket): the sheet's second authored
-// moment. Its travel is measured from the bracket's top crossing the reading line: the approach
-// is the 0.92 of a screen up to the pin, where the whole grid is in view, and the hold is the
-// screen and a half the wheel then spends held.
-export const APPROACH = 0.92, HOLD_TRAVEL = 1.5;
-export const holdPhase = (t, H) => ({ p1: clamp(t / (APPROACH * H)), q: clamp((t - APPROACH * H) / (HOLD_TRAVEL * H)) });
-// The hold is cut into five equal parts: one per knockout round, then a beat with the finished
-// bracket. Round k (0 to 3) runs over its own fifth.
-export const roundProgress = (q, k) => clamp(q * 5 - k);
+// The bracket's hold (spec §4 amendment, §8 The bracket and its checkpoint amendment): the
+// sheet's second authored moment. The approach is measured from the grid's top crossing the
+// reading line to the held region's top reaching the top of the viewport, so it is shorter when
+// the chapter's title is held with the grid (about 0.62 of a screen at 900px) than when the grid
+// is held alone (0.92); layoutHold works it out per hold and APPROACH is the grid-alone value.
+// The hold is the 1.35 screens the wheel then spends held.
+export const APPROACH = 0.92, HOLD_TRAVEL = 1.35;
+export const holdPhase = (t, H, approach = APPROACH) => ({ p1: clamp(t / (approach * H)), q: clamp((t - approach * H) / (HOLD_TRAVEL * H)) });
+// The hold is four rounds of 0.3 of a screen and a beat of 0.15: round k (0 to 3) runs over its
+// own 0.3, complete at q = (k + 1) / 4.5, and the beat holds the finished bracket from 4/4.5 to 1.
+export const roundProgress = (q, k) => clamp(q * 4.5 - k);
 
 const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -102,48 +104,71 @@ function layoutHero() {
   block.style.height = fits ? `${Math.round(H * 2.35)}px` : '';   // one screen + one of travel + a 0.35 hold
   if (reduced()) { pinned.p = 1; pinned.rows.forEach(({ el }) => pinned.painter(el, 1)); }
 }
-// hold(block, held, paint): the bracket's pin. The held region sticks at the top of the viewport
-// inside a block that is the region's own height plus the hold's travel, so the wheel keeps
-// turning while the bracket stands still. `paint(t, H)` is the chapter's own schedule, called
-// with the wheel travel since the region's top crossed the reading line; the travel is arithmetic
-// on the layout, not a live rect, so it keeps counting while the region is held. The pin engages
-// only when the region fits the viewport; otherwise the same schedule runs on the page's own
-// travel. `slack` is the paper left under the held region, a fraction of the viewport, so a unit
-// below the block can be given it as a lead and print after the release.
-export function hold(block, held, paint) {
-  const o = { block, held, paint, active: false, slack: 0, t: 0, done: false };
+// hold(block, candidates, paint, { start }): the bracket's pin. `candidates` is an ordered list
+// of regions that could be locked, each the parent of the next (the chapter's head with the grid,
+// then the grid alone); the first whose height fits the viewport is the one held, so a window too
+// short for the title keeps the grid's lock (spec §8, checkpoint amendment). The held region
+// sticks at the top of the viewport inside its parent, which is given the region's own height
+// plus the hold's travel, so the wheel keeps turning while the bracket stands still. `start` is
+// the element whose top crossing the reading line begins the schedule (the grid), so the first
+// row always opens with the grid on the reading line whichever region is held, and the approach
+// shortens by the head's height rather than the rows starting earlier. `paint(t, H, approach)` is the
+// chapter's own schedule, called with the wheel travel since that moment; the travel is
+// arithmetic on the layout, not a live rect, so it keeps counting while the region is held.
+// `slack` is the paper left under the held region, a fraction of the viewport, so a unit below
+// the block can be given it as a lead and print after the release.
+export function hold(block, candidates, paint, { start = candidates[candidates.length - 1] } = {}) {
+  const o = { block, candidates, start, paint, active: false, slack: 0, offset: 0, approach: APPROACH, t: 0, done: false };
   holds.push(o);
   if (booted) layoutHold(o);
   return o;
 }
 function layoutHold(o) {
-  o.block.classList.remove('flow');            // measure with the sticky height applied
-  const BH = o.held.getBoundingClientRect().height;
-  const fits = !reduced() && BH <= H - 4;
+  // Measure at rest: no flow class, no sticky on any candidate and no travel height left over
+  // from the last layout, or a candidate would measure its own travel as content.
+  o.block.classList.remove('flow');
+  o.block.style.height = '';
+  for (const el of o.candidates) { el.classList.remove('held'); el.style.height = ''; }
+  const blockTop = o.block.getBoundingClientRect().top;
+  const rects = o.candidates.map((el) => el.getBoundingClientRect());
+  const i = reduced() ? -1 : rects.findIndex((r) => r.height <= H - 4);
+  const fits = i >= 0;
+  // No candidate fits: no lock, but the schedule still runs on the page's own travel from the
+  // last candidate, which is the grid, exactly as it did before the title was a candidate.
+  const k = fits ? i : o.candidates.length - 1;
   o.active = fits;
-  o.slack = fits ? (H - BH) / H : 0;
+  o.offset = rects[k].top - blockTop;           // the held region's rest offset inside the block
+  o.approach = (0.92 * H - (o.start.getBoundingClientRect().top - rects[k].top)) / H;
+  o.slack = fits ? (H - rects[k].height) / H : 0;
+  o.candidates[k].classList.add('held');
   o.block.classList.toggle('flow', !fits);
-  o.block.style.height = fits ? `${Math.round(BH + HOLD_TRAVEL * H)}px` : '';
+  if (fits) {
+    const parent = k === 0 ? o.block : o.candidates[k - 1];
+    const off = rects[k].top - (k === 0 ? blockTop : rects[k - 1].top);
+    parent.style.height = `${Math.round(off + rects[k].height + HOLD_TRAVEL * H)}px`;
+  }
   // The finished sheet under reduced motion; otherwise the travel so far (none before the first
   // tick), so the bracket is unprinted from boot and never shows printed before it is read.
-  o.paint(reduced() ? Infinity : o.t, H);
+  o.paint(reduced() ? Infinity : o.t, H, o.approach);
 }
 function tickHold(o, y) {
   const r = o.block.getBoundingClientRect();
   if (r.top > 2 * H) return;                   // more than a screen below: nothing to paint yet
-  // The travel since the region's top crossed the reading line, arithmetic on the layout rather
-  // than a live rect, so it keeps counting while the region is held. The pin engages when that
-  // top reaches the top of the viewport; the half-pixel snap there makes the approach's last
-  // unit complete exactly at the pin rather than a fraction short. A deep load below the block
-  // lands with the travel already past the release, so the schedule paints the finished sheet.
-  const top = r.top + y, t = y - top + APPROACH * H, was = o.t;
-  o.t = Math.max(o.t, y >= top - 0.5 ? Math.max(t, APPROACH * H) : t);
+  // The travel since the grid's top crossed the reading line, arithmetic on the layout rather
+  // than a live rect, so it keeps counting while the region is held. The pin point is read off
+  // the block, which never sticks, plus the held region's offset inside it; the pin engages when
+  // that point reaches the top of the viewport, and the half-pixel snap there makes the
+  // approach's last unit complete exactly at the pin rather than a fraction short. A deep load
+  // below the block lands with the travel already past the release, so the schedule paints the
+  // finished sheet.
+  const top = r.top + y + o.offset, t = y - top + o.approach * H, was = o.t;
+  o.t = Math.max(o.t, y >= top - 0.5 ? Math.max(t, o.approach * H) : t);
   // Only a schedule that moved is painted (spec §4, the budget: only units whose progress
   // changed are painted). Travel never decreases, so scrolling back up inside the hold leaves
   // it equal and paints nothing at all.
   if (o.done || o.t === was) return;           // the schedule has run out, or it did not advance
-  o.done = o.t >= (APPROACH + HOLD_TRAVEL) * H;
-  o.paint(o.t, H);
+  o.done = o.t >= (o.approach + HOLD_TRAVEL) * H;
+  o.paint(o.t, H, o.approach);
 }
 // Returns true once the column is complete (or when there is no pin): the gate for the chapters.
 function tickPin(y) {

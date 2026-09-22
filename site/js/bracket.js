@@ -59,14 +59,17 @@ export function render(section, ctx) {
       h('div', { class: 'third' }, thirdLbl, box(103)))),
     col(RIGHT.SF, 'r'), col(RIGHT.QF, 'r'), col(RIGHT.R16, 'r'), col(RIGHT.R32, 'r'));
   const held = scrollX('The bracket, scrolls sideways', grid);
-  held.classList.add('held');
-  const block = h('div', { class: 'pin' }, held);
-  const es = M[84], coin = M[78];
-  const foot = h('p', { class: 'foot' }, `Percentages are conditional on the pairing: ${name(es.home, ctx.byCode)} beat ${name(es.away, ctx.byCode)} in ${fmtPct(es.p_home, 0)} of the ${fmtCount(es.n_met)} runs where they met in match ${es.number}. Coin flips are printed as coin flips: ${name(coin.home, ctx.byCode)} ${fmtPct(coin.p_home, 0)}, ${name(coin.away, ctx.byCode)} ${fmtPct(1 - coin.p_home, 0)}. Match numbers are FIFA's.`);
-  section.replaceChildren(
+  // The lock's first candidate: the chapter's title and intro with the grid, so the screen locks
+  // at the title (spec §8, checkpoint amendment). js/print.js falls back to the grid alone, the
+  // second candidate, on a window too short to hold all three.
+  const lock = h('div', { class: 'lock' },
     ...chapterHead('The bracket', 'The most likely road to the final.',
       'Take the most common finishing order in every group, then at each knockout match ask: of all the runs where these two teams met in this exact slot, who won more often? Follow the winners to the final. It is the path of most likely steps, not the most likely single tournament, which is far rarer. The real tournament got the same four semi-finalists and the same final.'),
-    block, foot);
+    held);
+  const block = h('div', { class: 'pin' }, lock);
+  const es = M[84], coin = M[78];
+  const foot = h('p', { class: 'foot' }, `Percentages are conditional on the pairing: ${name(es.home, ctx.byCode)} beat ${name(es.away, ctx.byCode)} in ${fmtPct(es.p_home, 0)} of the ${fmtCount(es.n_met)} runs where they met in match ${es.number}. Coin flips are printed as coin flips: ${name(coin.home, ctx.byCode)} ${fmtPct(coin.p_home, 0)}, ${name(coin.away, ctx.byCode)} ${fmtPct(1 - coin.p_home, 0)}. Match numbers are FIFA's.`);
+  section.replaceChildren(block, foot);
 
   const boxes = [...grid.querySelectorAll('.m')];
   const heads = [...grid.querySelectorAll('.bh')];
@@ -125,8 +128,8 @@ export function render(section, ctx) {
     }
     if (pt !== doneThird) { doneThird = pt; thirdLbl.style.opacity = (0.15 + 0.85 * pt).toFixed(3); }
   };
-  const paint = (t, H) => {
-    const { p1, q } = holdPhase(t, H);
+  const paint = (t, H, approach) => {
+    const { p1, q } = holdPhase(t, H, approach);
     // Phase one, on the scroll: the round of 32 in eight rows, both sides in step, the eighth
     // row completing exactly as the pin engages.
     R32.forEach((row, j) => { const u = rowWindow(p1, j, R32.length); row.forEach((n) => setBox(n, u, u)); });
@@ -149,7 +152,7 @@ export function render(section, ctx) {
     paintAll();
   };
   drawConnectors(grid, roadLinks(M, final), paths, paintAll);
-  const bracket = hold(block, held, paint);
+  const bracket = hold(block, [lock, held], paint, { start: held });
   // The foot note. With the pin the block holds it below the window until the release, so it is
   // given the paper left under the held bracket as a lead and prints on the travel after the
   // release; with no pin the lead is zero and it prints on its own entry like any block.

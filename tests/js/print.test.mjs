@@ -64,26 +64,33 @@ test('a lead of half a band (0.09 of a screen) delays a row by half its progress
 
 test('holdPhase: the round of 32 fills the approach, its last row ending exactly at the pin', () => {
   const H = 900;
-  assert.equal(holdPhase(0, H).p1, 0);
-  near(holdPhase(0.46 * H, H).p1, 0.5);
-  near(holdPhase(0.92 * H, H).p1, 1);                      // the pin engages as phase one ends
-  near(rowWindow(holdPhase(0.92 * H, H).p1, 7, 8), 1);     // the eighth row completes there
-  assert.ok(rowWindow(holdPhase(0.91 * H, H).p1, 7, 8) < 1);
-  assert.equal(holdPhase(0.92 * H, H).q, 0);               // and the hold starts with nothing held yet
+  // 0.92 when the grid is held alone, about 0.62 when the chapter's title is held with it; the
+  // eighth row completes exactly at the pin either way.
+  for (const a of [0.92, 0.62]) {
+    assert.equal(holdPhase(0, H, a).p1, 0);
+    near(holdPhase(0.5 * a * H, H, a).p1, 0.5);
+    near(holdPhase(a * H, H, a).p1, 1);                      // the pin engages as phase one ends
+    near(rowWindow(holdPhase(a * H, H, a).p1, 7, 8), 1);     // the eighth row completes there
+    assert.ok(rowWindow(holdPhase(0.99 * a * H, H, a).p1, 7, 8) < 1);
+    assert.equal(holdPhase(a * H, H, a).q, 0);               // and the hold starts with nothing held yet
+  }
+  near(holdPhase(0.46 * H, H).p1, 0.5);                      // the default approach is the grid's own
 });
 
-test('holdPhase: the hold spends one and a half screens after the pin', () => {
+test('holdPhase: the hold spends one and a third screens after the pin', () => {
   const H = 900;
-  near(holdPhase(0.92 * H + 0.75 * H, H).q, 0.5);
-  near(holdPhase(0.92 * H + 1.5 * H, H).q, 1);
-  assert.equal(holdPhase(Infinity, H).p1, 1);              // reduced motion: the finished sheet
+  near(holdPhase(0.92 * H + 0.675 * H, H).q, 0.5);
+  near(holdPhase(0.92 * H + 1.35 * H, H).q, 1);
+  near(holdPhase(0.62 * H + 1.35 * H, H, 0.62).q, 1);        // the same hold whichever region is held
+  assert.ok(holdPhase(0.62 * H + 1.34 * H, H, 0.62).q < 1);
+  assert.equal(holdPhase(Infinity, H).p1, 1);                // reduced motion: the finished sheet
   assert.equal(holdPhase(Infinity, H).q, 1);
 });
 
-test('roundProgress: five equal parts, four rounds then a beat', () => {
-  near(roundProgress(0.2, 0), 1);          // the round of 16 fills the first fifth
-  assert.equal(roundProgress(0.2, 1), 0);  // and the quarter-finals start exactly there
-  near(roundProgress(0.8, 3), 1);          // the final completes at four fifths
-  assert.ok(roundProgress(0.79, 3) < 1);
-  assert.equal(roundProgress(1, 3), 1);    // the last fifth is the beat: nothing left to print
+test('roundProgress: four rounds of 0.3 of a screen, then a beat of 0.15', () => {
+  near(roundProgress(1 / 4.5, 0), 1);          // the round of 16 fills the hold's first 0.3
+  assert.equal(roundProgress(1 / 4.5, 1), 0);  // and the quarter-finals start exactly there
+  near(roundProgress(4 / 4.5, 3), 1);          // the final completes four rounds in
+  assert.ok(roundProgress(4 / 4.5 - 0.01, 3) < 1);
+  assert.equal(roundProgress(1, 3), 1);        // the last 0.15 is the beat: nothing left to print
 });
