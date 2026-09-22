@@ -4,7 +4,11 @@ import numpy as np
 import pytest
 
 from intsoccer.backtest import forecasts
+from intsoccer.data.snapshot import load_snapshot
 from intsoccer.model import GoalsModel, simulate_match
+from intsoccer.montecarlo import run
+from intsoccer.report import bracket, tables
+from intsoccer.tournament import load_tournament
 from intsoccer.tournament.format import TOURNAMENT_DIR
 
 RESULTS = TOURNAMENT_DIR / "wc2026_results.csv"
@@ -65,3 +69,94 @@ def test_draw_rate_is_the_match_weighted_mean_of_obs_draw(tmp_path):
     cal.write_text(json.dumps([{"bin": 0, "n": 10, "obs_draw": 0.2},
                                {"bin": 100, "n": 30, "obs_draw": 0.3}]))
     assert forecasts.draw_rate(cal) == pytest.approx(0.275)
+
+
+SMALL_MODEL = GoalsModel(a=0.136, b=0.00176)
+N = 300
+
+
+@pytest.fixture(scope="module")
+def wc():
+    return load_tournament("wc2026")
+
+
+@pytest.fixture(scope="module")
+def ctx(wc, tmp_path_factory):
+    out = tmp_path_factory.mktemp("run") / "wc2026"
+    r = run(wc, load_snapshot(wc.ratings_snapshot), SMALL_MODEL, n_sims=N, seed=11, out_dir=out)
+    return tables.context(r)
+
+
+@pytest.fixture(scope="module")
+def real(ctx):
+    return bracket.replay_real(ctx, RESULTS)
+
+
+@pytest.fixture(scope="module")
+def results(real):
+    return forecasts.with_outcomes(forecasts.load_results(RESULTS), real["matches"])
+
+
+def test_with_outcomes_reads_the_score_and_the_replayed_tie_winners(results):
+    assert results["outcome"].where(results["ways"] == 3).dropna().isin(["H", "D", "A"]).all()
+    ko = results[results["ways"] == 2]
+    assert (ko["outcome"] == ko["home"]).sum() + (ko["outcome"] == ko["away"]).sum() == 32
+    final = results[results["stage"] == "F"].iloc[0]
+    assert final["outcome"] == "ES" and final["observed"] == 0
+    de_py = results[(results["stage"] == "R32") & (results["home"] == "DE")].iloc[0]
+    assert de_py["home_goals"] == de_py["away_goals"] and de_py["outcome"] in ("DE", "PY")
+
+
+def test_run_counts_cover_every_stored_fixture_once(ctx):
+    counts = forecasts.run_counts(ctx)
+    assert counts["n"].sum() == N * 104
+    assert (counts["hw"] + counts["dr"] <= counts["n"]).all()
+    group = counts.loc["group"]
+    assert group["n"].sum() == N * 72 and (group["tw"] == 0).all()
+    ko = counts.drop("group", level=0)
+    assert (ko["tw"] <= ko["n"]).all()
+
+
+def test_runs_frequency_reads_from_the_named_side_and_flips_stored_sides(ctx):
+    counts = forecasts.run_counts(ctx)
+    p, n = forecasts.runs_frequency(counts, "group", "MX", "ZA", 3)
+    q, m = forecasts.runs_frequency(counts, "group", "ZA", "MX", 3)
+    assert n == m == N and p.sum() == pytest.approx(1.0)
+    assert list(q) == pytest.approx([p[2], p[1], p[0]])
+    assert p[0] > 0.6
+    never, k = forecasts.runs_frequency(counts, "F", "QA", "CW", 2)
+    assert k == 0 and list(never) == pytest.approx([0.5, 0.5])
+
+
+def test_match_table_has_one_scored_row_per_real_match(ctx, results, model):
+    t = forecasts.match_table(ctx, results, model, draw_rate=0.234)
+    assert len(t) == 104
+    for name in forecasts.FORECASTS:
+        assert t[f"{name}_brier"].between(0, 2).all()
+        assert (t[f"{name}_logloss"] >= 0).all()
+        three = t[t["ways"] == 3]
+        total = three[f"{name}_p_home"] + three[f"{name}_p_draw"] + three[f"{name}_p_away"]
+        # Poisson truncation at max_goals, as test_goals_model does
+        assert np.allclose(total, 1.0, atol=1e-6)
+        assert t.loc[t["ways"] == 2, f"{name}_p_draw"].isna().all()
+    assert t["runs_n"].between(0, N).all()
+    assert (t["sparse"] == (t["runs_n"] < forecasts.SPARSE_RUNS)).all()
+    assert t["shrug_brier"][t["ways"] == 3].round(9).eq(round(2 / 3, 9)).all()
+    assert list(t.columns[:9]) == ["date", "stage", "group", "home", "away", "home_goals",
+                                   "away_goals", "outcome", "ways"]
+    assert list(t["home"]) == list(results["home"])
+
+
+def test_match_summary_averages_and_skills(ctx, results, model):
+    t = forecasts.match_table(ctx, results, model, draw_rate=0.234)
+    s = forecasts.match_summary(t)
+    assert set(s) == set(forecasts.FORECASTS)
+    assert s["shrug"]["group"]["brier"] == pytest.approx(2 / 3)
+    assert s["shrug"]["knockout"]["brier"] == pytest.approx(0.5)
+    assert s["dayof"]["all"]["n"] == 104 and s["dayof"]["group"]["n"] == 72
+    assert s["dayof"]["knockout"]["n"] == 32
+    sk = s["dayof"]["all"]["skill"]
+    assert set(sk) == {"brier_vs_shrug", "brier_vs_elo", "logloss_vs_shrug", "logloss_vs_elo"}
+    assert sk["brier_vs_shrug"] == pytest.approx(1 - s["dayof"]["all"]["brier"]
+                                                 / s["shrug"]["all"]["brier"])
+    assert "skill" not in s["shrug"]["all"] and "skill" not in s["elo"]["all"]
