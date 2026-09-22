@@ -160,3 +160,10 @@
 - The lock point: with the chapter's title at the top of the window, not the round heads. Chosen: the title, intro and grid held together when they fit, otherwise the grid alone as first built (option A). Near-misses: always the title lock with no lock where it does not fit (B); the intro moved under the bracket so title and grid always fit (C, breaks the chapter pattern).
 - The beat: "kind of long" at a fifth of the hold; halved to a tenth (the hold 1.35 screens: four rounds of 0.3, a beat of 0.15).
 - Kept as built: the loser's fade at 0.75 (his call again, with the sheet in front of him); the round-of-32 rows starting inside the fold; the 5px tie padding; the half-pixel road lines; the rule inking as its lines arrive. Short windows and phones: not judged ("no idea").
+
+## Owner amendments (22 September 2026, Thiago's pass over the whole finished site on localhost)
+- Hero copy: "World Cup 2026" and "Filled in 100,000 times."; the "· Wall chart" suffix and "Darker ink means it happened more often." dropped, the suffix from the Euro and Copa mastheads too.
+- The site masthead stays at the top throughout the scroll, on every page; the hero's pin and the bracket's lock sit under it, the Chapters popover opens below it.
+- Chapter two finishing before the bracket arrives: the column lead halved, 0.09 to 0.045 of a screen. Near-miss: a hold before the bracket (his first suggestion), set aside for the shortened lead on the argument that a groups hold would sit back to back with the bracket's and that a lead change is invisible as a mechanism; he confirmed the lead route from the terminal.
+- Pick a team, the opponents: three fixed columns so the flags line up down the region; the name alone takes the ellipsis, the percentage stays whole.
+- The reading face's leading: 1.55 everywhere (chapter six's 1.5 and chapter eight's 1.6 unified), his decision after the polish review had changed and restored them.

@@ -106,10 +106,10 @@ impeccable's overused list. These become the house type for Thiago's personal si
 |---|---|---|---|---|
 | Wordmark | League Gothic | 1.35rem | caps, tracking .02em | site masthead and footer |
 | Site nav, Chapters button | News Cycle | 0.85rem | 400 | current page: 2px orange underline; "soon" pages: muted |
-| Chart masthead title | League Gothic | 1.75rem / 1.4rem, line-height 1 | caps | "World Cup 2026 · Wall chart" |
+| Chart masthead title | League Gothic | 1.75rem / 1.4rem, line-height 1 | caps | "World Cup 2026" (the "· Wall chart" suffix dropped by owner amendment, 22 September 2026) |
 | Chart masthead line | News Cycle | 0.8rem | 400, muted | right-aligned; wraps under the title on phones |
 | Hero headline | League Gothic | `clamp(2.6rem, 5.2vw, 4.4rem)`, line-height 1 | caps; second sentence orange on its own line | |
-| Lede and chapter intro | Old Standard TT | 1.05rem, line-height 1.55 | 400, ink-soft; the claim sentence 700 ink | measure ≤ 60ch |
+| Lede and chapter intro | Old Standard TT | 1.05rem, line-height 1.55 | 400, ink-soft; the claim sentence 700 ink | measure ≤ 60ch; 1.55 is the reading face's one leading on every paragraph, chapter six's reason lines and chapter eight's prose included (owner amendment, 22 September 2026) |
 | Chapter title | League Gothic | 2.6rem / 2rem, line-height .95 | caps, centred | between two 3px rules |
 | Sub-head inside a chapter | League Gothic | 1.5rem | caps | |
 | Column label, table head, box label | News Cycle | 0.75rem | 700 caps, tracking .06em to .08em | |
@@ -238,6 +238,15 @@ News Cycle: World Cup 2026 (current: 2px orange underline), Euro 2028 and Copa A
 muted ink (the "soon" pills go; the pages themselves say "coming after the draw"), How it works
 (`#how-it-works`), GitHub, Chapters. On phones the nav wraps under the wordmark.
 
+Owner amendment (22 September 2026, Thiago's pass over the whole finished site): the masthead is
+sticky at the top of the viewport on every page and every width (`position: sticky; top: 0`, on
+paper, layered above the sheet, its 1px rule kept), so the wordmark, the three tournaments, How
+it works, GitHub and Chapters stay in reach throughout the scroll. Its rendered height is not
+constant (the nav wraps on phones: 49px at 1024 and above, 117px at 390), so `site/js/header.js`
+measures it at load, after the fonts load and on resize, and publishes it as `--hdr` on `:root`;
+every page loads the module. The two pinned screens, the Chapters popover and the hash targets
+take their geometry from `--hdr` (sections 5.2, 6.1 and 8, The bracket).
+
 ### 5.2 Chapters
 
 "Chapters" is a button in the masthead that opens a popover (`popover` attribute, so Escape and
@@ -246,6 +255,12 @@ listing the eight chapters by name, no numbers, in News Cycle 0.85rem with hairl
 them, each a link to its section. The first link takes focus when the popover opens. Chapters
 are otherwise found by reading down: no contents line, no contents box, no rail, no rail toggle.
 `rail.js` and the rail markup are deleted.
+
+Owner amendment (22 September 2026): the popover opens below the sticky masthead at every width,
+anchored at `--hdr` plus .4rem, and never covers the masthead or its own button (before, at
+1023px and under, it opened over both). The hero and every chapter section carry
+`scroll-margin-top: var(--hdr)`, so the popover's links and deep links land a chapter's title
+below the masthead, not under it (measured 48px clear at 1440 and 1024, 47px at 390).
 
 ### 5.3 Footer
 
@@ -256,7 +271,8 @@ underlined in ink; one column on phones. Confirmed at the closing checkpoint (se
 ### 5.4 Placeholder pages
 
 `euro2028.html`, `copa2028.html` and `thiago.html` carry the same masthead and footer. Their
-body is a chart masthead ("Euro 2028 · Wall chart" with "Coming after the draw." as the line,
+body is a chart masthead ("Euro 2028" and "Copa América 2028", the "· Wall chart" suffix
+dropped by owner amendment on 22 September 2026, with "Coming after the draw." as the line,
 3px rule beneath), the "what we know" facts as a ruled key list (label in News Cycle 700 caps,
 value in News Cycle, hairlines between rows), then the two paragraphs in Old Standard TT under
 League Gothic sub-heads. `thiago.html` is the masthead, one sentence, the footer. Content
@@ -268,8 +284,9 @@ Composition, as approved: the chart masthead under a 3px rule; the headline and 
 left; the champion column on the right; a 3px rule at the bottom edge. The 100,000, the 18,626
 and the team name are read from the data as today; the stat strip and the chapter row are gone.
 
-- Chart masthead: "World Cup 2026 · Wall chart" left; right, muted: "Filled in 100,000 times.
-  Darker ink means it happened more often." (run count from `ctx.n`).
+- Chart masthead: "World Cup 2026" left; right, muted: "Filled in 100,000 times." (run count
+  from `ctx.n`). Owner amendment, 22 September 2026: the "· Wall chart" suffix and the sentence
+  "Darker ink means it happened more often." are dropped.
 - Headline: "I simulated the 2026 World Cup 100,000 times." then, on its own line in orange,
   "Spain won 18,626 of them." Printed on load, no motion.
 - Lede, unchanged: "No betting odds, no pundits, no FIFA ranking. Just the eloratings.net
@@ -307,6 +324,15 @@ only when the last number is complete.
 The site masthead sits above the pin block and scrolls away during the first masthead-height
 of scroll; the column starts filling once the held screen reaches the top of the viewport, as
 in the approved mock.
+
+Owner amendment (22 September 2026, the sticky masthead, section 5.1): the masthead no longer
+scrolls away; the held screen sits under it, `top: var(--hdr); height: calc(100dvh − var(--hdr))`.
+The pin engages when the held screen's top reaches the masthead's bottom edge
+(`pinTop = blockTop − hdr`); the travel is still one screen and the hold 0.35 H, so the pin block
+is `2.35 H − hdr` tall (2066px at 1440×900 with a 49px masthead). The fit test compares the
+column against the viewport minus the masthead and nothing else. Measured on 22 September: the
+column completes 13/13 at one screen of travel at 1440×900 and 1280×720, chapter one gated until
+then.
 
 Gate: chapter one prints nothing until the column is complete. With this geometry the chapter's
 top cannot enter the viewport before `p = 1`; `print.js` still computes chapter units only once
@@ -377,6 +403,18 @@ Motion amendment (21 September 2026, companion screen transition-2): as proposed
 print one by one, A to L, as each crosses the reading line (a wave across each row of four,
 each box starting a half band after its neighbour); inside a box each row prints with its bar
 filling as its percentage climbs; the spec's band of 18% of a screen.
+Owner amendment (22 September 2026, Thiago's pass over the whole finished site): the last groups
+(K, L) were still printing as the bracket's rows began on his window. The column lead is halved,
+0.09 to 0.045 of a screen per column (a quarter of a band instead of half), so every group box
+and its counts complete before the bracket's grid top reaches the reading line. Measured: a box
+completes when its own top reaches (0.74 − lead) H, and the gap from the last wall row's top to
+the grid's top is a fixed 516px at four across (517 at three), so the clearance is
+516 − (0.18 + (columns − 1) × lead) H. With 0.045, box L completes at 0.605 H at 1440×900
+(0.258 H before the bracket's schedule starts), at 0.650 H at 1280×720 and at 1200×900 (three
+across; 0.448 H and 0.304 H early), and every 1440-wide window up to 1638px tall clears; the old
+lead cleared only up to about 1147px, which is where the fault lived. The wave stays visible
+(mid-wave the last wall row reads 1 / 0.535 / 0 / 0). Chosen over a hold before the bracket,
+which would have put two stops back to back; the hold is a near-miss in the decisions file.
 
 **The bracket.** Fixed: the nine-column grid and the connectors stay; tie boxes become ruled
 boxes; round heads in News Cycle caps; match numbers in News Cycle 0.75rem muted; the winner's
@@ -435,6 +473,17 @@ The beat is halved: the hold is 1.35 screens of travel, four rounds of 0.3 and a
 (Thiago: the fifth was "kind of long"). Kept as built at the checkpoint: the loser's row at 0.75,
 the round-of-32 rows starting inside the fold, the tie row's 5px padding, the half-pixel road
 lines, the rule inking as its lines arrive; short windows and phones were not judged.
+Owner amendment (22 September 2026, the sticky masthead, section 5.1): the held region sits under
+the masthead (`top: var(--hdr)`), the cascade's fit test compares each candidate against the
+viewport minus the masthead, and the lock engages when the held region's top reaches the
+masthead's bottom edge. The approach is measured from the grid's top crossing the reading line to
+that point (the old value less the masthead's share of the viewport), the round of 32 still
+completing exactly at the lock, and the hold's 1.35 screens, its four rounds and its beat are
+unchanged; with no lock the schedule is what it was. Measured on 22 September: the title held at
+49px under the masthead at 1440×900 with 16/16 round-of-32 boxes complete at the lock, the grid
+alone at 1280×720 (the window too short for the title), rounds and beat as before. A 1440-wide
+window between about 840 and 889px tall now takes the grid-alone lock where it used to hold the
+title too, the masthead having taken that room.
 
 **The hosts.** Fixed: three regions, one per host, in News Cycle; flag-colour bars go. Open: ink
 bars per fate or a nine-row fate list with the chapter-one cell encoding, one per host; how the
@@ -514,6 +563,8 @@ names first, then the numbers count up, the bigger one last and landing in bold;
 line prints on the box's own band. The spec's band of 18% of a screen. Build notes: the three
 boxes share a top, so they print together; the bold lands as a step when the unit finishes; the
 Elo prints with the row's ink and does not climb; Italy's unit grows only its 3px stub.
+Owner amendment (22 September 2026): the reason lines take the reading face's one leading, 1.55
+(section 3.2), from 1.5; Thiago's decision after the polish review.
 
 **Pick a team.** Fixed: the search combobox as a printed field (1px ink box, News Cycle, no
 radius, the same keyboard behaviour); the favourites as a printed line of links, not chips; the
@@ -548,6 +599,16 @@ the new one arrives. That fade-out is a material the motion thesis did not name;
 amended. Reduced motion: the new team printed complete, no fade. Build notes: the head's
 champion count climbs on first reading and is replaced on a pick; the picker's list, keyboard
 behaviour and no-match state are unchanged by the restyle.
+Owner amendment (22 September 2026, Thiago's pass over the whole finished site): in "Most common
+opponent, round by round" the three opponents are three fixed, equal columns after the round
+label (a three-track grid), so every first, second and third flag sits on one vertical line down
+the region (x = 225, 389 and 553 at 1440). Each item is a flex row in which the name is the only
+shrinking part: nowrap, an ellipsis on the name when it overflows its column, the percentage
+always whole ("Bosnia & He… 14.3%" at 1440 is the one clipped name in the data); the flag keeps
+its 2px offset. The region's container query keeps the label on its own line below 560px and
+stacks the three items one per line below 440px of container width, the measured point where
+three tracks no longer hold "Netherlands 10.9%" with its flag (128.8px each); at 390 wide the
+items stack.
 
 **How it works.** Fixed: the six steps keep their two-column layout and their numbers, "1." to
 "6." in the step title, because the pipeline order is the content (no mono kicker); step titles
@@ -586,6 +647,8 @@ example stays printed and its numbers never climb. Label lines and table heads a
 frame, printed from the start. Build notes: step 5 has only a footnote and step 6 no maths, so
 their third window prints nothing; both chart panels share one progress; KaTeX is never
 re-rendered per frame; reduced motion is the finished chapter.
+Owner amendment (22 September 2026): the steps' prose and the worked example take the reading
+face's one leading, 1.55 (section 3.2), from 1.6; Thiago's decision after the polish review.
 
 ## 9. Files and build order
 
