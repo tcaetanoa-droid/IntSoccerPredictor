@@ -302,9 +302,12 @@ img.flag { width: 20px; height: 14px; object-fit: cover; vertical-align: -2px; m
 #pick-a-team .res { position: absolute; top: calc(100% + 4px); left: 0; min-width: 100%; max-width: 100%; z-index: 4; max-height: 15rem; overflow-y: auto; background: var(--paper); border: 1px solid var(--ink); }
 #pick-a-team .res .r { display: flex; align-items: center; padding: .25rem .5rem; font-size: .875rem; white-space: nowrap; cursor: pointer; }
 #pick-a-team .res .r b { margin-left: auto; padding-left: .75rem; font-weight: 400; color: var(--muted); font-variant-numeric: tabular-nums; }
-/* The highlighted row on a flat ink tint, the depth a winning tie prints at in the bracket. */
+/* The highlighted row on a flat ink tint, the depth a winning tie prints at in the bracket. The
+   count goes a step darker on that tint: --muted would read 4.19:1 on it, under the floor. */
 #pick-a-team .res .r.on, #pick-a-team .res .r:hover { background: color-mix(in srgb, var(--ink) 9%, transparent); }
+#pick-a-team .res .r.on b, #pick-a-team .res .r:hover b { color: var(--ink-soft); }
 #pick-a-team .res .none { color: var(--muted); cursor: default; }
+#pick-a-team .res .none:hover { color: var(--ink-soft); }   /* it takes the same tint, so the same step darker */
 /* the team head, ruled off from the regions under it */
 #pick-a-team .th { display: flex; align-items: flex-start; gap: 1rem; padding: 0 0 .7rem; border-bottom: 1px solid var(--ink); }
 #pick-a-team .th > img.flag { width: 64px; height: 44px; margin: .1rem 0 0; flex: 0 0 auto; }
