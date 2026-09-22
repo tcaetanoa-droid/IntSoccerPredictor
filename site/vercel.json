@@ -8,17 +8,17 @@
       "permanent": false
     },
     {
-      "source": "/index.html",
+      "source": "/index",
       "destination": "/world-cup-2026",
       "permanent": true
     },
     {
-      "source": "/euro2028.html",
+      "source": "/euro2028",
       "destination": "/euro-2028",
       "permanent": true
     },
     {
-      "source": "/copa2028.html",
+      "source": "/copa2028",
       "destination": "/copa-america-2028",
       "permanent": true
     }
