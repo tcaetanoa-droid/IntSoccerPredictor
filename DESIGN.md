@@ -214,7 +214,7 @@ There are no styled buttons. Every button on the sheet is text in the surroundin
 - **Results:** a paper box with a 1px ink border hung off the field 4px below, at the field's width, capped at 15rem and scrolling; rows at .875rem with the count muted and right-aligned; the active or hovered row takes the 9% tint and its count steps to soft ink; the empty state is a muted, non-interactive row.
 
 ### Tables (the agate)
-- **Style:** `border-collapse: collapse`, full width, .8rem News Cycle. The head row is the label style (700, .75rem, caps, .06em) over a 3px ink rule and closed by a 1px ink rule; heads and cells are right-aligned except the first column; the row head is bold with an optional muted, regular-weight note beside it (a team's group). Body rows separate with a hairline; cells carry tabular figures.
+- **Style:** `border-collapse: collapse`, full width, .8rem News Cycle. The head row is the label style (700, .75rem, caps, .06em) over a 3px ink rule and closed by a 1px ink rule; heads and cells are right-aligned except the first column; the row head is bold with an optional muted, regular-weight note beside it (a team's group). Body rows separate with a hairline; cells carry right-aligned figures.
 - **Fate cell:** a cell with `data-share` takes its column's fate colour at a strength the print engine writes to `--t`; the number stays ink and the champion column's count is bold. Subtotal columns are muted with a rule to their left (1px ink at the head, hairline in the body).
 - **Fixed layout where width would encode:** the underdogs tables and symbol keys use `table-layout: fixed`, so a tint block's area does not follow the length of its column head.
 - **Hover:** a hovered row darkens its ink (`filter: brightness(.94)`), the one feedback the sheet gives, with no transition.
@@ -240,7 +240,7 @@ Exceptions are exact: on a pick in chapter seven the old team's ink fades to pap
 
 ### Do:
 - **Do** put every new region on the paper with rules for structure: a 3px ink rule to open a table head or a masthead, a 1px ink rule to close a head or a label, a hairline (`hair`) between rows.
-- **Do** set a title in League Gothic capitals, a sentence in Old Standard TT at 1.05rem/1.55 and ≤ 60ch, and every table, label, count and nav item in News Cycle with tabular figures.
+- **Do** set a title in League Gothic capitals, a sentence in Old Standard TT at 1.05rem/1.55 and ≤ 60ch, and every table, label, count and nav item in News Cycle with right-aligned figures.
 - **Do** keep numbers in full ink and let the fate scale's tint at `min(1, 2.5 × share)` carry frequency; where there is no fate colour, use ink density with a 65% floor.
 - **Do** reserve orange for the hot number, the real result, the current-page underline and the focus ring.
 - **Do** make a new unit print through `js/print.js` (register it with a painter; blocks on entry, rows across the reading line) and honour reduced motion by painting it complete at boot.

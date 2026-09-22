@@ -28,15 +28,6 @@ async function start() {
       section.textContent = 'This chapter could not be drawn.';
     }
   }
-  // The browser takes a fragment at parse time, when every section is still empty, so a cold deep
-  // link lands hundreds of pixels short of its chapter. The sheet is only this tall now, so the
-  // landing is re-taken here, before boot()'s seed pass paints what ends up above it. 'instant'
-  // is required: `scroll-behavior: smooth` would animate the whole sheet and print it on the way.
-  // A reload is left alone, so the browser's own scroll restoration keeps the reader's position.
-  if (performance.getEntriesByType('navigation')[0]?.type !== 'reload') {
-    const id = location.hash.slice(1), target = id && document.getElementById(id);
-    if (target) target.scrollIntoView({ behavior: 'instant', block: 'start' });
-  }
   bootPrint();   // every unit is registered by now; the engine paints and starts listening
 }
 start().catch((e) => {

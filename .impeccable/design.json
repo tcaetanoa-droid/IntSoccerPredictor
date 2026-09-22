@@ -155,7 +155,7 @@
     ],
     "dos": [
       "Do put every new region on the paper with rules for structure: a 3px ink rule to open a table head or a masthead, a 1px ink rule to close a head or a label, a hairline (hair) between rows.",
-      "Do set a title in League Gothic capitals, a sentence in Old Standard TT at 1.05rem/1.55 and ≤ 60ch, and every table, label, count and nav item in News Cycle with tabular figures.",
+      "Do set a title in League Gothic capitals, a sentence in Old Standard TT at 1.05rem/1.55 and ≤ 60ch, and every table, label, count and nav item in News Cycle with right-aligned figures.",
       "Do keep numbers in full ink and let the fate scale's tint at min(1, 2.5 × share) carry frequency; where there is no fate colour, use ink density with a 65% floor.",
       "Do reserve orange for the hot number, the real result, the current-page underline and the focus ring.",
       "Do make a new unit print through js/print.js (register it with a painter; blocks on entry, rows across the reading line) and honour reduced motion by painting it complete at boot.",

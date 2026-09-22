@@ -176,13 +176,13 @@ function layoutHold(o) {
 function tickHold(o, y) {
   const r = o.block.getBoundingClientRect();
   if (r.top > 2 * H) return;                   // more than a screen below: nothing to paint yet
-  // The travel since the grid's top crossed the reading line, arithmetic on the layout rather
-  // than a live rect, so it keeps counting while the region is held. The pin point is read off
-  // the block, which never sticks, plus the held region's offset inside it; the pin engages when
-  // that point reaches the header's bottom edge, and the half-pixel snap there makes the
-  // approach's last unit complete exactly at the pin rather than a fraction short. A deep load
-  // below the block lands with the travel already past the release, so the schedule paints the
-  // finished sheet.
+  // The travel since the grid's top crossed the reading line, measured from the block's rect,
+  // read live on every tick; the block itself never sticks, so the travel keeps counting while
+  // the held region stands still. The pin point is read off that rect, plus the held region's
+  // offset inside it; the pin engages when that point reaches the header's bottom edge, and the
+  // half-pixel snap there makes the approach's last unit complete exactly at the pin rather than
+  // a fraction short. A deep load below the block lands with the travel already past the release,
+  // so the schedule paints the finished sheet.
   const top = r.top + y + o.offset, t = y - top + HD + o.approach * H, was = o.t;
   o.t = Math.max(o.t, y >= top - HD - 0.5 ? Math.max(t, o.approach * H) : t);
   // Only a schedule that moved is painted (spec §4, the budget: only units whose progress
@@ -245,12 +245,33 @@ export function reprint(root, ms = 400) {
   });
 }
 
+// land(): a deep link's landing, taken again once the sheet stands. The browser scrolled to the
+// fragment at parse time, on an empty sheet and before the pinned blocks had the heights
+// layoutPin() gives them, so it lands short by everything the layout above the target then gains.
+// It belongs here, after that layout and before the seed pass, which then paints from the landed
+// position. 'instant' because `scroll-behavior: smooth` would animate the whole sheet and print it
+// on the way; a reload keeps the browser's own scroll restoration, and a hash that is not an
+// element id (#team=XX) finds nothing and leaves the position alone. The browser's own scroll to
+// the fragment is an animation for that same reason, still in flight in this frame and retargeted
+// by the pins' new heights, and it settles 31 to 108 pixels past this landing with the chapter
+// title behind the masthead: so the landing is taken once more on the next frame, when it and the
+// layout have both stopped moving, and that one is the last word. It can only move the sheet up,
+// by that much, over units the seed pass has already painted.
+function land() {
+  if (performance.getEntriesByType('navigation')[0]?.type === 'reload') return;
+  const id = location.hash.slice(1), target = id && document.getElementById(id);
+  if (!target) return;
+  const take = () => target.scrollIntoView({ behavior: 'instant', block: 'start' });
+  take();
+  requestAnimationFrame(take);
+}
+
 // boot(): once every chapter has rendered. Under reduced motion the sheet is finished: every
 // unit painted complete, no pin, no listener.
 export function boot() {
   booted = true;
   H = window.innerHeight;
-  if (reduced()) { units.forEach((u) => set(u, 1)); layoutPin(); return; }
+  if (reduced()) { units.forEach((u) => set(u, 1)); layoutPin(); land(); return; }
   io = new IntersectionObserver((entries) => {
     for (const e of entries) { const u = byEl.get(e.target); if (u) u.live = e.isIntersecting; }
     schedule();
@@ -260,6 +281,7 @@ export function boot() {
   window.addEventListener('resize', () => { H = window.innerHeight; layoutPin(); schedule(); });
   document.fonts.ready.then(() => { layoutPin(); schedule(); });   // the held screen's height settles with the faces
   layoutPin();
+  land();
   // Seed pass: a deep-load position (a hash, scroll restoration) can land above units the
   // observer has not yet reported live; paint them now from their real position so a unit
   // already above the reading line on load is painted complete, per spec §4.2.
