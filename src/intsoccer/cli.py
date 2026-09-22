@@ -117,6 +117,37 @@ def cmd_report(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_backtest(args: argparse.Namespace) -> int:
+    """Score a saved run against the real results; the method and record are docs/BACKTEST.md."""
+    from .backtest import build_backtest
+    from .backtest.forecasts import SPARSE_RUNS
+
+    run_dir = Path(args.run)
+    out = build_backtest(run_dir, Path(args.results),
+                         site_dir=Path("site") if args.site else None)
+    s = out["summary"]
+    t, m = s["tournament"], s["matches"]
+    print(f"{run_dir.name}: {s['meta']['n_sims']} runs against {len(out['matches'])} real matches"
+          f" -> {run_dir / 'backtest'}")
+    print(f"fate-ladder RPS {t['rps']:.4f} vs structural shrug {t['rps_shrug']:.4f} "
+          f"(skill {t['rps_skill']:.2f})")
+    h = t["hits"]
+    print(f"hits: champion {h['champion']['modal']} (real {h['champion']['real']}); "
+          f"semi-finalists {h['semi_finalists']['matched']} of 4; "
+          f"round-of-32 pairings {h['r32_pairings']['matched']} of {h['r32_pairings']['of']}")
+    for name in ("dayof", "runs"):
+        a = m[name]["all"]
+        print(f"{name:<6} Brier {a['brier']:.4f}  log-loss {a['logloss']:.4f}  "
+              f"skill vs shrug {a['skill']['logloss_vs_shrug']:+.3f}  "
+              f"vs Elo {a['skill']['logloss_vs_elo']:+.3f}  (log-loss)")
+    if s["sparse_pairings"]["count"]:
+        print(f"sparse pairings (under {SPARSE_RUNS} runs): {s['sparse_pairings']['count']}")
+    if args.site:
+        print(f"site file -> site/data/{run_dir.name}/backtest.json")
+    print("method and record: docs/BACKTEST.md")
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(prog="intsoccer", description=__doc__)
     sub = p.add_subparsers(dest="command", required=True)
@@ -156,8 +187,14 @@ def build_parser() -> argparse.ArgumentParser:
                     help="also copy the site's JSON into site/data/<run name>/")
     rp.set_defaults(func=cmd_report)
 
-    bt = sub.add_parser("backtest", help="(not implemented yet, see docs/ROADMAP.md)")
-    bt.set_defaults(func=lambda a: print("backtest: not implemented yet") or 1)
+    bt = sub.add_parser("backtest",
+                        help="score a run against the real results (method: docs/BACKTEST.md)")
+    bt.add_argument("--run", default="output/wc2026", help="run directory written by simulate")
+    bt.add_argument("--results", default="data/tournaments/wc2026_results.csv",
+                    help="the real results CSV")
+    bt.add_argument("--site", action="store_true",
+                    help="also write site/data/<run name>/backtest.json")
+    bt.set_defaults(func=cmd_backtest)
     return p
 
 

@@ -4,7 +4,8 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from intsoccer.backtest import fates, forecasts
+from intsoccer.backtest import build_backtest, fates, forecasts
+from intsoccer.cli import main
 from intsoccer.data.snapshot import load_snapshot
 from intsoccer.model import GoalsModel, simulate_match
 from intsoccer.montecarlo import run
@@ -235,3 +236,45 @@ def test_calibration_bins_cover_all_288_predictions(ctx, real_fates, wc):
     assert c["thresholds"][-1]["observed"] == pytest.approx(1 / 48)
     assert 0 <= c["brier"] <= 1 and 0 < c["brier_shrug"] <= 1
     assert c["skill"] == pytest.approx(1 - c["brier"] / c["brier_shrug"])
+
+
+def test_build_backtest_writes_the_four_files_and_the_site_file(ctx, tmp_path):
+    run_dir = tmp_path / "wc2026"
+    from intsoccer.montecarlo import save_run
+    save_run(ctx.run, run_dir)
+    cal = tmp_path / "calibration.json"
+    cal.write_text(json.dumps([{"bin": 0, "n": 100, "obs_draw": 0.234}]))
+    out = build_backtest(run_dir, RESULTS, site_dir=tmp_path / "site", calibration=cal, names={})
+    bt = run_dir / "backtest"
+    assert sorted(p.name for p in bt.iterdir()) == ["calibration.csv", "matches.csv",
+                                                     "summary.json", "teams.csv"]
+    assert len(pd.read_csv(bt / "matches.csv")) == 104
+    assert len(pd.read_csv(bt / "teams.csv")) == 48
+    cal_rows = pd.read_csv(bt / "calibration.csv")
+    assert list(cal_rows.columns) == ["bin", "n", "mean_p", "observed"] and len(cal_rows) == 11
+    s = json.loads((bt / "summary.json").read_text())
+    assert s == out["summary"]
+    assert set(s) == {"meta", "matches", "sparse_pairings", "tournament", "calibration"}
+    assert s["meta"]["n_sims"] == N and s["meta"]["draw_rate"] == pytest.approx(0.234)
+    assert s["meta"]["log_floor"] == 1e-6 and s["meta"]["built"]
+    assert s["sparse_pairings"]["count"] == len(s["sparse_pairings"]["pairings"])
+    assert s["tournament"]["rps_skill"] == pytest.approx(
+        1 - s["tournament"]["rps"] / s["tournament"]["rps_shrug"])
+    assert s["tournament"]["hits"]["champion"]["real"] == "ES"
+    site_file = tmp_path / "site" / "data" / "wc2026" / "backtest.json"
+    payload = json.loads(site_file.read_text())
+    assert payload["meta"]["run"] == "wc2026" and payload["meta"]["results"] == "wc2026_results.csv"
+    assert "/" not in payload["meta"]["run"] and "/" not in payload["meta"]["results"]
+    assert len(payload["teams"]) == 48 and set(payload["teams"][0]) == {"team", "real_fate", "rps"}
+    assert payload["calibration"]["bins"] == s["calibration"]["bins"]
+    assert payload["tournament"] == s["tournament"] and payload["matches"] == s["matches"]
+
+
+def test_cli_backtest_runs_and_names_the_doc(ctx, tmp_path, capsys):
+    run_dir = tmp_path / "wc2026"
+    from intsoccer.montecarlo import save_run
+    save_run(ctx.run, run_dir)
+    assert main(["backtest", "--run", str(run_dir), "--results", str(RESULTS)]) == 0
+    text = capsys.readouterr().out
+    assert "RPS" in text and "docs/BACKTEST.md" in text
+    assert (run_dir / "backtest" / "summary.json").exists()
