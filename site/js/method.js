@@ -83,13 +83,13 @@ const repro = (meta, runs) => h('div', { class: 'repro' },
     h('div', { class: 'rrow' }, h('div', {}, h('code', {}, cmd)), h('div', { class: 'rwhat' }, what)))),
   h('p', { class: 'rfoot' }, 'The repository link is in the footer.'));
 
-export function render(section, ctx) {
+export function render(section, ctx, { page = false } = {}) {
   const meta = ctx.report.meta, runs = fmtCount(ctx.n);
   const src = STEPS(figures(meta), runs);
   checkExample(src.map((s) => s.maths).join(''));
   const steps = src.map((s, i) => {
     // The step number stays in the title: the pipeline order is the content.
-    const title = h('h3', {}, `${i + 1}. ${s.title}`);
+    const title = h(page ? 'h2' : 'h3', {}, `${i + 1}. ${s.title}`);   // one level under the page's h1, two under the sheet's chapter h2
     const prose = h('p', { class: 'mprose', html: s.prose });
     const side = h('div', { class: 'mcol mside', html: s.maths });
     const el = h('div', { class: 'mstep' }, h('div', { class: 'mcol' }, title, prose), side);
@@ -106,10 +106,14 @@ export function render(section, ctx) {
     return el;
   });
   const cal = calibrationChart(ctx.calibration);
-  section.replaceChildren(
-    ...chapterHead('How it works', 'Under the hood.',
-      `This is not a betting model and does not use odds, rankings or expert picks. It has two fitted parameters and four formulas, and this section walks through all of them: where the ratings come from, how a rating gap becomes goals, how goals become results, how results update the ratings, and how ${runs} tournaments are played and counted. The code, the rules file and the seed are public, so every number on this page can be regenerated.`),
-    ...steps, cal.el, repro(meta, runs));
+  const claim = 'Under the hood.';
+  const intro = `This is not a betting model and does not use odds, rankings or expert picks. It has two fitted parameters and four formulas, and this ${page ? 'page' : 'section'} walks through all of them: where the ratings come from, how a rating gap becomes goals, how goals become results, how results update the ratings, and how ${runs} tournaments are played and counted. The code, the rules file and the seed are public, so every number on this page can be regenerated.`;
+  // On its own page the chapter opens under the masthead the shell wrote, which stays: the intro
+  // alone, printed as a block, stands in for the chapter head.
+  let head;
+  if (page) { head = [h('p', { class: 'intro' }, h('b', {}, claim), ' ', intro)]; register(head[0], paintBlock, { kind: 'block' }); }
+  else head = chapterHead('How it works', claim, intro);
+  section.replaceChildren(...(page ? [...section.children] : []), ...head, ...steps, cal.el, repro(meta, runs));
   cal.draw();   // the panels are drawn at their holders' measured width, so the chart is in the page first
   // KaTeX is a deferred script in the head, so it has run by the time this module does; the guard
   // is there in case it fails to load, and then the TeX stays readable as written. One pass over

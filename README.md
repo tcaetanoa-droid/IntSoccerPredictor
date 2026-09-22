@@ -59,13 +59,17 @@ Details and the full component list are in [docs/ROADMAP.md](docs/ROADMAP.md).
 ### Website
 
 The simulations are published at [int-soccer-predictor.vercel.app](https://int-soccer-predictor.vercel.app):
-the 2026 World Cup in eight chapters — who wins it, the group stage, the bracket, the hosts, the
-underdogs, the paradoxes, pick a team, and how it works. It is plain HTML, CSS and JavaScript under
+the 2026 World Cup in seven chapters — who wins it, the group stage, the bracket, the hosts, the
+underdogs, the paradoxes and pick a team — and the method on a page of its own, how it works. It
+is plain HTML, CSS and JavaScript under
 `site/`, with no build step and no framework. Every number on it is read from
 `site/data/wc2026/*.json`, written by `intsoccer report --site` and committed alongside the pages,
 so the site never computes a statistic of its own; the views themselves are specified in
 [docs/REPORTS.md](docs/REPORTS.md). Vercel deploys it from `main` through its GitHub integration,
 with the project's root directory set to `site/`; every pull request gets a preview deployment.
+Every page has a clean address: `/world-cup-2026` (the root redirects there), `/euro-2028`,
+`/copa-america-2028`, `/how-it-works` and `/thiago`; `site/vercel.json` holds the rules, and
+`tools/serve.py` serves the folder the same way locally.
 
 Design: [PRODUCT.md](PRODUCT.md) holds the product truth (audience, purpose, voice, brand
 commitments), `DESIGN.md` the visual system (written at the end of the restyle), and
@@ -81,6 +85,7 @@ pip install -e ".[dev]"
 
 pytest                                   # run the test suite
 node --test tests/js/*.mjs               # the print engine's formulas (site/js/print.js)
+python3 tools/serve.py                   # the site at http://localhost:8001, addresses as on Vercel
 intsoccer fetch --teams ES AR EN         # download current ratings and team histories
 intsoccer snapshot --date 2026-06-11 --label wc2026   # ratings as of the eve of the World Cup
 intsoccer fit                            # refit the goals model and draw the calibration chart
@@ -120,6 +125,7 @@ data/snapshots/     committed rating snapshots, e.g. 2026-06-10_wc2026.csv
 data/model_params.yaml   fitted goals-model parameters
 docs/               formula reference, data-source reference, 2026 format rules, roadmap
 tests/              pytest suite with small real-data fixtures
+tools/              serve.py, the local server for site/: clean addresses and site/vercel.json's redirects
 ```
 
 Data flow:

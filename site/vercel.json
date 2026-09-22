@@ -1,0 +1,26 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/world-cup-2026",
+      "permanent": false
+    },
+    {
+      "source": "/index.html",
+      "destination": "/world-cup-2026",
+      "permanent": true
+    },
+    {
+      "source": "/euro2028.html",
+      "destination": "/euro-2028",
+      "permanent": true
+    },
+    {
+      "source": "/copa2028.html",
+      "destination": "/copa-america-2028",
+      "permanent": true
+    }
+  ]
+}

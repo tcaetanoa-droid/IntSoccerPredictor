@@ -54,6 +54,21 @@ const legendMark = (line) => (line
   ? svgEl('svg', { width: 22, height: 8, viewBox: '0 0 22 8', 'aria-hidden': 'true' }, svgEl('line', { class: 'ln', x1: 0, y1: 4, x2: 22, y2: 4 }))
   : svgEl('svg', { width: 12, height: 12, viewBox: '0 0 12 12', 'aria-hidden': 'true' }, svgEl('circle', { class: 'ob', cx: 6, cy: 6, r: 4.2 })));
 
+// The chart's numbers for assistive technology: every bin as a row of a table that is read and
+// never seen, the way a printed count's final value is. The panels keep their own labels.
+function dataTable(bins) {
+  const signed = (x) => `${x > 0 ? '+' : x < 0 ? '\u2212' : ''}${Math.abs(x)}`;
+  const head = ['Rating gap', 'Matches', 'Predicted goals', 'Observed goals', 'Predicted win rate', 'Observed win rate', 'Predicted draw rate', 'Observed draw rate'];
+  return h('table', { class: 'sr' },
+    h('caption', {}, 'Calibration by rating gap: what the model predicts against what was observed, in bins of 100 rating points'),
+    h('thead', {}, h('tr', {}, ...head.map((s) => h('th', { scope: 'col' }, s)))),
+    h('tbody', {}, ...bins.map((b) => h('tr', {},
+      h('th', { scope: 'row' }, `${signed(b.bin)} to ${signed(b.bin + 100)}`), h('td', {}, String(b.n)),
+      h('td', {}, b.pred_goals.toFixed(2)), h('td', {}, b.obs_goals.toFixed(2)),
+      h('td', {}, fmtPct(b.pred_win)), h('td', {}, fmtPct(b.obs_win)),
+      h('td', {}, fmtPct(b.pred_draw)), h('td', {}, fmtPct(b.obs_draw))))));
+}
+
 export function calibrationChart(bins) {
   const label = h('div', { class: 'klab' }, 'Calibration: predicted against observed, by rating gap');
   // A later tournament may ship no calibration rows at all, and the 30-match floor can drop the
@@ -118,7 +133,8 @@ export function calibrationChart(bins) {
         h('div', { class: 'cleg' },
           h('span', {}, legendMark(true), 'model'),
           h('span', {}, legendMark(false), 'observed, dot size = number of matches in the bin'))),
-      scrollX('Calibration charts, scroll sideways on a narrow screen', grid)),
+      scrollX('Calibration charts, scroll sideways on a narrow screen', grid),
+      dataTable(bins)),
     draw,
   };
 }

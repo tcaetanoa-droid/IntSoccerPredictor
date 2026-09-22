@@ -3,14 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>IntSoccerPredictor · Thiago Caetano</title>
-<meta name="description" content="Thiago Caetano, who built IntSoccerPredictor.">
+<title>IntSoccerPredictor · How it works</title>
+<meta name="description" content="UEFA Euro 2028, simulated once the finals draw is held.">
 <link rel="preload" href="fonts/league-gothic-400-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/fonts.css">
 <link rel="stylesheet" href="css/site.css">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
 </head>
 <body>
 <header class="site-header">
@@ -19,7 +22,7 @@
     <a href="/world-cup-2026">World Cup 2026</a>
     <a class="soon" href="/euro-2028">Euro 2028</a>
     <a class="soon" href="/copa-america-2028">Copa América 2028</a>
-    <a href="/how-it-works">How it works</a>
+    <a href="/how-it-works" aria-current="page">How it works</a>
     <a href="https://github.com/tcaetanoa-droid/IntSoccerPredictor">GitHub</a>
     <button class="chapters-btn" type="button" popovertarget="chapters">Chapters</button>
   </nav>
@@ -29,7 +32,7 @@
     <a href="/world-cup-2026">World Cup 2026</a>
     <a class="soon" href="/euro-2028">Euro 2028</a>
     <a class="soon" href="/copa-america-2028">Copa América 2028</a>
-    <a href="/how-it-works">How it works</a>
+    <a href="/how-it-works" aria-current="page">How it works</a>
     <a href="https://github.com/tcaetanoa-droid/IntSoccerPredictor">GitHub</a>
   </div>
   <a href="/world-cup-2026#who-wins-it" autofocus>Who wins it</a>
@@ -41,9 +44,8 @@
   <a href="/world-cup-2026#pick-a-team">Pick a team</a>
 </nav>
 <main class="sheet">
-<section class="chapter">
-  <div class="mast"><h1 class="mt">Thiago Caetano</h1><div class="mi">Personal site coming soon.</div></div>
-  <p class="intro">Until then, the code for this project is on <a href="https://github.com/tcaetanoa-droid/IntSoccerPredictor">GitHub</a>.</p>
+<section class="chapter" id="how-it-works">
+  <div class="mast"><h1 class="mt">How it works</h1><div class="mi">Two fitted parameters and four formulas.</div></div>
 </section>
 </main>
 <footer class="site-footer">
@@ -53,5 +55,6 @@
   <div><div class="fh">Links</div><p><a href="https://github.com/tcaetanoa-droid/IntSoccerPredictor">Source code on GitHub</a><br><a href="/how-it-works">How it works</a><br><a href="/thiago">Thiago Caetano</a></p></div>
 </footer>
 <script type="module" src="js/header.js"></script>
+<script type="module" src="js/how-it-works.js"></script>
 </body>
 </html>
