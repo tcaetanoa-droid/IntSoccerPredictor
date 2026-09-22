@@ -69,7 +69,9 @@ backtest.
 
 ## Brand Commitments
 
-- Name and wordmark: IntSoccerPredictor, set as text. There is no logo.
+- Name and wordmark: IntSoccerPredictor, set as text, with the site mark before it in the
+  masthead: a soccer pitch drawn in ink on paper (`site/favicon.svg`), which is also the favicon.
+  Chosen from rendered options on 22 Sep 2026; it appears nowhere else on the sheet.
 - Light theme, a standing preference for all of Thiago's sites.
 - Type: no house type. Decided 20 Sep 2026 (revised the same day): every project of Thiago's
   chooses its own visual world and faces for its own subject; nothing is shared with Guard or
