@@ -1,3 +1,15 @@
 {
-  "buildPath": "code"
+  "buildPath": "code",
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "design-system-font",
+        "value": "menlo",
+        "createdAt": "2026-09-22T08:45:10.746Z",
+        "reason": "Thiago's spec §3.2 and DESIGN.md (Typography): ui-monospace, Menlo, monospace sets the five reproduction commands in the method chapter only, the one monospace on the site; it sets code, not a costume"
+      }
+    ]
+  }
 }
