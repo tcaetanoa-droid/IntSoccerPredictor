@@ -2,6 +2,9 @@
 import { loadSiteData } from './data.js';
 import { boot as bootPrint } from './print.js';
 
+// A reload's place is the engine's to restore, once the sheet stands (land() in print.js).
+history.scrollRestoration = 'manual';
+
 const CHAPTERS = [
   { id: 'hero', mod: './hero.js' },
   { id: 'who-wins-it', mod: './fate-table.js' },

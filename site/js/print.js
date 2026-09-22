@@ -280,18 +280,31 @@ export function reprint(root, ms = 400) {
 // layoutPin() gives them, so it lands short by everything the layout above the target then gains.
 // It belongs here, after that layout and before the seed pass, which then paints from the landed
 // position. 'instant' because `scroll-behavior: smooth` would animate the whole sheet and print it
-// on the way; a reload keeps the browser's own scroll restoration, and a hash that is not an
-// element id (#team=XX) finds nothing and leaves the position alone. The browser's own scroll to
+// on the way; a hash that is not an element id (#team=XX) finds nothing and leaves the position
+// alone. A reload or a back/forward navigation lands on the visitor's place instead: the browser's
+// own restoration ran on the empty sheet at parse time and found nothing to scroll to, so main.js
+// hands restoration to the engine, boot() saves the position as the page is hidden, and it is
+// taken here in the same two steps as the fragment. The browser's own scroll to
 // the fragment is an animation for that same reason, still in flight in this frame and retargeted
 // by the pins' new heights, and it settles 31 to 108 pixels past this landing with the chapter
 // title behind the masthead: so the landing is taken once more on the next frame, when it and the
 // layout have both stopped moving, and that one is the last word. It can only move the sheet up,
 // by that much, over units the seed pass has already painted.
+const PLACE = () => `scroll:${location.pathname}`;
+function savePlace() { try { sessionStorage.setItem(PLACE(), String(Math.round(window.scrollY))); } catch (e) { /* storage refused: the next load lands at the top */ } }
 function land() {
-  if (performance.getEntriesByType('navigation')[0]?.type === 'reload') return;
-  const id = location.hash.slice(1), target = id && document.getElementById(id);
-  if (!target) return;
-  const take = () => target.scrollIntoView({ behavior: 'instant', block: 'start' });
+  const nav = performance.getEntriesByType('navigation')[0]?.type;
+  let take;
+  if (nav === 'reload' || nav === 'back_forward') {
+    let y = 0;
+    try { y = +sessionStorage.getItem(PLACE()); } catch (e) { /* as above */ }
+    if (!(y > 0)) return;
+    take = () => window.scrollTo({ top: y, behavior: 'instant' });
+  } else {
+    const id = location.hash.slice(1), target = id && document.getElementById(id);
+    if (!target) return;
+    take = () => target.scrollIntoView({ behavior: 'instant', block: 'start' });
+  }
   take();
   requestAnimationFrame(take);
 }
@@ -301,6 +314,7 @@ function land() {
 export function boot() {
   booted = true;
   H = window.innerHeight; W = window.innerWidth;
+  window.addEventListener('pagehide', savePlace);
   if (reduced()) { units.forEach((u) => set(u, 1)); layoutPin(); land(); return; }
   io = new IntersectionObserver((entries) => {
     for (const e of entries) { const u = byEl.get(e.target); if (u) u.live = e.isIntersecting; }
