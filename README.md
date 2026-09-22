@@ -43,7 +43,7 @@ often a favourite actually gets the result.
 
 | Done | Next |
 |---|---|
-| Data layer for eloratings.net TSV files | Report charts and the 2026 backtest |
+| Data layer for eloratings.net TSV files | The 2026 backtest (component 12), with the internal hardening (11f) and the Reality check unit (11g) alongside |
 | Elo engine, verified against the site's own point exchanges | |
 | Pre-tournament ratings for all 48 teams, groups, all 104 real results, full bracket and FIFA's 495-row third-place table | |
 | Goals model fitted and calibrated | |
@@ -53,6 +53,7 @@ often a favourite actually gets the result.
 | Full single-tournament simulation with Elo carried match to match and host home advantage | |
 | Monte Carlo runner that stores every match of every simulation as Parquet | |
 | Report data layer: ten views (group odds, fate table, paradoxes, most-probable bracket, reality check) as CSV/JSON | |
+| The website: the World Cup sheet as a newspaper wall chart, the pitch mark, How it works on its own page, clean addresses; live on Vercel | |
 
 Details and the full component list are in [docs/ROADMAP.md](docs/ROADMAP.md).
 

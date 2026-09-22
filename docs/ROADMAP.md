@@ -21,7 +21,7 @@ its own. Update the status column as things land.
 | 8 | Knockout stage: bracket resolution incl. the 495-row third-place table. **Validate: real 2026 standings must produce all 16 real R32 pairings** | `tournament/knockout.py` | done (component-7 standings from the real results + real knockout results reproduce all 32 real knockout pairings through the final) |
 | 9 | Full single-tournament simulation | `tournament/simulate.py` | done (~4 ms per tournament; hosts get +100 in group games and in knockout matches whose YAML `venues` entry is their country) |
 | 10 | Monte Carlo runner: N sims, seeds, aggregation (P(win), P(reach round), group finish) | `montecarlo/` | done (every match, team-fate and sim stored as Parquet under `output/<name>/`; any sim regenerable from `[seed, i]`; `intsoccer simulate`; ~225 sims/s) |
-| 11 | Reports: CSV/JSON tables + charts | `report/` | 11a done (data layer: the ten views of `docs/REPORTS.md` as CSV/JSON under `output/<name>/report/`, `intsoccer report`); 11b website done (site/, deployed on Vercel from main; data via intsoccer report --site) ; 11c restyle done (the tournament wall chart: spec docs/superpowers/specs/2026-09-20-restyle-design.md, DESIGN.md at the root); 11d mark done (the pitch favicon with PNG fallbacks for Safari and iOS, and the mark before the wordmark in the masthead; DESIGN.md "The mark"); 11e done (visitor-facing hardening: KaTeX integrity, the calibration table for assistive technology, a reload keeps the place; How it works on its own page; clean addresses through site/vercel.json, /world-cup-2026 with the root redirecting, tools/serve.py locally) |
+| 11 | Reports: CSV/JSON tables + charts | `report/` | 11a done (data layer: the ten views of `docs/REPORTS.md` as CSV/JSON under `output/<name>/report/`, `intsoccer report`); 11b website done (site/, deployed on Vercel from main; data via intsoccer report --site) ; 11c restyle done (the tournament wall chart: spec docs/superpowers/specs/2026-09-20-restyle-design.md, DESIGN.md at the root); 11d mark done (the pitch favicon with PNG fallbacks for Safari and iOS, and the mark before the wordmark in the masthead; DESIGN.md "The mark"); 11e done (visitor-facing hardening: KaTeX integrity, the calibration table for assistive technology, a reload keeps the place; How it works on its own page; clean addresses through site/vercel.json, /world-cup-2026 with the root redirecting, tools/serve.py locally); 11f todo (internal hardening from PR #2's final review, with the backtest sitting; the list below); 11g todo (the Reality check unit and the lede clause, parked 22 Sep 2026, once 12 has scored the runs) |
 | 12 | 2026 World Cup: transcribe groups/bracket/results to YAML, snapshot ratings at 2026-06-10, run the sim, score it (Brier / log-loss, calibration) | `backtest/` + `data/tournaments/wc2026.yaml` | todo (main goal) |
 | 13 | Euro 2028 run | `data/tournaments/euro2028.yaml` | deferred until draw + format known |
 | 14 | Copa América 2028 run | `data/tournaments/copa2028.yaml` | deferred until CONMEBOL announces format |
@@ -98,6 +98,33 @@ saved run into one CSV/JSON per view plus `report.json`; editorial choices per t
 giants, paradox pairs, real-results file) live in `build.FOCUS`. Tests check the
 structural invariants on a fresh 300-run store and, when `output/wc2026/` holds the seed-2026
 100k run, the exact numbers quoted in the doc. 11b draws one PNG per view from those files.
+
+**11f Internal hardening.** The final review before PR #2 (22 September 2026) left a list that
+touches no visitor and can wait for the backtest sitting; Thiago chose the five visitor-facing items
+first (PR #4, same day) and parked the rest here:
+- the hero's fit-threshold seed, so row progress never decreases when a tablet rotates across
+  1024px mid-hero;
+- the sideways-scroll cue not updating on resize under reduced motion;
+- width guards on the four chart redraws and the pins' re-layout on a phone's toolbar resize (a
+  zero-width measurement while a unit is hidden);
+- the read-then-write split in `tick()` (layout reads and style writes interleave);
+- the team search's initial-draw generation guard (a stale first draw overwriting a newer one);
+- shared exports: `fmt`/`fmtCount`, `snap()`, the row-ink formulas and `reduced()` are duplicated
+  across modules;
+- spec §3.1's per-fate tint contrast cap, unreachable with today's shares;
+- `groups.js` reading `getComputedStyle` per box per tick;
+- two stale spec lines (§4's 120 ms hover transition against the build's none; §6's 1rem on 1.8
+  against the ruling's 1rem/1.5 with padding);
+- the 516px gap in chapter two that the 0.045 lead rests on lives only in a comment;
+- whether the CSS sort arrows and the × glyph fall under the glyph ban (passed twice already).
+
+**11g Reality check.** From impeccable's critique of 22 September 2026 ("the reality check is a
+whisper"): the sheet's only statement of how the runs compared with the real tournament is a clause
+and the 12px caption under the bracket. Proposed: a ruled "Reality check" unit as the sheet's last
+unit before the colophon (the real final and its rank among the runs' finals, the four real
+semi-finalists against the bracket's, Spain's 18,626 against the real winner) plus one clause in the
+hero lede saying the runs were checked. Copy and unit are Thiago's; ruled "later, not now" at the
+PR #2 review. It needs 12's scored result, so it belongs to that sitting.
 
 **12 Backtest metrics.** For each match: Brier score over (W/D/L) and log-loss. For the tournament:
 did the sim's most-likely champion / semi-finalists match? Rank-probability skill vs a naive
