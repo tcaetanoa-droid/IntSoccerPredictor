@@ -71,9 +71,10 @@ export function paintDensityRow(el, p) {
 let units = [];
 const byEl = new WeakMap();
 const memo = new Map();   // key -> progress, so a re-drawn unit (a sorted row) stays printed
-// H is the viewport; HD the sticky header's measured height, the top edge of everything pinned
-// under it. The reading line stays at 0.92 of the viewport: it is a bottom-of-viewport event.
-let io = null, raf = null, H = 0, HD = 0, pinned = null, holds = [], booted = false;
+// H is the viewport, W its width; HD the sticky header's measured height, the top edge of
+// everything pinned under it. The reading line stays at 0.92 of the viewport: it is a
+// bottom-of-viewport event.
+let io = null, raf = null, H = 0, W = 0, HD = 0, pinned = null, holds = [], booted = false;
 
 function set(u, p) {
   p = Math.max(p, u.p);            // never un-prints
@@ -123,8 +124,12 @@ function layoutHero() {
   // last layout, or the block's own travel would measure as content.
   block.classList.remove('flow');
   block.style.height = '';
+  // Below 1024px the column stacks under the lede, a composition the pin was never drawn for, and
+  // a phone's URL bar moves innerHeight mid-scroll: at 390 the content clears the viewport by six
+  // pixels, so the fit would flip between flow and pin as the bar hides and rows would un-print.
+  // The pin is a desktop moment; narrower than that the hero prints across the reading line.
   const height = held.scrollHeight;         // the held screen is as tall as its content now
-  const fits = !reduced() && height <= H - HD + 1;
+  const fits = !reduced() && W >= 1024 && height <= H - HD + 1;
   pinned.active = fits;
   block.classList.toggle('flow', !fits);
   // The held content, then one screen of fill and the 0.35 hold. The block's bottom passes the
@@ -165,7 +170,9 @@ function layoutHold(o) {
   // Fit is both dimensions. A grid wider than its sideways container would be pinned with its
   // last rounds off the sheet, so an overflow sideways rules out every candidate exactly as a
   // window too short for the grid does: no lock, and the schedule on the page's own travel.
-  const wide = [...o.block.querySelectorAll('.scroll-x')].some((el) => el.scrollWidth > el.clientWidth);
+  // The same one-pixel tolerance dom.js's .sx test takes, so the no-lock, the sideways cue and the
+  // phone summary that follows .sx all agree at every width.
+  const wide = [...o.block.querySelectorAll('.scroll-x')].some((el) => el.scrollWidth > el.clientWidth + 1);
   // The held candidate carries HOLD_PAD of paper above its content, which the rest measurement
   // does not see, so every test and every height below adds it back.
   const i = reduced() || wide ? -1 : rects.findIndex((r) => r.height + HOLD_PAD <= H - HD - 4);
@@ -213,11 +220,13 @@ function tickPin(y) {
   if (!pinned) return true;
   if (pinned.active) {
     // The held screen sticks at the header's bottom edge, so the column starts filling there.
-    // The half-pixel snap tickHold makes at its own pin point: the masthead's height is measured
-    // and rounded into --hdr (45.656px reads as 46 on a phone), so the pin point can sit a
-    // fraction of a pixel above scroll 0 and the column would start filling on an unscrolled
-    // sheet. Nothing prints until the scroll has passed the pin point by half a pixel; past that
-    // the progress is the same formula it has always been.
+    // A half-pixel snap at the pin point, for the same reason tickHold makes one and with the
+    // opposite sign: the masthead's height is measured and rounded into --hdr (45.656px reads as
+    // 46 on a phone), so the pin point can sit a fraction of a pixel above scroll 0 and the column
+    // would start filling on an unscrolled sheet. tickHold snaps forwards, completing its approach
+    // half a pixel *before* its pin point so the last unit lands exactly at the lock; this one
+    // snaps back, withholding progress until half a pixel *after* the pin point. Past the snap the
+    // progress is the same formula it has always been.
     const top = pinned.block.getBoundingClientRect().top + y - HD;
     const p = Math.max(pinned.p, y >= top + 0.5 ? clamp((y - top) / H) : 0);
     if (p !== pinned.p) { pinned.p = p; pinned.rows.forEach((r) => pinned.painter(r.el, rowWindow(p, r.i, pinned.rows.length))); }
@@ -291,7 +300,7 @@ function land() {
 // unit painted complete, no pin, no listener.
 export function boot() {
   booted = true;
-  H = window.innerHeight;
+  H = window.innerHeight; W = window.innerWidth;
   if (reduced()) { units.forEach((u) => set(u, 1)); layoutPin(); land(); return; }
   io = new IntersectionObserver((entries) => {
     for (const e of entries) { const u = byEl.get(e.target); if (u) u.live = e.isIntersecting; }
@@ -299,16 +308,19 @@ export function boot() {
   }, { rootMargin: '100% 0px 100% 0px' });
   units.forEach((u) => { if (!u.manual) io.observe(u.el); });
   window.addEventListener('scroll', schedule, { passive: true });
-  window.addEventListener('resize', () => { H = window.innerHeight; layoutPin(); schedule(); });
+  window.addEventListener('resize', () => { H = window.innerHeight; W = window.innerWidth; layoutPin(); schedule(); });
   document.fonts.ready.then(() => { layoutPin(); schedule(); });   // the held screen's height settles with the faces
   layoutPin();
   land();
   // Seed pass: a deep-load position (a hash, scroll restoration) can land above units the
   // observer has not yet reported live; paint them now from their real position so a unit
-  // already above the reading line on load is painted complete, per spec §4.2.
+  // already above the reading line on load is painted complete, per spec §4.2. A unit with no
+  // layout box is skipped: display: none gives it a top of 0, which the block formula reads as
+  // fully entered, and a unit hidden at this width (the bracket's phone summary) would then be
+  // finished before it was ever seen, the first time the window was narrowed to show it.
   if (tickPin(window.scrollY)) {
     for (const u of units) {
-      if (u.manual || !u.el.isConnected) continue;
+      if (u.manual || !u.el.isConnected || !u.el.getClientRects().length) continue;
       set(u, progressOf(u));
     }
   }

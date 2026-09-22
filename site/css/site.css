@@ -225,6 +225,8 @@ img.flag { width: 20px; height: 14px; object-fit: cover; vertical-align: -2px; m
    the grid's own overflow state — the .sx class js/dom.js writes in the layout pass, on layout and
    on resize — so it is out of the layout wherever the grid fits whole and nothing is duplicated. */
 #bracket .bsum { display: none; border-top: 3px solid var(--ink); border-bottom: 1px solid var(--hair); padding: .9rem 0 1rem; margin: 0 0 1.4rem; }
+/* A browser without :has() never matches this and keeps the unit hidden: the phone behaviour the
+   sheet had before this batch, the grid scrolling sideways on its own. */
 #bracket .lock:has(> .scroll-x.sx) .bsum { display: block; }
 #bracket .bsum .champ { margin-bottom: 1.1rem; }
 #bracket .bsum .m { max-width: 300px; margin: 0 auto; }
