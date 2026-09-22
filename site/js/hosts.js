@@ -78,7 +78,7 @@ function paintValue(bar, p) {
   bar.rect.setAttribute('y', (bar.top + rise).toFixed(1));
   bar.rect.setAttribute('height', grown.toFixed(1));
   bar.val.setAttribute('transform', `translate(0,${rise.toFixed(1)})`);
-  bar.val.style.opacity = (0.2 + 0.8 * p).toFixed(3);
+  bar.val.style.opacity = (0.04 + 0.96 * p).toFixed(3);
   paintCounts(bar.val, p);
 }
 

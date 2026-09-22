@@ -25,8 +25,8 @@ const FIRST_TIME = [
 function paintUnderdogRow(tr, p) {
   const ink = clamp(p * 1.5);               // p / (2/3): the ink and the counts
   const bloom = clamp(p * 3 - 2);           // (p - 2/3) / (1/3): the tints, behind them
-  tr.querySelector('th').style.opacity = (0.15 + 0.85 * ink).toFixed(3);
-  for (const td of tr.querySelectorAll('td')) td.style.opacity = (0.2 + 0.8 * ink).toFixed(3);
+  tr.querySelector('th').style.opacity = (0.04 + 0.96 * ink).toFixed(3);
+  for (const td of tr.querySelectorAll('td')) td.style.opacity = (0.04 + 0.96 * ink).toFixed(3);
   // paintCounts sets each count and its tint from one progress; the tints are then rewritten to
   // their own, later phase, so a number is finished before its colour arrives.
   paintCounts(tr, ink);

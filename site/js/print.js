@@ -29,7 +29,11 @@ export const tintStrength = (share) => Math.min(1, 2.5 * share);
 // than when the grid is held alone (0.92), and shorter again by the header's own height;
 // layoutHold works it out per hold and APPROACH is the grid-alone value under no header.
 // The hold is the 1.35 screens the wheel then spends held.
-export const APPROACH = 0.92, HOLD_TRAVEL = 1.35;
+// HOLD_PAD is the paper the held candidate carries above its content at the lock, so its top rule
+// does not touch the masthead's (site.css: `#bracket .held { padding-top: 8px }`, the same 8).
+// The engine measures candidates without the class, so it adds the 8 itself wherever the
+// geometry uses the held region's height.
+export const APPROACH = 0.92, HOLD_TRAVEL = 1.35, HOLD_PAD = 8;
 export const holdPhase = (t, H, approach = APPROACH) => ({ p1: clamp(t / (approach * H)), q: clamp((t - approach * H) / (HOLD_TRAVEL * H)) });
 // The hold is four rounds of 0.3 of a screen and a beat of 0.15: round k (0 to 3) runs over its
 // own 0.3, complete at q = (k + 1) / 4.5, and the beat holds the finished bracket from 4/4.5 to 1.
@@ -39,17 +43,22 @@ const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matc
 
 // Painters. A count cell carries data-count and holds a .ct span (the counting display) beside
 // a .sr span (the final value, for assistive technology); a fate cell also carries data-share.
+// Nothing shows until a unit prints: an unprinted count is blank, not a "0", so a screenshot of
+// a half-read sheet carries no number the runs never produced. The .sr span keeps the final value
+// throughout, so assistive technology always reads the finished sheet.
 export function paintCounts(root, p) {
   for (const c of root.querySelectorAll('[data-count]')) {
     const ct = c.querySelector('.ct');
-    if (ct) ct.textContent = fmt(p * +c.dataset.count);
+    if (ct) ct.textContent = p === 0 ? '' : fmt(p * +c.dataset.count);
     if (c.dataset.share !== undefined) c.style.setProperty('--t', (p * tintStrength(+c.dataset.share)).toFixed(3));
   }
 }
+// An unprinted row reads as a hairline and faint paper, not as ghost text: its head and its cells
+// sit at the block floor, 4% ink, until the row crosses the reading line.
 export function paintRow(el, p) {
   const head = el.querySelector('th');
-  if (head) head.style.opacity = (0.15 + 0.85 * p).toFixed(3);
-  for (const c of el.querySelectorAll('td')) c.style.opacity = (0.2 + 0.8 * p).toFixed(3);
+  if (head) head.style.opacity = (0.04 + 0.96 * p).toFixed(3);
+  for (const c of el.querySelectorAll('td')) c.style.opacity = (0.04 + 0.96 * p).toFixed(3);
   paintCounts(el, p);
 }
 export function paintBlock(el, p) { el.style.opacity = (0.04 + 0.96 * p).toFixed(3); }
@@ -110,13 +119,18 @@ function layoutPin() {
 function layoutHero() {
   if (!pinned) return;
   const { block, held } = pinned;
-  block.classList.remove('flow');           // measure with the sticky height applied
-  const fits = !reduced() && held.scrollHeight <= held.clientHeight + 1;
+  // Measure at rest, as layoutHold does: no flow class, and no block height left over from the
+  // last layout, or the block's own travel would measure as content.
+  block.classList.remove('flow');
+  block.style.height = '';
+  const height = held.scrollHeight;         // the held screen is as tall as its content now
+  const fits = !reduced() && height <= H - HD + 1;
   pinned.active = fits;
   block.classList.toggle('flow', !fits);
-  // One screen + one of travel + a 0.35 hold, less the header: the held screen is that much
-  // shorter and starts sticking that much earlier, so the block is that much shorter too.
-  block.style.height = fits ? `${Math.round(H * 2.35 - HD)}px` : '';
+  // The held content, then one screen of fill and the 0.35 hold. The block's bottom passes the
+  // held screen's bottom exactly at the release, so chapter one rises into view during the hold
+  // and its title arrives 3rem under the limit rule as the page lets go.
+  block.style.height = fits ? `${Math.round(height + 1.35 * H)}px` : '';
   if (reduced()) { pinned.p = 1; pinned.rows.forEach(({ el }) => pinned.painter(el, 1)); }
 }
 // hold(block, candidates, paint, { start }): the bracket's pin. `candidates` is an ordered list
@@ -152,7 +166,9 @@ function layoutHold(o) {
   // last rounds off the sheet, so an overflow sideways rules out every candidate exactly as a
   // window too short for the grid does: no lock, and the schedule on the page's own travel.
   const wide = [...o.block.querySelectorAll('.scroll-x')].some((el) => el.scrollWidth > el.clientWidth);
-  const i = reduced() || wide ? -1 : rects.findIndex((r) => r.height <= H - HD - 4);
+  // The held candidate carries HOLD_PAD of paper above its content, which the rest measurement
+  // does not see, so every test and every height below adds it back.
+  const i = reduced() || wide ? -1 : rects.findIndex((r) => r.height + HOLD_PAD <= H - HD - 4);
   const fits = i >= 0;
   // No candidate fits: no lock, but the schedule still runs on the page's own travel from the
   // last candidate, which is the grid, exactly as it did before the title was a candidate.
@@ -161,13 +177,13 @@ function layoutHold(o) {
   // From the grid crossing the reading line to the held region's top reaching the header's bottom
   // edge; the paper left under the held region is what the viewport has below the header.
   o.approach = (0.92 * H - (o.start.getBoundingClientRect().top - rects[k].top) - HD) / H;
-  o.slack = fits ? (H - HD - rects[k].height) / H : 0;
+  o.slack = fits ? (H - HD - rects[k].height - HOLD_PAD) / H : 0;
   o.block.classList.toggle('flow', !fits);
   if (fits) {
     o.candidates[k].classList.add('held');
     const parent = k === 0 ? o.block : o.candidates[k - 1];
     const off = rects[k].top - (k === 0 ? blockTop : rects[k - 1].top);
-    parent.style.height = `${Math.round(off + rects[k].height + HOLD_TRAVEL * H)}px`;
+    parent.style.height = `${Math.round(off + rects[k].height + HOLD_PAD + HOLD_TRAVEL * H)}px`;
   }
   // The finished sheet under reduced motion; otherwise the travel so far (none before the first
   // tick), so the bracket is unprinted from boot and never shows printed before it is read.

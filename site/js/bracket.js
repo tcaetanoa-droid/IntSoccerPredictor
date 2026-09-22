@@ -45,27 +45,37 @@ export function render(section, ctx) {
   };
   const col = (nums, side) => h('div', { class: `col ${side}` }, ...nums.map((n) => h('div', { class: 'slot' }, box(n))));
 
-  const champMark = h('div', { class: 'champ' }, flag(champ, ctx.byCode, 80),
+  // The champion mark and the reality caption are built twice from the same data: once inside the
+  // grid, once inside the phone summary above it.
+  const champMark = () => h('div', { class: 'champ' }, flag(champ, ctx.byCode, 80),
     h('b', { class: 'cn' }, name(champ, ctx.byCode)),
     h('div', { class: 'sub' }, 'wins the final in ', pcell(pChamp), ' of the runs that got here'));
-  const cap = h('p', { class: 'realcap' }, `The real tournament produced this final: ${name(final.home, ctx.byCode)} v ${name(final.away, ctx.byCode)}.`);
+  const capText = `The real tournament produced this final: ${name(final.home, ctx.byCode)} v ${name(final.away, ctx.byCode)}.`;
+  const mark = champMark();
+  const cap = h('p', { class: 'realcap' }, capText);
   const thirdLbl = h('div', { class: 'lbl' }, 'Third place');
   // The round heads are cells of the bracket grid itself, so they centre over the columns
   // whatever width the content gives each one (a second grid could not share the track sizes).
   const grid = h('div', { class: 'bracket' }, ...HEAD.map((t) => h('div', { class: 'bh' }, t)),
     col(LEFT.R32, 'l'), col(LEFT.R16, 'l'), col(LEFT.QF, 'l'), col(LEFT.SF, 'l'),
-    h('div', { class: 'col fin' }, h('div', { class: 'slot' }, champMark,
+    h('div', { class: 'col fin' }, h('div', { class: 'slot' }, mark,
       h('div', { class: 'finwrap' }, box(104), cap),
       h('div', { class: 'third' }, thirdLbl, box(103)))),
     col(RIGHT.SF, 'r'), col(RIGHT.QF, 'r'), col(RIGHT.R16, 'r'), col(RIGHT.R32, 'r'));
   const held = scrollX('The bracket, scrolls sideways', grid);
+  // A screen too narrow for the grid gets the result before the road to it: the champion mark, the
+  // final's own box and the real final, a ruled unit between the intro and the grid. It is built
+  // from the same matches the grid is, and site.css shows it only while the grid carries the .sx
+  // class js/dom.js sets in the layout pass, so nothing is duplicated where the grid fits whole.
+  const sumBox = box(104);
+  const sum = h('div', { class: 'bsum' }, champMark(), sumBox, h('p', { class: 'realcap' }, capText));
   // The lock's first candidate: the chapter's title and intro with the grid, so the screen locks
   // at the title (spec §8, checkpoint amendment). js/print.js falls back to the grid alone, the
   // second candidate, on a window too short to hold all three.
   const lock = h('div', { class: 'lock' },
     ...chapterHead('The bracket', 'The most likely road to the final.',
       'Take the most common finishing order in every group, then at each knockout match ask: of all the runs where these two teams met in this exact slot, who won more often? Follow the winners to the final. It is the path of most likely steps, not the most likely single tournament, which is far rarer. The real tournament got the same four semi-finalists and the same final.'),
-    held);
+    sum, held);
   const block = h('div', { class: 'pin' }, lock);
   const es = M[84], coin = M[78];
   const foot = h('p', { class: 'foot' }, `Percentages are conditional on the pairing: ${name(es.home, ctx.byCode)} beat ${name(es.away, ctx.byCode)} in ${fmtPct(es.p_home, 0)} of the ${fmtCount(es.n_met)} runs where they met in match ${es.number}. Coin flips are printed as coin flips: ${name(coin.home, ctx.byCode)} ${fmtPct(coin.p_home, 0)}, ${name(coin.away, ctx.byCode)} ${fmtPct(1 - coin.p_home, 0)}. Match numbers are FIFA's.`);
@@ -80,11 +90,11 @@ export function render(section, ctx) {
   const setBox = (n, pr, pw) => { ruleP.set(n, Math.max(ruleP.get(n) ?? 0, pr)); rowsP.set(n, Math.max(rowsP.get(n) ?? 0, pw)); };
   const setLine = (k, p) => lineP.set(k, Math.max(lineP.get(k) ?? 0, p));
   // A box prints as the engine prints one: its rule with --bp (0.06 to full ink), its number and
-  // both rows 0.2 to full, the percentages counting up, the winner ending in full ink on its 9%
-  // tint and the loser at 0.75.
+  // both rows 0.04 to full, the percentages counting up from blank, the winner ending in full ink
+  // on its 9% tint and the loser at 0.75.
   const paintBox = (el, pr, pw) => {
     el.style.setProperty('--bp', (0.06 + 0.94 * pr).toFixed(3));
-    const on = 0.2 + 0.8 * pw;
+    const on = 0.04 + 0.96 * pw;
     el.querySelector('.mn').style.opacity = on.toFixed(3);
     for (const row of el.querySelectorAll('.tie')) {
       row.style.opacity = (row.classList.contains('win') ? on : on * 0.75).toFixed(3);
@@ -117,16 +127,16 @@ export function render(section, ctx) {
       const v = rowsP.get(headBox[k]) ?? 0;
       if (doneHead.get(k) === v) return;
       doneHead.set(k, v);
-      el.style.opacity = (0.15 + 0.85 * v).toFixed(3);
+      el.style.opacity = (0.04 + 0.96 * v).toFixed(3);
     });
     const pf = rowsP.get(104) ?? 0, pt = rowsP.get(103) ?? 0;
     if (pf !== doneFin) {
       doneFin = pf;
-      champMark.style.opacity = (0.04 + 0.96 * pf).toFixed(3);
-      paintCounts(champMark, pf);
+      mark.style.opacity = (0.04 + 0.96 * pf).toFixed(3);
+      paintCounts(mark, pf);
       cap.style.opacity = (0.04 + 0.96 * pf).toFixed(3);
     }
-    if (pt !== doneThird) { doneThird = pt; thirdLbl.style.opacity = (0.15 + 0.85 * pt).toFixed(3); }
+    if (pt !== doneThird) { doneThird = pt; thirdLbl.style.opacity = (0.04 + 0.96 * pt).toFixed(3); }
   };
   const paint = (t, H, approach) => {
     const { p1, q } = holdPhase(t, H, approach);
@@ -152,6 +162,13 @@ export function render(section, ctx) {
     paintAll();
   };
   drawConnectors(grid, roadLinks(M, final), paths, paintAll);
+  // The phone summary is one printed unit: it prints as a block on entry, its box's rule with it
+  // and its three percentages counting out of blank, the way every ruled unit on the sheet prints.
+  register(sum, (el, p) => {
+    paintBlock(el, p);
+    sumBox.style.setProperty('--bp', (0.06 + 0.94 * p).toFixed(3));
+    paintCounts(el, p);
+  }, { kind: 'block' });
   const bracket = hold(block, [lock, held], paint, { start: held });
   // The foot note. With the pin the block holds it below the window until the release, so it is
   // given the paper left under the held bracket as a lead and prints on the travel after the

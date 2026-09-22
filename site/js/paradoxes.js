@@ -112,9 +112,9 @@ function paintBar(bar, p) {
   bar.rect.setAttribute('y', y.toFixed(1));
   bar.rect.setAttribute('height', grown.toFixed(1));
   bar.val.setAttribute('y', (y - LABEL_GAP).toFixed(1));
-  bar.val.style.opacity = (0.2 + 0.8 * p).toFixed(3);
-  bar.ct.textContent = fmtPct(p * bar.share);
-  const ink = (0.15 + 0.85 * p).toFixed(3);
+  bar.val.style.opacity = (0.04 + 0.96 * p).toFixed(3);
+  bar.ct.textContent = p === 0 ? '' : fmtPct(p * bar.share);
+  const ink = (0.04 + 0.96 * p).toFixed(3);
   bar.tn.style.opacity = ink;
   for (const t of bar.subs) t.style.opacity = ink;
 }
@@ -128,13 +128,13 @@ function paintPair(pair, p) {
   const ink = rowWindow(p, 0, 3);
   pair.el.style.setProperty('--bp', (0.06 + 0.94 * ink).toFixed(3));
   paintBlock(pair.label, ink);
-  const head = (0.15 + 0.85 * ink).toFixed(3), cell = (0.2 + 0.8 * ink).toFixed(3);
+  const on = (0.04 + 0.96 * ink).toFixed(3);   // the row floor: a name and its Elo, 4% ink until printed
   for (const s of pair.sides) {
-    s.th.style.opacity = head;
-    s.elo.style.opacity = cell;
+    s.th.style.opacity = on;
+    s.elo.style.opacity = on;
     const q = rowWindow(p, s.hi ? 2 : 1, 3);
-    s.cell.style.opacity = (0.2 + 0.8 * q).toFixed(3);
-    s.ct.textContent = fmtPct(q * s.share, s.dec);
+    s.cell.style.opacity = (0.04 + 0.96 * q).toFixed(3);
+    s.ct.textContent = q === 0 ? '' : fmtPct(q * s.share, s.dec);
     if (s.hi) s.tr.classList.toggle('hi', q >= 1);
   }
   paintBlock(pair.reason, p);

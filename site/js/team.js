@@ -34,15 +34,16 @@ function fadeOut(el) {
 // technology, then the display that climbs.
 const pct = (x) => [h('span', { class: 'sr' }, fmtPct(x, 1)), h('span', { class: 'ct', 'aria-hidden': 'true' }, fmtPct(0, 1))];
 
-// A list row of the two ruled lists or of the opponents: its hairline and label ink from 0.15,
-// its values from 0.2, each bar grows to its own full width, and the numbers climb — counts
-// through the engine's painter, percentages through the formatter beside their .sr span.
+// A list row of the two ruled lists or of the opponents: its hairline, its label and its values
+// from the block floor of 0.04, each bar grows to its own full width, and the numbers climb out
+// of blank — counts through the engine's painter, percentages through the formatter beside their
+// .sr span.
 function paintListRow(el, p) {
   el.style.setProperty('--rp', p.toFixed(3));
-  for (const lb of el.querySelectorAll('.lb')) lb.style.opacity = (0.15 + 0.85 * p).toFixed(3);
-  for (const v of el.querySelectorAll('.val, .oitem')) v.style.opacity = (0.2 + 0.8 * p).toFixed(3);
+  for (const lb of el.querySelectorAll('.lb')) lb.style.opacity = (0.04 + 0.96 * p).toFixed(3);
+  for (const v of el.querySelectorAll('.val, .oitem')) v.style.opacity = (0.04 + 0.96 * p).toFixed(3);
   for (const b of el.querySelectorAll('.bar')) b.style.width = `${(p * +b.dataset.w).toFixed(2)}%`;
-  for (const c of el.querySelectorAll('[data-pct]')) c.querySelector('.ct').textContent = fmtPct(p * +c.dataset.pct, 1);
+  for (const c of el.querySelectorAll('[data-pct]')) c.querySelector('.ct').textContent = p === 0 ? '' : fmtPct(p * +c.dataset.pct, 1);
   paintCounts(el, p);
 }
 // The head prints as a block and its champion count climbs with it.
