@@ -385,8 +385,9 @@ img.flag { width: 20px; height: 14px; object-fit: cover; vertical-align: -2px; m
 #how-it-works .two { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 0 2.6rem; margin: .6rem 0 .2rem; }
 #how-it-works .two table.pt { width: auto; margin: 0; }
 #how-it-works .two th, #how-it-works .two td { text-align: left; padding-right: 1.4rem; }
-/* The worked example: a 1px ink box under its label line, its numbers in full ink. */
-#how-it-works .ex { border: 1px solid var(--ink); padding: .55rem .75rem .7rem; margin: .8rem 0 .2rem; }
+/* The worked example: the sheet's rules, not a box. A 3px ink rule opens it and a hairline closes
+   it; its label line keeps its own rule between them, and its numbers stay in full ink. */
+#how-it-works .ex { border-top: 3px solid var(--ink); border-bottom: 1px solid var(--hair); padding: .55rem 0 .7rem; margin: .8rem 0 .2rem; }
 #how-it-works .ex p { font: .95rem/1.55 var(--reading); color: var(--ink-soft); margin: .5rem 0 0; }
 #how-it-works .ex b { color: var(--ink); font-weight: 700; font-variant-numeric: tabular-nums; }
 /* The calibration chart: ink lines, hollow ink dots, hairline grid. The caption reads over the two

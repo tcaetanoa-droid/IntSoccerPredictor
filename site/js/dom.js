@@ -13,9 +13,12 @@ export function h(tag, attrs = {}, ...children) {
   return el;
 }
 export const name = (code, byCode) => (byCode[code] ? byCode[code].name : code);
+// The w40 grid flags are many and arrive as the reader scrolls to their row, so they stay lazy.
+// Every wider one marks a chapter head or the champion, where a hash landing, a fast scroll or a
+// capture from the top must not find an empty box: those load eagerly.
 export function flag(code, byCode, width = 40) {
   const iso = byCode[code] ? byCode[code].iso : 'un';
-  return h('img', { class: 'flag', src: `https://flagcdn.com/w${width}/${iso}.png`, alt: '', loading: 'lazy' });
+  return h('img', { class: 'flag', src: `https://flagcdn.com/w${width}/${iso}.png`, alt: '', loading: width > 40 ? 'eager' : 'lazy' });
 }
 // A sideways-scrolling region a keyboard can reach: Tab lands on it, the arrow keys scroll it.
 export const scrollX = (label, ...children) => h('div', { class: 'scroll-x', tabindex: '0', role: 'group', 'aria-label': label }, ...children);
