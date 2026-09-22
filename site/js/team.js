@@ -179,7 +179,10 @@ export async function render(section, ctx) {
     const opps = region('opp', 'Most common opponent, round by round', `Share of the runs in which ${nm} reached that round`,
       ROUNDS.map(([k, lab]) => row(h('div', { class: 'orow' }, h('span', { class: 'lb olb' }, lab),
         h('span', { class: 'olist' }, ...(t.opponents_by_round[k] || []).map((o) => h('span', { class: 'oitem' },
-          flag(o.team, ctx.byCode, 40), name(o.team, ctx.byCode), h('b', { 'data-pct': o.pct }, pct(o.pct)))))), paintListRow)));
+          // The name carries its own element so that it, and never the percentage beside it, is
+          // the part the column's ellipsis cuts.
+          flag(o.team, ctx.byCode, 40), h('span', { class: 'onm' }, name(o.team, ctx.byCode)),
+          h('b', { 'data-pct': o.pct }, pct(o.pct)))))), paintListRow)));
     // Who knocked it out: shares of the runs that ended in an elimination, and the bars are
     // measured against the biggest eliminator, so the first one runs the full width.
     const kmax = t.knocked_out_by.length ? t.knocked_out_by[0].pct : 1;

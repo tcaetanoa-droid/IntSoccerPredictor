@@ -323,9 +323,14 @@ img.flag { width: 20px; height: 14px; object-fit: cover; vertical-align: -2px; m
 #pick-a-team .olb { color: var(--ink-soft); }
 /* The three opponents of a round are three equal columns, so the first, second and third flag
    each sit on one vertical line down the region; a name too long for its column is cut with an
-   ellipsis rather than wrapping the row. */
+   ellipsis rather than wrapping the row. An item is a flex row whose name is the only part that
+   shrinks, so the ellipsis takes the name and the percentage stays whole. Flex has no
+   vertical-align, so the flag's own 2px drop below the baseline is painted back on. */
 #pick-a-team .olist { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .2rem 1.4rem; }
-#pick-a-team .oitem { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#pick-a-team .oitem { display: flex; align-items: baseline; min-width: 0; white-space: nowrap; overflow: hidden; }
+#pick-a-team .oitem img.flag, #pick-a-team .oitem b { flex: 0 0 auto; }
+#pick-a-team .oitem img.flag { position: relative; top: 2px; }
+#pick-a-team .onm { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
 #pick-a-team .oitem b { margin-left: .35rem; font-weight: 400; color: var(--muted); font-variant-numeric: tabular-nums; }
 @container (max-width: 560px) {
   #pick-a-team .orow { grid-template-columns: minmax(0, 1fr); }
