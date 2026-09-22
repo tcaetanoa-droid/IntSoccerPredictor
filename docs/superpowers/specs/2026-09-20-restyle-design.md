@@ -446,7 +446,8 @@ plain ink bars in fate order, fourth in the group to champion, the fate name und
 real names, which turn and read up the page at this column width). A shared axis in runs behind
 the bars: hairlines at 0, 10,000, 20,000, 30,000 and 40,000, topping out at 45,000, and the count
 above every bar (Thiago's correction after Submit, 21 September: the screen's option labelled
-only each host's tallest bar, Mexico 32,508, Canada 41,113, the USA 26,379; he expects every
+only each host's tallest bar, Mexico 32,508, Canada 41,113, the USA 26,379, its 4th-in-group bar (the USA's tallest is in fact 29,812, Out in R32, as the build
+found); he expects every
 bar's count with the axis kept, a combination the screen did not offer; confirm at the chapter's
 localhost checkpoint). The
 region head is the flag and the system's team name (USA, not "The United States"; the lede
