@@ -89,7 +89,7 @@ export function render(section, ctx, { page = false } = {}) {
   checkExample(src.map((s) => s.maths).join(''));
   const steps = src.map((s, i) => {
     // The step number stays in the title: the pipeline order is the content.
-    const title = h('h3', {}, `${i + 1}. ${s.title}`);
+    const title = h(page ? 'h2' : 'h3', {}, `${i + 1}. ${s.title}`);   // one level under the page's h1, two under the sheet's chapter h2
     const prose = h('p', { class: 'mprose', html: s.prose });
     const side = h('div', { class: 'mcol mside', html: s.maths });
     const el = h('div', { class: 'mstep' }, h('div', { class: 'mcol' }, title, prose), side);

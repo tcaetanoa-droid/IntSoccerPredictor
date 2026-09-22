@@ -1,11 +1,11 @@
 ---
 version: 1
 slug: "site-index-html"
-primary_target: "site/index.html"
-related_targets: ["site/euro2028.html","site/copa2028.html","site/thiago.html"]
+primary_target: "site/world-cup-2026.html"
+related_targets: ["site/euro-2028.html","site/copa-america-2028.html","site/how-it-works.html","site/thiago.html"]
 ---
 
-# Surface brief: the World Cup 2026 page (site/index.html)
+# Surface brief: the World Cup 2026 page (site/world-cup-2026.html, once site/index.html)
 
 Scope: the whole page, shell included: site masthead, hero, the eight chapters, footer. The Euro 2028, Copa América 2028 and Thiago placeholder pages inherit the shell. Visitor mode: Read.
 

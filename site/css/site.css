@@ -407,6 +407,9 @@ img.flag { width: 20px; height: 14px; object-fit: cover; vertical-align: -2px; m
 #how-it-works .mstep { display: grid; grid-template-columns: 1fr 1.12fr; gap: 0 44px; border-top: 1px solid var(--ink); padding: 1.05rem 0 .85rem; }
 #how-it-works .mcol { min-width: 0; }
 #how-it-works h3 { margin: 0 0 .5rem; }
+/* On its own page a step's title is an h2 under the page's h1, in the chapter sub-head's face, not the
+   chapter title's: the same declarations as .chapter h3, with the chapter h2's rules and centring undone. */
+#how-it-works .mstep h2 { font: 1.5rem/1 var(--display); font-weight: 400; text-transform: uppercase; margin: 1.6rem 0 .6rem; text-align: left; border: 0; padding: 0; margin: 0 0 .5rem; }
 #how-it-works .mprose { font: 1.05rem/1.55 var(--reading); color: var(--ink-soft); max-width: 62ch; margin: 0; }
 #how-it-works .mprose b, #how-it-works .mprose em { color: var(--ink); }
 /* A superscript or subscript in running text still has to clear the 12px floor. */
