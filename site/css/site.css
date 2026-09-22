@@ -42,6 +42,9 @@ img.flag { width: 20px; height: 14px; object-fit: cover; vertical-align: -2px; m
    target are set from. */
 .site-header { position: sticky; top: 0; z-index: 5; background: var(--paper); display: flex; justify-content: space-between; align-items: baseline; gap: .6rem 2rem; flex-wrap: wrap; padding: .75rem var(--gutter) .6rem; border-bottom: 1px solid var(--ink); font-size: .85rem; }
 .wordmark { font: 1.35rem/1 var(--display); text-transform: uppercase; letter-spacing: .02em; text-decoration: none; }
+/* The mark before the wordmark: the favicon at 20px, inline in the text run, so the masthead's
+   baseline row and the header height js/header.js measures do not move. */
+.site-header .wordmark img { width: 20px; height: 20px; vertical-align: -3px; margin-right: .5rem; }
 .site-header nav { display: flex; gap: 1.1rem; flex-wrap: wrap; align-items: baseline; }
 .site-header nav a { text-decoration: none; }
 .site-header nav a[aria-current="page"] { border-bottom: 2px solid var(--orange); padding-bottom: .1rem; }
