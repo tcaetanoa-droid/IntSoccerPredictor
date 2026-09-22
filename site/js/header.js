@@ -8,8 +8,6 @@
 
 let hdr = 0;
 
-export const headerHeight = () => hdr;
-
 export function measure() {
   const el = document.querySelector('.site-header');
   const h = el ? Math.round(el.getBoundingClientRect().height) : 0;

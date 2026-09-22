@@ -56,6 +56,10 @@ img.flag { width: 20px; height: 14px; object-fit: cover; vertical-align: -2px; m
 #chapters a:first-child { border-top: 0; }
 /* Feedback: a hovered chapter takes the 9% ink tint a highlighted list row prints on. */
 #chapters a:hover { background: color-mix(in srgb, var(--ink) 9%, transparent); }
+/* Without the popover attribute (Safari 16 and earlier, Firefox before 125) the list is a fixed
+   box that never hides and a button that does nothing: both are withdrawn, and the chapters stay
+   reachable through the sheet itself. */
+@supports not selector(:popover-open) { #chapters, .chapters-btn { display: none; } }
 
 /* the sheet */
 .sheet { max-width: var(--sheet); margin: 0 auto; padding: 0 var(--gutter); }
@@ -161,7 +165,6 @@ img.flag { width: 20px; height: 14px; object-fit: cover; vertical-align: -2px; m
    rounds inside the hold, so the region sticks inside a taller block, as the hero does. */
 #bracket .pin { position: relative; }
 #bracket .held { position: sticky; top: var(--hdr); }
-#bracket .pin.flow .held { position: static; }
 #bracket .bracket { position: relative; display: grid; grid-template-columns: repeat(4, 1fr) 1.3fr repeat(4, 1fr); grid-template-rows: auto 560px; gap: 10px 8px; min-width: 1104px; }
 #bracket .bh { font-weight: 700; font-size: .75rem; line-height: 1.2; text-transform: uppercase; letter-spacing: .06em; text-align: center; padding-bottom: .2rem; border-bottom: 1px solid var(--ink); }
 #bracket .col { display: flex; flex-direction: column; }

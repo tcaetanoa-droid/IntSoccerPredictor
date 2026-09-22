@@ -129,12 +129,13 @@ function layoutHero() {
 // the element whose top crossing the reading line begins the schedule (the grid), so the first
 // row always opens with the grid on the reading line whichever region is held, and the approach
 // shortens by the head's height rather than the rows starting earlier. `paint(t, H, approach)` is the
-// chapter's own schedule, called with the wheel travel since that moment; the travel is
-// arithmetic on the layout, not a live rect, so it keeps counting while the region is held.
+// chapter's own schedule, called with the wheel travel since that moment; the travel is measured
+// from the block's rect, read live on every tick, and the block itself never sticks, so the travel
+// keeps counting while the held region stands still.
 // `slack` is the paper left under the held region, a fraction of the viewport, so a unit below
 // the block can be given it as a lead and print after the release.
 export function hold(block, candidates, paint, { start = candidates[candidates.length - 1] } = {}) {
-  const o = { block, candidates, start, paint, active: false, slack: 0, offset: 0, approach: APPROACH, t: 0, done: false };
+  const o = { block, candidates, start, paint, slack: 0, offset: 0, approach: APPROACH, t: 0, done: false };
   holds.push(o);
   if (booted) layoutHold(o);
   return o;
@@ -156,7 +157,6 @@ function layoutHold(o) {
   // No candidate fits: no lock, but the schedule still runs on the page's own travel from the
   // last candidate, which is the grid, exactly as it did before the title was a candidate.
   const k = fits ? i : o.candidates.length - 1;
-  o.active = fits;
   o.offset = rects[k].top - blockTop;           // the held region's rest offset inside the block
   // From the grid crossing the reading line to the held region's top reaching the header's bottom
   // edge; the paper left under the held region is what the viewport has below the header.

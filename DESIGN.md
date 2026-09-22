@@ -154,7 +154,7 @@ A green-tinted paper and a near-black green ink, with one orange for what is rea
 **Body Font:** Old Standard TT (with Georgia, serif)
 **Label/Mono Font:** News Cycle (with Arial Narrow, sans-serif) for every table, label, count, nav item and foot note; `ui-monospace, Menlo, monospace` only for the five reproduction commands in the method chapter.
 
-**Character:** A newspaper's three registers. League Gothic is the condensed headline capital: one weight, always uppercase, set tight at line-height 1 or below. Old Standard TT is the text face for anything that reads as a sentence, and the sheet's only serif. News Cycle is the agate: compact, upright, with tabular figures, and it carries the whole numerical story. Emphasis comes from weight and size, never from a second colour.
+**Character:** A newspaper's three registers. League Gothic is the condensed headline capital: one weight, always uppercase, set tight at line-height 1 or below. Old Standard TT is the text face for anything that reads as a sentence, and the sheet's only serif. News Cycle is the agate: compact, upright, with proportional figures (the face has no tabular set; `tabular-nums` is declared and inert), and it carries the whole numerical story. Emphasis comes from weight and size, never from a second colour.
 
 The faces load from Google Fonts (two `preconnect` links and one stylesheet link in each page's head, `display=swap`): League Gothic in its one weight, News Cycle 400 and 700, Old Standard TT 400, 700 and italic 400. All three are under the SIL Open Font License. Self-hosting is an open question and would change the loading, not the faces. These faces bind this site only; no house type is shared across Thiago's projects.
 
@@ -163,9 +163,9 @@ The faces load from Google Fonts (two `preconnect` links and one stylesheet link
 - **Headline** (400, 2.6rem at 1024px and up, 2rem below, line-height .95, uppercase, centred): a chapter title, set between a 3px rule above and a 3px rule below.
 - **Title** (400, 1.5rem, line-height 1, uppercase): a sub-head inside a chapter, a host region's name, the champion's name in the bracket. The chart masthead's title is the same face at 1.75rem (1.4rem below 1024px); the picked team's name at 2rem; the wordmark at 1.35rem with .02em tracking.
 - **Body** (400, 1.05rem, line-height 1.55, soft ink, measure ≤ 60ch): the lede, chapter intros, method prose, the picked team's paragraph. The claim that opens an intro is 700 in full ink. The paradox reason lines and the worked example run at .95rem with the same leading; 1.55 is the reading face's one leading.
-- **Agate** (400, .8rem, News Cycle, tabular figures): the body of every table, the foot notes and the chart masthead's line; cells pad .25rem .3rem. Rows in the bracket and the paradox boxes run at .75rem; list rows in the picker and the search results at .875rem; the hero column rows at 1rem (the rest-of-field row at .85rem).
+- **Agate** (400, .8rem, News Cycle, figures right-aligned): the body of every table, the foot notes and the chart masthead's line; cells pad .25rem .3rem. Rows in the bracket and the paradox boxes run at .75rem; list rows in the picker and the search results at .875rem; the hero column rows at 1rem (the rest-of-field row at .85rem).
 - **Label** (700, .75rem, .06em tracking, uppercase): a table head, a column label, a box label, a round head in the bracket, the sub-line under a count. The hero column's label, a host mark, the footer's column heads and the placeholder pages' fact keys track wider at .08em.
-- **Count** (700, 2rem, News Cycle, tabular figures): the picked team's headline count in chapter seven, the one figure set at title size.
+- **Count** (700, 2rem, News Cycle, right-aligned): the picked team's headline count in chapter seven, the one figure set at title size.
 - **Equation** (KaTeX at 20px, line-height 1.4, ink): display maths in the method chapter; the size chosen so KaTeX's smallest script level stays at 12px.
 
 ### Named Rules
@@ -173,7 +173,7 @@ The faces load from Google Fonts (two `preconnect` links and one stylesheet link
 
 **The Three Registers Rule.** League Gothic sets titles, Old Standard TT sets sentences, News Cycle sets everything that is a table, label or number. A face does not cross into another's job; a title is never set in the serif, and a count is never set in the display face.
 
-**The Tabular Figure Rule.** Every number sits in News Cycle with `font-variant-numeric: tabular-nums` and is right-aligned, so a count-up settles on its right edge.
+**The Right-Edge Rule.** Every number sits in News Cycle and is right-aligned, so a count-up settles on its right edge. `font-variant-numeric: tabular-nums` is declared throughout but News Cycle carries no tabular figures, so digits shift sideways while a count climbs; accepted at the hero checkpoint, and the reason numbers are never centred.
 
 ## Layout
 

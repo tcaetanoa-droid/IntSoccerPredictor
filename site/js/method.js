@@ -16,7 +16,7 @@ const ES = 2232, AR = 2200;
 // source of truth and every figure the text derives from them is formatted here.
 function figures(meta) {
   const { a, b, c_friendly } = meta.goals_model;
-  return { a: a.toFixed(3), b: b.toFixed(5), c: `−${Math.abs(c_friendly).toFixed(3)}`,
+  return { a: a.toFixed(3), b: b.toFixed(5), c: c_friendly.toFixed(3).replace('-', '−'),
     ea: Math.exp(a).toFixed(2), e100b: Math.exp(100 * b).toFixed(2) };
 }
 // The worked example's four numbers are the module's own text. They are checked here against the

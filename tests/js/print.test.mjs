@@ -1,5 +1,5 @@
 // tests/js/print.test.mjs: the print engine's pure formulas (site/js/print.js).
-// Run: node --test tests/js/
+// Run: node --test tests/js/*.mjs
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { clamp, fmt, rowWindow, blockProgress, lineProgress, densityTarget, tintStrength, holdPhase, roundProgress } from '../../site/js/print.js';

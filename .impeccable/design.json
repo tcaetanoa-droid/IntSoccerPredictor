@@ -25,7 +25,7 @@
       "headline": { "displayName": "Chapter title", "purpose": "A chapter's name, centred between a 3px rule above and below; 2rem below 1024px." },
       "title": { "displayName": "Sub-head", "purpose": "A sub-head inside a chapter, a host region's name, the champion's name. The chart masthead is the same face at 1.75rem, the picked team's name at 2rem, the wordmark at 1.35rem." },
       "body": { "displayName": "Reading", "purpose": "Ledes, intros, method prose and the picked team's paragraph, in soft ink at 60ch or less; the opening claim is bold ink." },
-      "agate": { "displayName": "Agate", "purpose": "The body of every table, foot notes and the chart masthead's line; tabular figures, right-aligned." },
+      "agate": { "displayName": "Agate", "purpose": "The body of every table, foot notes and the chart masthead's line; figures right-aligned." },
       "label": { "displayName": "Label", "purpose": "Table heads, column and box labels, round heads, count sub-lines: bold caps with .06em tracking (.08em on the hero column label, host marks, footer heads and fact keys)." }
     },
     "shadows": [],
@@ -150,7 +150,7 @@
       { "name": "The 4.5 Floor Rule", "body": "Every text colour clears 4.5:1 on paper and on the strongest tint it sits on. A muted figure that lands on the 9% tint steps to soft ink to keep the floor. One kept exception exists and is recorded under Do's and Don'ts, not here.", "section": "colors" },
       { "name": "The Twelve-Pixel Rule", "body": "No text under 12px (.75rem): agate is the densest role, superscripts are floored at max(12px, .72em), chart labels are drawn at 12px at every width because the charts redraw at their measured pixel width rather than scaling through a viewBox.", "section": "typography" },
       { "name": "The Three Registers Rule", "body": "League Gothic sets titles, Old Standard TT sets sentences, News Cycle sets everything that is a table, label or number. A face does not cross into another's job; a title is never set in the serif, and a count is never set in the display face.", "section": "typography" },
-      { "name": "The Tabular Figure Rule", "body": "Every number sits in News Cycle with font-variant-numeric: tabular-nums and is right-aligned, so a count-up settles on its right edge.", "section": "typography" },
+      { "name": "The Right-Edge Rule", "body": "Every number sits in News Cycle and is right-aligned, so a count-up settles on its right edge. font-variant-numeric: tabular-nums is declared throughout but News Cycle carries no tabular figures, so digits shift sideways while a count climbs; accepted at the hero checkpoint, and the reason numbers are never centred.", "section": "typography" },
       { "name": "The No-Shadow Rule", "body": "Nothing on the sheet casts a shadow, glows, blurs or lifts on hover. A popover or a dropdown is a ruled box on the paper. If a new surface needs to read as \"above\", give it a 1px ink border.", "section": "elevation" }
     ],
     "dos": [

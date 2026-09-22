@@ -80,6 +80,7 @@ python3 -m venv .venv && source .venv/bin/activate   # keep the clone out of iCl
 pip install -e ".[dev]"
 
 pytest                                   # run the test suite
+node --test tests/js/*.mjs               # the print engine's formulas (site/js/print.js)
 intsoccer fetch --teams ES AR EN         # download current ratings and team histories
 intsoccer snapshot --date 2026-06-11 --label wc2026   # ratings as of the eve of the World Cup
 intsoccer fit                            # refit the goals model and draw the calibration chart
