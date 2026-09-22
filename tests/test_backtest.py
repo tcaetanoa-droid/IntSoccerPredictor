@@ -289,6 +289,8 @@ PIN = {
     "runs_brier": 0.46939,
     "runs_logloss": 0.77674,
     "shrug_brier": 0.61538,
+    "shrug_logloss": 0.97385,
+    "elo_brier": 0.46016,
     "elo_logloss": 0.75602,
     "dayof_skill_logloss_vs_shrug": 0.2021,
 }
@@ -347,6 +349,8 @@ def test_full_run_match_scores_are_pinned(full):
     assert m["runs"]["all"]["brier"] == pytest.approx(PIN["runs_brier"], abs=5e-5)
     assert m["runs"]["all"]["logloss"] == pytest.approx(PIN["runs_logloss"], abs=5e-5)
     assert m["shrug"]["all"]["brier"] == pytest.approx(PIN["shrug_brier"], abs=5e-5)
+    assert m["shrug"]["all"]["logloss"] == pytest.approx(PIN["shrug_logloss"], abs=5e-5)
+    assert m["elo"]["all"]["brier"] == pytest.approx(PIN["elo_brier"], abs=5e-5)
     assert m["elo"]["all"]["logloss"] == pytest.approx(PIN["elo_logloss"], abs=5e-5)
     assert m["dayof"]["all"]["skill"]["logloss_vs_shrug"] == pytest.approx(
         PIN["dayof_skill_logloss_vs_shrug"], abs=5e-4)
