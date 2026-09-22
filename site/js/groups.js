@@ -25,8 +25,12 @@ export function render(section, ctx) {
   for (const r of all) (byGroup[r.group] ??= []).push(r);
   const wall = h('div', { class: 'wall' });
   // The boxes of a wall row share a top, so the reading line alone would print them in lockstep.
-  // Half a band of lead per column (0.09 of a screen) makes them print one by one, A to L, at
-  // whatever column count the width gives.
+  // A quarter of a band of lead per column (0.045 of a screen) makes them print one by one, A to
+  // L, at whatever column count the width gives. The wave is a quarter of a band and not the half
+  // it was because the whole wall has to be printed before the bracket's grid reaches the reading
+  // line: four across, the last column's lead plus its own band has to fit in the 516px between
+  // the last wall row and that grid, which at half a band it did not on a window over 1147px tall.
+  const LEAD = 0.045;
   const cols = () => getComputedStyle(wall).gridTemplateColumns.split(' ').length;
   Object.keys(byGroup).sort().forEach((g, i) => {
     const rows = byGroup[g].sort((a, b) => b.adv_pct - a.adv_pct);
@@ -44,7 +48,7 @@ export function render(section, ctx) {
             h('td', {}, h('span', { class: 'bar' }, h('i'))),
             h('td', { 'data-count': pct }, count(pct), '%'));
         }))));
-    register(box, paintBox, { lead: () => (i % cols()) * 0.09 });
+    register(box, paintBox, { lead: () => (i % cols()) * LEAD });
     wall.append(box);
   });
   const best = all.reduce((a, b) => (b.adv_pct > a.adv_pct ? b : a));

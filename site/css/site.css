@@ -11,6 +11,9 @@
   --reading: 'Old Standard TT', Georgia, serif;
   --grid: 'News Cycle', 'Arial Narrow', sans-serif;
   --gutter: 48px; --sheet: 1360px;
+  /* The sticky masthead's measured height, published by js/header.js. Nothing sits under the
+     header until it has been measured, so the value before the script runs is no header at all. */
+  --hdr: 0px;
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -26,8 +29,11 @@ img.flag { width: 20px; height: 14px; object-fit: cover; vertical-align: -2px; m
    the .sr spans inside a wide table are contained and clipped here, not by the viewport. */
 .scroll-x { position: relative; overflow-x: auto; scrollbar-width: thin; scrollbar-color: var(--ink) transparent; }
 
-/* site masthead */
-.site-header { display: flex; justify-content: space-between; align-items: baseline; gap: .6rem 2rem; flex-wrap: wrap; padding: .75rem var(--gutter) .6rem; border-bottom: 1px solid var(--ink); font-size: .85rem; }
+/* site masthead: it stays at the top of the sheet throughout the scroll, on the paper and over
+   everything the sheet prints. Its height is not constant — the nav wraps at narrow widths — so
+   js/header.js measures it into --hdr, which the pinned screens, the chapter list and every hash
+   target are set from. */
+.site-header { position: sticky; top: 0; z-index: 5; background: var(--paper); display: flex; justify-content: space-between; align-items: baseline; gap: .6rem 2rem; flex-wrap: wrap; padding: .75rem var(--gutter) .6rem; border-bottom: 1px solid var(--ink); font-size: .85rem; }
 .wordmark { font: 1.35rem/1 var(--display); text-transform: uppercase; letter-spacing: .02em; text-decoration: none; }
 .site-header nav { display: flex; gap: 1.1rem; flex-wrap: wrap; align-items: baseline; }
 .site-header nav a { text-decoration: none; }
@@ -38,7 +44,7 @@ img.flag { width: 20px; height: 14px; object-fit: cover; vertical-align: -2px; m
 .chapters-btn { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
 /* The chapter list: a box on paper under the masthead's right edge. Escape and light dismiss
    come from the popover attribute; the first link takes focus on open (autofocus). */
-#chapters { position: fixed; inset: 3.4rem var(--gutter) auto auto; margin: 0; padding: .35rem .9rem .4rem; min-width: 12rem; background: var(--paper); color: var(--ink); border: 1px solid var(--ink); }
+#chapters { position: fixed; inset: calc(var(--hdr) + .4rem) var(--gutter) auto auto; margin: 0; padding: .35rem .9rem .4rem; min-width: 12rem; background: var(--paper); color: var(--ink); border: 1px solid var(--ink); }
 #chapters a { display: block; padding: .3rem 0; font-size: .85rem; text-decoration: none; border-top: 1px solid var(--hair); }
 #chapters a:first-child { border-top: 0; }
 /* Feedback: a hovered chapter takes the 9% ink tint a highlighted list row prints on. */
@@ -46,6 +52,8 @@ img.flag { width: 20px; height: 14px; object-fit: cover; vertical-align: -2px; m
 
 /* the sheet */
 .sheet { max-width: var(--sheet); margin: 0 auto; padding: 0 var(--gutter); }
+/* A hash target lands its own top under the sticky masthead, never behind it. */
+#hero, .chapter { scroll-margin-top: var(--hdr); }
 /* A chart masthead: the hero's and the placeholder pages'. */
 .mast { display: flex; justify-content: space-between; align-items: baseline; gap: .5rem 1.5rem; flex-wrap: wrap; border-bottom: 3px solid var(--ink); padding: 1rem 0 .35rem; }
 .mast .mt { margin: 0; font: 1.75rem/1 var(--display); text-transform: uppercase; }
@@ -72,7 +80,6 @@ img.flag { width: 20px; height: 14px; object-fit: cover; vertical-align: -2px; m
 /* phones and tablets */
 @media (max-width: 1023px) {
   :root { --gutter: 16px; }
-  #chapters { inset: .75rem var(--gutter) auto auto; }
   .mast .mt { font-size: 1.4rem; }
   .mast .mi { text-align: left; }
   .chapter h2 { font-size: 2rem; }
@@ -81,7 +88,7 @@ img.flag { width: 20px; height: 14px; object-fit: cover; vertical-align: -2px; m
 /* hero: the pin block is taller than the viewport and the held screen sticks inside it;
    js/print.js sets the block's height and, when the held screen does not fit, the flow class. */
 #hero .pin { position: relative; }
-#hero .held { position: sticky; top: 0; height: 100dvh; display: flex; flex-direction: column; }
+#hero .held { position: sticky; top: var(--hdr); height: calc(100dvh - var(--hdr)); display: flex; flex-direction: column; }
 #hero .pin.flow .held { position: static; height: auto; }
 #hero .hero-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 3rem; align-items: start; margin-top: 1.25rem; flex: 1; }
 #hero h1 { font: clamp(2.6rem, 5.2vw, 4.4rem)/1 var(--display); font-weight: 400; text-transform: uppercase; margin: 0; }
@@ -146,7 +153,7 @@ img.flag { width: 20px; height: 14px; object-fit: cover; vertical-align: -2px; m
    moment: js/bracket.js holds the screen with the whole grid in view and prints the knockout
    rounds inside the hold, so the region sticks inside a taller block, as the hero does. */
 #bracket .pin { position: relative; }
-#bracket .held { position: sticky; top: 0; }
+#bracket .held { position: sticky; top: var(--hdr); }
 #bracket .pin.flow .held { position: static; }
 #bracket .bracket { position: relative; display: grid; grid-template-columns: repeat(4, 1fr) 1.3fr repeat(4, 1fr); grid-template-rows: auto 560px; gap: 10px 8px; min-width: 1104px; }
 #bracket .bh { font-weight: 700; font-size: .75rem; line-height: 1.2; text-transform: uppercase; letter-spacing: .06em; text-align: center; padding-bottom: .2rem; border-bottom: 1px solid var(--ink); }
@@ -256,7 +263,7 @@ img.flag { width: 20px; height: 14px; object-fit: cover; vertical-align: -2px; m
 #paradoxes .vst tbody th { font-weight: 400; }
 #paradoxes .vst tbody .el { color: var(--muted); }
 #paradoxes .vst tbody tr.hi th, #paradoxes .vst tbody tr.hi td { font-weight: 700; }
-#paradoxes .prz { font: .95rem/1.5 var(--reading); color: var(--ink-soft); margin: .6rem 0 0; }
+#paradoxes .prz { font: .95rem/1.55 var(--reading); color: var(--ink-soft); margin: .6rem 0 0; }
 @media (max-width: 900px) { #paradoxes .pairs { grid-template-columns: minmax(0, 1fr); gap: 1.4rem; } }
 
 /* chapter 7: pick a team. The picker is a printed field under its line of favourites; the team
@@ -314,12 +321,22 @@ img.flag { width: 20px; height: 14px; object-fit: cover; vertical-align: -2px; m
 #pick-a-team .reg.opp { container-type: inline-size; }
 #pick-a-team .orow { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: .2rem .75rem; }
 #pick-a-team .olb { color: var(--ink-soft); }
-#pick-a-team .olist { display: flex; flex-wrap: wrap; gap: .2rem 1.4rem; }
-#pick-a-team .oitem { white-space: nowrap; }
+/* The three opponents of a round are three equal columns, so the first, second and third flag
+   each sit on one vertical line down the region; a name too long for its column is cut with an
+   ellipsis rather than wrapping the row. */
+#pick-a-team .olist { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .2rem 1.4rem; }
+#pick-a-team .oitem { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 #pick-a-team .oitem b { margin-left: .35rem; font-weight: 400; color: var(--muted); font-variant-numeric: tabular-nums; }
 @container (max-width: 560px) {
   #pick-a-team .orow { grid-template-columns: minmax(0, 1fr); }
   #pick-a-team .olist { gap: .2rem 1rem; }
+}
+/* Three columns need 128.8px each for the widest item, "Netherlands 10.9%" with its flag,
+   measured at .875rem News Cycle; with the label on its own line the region needs 3 × 128.8 plus
+   its two 1rem gaps and its own .3rem padding, 428px, to hold them. Below that the three go one
+   per line: at 390 the region is 358px and a column would be 105.5px. */
+@container (max-width: 440px) {
+  #pick-a-team .olist { grid-template-columns: minmax(0, 1fr); }
 }
 /* Feedback: a hovered list row darkens its ink. */
 #pick-a-team .lrow:hover, #pick-a-team .krow:hover, #pick-a-team .orow:hover { filter: brightness(.94); }
@@ -333,7 +350,7 @@ img.flag { width: 20px; height: 14px; object-fit: cover; vertical-align: -2px; m
 #how-it-works .mstep { display: grid; grid-template-columns: 1fr 1.12fr; gap: 0 44px; border-top: 1px solid var(--ink); padding: 1.05rem 0 .85rem; }
 #how-it-works .mcol { min-width: 0; }
 #how-it-works h3 { margin: 0 0 .5rem; }
-#how-it-works .mprose { font: 1.05rem/1.6 var(--reading); color: var(--ink-soft); max-width: 62ch; margin: 0; }
+#how-it-works .mprose { font: 1.05rem/1.55 var(--reading); color: var(--ink-soft); max-width: 62ch; margin: 0; }
 #how-it-works .mprose b, #how-it-works .mprose em { color: var(--ink); }
 /* A superscript or subscript in running text still has to clear the 12px floor. */
 #how-it-works sup, #how-it-works sub { font-size: max(12px, .72em); }
@@ -358,7 +375,7 @@ img.flag { width: 20px; height: 14px; object-fit: cover; vertical-align: -2px; m
 #how-it-works .two th, #how-it-works .two td { text-align: left; padding-right: 1.4rem; }
 /* The worked example: a 1px ink box under its label line, its numbers in full ink. */
 #how-it-works .ex { border: 1px solid var(--ink); padding: .55rem .75rem .7rem; margin: .8rem 0 .2rem; }
-#how-it-works .ex p { font: .95rem/1.6 var(--reading); color: var(--ink-soft); margin: .5rem 0 0; }
+#how-it-works .ex p { font: .95rem/1.55 var(--reading); color: var(--ink-soft); margin: .5rem 0 0; }
 #how-it-works .ex b { color: var(--ink); font-weight: 700; font-variant-numeric: tabular-nums; }
 /* The calibration chart: ink lines, hollow ink dots, hairline grid. The caption reads over the two
    panels with the legend flush right on the same line. */

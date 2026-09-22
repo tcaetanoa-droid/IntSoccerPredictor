@@ -18,8 +18,8 @@ export function render(section, ctx) {
   ];
   const held = h('div', { class: 'held' },
     h('div', { class: 'mast' },
-      h('div', { class: 'mt' }, 'World Cup 2026 · Wall chart'),
-      h('div', { class: 'mi' }, `Filled in ${runs} times. Darker ink means it happened more often.`)),
+      h('div', { class: 'mt' }, 'World Cup 2026'),
+      h('div', { class: 'mi' }, `Filled in ${runs} times.`)),
     h('div', { class: 'hero-grid' },
       h('div', {},
         h('h1', {}, `I simulated the 2026 World Cup ${runs} times. `,

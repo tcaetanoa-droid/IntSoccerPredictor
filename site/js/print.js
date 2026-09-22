@@ -4,6 +4,8 @@
 // follows the scroll on the way down and never un-prints on the way up. The formulas are the
 // ones approved in the design (docs/superpowers/specs/2026-09-20-restyle-design.md, §4 and §6).
 
+import { measure as measureHeader } from './header.js';
+
 export const clamp = (x) => Math.max(0, Math.min(1, x));
 export const fmt = (n) => Math.round(n).toLocaleString('en-GB');
 
@@ -21,9 +23,10 @@ export const densityTarget = (share, floor = 0.65) => floor + (1 - floor) * shar
 export const tintStrength = (share) => Math.min(1, 2.5 * share);
 // The bracket's hold (spec §4 amendment, §8 The bracket and its checkpoint amendment): the
 // sheet's second authored moment. The approach is measured from the grid's top crossing the
-// reading line to the held region's top reaching the top of the viewport, so it is shorter when
-// the chapter's title is held with the grid (about 0.62 of a screen at 900px) than when the grid
-// is held alone (0.92); layoutHold works it out per hold and APPROACH is the grid-alone value.
+// reading line to the held region's top reaching the bottom edge of the sticky site header, so it
+// is shorter when the chapter's title is held with the grid (about 0.62 of a screen at 900px)
+// than when the grid is held alone (0.92), and shorter again by the header's own height;
+// layoutHold works it out per hold and APPROACH is the grid-alone value under no header.
 // The hold is the 1.35 screens the wheel then spends held.
 export const APPROACH = 0.92, HOLD_TRAVEL = 1.35;
 export const holdPhase = (t, H, approach = APPROACH) => ({ p1: clamp(t / (approach * H)), q: clamp((t - approach * H) / (HOLD_TRAVEL * H)) });
@@ -58,7 +61,9 @@ export function paintDensityRow(el, p) {
 let units = [];
 const byEl = new WeakMap();
 const memo = new Map();   // key -> progress, so a re-drawn unit (a sorted row) stays printed
-let io = null, raf = null, H = 0, pinned = null, holds = [], booted = false;
+// H is the viewport; HD the sticky header's measured height, the top edge of everything pinned
+// under it. The reading line stays at 0.92 of the viewport: it is a bottom-of-viewport event.
+let io = null, raf = null, H = 0, HD = 0, pinned = null, holds = [], booted = false;
 
 function set(u, p) {
   p = Math.max(p, u.p);            // never un-prints
@@ -96,6 +101,7 @@ export function pin(block, held, rows, painter) {
   if (booted) layoutPin();
 }
 function layoutPin() {
+  HD = measureHeader();     // before any fit test: a held screen's height is the viewport minus it
   layoutHero();
   for (const o of holds) layoutHold(o);
 }
@@ -106,7 +112,9 @@ function layoutHero() {
   const fits = !reduced() && held.scrollHeight <= held.clientHeight + 1;
   pinned.active = fits;
   block.classList.toggle('flow', !fits);
-  block.style.height = fits ? `${Math.round(H * 2.35)}px` : '';   // one screen + one of travel + a 0.35 hold
+  // One screen + one of travel + a 0.35 hold, less the header: the held screen is that much
+  // shorter and starts sticking that much earlier, so the block is that much shorter too.
+  block.style.height = fits ? `${Math.round(H * 2.35 - HD)}px` : '';
   if (reduced()) { pinned.p = 1; pinned.rows.forEach(({ el }) => pinned.painter(el, 1)); }
 }
 // hold(block, candidates, paint, { start }): the bracket's pin. `candidates` is an ordered list
@@ -136,15 +144,17 @@ function layoutHold(o) {
   for (const el of o.candidates) { el.classList.remove('held'); el.style.height = ''; }
   const blockTop = o.block.getBoundingClientRect().top;
   const rects = o.candidates.map((el) => el.getBoundingClientRect());
-  const i = reduced() ? -1 : rects.findIndex((r) => r.height <= H - 4);
+  const i = reduced() ? -1 : rects.findIndex((r) => r.height <= H - HD - 4);
   const fits = i >= 0;
   // No candidate fits: no lock, but the schedule still runs on the page's own travel from the
   // last candidate, which is the grid, exactly as it did before the title was a candidate.
   const k = fits ? i : o.candidates.length - 1;
   o.active = fits;
   o.offset = rects[k].top - blockTop;           // the held region's rest offset inside the block
-  o.approach = (0.92 * H - (o.start.getBoundingClientRect().top - rects[k].top)) / H;
-  o.slack = fits ? (H - rects[k].height) / H : 0;
+  // From the grid crossing the reading line to the held region's top reaching the header's bottom
+  // edge; the paper left under the held region is what the viewport has below the header.
+  o.approach = (0.92 * H - (o.start.getBoundingClientRect().top - rects[k].top) - HD) / H;
+  o.slack = fits ? (H - HD - rects[k].height) / H : 0;
   o.candidates[k].classList.add('held');
   o.block.classList.toggle('flow', !fits);
   if (fits) {
@@ -162,12 +172,12 @@ function tickHold(o, y) {
   // The travel since the grid's top crossed the reading line, arithmetic on the layout rather
   // than a live rect, so it keeps counting while the region is held. The pin point is read off
   // the block, which never sticks, plus the held region's offset inside it; the pin engages when
-  // that point reaches the top of the viewport, and the half-pixel snap there makes the
+  // that point reaches the header's bottom edge, and the half-pixel snap there makes the
   // approach's last unit complete exactly at the pin rather than a fraction short. A deep load
   // below the block lands with the travel already past the release, so the schedule paints the
   // finished sheet.
-  const top = r.top + y + o.offset, t = y - top + o.approach * H, was = o.t;
-  o.t = Math.max(o.t, y >= top - 0.5 ? Math.max(t, o.approach * H) : t);
+  const top = r.top + y + o.offset, t = y - top + HD + o.approach * H, was = o.t;
+  o.t = Math.max(o.t, y >= top - HD - 0.5 ? Math.max(t, o.approach * H) : t);
   // Only a schedule that moved is painted (spec §4, the budget: only units whose progress
   // changed are painted). Travel never decreases, so scrolling back up inside the hold leaves
   // it equal and paints nothing at all.
@@ -179,7 +189,8 @@ function tickHold(o, y) {
 function tickPin(y) {
   if (!pinned) return true;
   if (pinned.active) {
-    const top = pinned.block.getBoundingClientRect().top + y;
+    // The held screen sticks at the header's bottom edge, so the column starts filling there.
+    const top = pinned.block.getBoundingClientRect().top + y - HD;
     const p = Math.max(pinned.p, clamp((y - top) / H));
     if (p !== pinned.p) { pinned.p = p; pinned.rows.forEach((r) => pinned.painter(r.el, rowWindow(p, r.i, pinned.rows.length))); }
     return p >= 1;
