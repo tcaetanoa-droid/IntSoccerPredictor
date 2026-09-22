@@ -1,17 +1,58 @@
 // site/js/team.js
-import { h, flag, name, fmtCount, fmtPct, countOf } from './dom.js';
+import { h, flag, name, fmtCount, fmtPct, countOf, count, scrollX, chapterHead } from './dom.js';
 import { FATES } from './fate-table.js';
+import { register, reprint, paintRow, paintBlock, paintCounts } from './print.js';
 
 const ROUNDS = [['R32', 'Round of 32'], ['R16', 'Round of 16'], ['QF', 'Quarter-final'], ['SF', 'Semi-final'], ['F', 'Final']];
 // "curacao" has to find "Curaçao", so both sides of the match lose their accents.
 const norm = (s) => s.normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase();
+// A row here prints over 10% of a screen against the sheet's 18% (spec §8, the motion amendment):
+// the rows are two lines of agate apart and their count-ups are meant to be a flicker.
+const BAND = 0.10;
+// The one fade on the printed sheet (spec §4, the transition-7 amendment): on a pick the old
+// team's ink goes to paper before the new team prints, so two teams are never on the sheet at
+// once. It is driven here rather than by a CSS transition, which would still run under reduced
+// motion and could not be skipped cleanly. Then the new team prints over PRINT_MS, ease-out.
+const FADE_MS = 150, PRINT_MS = 400;
+const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function fadeOut(el) {
+  if (reduced()) return Promise.resolve();
+  return new Promise((resolve) => {
+    let t0 = null;
+    const step = (t) => {
+      if (t0 === null) t0 = t;
+      const k = Math.min(1, (t - t0) / FADE_MS);
+      el.style.opacity = (1 - k).toFixed(3);
+      if (k < 1) requestAnimationFrame(step); else resolve();
+    };
+    requestAnimationFrame(step);
+  });
+}
+
+// A printed percentage, the shape dom.js's count() has: the final value for assistive
+// technology, then the display that climbs.
+const pct = (x) => [h('span', { class: 'sr' }, fmtPct(x, 1)), h('span', { class: 'ct', 'aria-hidden': 'true' }, fmtPct(0, 1))];
+
+// A list row of the two ruled lists or of the opponents: its hairline and label ink from 0.15,
+// its values from 0.2, each bar grows to its own full width, and the numbers climb — counts
+// through the engine's painter, percentages through the formatter beside their .sr span.
+function paintListRow(el, p) {
+  el.style.setProperty('--rp', p.toFixed(3));
+  for (const lb of el.querySelectorAll('.lb')) lb.style.opacity = (0.15 + 0.85 * p).toFixed(3);
+  for (const v of el.querySelectorAll('.val, .oitem')) v.style.opacity = (0.2 + 0.8 * p).toFixed(3);
+  for (const b of el.querySelectorAll('.bar')) b.style.width = `${(p * +b.dataset.w).toFixed(2)}%`;
+  for (const c of el.querySelectorAll('[data-pct]')) c.querySelector('.ct').textContent = fmtPct(p * +c.dataset.pct, 1);
+  paintCounts(el, p);
+}
+// The head prints as a block and its champion count climbs with it.
+const paintHead = (el, p) => { paintBlock(el, p); paintCounts(el, p); };
 
 export async function render(section, ctx) {
   const runs = fmtCount(ctx.n);
-  const cnt = (share) => countOf(share, ctx.n);
   const fromHash = (location.hash.match(/team=([A-Z]{2})/) || [])[1];
   let code = ctx.byCode[fromHash] ? fromHash : ctx.teams[0].code;
-  let matches = [], hi = -1, blurT = 0;
+  let matches = [], hi = -1, blurT = 0, gen = 0;
 
   const input = h('input', { class: 'si', id: 'team-search', type: 'text', autocomplete: 'off', role: 'combobox',
     'aria-controls': 'team-results', 'aria-expanded': 'false', 'aria-autocomplete': 'list',
@@ -19,17 +60,23 @@ export async function render(section, ctx) {
     oninput: () => openList(input.value),
     onblur: () => { blurT = setTimeout(() => closeList(true), 120); },  // after a row's click has landed
     onkeydown: onKey });
-  const fsl = h('span', { class: 'sfl' });  // the chosen team's flag, redrawn by show()
+  const fsl = h('span', { class: 'sfl' });  // the chosen team's flag, redrawn by draw()
   const clear = h('button', { class: 'x', type: 'button', 'aria-label': 'Clear the team name',
     onclick: () => { clearTimeout(blurT); input.value = ''; closeList(false); input.focus(); } }, '×');
   const results = h('div', { class: 'res', id: 'team-results', role: 'listbox', 'aria-label': 'Teams', hidden: '' });
-  const chips = h('div', { class: 'chips' });
+  const favs = h('span', { class: 'favs' });   // the opening line's five names, redrawn by draw()
   const body = h('div', { class: 'tbody' });
+  // The picker is the region's own unit, outside the body the pick reprints: the field and the
+  // favourites line stay printed while the team under them is replaced.
+  const pk = h('div', { class: 'pk' },
+    h('p', { class: 'lead' }, 'Pick a team, or one of the favourites: ', favs),
+    h('label', { class: 'sr', for: 'team-search' }, 'Team'),
+    h('div', { class: 'sw' }, h('div', { class: 'srch' }, fsl, input, clear), results));
+  register(pk, paintBlock, { kind: 'block' });
   section.replaceChildren(
-    h('div', { class: 'num' }, '07 · Pick a team'), h('h2', {}, 'One team, one hundred thousand tournaments.'),
-    h('p', { class: 'lede' }, `Every team has its own version of this page: how its ${runs} runs ended, how far it usually got, who it usually met along the way, and who ended its tournament. ${ctx.teams[0].name} is up first, as the favourite. Pick any of the ${ctx.teams.length}.`),
-    h('div', { class: 'pk' }, h('label', { for: 'team-search' }, 'Team'),
-      h('div', { class: 'sw' }, h('div', { class: 'srch' }, fsl, input, clear), results), chips), body);
+    ...chapterHead('Pick a team', 'One team, one hundred thousand tournaments.',
+      `Every team has its own version of this page: how its ${runs} runs ended, how far it usually got, who it usually met along the way, and who ended its tournament. ${ctx.teams[0].name} is up first, as the favourite. Pick any of the ${ctx.teams.length}.`),
+    pk, body);
 
   function drawList() {
     results.replaceChildren(...(matches.length
@@ -37,7 +84,7 @@ export async function render(section, ctx) {
         'aria-selected': i === hi ? 'true' : 'false',
         onmousedown: (e) => e.preventDefault(),  // keep the focus so the blur restore does not fire first
         onclick: () => pick(t.code) },
-        flag(t.code, ctx.byCode, 20), t.name, h('b', { class: 'n' }, cnt(t.champion_pct))))
+        flag(t.code, ctx.byCode, 20), t.name, h('b', {}, countOf(t.champion_pct, ctx.n))))
       : [h('div', { class: 'r none', role: 'presentation' }, 'No team matches')]));
     results.hidden = false;
     // Scroll the list box itself, never scrollIntoView: that walks up to the document and would
@@ -71,45 +118,82 @@ export async function render(section, ctx) {
   async function pick(c) {
     code = c;
     history.replaceState(null, '', `#team=${code}`);
-    // show() rebuilds the chip row, so a chip that was activated is removed from the document
-    // and focus would fall to <body>. From a row or the keyboard the focus is already on the
-    // input, so it stays there; from a tap on a chip it must not go to the input, which would
-    // open the on-screen keyboard, so it goes to the rebuilt team header instead.
+    // draw() rebuilds the favourites line, so a favourite that was activated is removed from the
+    // document and focus would fall to <body>. From a row or the keyboard the focus is already
+    // on the input, so it stays there; from a tap on a favourite it must not go to the input,
+    // which would open the on-screen keyboard, so it goes to the rebuilt team header instead.
     const onInput = document.activeElement === input;
     closeList(false);
     if (onInput) input.focus();
-    await show();
+    const g = ++gen;
+    // The team's JSON is fetched while the old ink fades, so the fade is the whole wait.
+    const [t] = await Promise.all([ctx.team(code), fadeOut(body)]);
+    if (g !== gen) return;                     // a second pick overtook this one
+    draw(t, true);
+    body.style.opacity = '';
     if (!onInput) body.querySelector('.th').focus();
+    reprint(body, PRINT_MS);                   // the new team prints from zero, ease-out
   }
 
-  async function show() {
-    const t = await ctx.team(code);
+  // One printing of the team page. `manual` keeps the new units out of the scroll (a pick), so
+  // reprint() drives them; on first reading they are ordinary scroll units. No unit carries a
+  // key: a second pick would otherwise inherit the first team's progress and swallow the print.
+  function draw(t, manual) {
     const top = ctx.teams[0].code === code;
     const nm = t.name;
+    const blk = (el) => { register(el, paintBlock, { kind: 'block', manual }); return el; };
+    const row = (el, painter) => { register(el, painter, { band: BAND, manual }); return el; };
+    const region = (cls, title, sub, rows) => h('div', { class: cls ? `reg ${cls}` : 'reg' },
+      blk(h('h3', {}, title)), sub ? blk(h('p', { class: 'regs' }, sub)) : null, ...rows);
+
     fsl.replaceChildren(flag(code, ctx.byCode, 40));
     input.value = nm;
     // The five favourites are the strongest teams that are not the one already on the page.
-    chips.replaceChildren(...ctx.teams.slice(0, 6).filter((z) => z.code !== code).slice(0, 5)
-      .map((z) => h('button', { class: 'chip', type: 'button', onmousedown: (e) => e.preventDefault(), onclick: () => pick(z.code) }, flag(z.code, ctx.byCode, 20), z.name)),
-      h('span', { class: 'pkn' }, 'favourites'));
-    // Plain ink on the segment: 3rd place (4.21:1) and 4th place (4.02:1) are under 4.5:1, by the owner's decision.
-    const segs = FATES.map((f) => h('i', { style: `width:${(t.fates[f.key] * 100).toFixed(2)}%;background:${f.colour}`, title: `${f.long}: ${cnt(t.fates[f.key])}` },
-      t.fates[f.key] >= 0.06 ? h('span', {}, cnt(t.fates[f.key])) : null));
-    const legend = h('div', { class: 'legend fl' }, ...FATES.map((f) => h('span', {}, h('i', { style: `background:${f.colour}` }), `${f.long} `, h('b', { class: 'n' }, cnt(t.fates[f.key])))));
-    // The two step colours are spec tokens: the reached-that-round green and the trophy gold.
-    const steps = [...ROUNDS.map(([k, lab]) => [lab, t.reach[k], 'var(--f-4th)']), ['Champion', t.champion_pct, 'var(--gold)']]
-      .map(([lab, v, col]) => h('div', { class: 'st' }, h('span', {}, lab), h('i', {}, h('b', { style: `width:${(v * 100).toFixed(1)}%;background:${col}` })), h('span', { class: 'n' }, cnt(v))));
-    const opps = ROUNDS.map(([k, lab]) => h('div', { class: 'op' }, h('span', { class: 'ol' }, lab), ...(t.opponents_by_round[k] || []).map((o) => h('span', { class: 'oc' }, flag(o.team, ctx.byCode, 20), name(o.team, ctx.byCode), h('b', { class: 'n' }, fmtPct(o.pct, 0))))));
+    const link = (z) => h('a', { href: `#team=${z.code}`,
+      onmousedown: (e) => e.preventDefault(),  // a tap must not take the focus off the page's chrome
+      onclick: (e) => { e.preventDefault(); pick(z.code); } }, z.name);
+    favs.replaceChildren(...ctx.teams.slice(0, 6).filter((z) => z.code !== code).slice(0, 5)
+      .flatMap((z, i) => (i ? [h('span', { class: 'sep' }, '·'), link(z)] : [link(z)])));
+
+    const head = h('div', { class: 'th', tabindex: '-1' }, flag(code, ctx.byCode, 80),
+      h('div', {}, h('div', { class: 'tn' }, nm),
+        h('div', { class: 'tm' }, `Group ${t.group} · Elo ${Math.round(t.elo)}${top ? ', highest in the field' : ''}`)),
+      h('div', { class: 'tc' }, h('b', { 'data-count': Math.round(t.champion_pct * ctx.n) }, count(t.champion_pct * ctx.n)),
+        h('span', {}, 'won the tournament')));
+    register(head, paintHead, { kind: 'block', manual });
+
+    // The fate strip is one row of chapter one's table: the nine heads are the ruled frame it
+    // prints into, each cell carrying its count and its own tint strength.
+    const fateRow = row(h('tr', {}, ...FATES.map((f) => h('td', { 'data-count': Math.round(t.fates[f.key] * ctx.n),
+      'data-share': t.fates[f.key], style: `--fate: var(${f.token})` }, count(t.fates[f.key] * ctx.n)))), paintRow);
+    const fate = region(null, `How ${nm}'s ${runs} runs ended`, null,
+      [scrollX(`How ${nm}'s runs ended, scrolls sideways`, h('table', { class: 'agate strip' },
+        h('thead', {}, h('tr', {}, ...FATES.map((f) => h('th', { scope: 'col' }, f.head)))),
+        h('tbody', {}, fateRow)))]);
+    // How far it gets: the bars are shares of every run, so the round of 32 nearly fills the row.
+    const far = region(null, `How far ${nm} gets`, `Share of all ${runs} runs.`,
+      [...ROUNDS.map(([k, lab]) => [lab, t.reach[k]]), ['Champion', t.champion_pct]].map(([lab, v]) =>
+        row(h('div', { class: 'lrow' }, h('span', { class: 'lb' }, lab),
+          h('span', { class: 'bar', 'data-w': (v * 100).toFixed(1) }),
+          h('span', { class: 'val', 'data-count': Math.round(v * ctx.n) }, count(v * ctx.n))), paintListRow)));
+    const opps = region('opp', 'Most common opponent, round by round', `Share of the runs in which ${nm} reached that round`,
+      ROUNDS.map(([k, lab]) => row(h('div', { class: 'orow' }, h('span', { class: 'lb olb' }, lab),
+        h('span', { class: 'olist' }, ...(t.opponents_by_round[k] || []).map((o) => h('span', { class: 'oitem' },
+          flag(o.team, ctx.byCode, 20), name(o.team, ctx.byCode), h('b', { 'data-pct': o.pct }, pct(o.pct)))))), paintListRow)));
+    // Who knocked it out: shares of the runs that ended in an elimination, and the bars are
+    // measured against the biggest eliminator, so the first one runs the full width.
     const kmax = t.knocked_out_by.length ? t.knocked_out_by[0].pct : 1;
-    const ko = t.knocked_out_by.map((o) => h('div', { class: 'ko' }, h('span', { class: 'oc' }, flag(o.team, ctx.byCode, 20), name(o.team, ctx.byCode)), h('i', {}, h('b', { style: `width:${Math.round(o.pct / kmax * 100)}%` })), h('span', { class: 'n' }, fmtPct(o.pct, 0))));
-    body.replaceChildren(
-      h('div', { class: 'th', tabindex: '-1' }, flag(code, ctx.byCode, 80), h('div', {}, h('div', { class: 'tn' }, nm), h('div', { class: 'tm n' }, `Group ${t.group} · Elo ${Math.round(t.elo)}${top ? ', highest in the field' : ''}`)), h('div', { class: 'tc' }, h('b', { class: 'n' }, cnt(t.champion_pct)), h('span', {}, 'won the tournament'))),
-      h('div', { class: 'cards4' },
-        h('div', { class: 'card cd wide' }, h('div', { class: 'sh' }, `How ${nm}'s ${runs} runs ended`), h('div', { class: 'fs' }, ...segs), legend),
-        h('div', { class: 'card cd' }, h('div', { class: 'sh' }, `How far ${nm} gets`), h('div', { class: 'steps' }, ...steps)),
-        h('div', { class: 'card cd' }, h('div', { class: 'sh' }, 'Most common opponent, round by round'), h('div', { class: 'cst' }, `Share of the runs in which ${nm} reached that round`), ...opps),
-        h('div', { class: 'card cd' }, h('div', { class: 'sh' }, `Who knocked ${nm} out`), h('div', { class: 'cst' }, `Share of the runs in which ${nm} was eliminated`), ...ko),
-        h('div', { class: 'card cd' }, h('div', { class: 'sh' }, 'The one thing to know'), h('p', { class: 'ex' }, t.excerpt_text))));
+    const ko = region(null, `Who knocked ${nm} out`,
+      `Share of the runs in which ${nm} was eliminated, ${countOf(1 - t.champion_pct, ctx.n)} runs. The bars are measured against the biggest eliminator.`,
+      t.knocked_out_by.map((o) => row(h('div', { class: 'krow' },
+        h('span', { class: 'lb nm' }, flag(o.team, ctx.byCode, 20), name(o.team, ctx.byCode)),
+        h('span', { class: 'bar', 'data-w': (o.pct / kmax * 100).toFixed(1) }),
+        h('span', { class: 'val', 'data-pct': o.pct }, pct(o.pct))), paintListRow)));
+    const one = region(null, 'The one thing to know', null, [blk(h('p', { class: 'ex' }, t.excerpt_text))]);
+
+    body.replaceChildren(head, fate,
+      h('div', { class: 'cols' }, h('div', { class: 'col' }, far, opps), h('div', { class: 'col' }, ko, one)));
   }
-  await show();
+
+  draw(await ctx.team(code), false);
 }
