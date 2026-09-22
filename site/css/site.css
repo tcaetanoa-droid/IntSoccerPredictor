@@ -256,7 +256,7 @@ img.flag { width: 20px; height: 14px; object-fit: cover; vertical-align: -2px; m
 #paradoxes .vst tbody th { font-weight: 400; }
 #paradoxes .vst tbody .el { color: var(--muted); }
 #paradoxes .vst tbody tr.hi th, #paradoxes .vst tbody tr.hi td { font-weight: 700; }
-#paradoxes .prz { font: .95rem/1.55 var(--reading); color: var(--ink-soft); margin: .6rem 0 0; }
+#paradoxes .prz { font: .95rem/1.5 var(--reading); color: var(--ink-soft); margin: .6rem 0 0; }
 @media (max-width: 900px) { #paradoxes .pairs { grid-template-columns: minmax(0, 1fr); gap: 1.4rem; } }
 
 /* chapter 7: pick a team. The picker is a printed field under its line of favourites; the team
@@ -333,7 +333,7 @@ img.flag { width: 20px; height: 14px; object-fit: cover; vertical-align: -2px; m
 #how-it-works .mstep { display: grid; grid-template-columns: 1fr 1.12fr; gap: 0 44px; border-top: 1px solid var(--ink); padding: 1.05rem 0 .85rem; }
 #how-it-works .mcol { min-width: 0; }
 #how-it-works h3 { margin: 0 0 .5rem; }
-#how-it-works .mprose { font: 1.05rem/1.55 var(--reading); color: var(--ink-soft); max-width: 62ch; margin: 0; }
+#how-it-works .mprose { font: 1.05rem/1.6 var(--reading); color: var(--ink-soft); max-width: 62ch; margin: 0; }
 #how-it-works .mprose b, #how-it-works .mprose em { color: var(--ink); }
 /* A superscript or subscript in running text still has to clear the 12px floor. */
 #how-it-works sup, #how-it-works sub { font-size: max(12px, .72em); }
@@ -358,7 +358,7 @@ img.flag { width: 20px; height: 14px; object-fit: cover; vertical-align: -2px; m
 #how-it-works .two th, #how-it-works .two td { text-align: left; padding-right: 1.4rem; }
 /* The worked example: a 1px ink box under its label line, its numbers in full ink. */
 #how-it-works .ex { border: 1px solid var(--ink); padding: .55rem .75rem .7rem; margin: .8rem 0 .2rem; }
-#how-it-works .ex p { font: .95rem/1.55 var(--reading); color: var(--ink-soft); margin: .5rem 0 0; }
+#how-it-works .ex p { font: .95rem/1.6 var(--reading); color: var(--ink-soft); margin: .5rem 0 0; }
 #how-it-works .ex b { color: var(--ink); font-weight: 700; font-variant-numeric: tabular-nums; }
 /* The calibration chart: ink lines, hollow ink dots, hairline grid. The caption reads over the two
    panels with the legend flush right on the same line. */
