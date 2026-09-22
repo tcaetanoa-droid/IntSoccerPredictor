@@ -11,10 +11,6 @@
   --reading: 'Old Standard TT', Georgia, serif;
   --grid: 'News Cycle', 'Arial Narrow', sans-serif;
   --gutter: 48px; --sheet: 1360px;
-  /* TRANSITION: tokens the not-yet-restyled chapters still read. Deleted in the closing task. */
-  --serif: var(--reading); --sans: var(--grid); --mono: ui-monospace, Menlo, monospace;
-  --green: #1B5E3A; --faint: #8A9A90; --card: #FFFFFF; --border: #D4DFD4; --rule: #E3EAE2;
-  --gold: #C9A227; --gold-text: #8A6D12; --silver: #A8A9AD; --bronze: #B87333;
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -101,23 +97,6 @@ img.flag { width: 20px; height: 14px; object-fit: cover; vertical-align: -2px; m
   #hero .col { max-width: none; }
   #hero .hr { font-size: .95rem; line-height: 1.4; padding: .15rem 0; }
 }
-
-/* LEGACY PATTERN: rules the not-yet-restyled chapters and the footer still use. Each chapter's
-   task removes what it stops using; the closing task deletes the rest. */
-.chapter .num { font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--green); margin-bottom: 10px; }
-.chapter .lede { font-size: 16px; line-height: 1.55; max-width: 70ch; color: var(--ink-soft); margin: 0 0 22px; }
-.chapter .lede b { color: var(--ink); }
-.card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; }
-.exh { font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--green); font-family: var(--mono); margin-bottom: 8px; }
-.kv { display: grid; grid-template-columns: 90px 1fr; gap: 14px; padding: 8px 0; border-top: 1px solid var(--rule); font-size: 13px; }
-.kv:first-child { border-top: 0; }
-.kv span { color: var(--muted); }
-.kv b { font-weight: 500; }
-.site-footer { margin-top: 40px; padding: 26px var(--gutter); background: var(--ink); color: var(--border); font-size: 13px; line-height: 1.55; display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 40px; }
-.site-footer .wordmark { color: #fff; }
-.site-footer a { color: #fff; text-decoration: underline; text-decoration-color: #5FA872; }
-.site-footer p { margin: 8px 0 0; } .site-footer .exh { color: #98C8A2; }
-@media (max-width: 1023px) { .site-footer { grid-template-columns: 1fr; gap: 20px; } }
 
 /* chapter 1: the fate table. Thirteen columns of agate; it scrolls sideways below 1100px. */
 #who-wins-it .fate { min-width: 1100px; }
@@ -417,3 +396,15 @@ img.flag { width: 20px; height: 14px; object-fit: cover; vertical-align: -2px; m
      command over what it does, still one hairlined row. */
   #how-it-works .rrow { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* footer: the sheet's colophon */
+.site-footer { max-width: var(--sheet); margin: 3rem auto 0; padding: 1rem var(--gutter) 2rem; border-top: 3px solid var(--ink); display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 2.5rem; font-size: .85rem; line-height: 1.5; }
+.site-footer p { margin: .5rem 0 0; }
+.site-footer .fh { font-weight: 700; font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; }
+@media (max-width: 1023px) { .site-footer { grid-template-columns: 1fr; gap: 1.25rem; } }
+
+/* placeholder pages: a ruled key list of what is known */
+.facts { margin: 1.2rem 0 0; max-width: 70ch; }
+.facts div { display: grid; grid-template-columns: 7rem 1fr; gap: 1rem; padding: .35rem 0; border-bottom: 1px solid var(--hair); font-size: .85rem; }
+.facts dt { font-weight: 700; font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; margin: 0; }
+.facts dd { margin: 0; }

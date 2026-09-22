@@ -5,38 +5,51 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>IntSoccerPredictor · Copa América 2028</title>
 <meta name="description" content="CONMEBOL Copa América 2028, simulated once the draw is held.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Gothic&family=News+Cycle:wght@400;700&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap">
 <link rel="stylesheet" href="css/site.css">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 </head>
 <body>
 <header class="site-header">
-  <a class="wordmark" href="index.html">Int<span>Soccer</span>Predictor</a>
+  <a class="wordmark" href="index.html">IntSoccerPredictor</a>
   <nav aria-label="Site">
     <a href="index.html">World Cup 2026</a>
-    <a href="euro2028.html">Euro 2028 <span class="pill">soon</span></a>
-    <a href="copa2028.html" aria-current="page">Copa América 2028 <span class="pill">soon</span></a>
+    <a class="soon" href="euro2028.html">Euro 2028</a>
+    <a href="copa2028.html" aria-current="page">Copa América 2028</a>
     <a href="index.html#how-it-works">How it works</a>
     <a href="https://github.com/tcaetanoa-droid/IntSoccerPredictor">GitHub</a>
+    <button class="chapters-btn" type="button" popovertarget="chapters">Chapters</button>
   </nav>
 </header>
-<main class="page" style="grid-template-columns:1fr">
-<section class="chapter" style="border-top:0">
-  <div class="num">CONMEBOL Copa América 2028</div>
-  <h2>Coming after the draw.</h2>
-  <div class="card" style="padding:6px 16px;max-width:80ch;margin-bottom:14px">
-    <div class="kv"><span>Status</span><b>Host, dates and format not yet announced. The 2024 edition had 16 teams in four groups; the file is ready for whatever 2028 turns out to be.</b></div>
-  </div>
-  <div class="exh">What will be here</div>
-  <p class="lede">The same eight chapters as the World Cup page, from the ratings the teams carry into the tournament: who wins it, every group, the most likely bracket, the hosts, the underdogs, the paradoxes, a page per team, and the maths. The simulations run the day after the finals draw and are scored against the real tournament afterwards.</p>
-  <div class="exh">Model change</div>
-  <p class="lede">The Euro 2028 and Copa América 2028 runs add the Dixon–Coles correction for low-scoring draws, the one weakness the World Cup calibration showed.</p>
+<nav id="chapters" popover aria-label="Chapters">
+  <a href="index.html#who-wins-it" autofocus>Who wins it</a>
+  <a href="index.html#group-stage">Group stage</a>
+  <a href="index.html#bracket">The bracket</a>
+  <a href="index.html#hosts">The hosts</a>
+  <a href="index.html#underdogs">Underdogs</a>
+  <a href="index.html#paradoxes">Paradoxes</a>
+  <a href="index.html#pick-a-team">Pick a team</a>
+  <a href="index.html#how-it-works">How it works</a>
+</nav>
+<main class="sheet">
+<section class="chapter">
+  <div class="mast"><div class="mt">Copa América 2028 · Wall chart</div><div class="mi">Coming after the draw.</div></div>
+  <dl class="facts">
+    <div><dt>Status</dt><dd>Host, dates and format not yet announced. The 2024 edition had 16 teams in four groups; the file is ready for whatever 2028 turns out to be.</dd></div>
+  </dl>
+  <h3>What will be here</h3>
+  <p class="intro">The same eight chapters as the World Cup page, from the ratings the teams carry into the tournament: who wins it, every group, the most likely bracket, the hosts, the underdogs, the paradoxes, a page per team, and the maths. The simulations run the day after the finals draw and are scored against the real tournament afterwards.</p>
+  <h3>Model change</h3>
+  <p class="intro">The Euro 2028 and Copa América 2028 runs add the Dixon–Coles correction for low-scoring draws, the one weakness the World Cup calibration showed.</p>
 </section>
 </main>
 <footer class="site-footer">
-  <div><a class="wordmark" href="index.html">Int<span>Soccer</span>Predictor</a>
+  <div><a class="wordmark" href="index.html">IntSoccerPredictor</a>
     <p>100,000 replays of international tournaments from Elo ratings. A personal project by Thiago Caetano, not affiliated with FIFA, UEFA, CONMEBOL or eloratings.net.</p></div>
-  <div><div class="exh">Data</div><p>Ratings and match histories from <a href="https://eloratings.net">eloratings.net</a>. Tournament regulations from FIFA, as documented on Wikipedia. Flags from <a href="https://flagcdn.com">flagcdn</a>.</p></div>
-  <div><div class="exh">Links</div><p><a href="https://github.com/tcaetanoa-droid/IntSoccerPredictor">Source code on GitHub</a><br><a href="index.html#how-it-works">How it works</a><br><a href="thiago.html">Thiago Caetano</a></p></div>
+  <div><div class="fh">Data</div><p>Ratings and match histories from <a href="https://eloratings.net">eloratings.net</a>. Tournament regulations from FIFA, as documented on Wikipedia. Flags from <a href="https://flagcdn.com">flagcdn</a>.</p></div>
+  <div><div class="fh">Links</div><p><a href="https://github.com/tcaetanoa-droid/IntSoccerPredictor">Source code on GitHub</a><br><a href="index.html#how-it-works">How it works</a><br><a href="thiago.html">Thiago Caetano</a></p></div>
 </footer>
 </body>
 </html>
