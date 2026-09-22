@@ -74,9 +74,10 @@ function set(u, p) {
 //   lead    a fraction of the viewport height (a number, or a function returning one) added to
 //           the unit's top before its progress is measured: the unit prints that much later, as
 //           if it sat that much lower on the sheet (chapter two's wave across a wall row);
-//   band    the fraction of a screen a row unit's print takes, 0.18 by default. A unit that
-//           carries a schedule of its own asks for the whole schedule's travel (chapter four's
-//           three regions take 3.8 bands, 0.684 of a screen).
+//   band    the fraction of a screen a row unit's print takes (a number, or a function returning
+//           one, for a band measured off the layout), 0.18 by default. A unit that carries a
+//           schedule of its own asks for the whole schedule's travel (chapter four's three regions
+//           take 3.8 bands, 0.684 of a screen; chapter eight's chart asks for its own height).
 export function register(el, painter, { kind = 'row', key = null, manual = false, lead = 0, band = 0.18 } = {}) {
   const u = { el, painter, kind, key, manual, lead, band, p: 0, painted: false, live: false };
   units.push(u); byEl.set(el, u);
@@ -193,8 +194,9 @@ function tickPin(y) {
 // formula or the reading-line formula.
 function progressOf(u) {
   const lead = typeof u.lead === 'function' ? u.lead() : u.lead;
+  const band = typeof u.band === 'function' ? u.band() : u.band;
   const top = u.el.getBoundingClientRect().top + lead * H;
-  return u.kind === 'block' ? blockProgress(H, top) : lineProgress(H, top, u.band);
+  return u.kind === 'block' ? blockProgress(H, top) : lineProgress(H, top, band);
 }
 function tick() {
   raf = null;

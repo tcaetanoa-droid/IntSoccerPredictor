@@ -104,7 +104,6 @@ img.flag { width: 20px; height: 14px; object-fit: cover; vertical-align: -2px; m
 
 /* LEGACY PATTERN: rules the not-yet-restyled chapters and the footer still use. Each chapter's
    task removes what it stops using; the closing task deletes the rest. */
-.n { font-family: var(--mono); font-variant-numeric: tabular-nums; }
 .chapter .num { font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--green); margin-bottom: 10px; }
 .chapter .lede { font-size: 16px; line-height: 1.55; max-width: 70ch; color: var(--ink-soft); margin: 0 0 22px; }
 .chapter .lede b { color: var(--ink); }
@@ -114,11 +113,6 @@ img.flag { width: 20px; height: 14px; object-fit: cover; vertical-align: -2px; m
 .kv:first-child { border-top: 0; }
 .kv span { color: var(--muted); }
 .kv b { font-weight: 500; }
-.chart { display: block; }
-.chart .grid { stroke: var(--border); }
-.chart .tick { fill: var(--muted); }
-.chart .val { fill: var(--ink); }
-.chart .lab { fill: var(--ink-soft); }
 .site-footer { margin-top: 40px; padding: 26px var(--gutter); background: var(--ink); color: var(--border); font-size: 13px; line-height: 1.55; display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 40px; }
 .site-footer .wordmark { color: #fff; }
 .site-footer a { color: #fff; text-decoration: underline; text-decoration-color: #5FA872; }
@@ -351,45 +345,75 @@ img.flag { width: 20px; height: 14px; object-fit: cover; vertical-align: -2px; m
 /* Under 16px iOS zooms the page when the field is focused. */
 @media (max-width: 600px), (pointer: coarse) { #pick-a-team .si { font-size: 16px; } }
 
-/* chapter 8: how it works */
-/* Two columns: the prose on the left, the maths and its key on the right. */
-#how-it-works .step { display: grid; grid-template-columns: 1fr 1.15fr; gap: 40px; border-top: 1px solid var(--ink); padding: 22px 0 10px; }
-#how-it-works .side { min-width: 0; }
-#how-it-works .stn { font-size: 12px; color: var(--green); letter-spacing: .12em; }
-#how-it-works h3 { font-family: var(--serif); font-size: 24px; font-weight: 500; margin: 4px 0 10px; }
-#how-it-works .step p { font-size: 15px; line-height: 1.6; color: var(--ink-soft); margin: 0 0 12px; }
-#how-it-works .step p b, #how-it-works .step p em { color: var(--ink); }
-/* A KaTeX display block is 18px wide maths that cannot wrap; let the longest ones scroll on a
-   phone instead of pushing the page sideways. */
-#how-it-works .eq { font-size: 18px; margin: 0 0 10px; color: var(--ink); overflow-x: auto; overflow-y: hidden; }
-/* The mock-up needs !important here because .step p outweighs .fn; scoped and ordered after it
-   this does not. */
-#how-it-works .step p.fn { font-size: 12.5px; color: var(--muted); line-height: 1.5; }
-#how-it-works .key { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px 6px; margin: 4px 0 14px; }
-#how-it-works .kr { display: grid; grid-template-columns: 110px 1fr; gap: 12px; padding: 6px 0; border-top: 1px solid #EEF2EC; font-size: 13px; line-height: 1.5; color: var(--ink-soft); }
-#how-it-works .ks { color: var(--ink); font-size: 15px; }
-#how-it-works .pt { border-collapse: collapse; font-size: 12.5px; margin: 6px 0 10px; }
-#how-it-works .pt th { text-align: left; font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-soft); font-weight: 500; padding: 4px 12px 4px 0; border-bottom: 1px solid var(--ink); }
-#how-it-works .pt td { padding: 5px 12px 5px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
-#how-it-works .two { display: flex; gap: 40px; flex-wrap: wrap; }
-/* .calbox and .repo already carry .card; the worked example is a bare div. */
-#how-it-works .ex { background: var(--card); border: 1px solid var(--border); border-radius: 8px; }
-#how-it-works .ex, #how-it-works .calbox, #how-it-works .repo { padding: 14px 18px; margin: 12px 0 14px; font-size: 13.5px; }
-#how-it-works .ex p, #how-it-works .repo p { font-size: 13.5px; margin: 0; }
-#how-it-works .repo { margin-top: 26px; }
-#how-it-works code { font-family: var(--mono); font-size: 12px; background: var(--paper); padding: 1px 5px; border-radius: 3px; }
-#how-it-works .cal2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-#how-it-works .cal2 svg { max-height: 340px; }
-#how-it-works .cl { display: flex; gap: 18px; font-size: 11.5px; color: var(--ink-soft); margin-bottom: 6px; flex-wrap: wrap; }
-#how-it-works .cl .ln { display: inline-block; width: 18px; height: 2px; vertical-align: middle; margin-right: 6px; }
-#how-it-works .cl .dot { display: inline-block; width: 8px; height: 8px; border: 1.6px solid; border-radius: 50%; background: var(--card); vertical-align: middle; margin-right: 6px; }
-#how-it-works .chart .ttl { fill: var(--ink); }
-#how-it-works .chart .zero { stroke: var(--ink); opacity: .4; }
-@media (max-width: 1023px) { #how-it-works .step { grid-template-columns: 1fr; gap: 0; } }
-/* The brief stacks .cal2 at 1024px too, but a 10px axis label in the 620-wide viewBox needs a
-   panel about 500px wide before it renders under 8px, and two panels only clear that above
-   1382px: the rail and the gutters take 314px out of the page and the card another 38. Stack
-   from there; max-height then holds a lone panel to a 1.13 scale, so it cannot grow instead. */
-@media (max-width: 1382px) { #how-it-works .cal2 { grid-template-columns: 1fr; } }
-/* Below 570px even one panel is under 500px, so the card scrolls, as chapter 6's does. */
-@media (max-width: 569px) { #how-it-works .cal2 svg { min-width: 500px; } }
+/* chapter 8: how it works. The method as printed steps: the prose left, the formula and its key
+   right, then the calibration chart and the five commands that regenerate the page. */
+#how-it-works .mstep { display: grid; grid-template-columns: 1fr 1.12fr; gap: 0 44px; border-top: 1px solid var(--ink); padding: 1.05rem 0 .85rem; }
+#how-it-works .mcol { min-width: 0; }
+#how-it-works h3 { margin: 0 0 .5rem; }
+#how-it-works .mprose { font: 1.05rem/1.6 var(--reading); color: var(--ink-soft); max-width: 62ch; margin: 0; }
+#how-it-works .mprose b, #how-it-works .mprose em { color: var(--ink); }
+/* A superscript or subscript in running text still has to clear the 12px floor. */
+#how-it-works sup, #how-it-works sub { font-size: max(12px, .72em); }
+/* A display equation is maths that cannot wrap. At 20px KaTeX's smallest level stays at 12px, and
+   the longest lines scroll inside their column instead of pushing the page sideways. */
+#how-it-works .eq { font-size: 20px; line-height: 1.4; color: var(--ink); margin: 0 0 .2rem; overflow-x: auto; overflow-y: hidden; }
+#how-it-works .eq .katex-display { margin: .35em 0; }
+#how-it-works .mfn { font: .8rem/1.5 var(--grid); color: var(--muted); margin: .5rem 0 .2rem; }
+/* A label line: News Cycle caps over a 1px ink rule, part of the ruled frame, never a unit. */
+#how-it-works .klab { font: 700 .75rem/1.35 var(--grid); text-transform: uppercase; letter-spacing: .06em; color: var(--ink); border-bottom: 1px solid var(--ink); padding-bottom: .25rem; }
+/* A symbol key: agate, two columns, the symbol at 1rem so KaTeX's script level clears 12px. */
+#how-it-works table.key { table-layout: fixed; margin: .55rem 0 .7rem; }
+#how-it-works table.key thead th:first-child { width: 158px; }
+#how-it-works table.key th:nth-child(2), #how-it-works table.key td { text-align: left; }
+#how-it-works table.key tbody th { font: 700 1rem/1.5 var(--grid); white-space: normal; vertical-align: top; padding: .3rem .3rem; }
+#how-it-works table.key td { color: var(--ink-soft); vertical-align: top; padding: .42rem .3rem; }
+/* The parameter tables. The K and G pair stands side by side at its own widths. */
+#how-it-works table.pt { margin: .6rem 0 .2rem; }
+#how-it-works table.pt th:last-child, #how-it-works table.pt td:last-child { text-align: left; }
+#how-it-works .two { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 0 2.6rem; margin: .6rem 0 .2rem; }
+#how-it-works .two table.pt { width: auto; margin: 0; }
+#how-it-works .two th, #how-it-works .two td { text-align: left; padding-right: 1.4rem; }
+/* The worked example: a 1px ink box under its label line, its numbers in full ink. */
+#how-it-works .ex { border: 1px solid var(--ink); padding: .55rem .75rem .7rem; margin: .8rem 0 .2rem; }
+#how-it-works .ex p { font: .95rem/1.6 var(--reading); color: var(--ink-soft); margin: .5rem 0 0; }
+#how-it-works .ex b { color: var(--ink); font-weight: 700; font-variant-numeric: tabular-nums; }
+/* The calibration chart: ink lines, hollow ink dots, hairline grid. The caption reads over the two
+   panels with the legend flush right on the same line. */
+#how-it-works .calwrap { margin: 1.7rem 0 0; }
+#how-it-works .caprow { display: flex; justify-content: space-between; align-items: baseline; gap: 0 2.4rem; }
+#how-it-works .capt { flex: 1 1 62%; font: .8rem/1.5 var(--grid); color: var(--muted); max-width: 100ch; margin: .5rem 0 0; }
+#how-it-works .cleg { flex: 0 1 34%; display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .4rem 1.4rem; font: .8rem/1.5 var(--grid); color: var(--muted); margin: .5rem 0 0; }
+#how-it-works .cleg span { display: inline-flex; align-items: center; gap: .45rem; }
+#how-it-works .cleg svg { display: block; overflow: visible; }
+#how-it-works .cal2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 32px; margin: .55rem 0 0; }
+#how-it-works .cal2 svg { display: block; }
+#how-it-works .cal2 text { font-family: var(--grid); }
+#how-it-works .cal2 .ttl, #how-it-works .cal2 .sl { fill: var(--ink); font-weight: 700; }
+#how-it-works .cal2 .ttl { letter-spacing: .06em; }
+#how-it-works .cal2 .tick, #how-it-works .cal2 .axl { fill: var(--muted); }
+#how-it-works .cal2 .tick { font-variant-numeric: tabular-nums; }
+#how-it-works .cal2 .grid, #how-it-works .cal2 .zero { stroke: var(--hair); stroke-width: 1; }
+#how-it-works .cal2 .base { stroke: var(--ink); stroke-width: 1; }
+#how-it-works .ln { fill: none; stroke: var(--ink); stroke-width: 1.5; }
+#how-it-works .ob { fill: var(--paper); stroke: var(--ink); stroke-width: 1.4; }
+/* "Reproduce it": the five commands down the left, what each one does on the right. */
+#how-it-works .repro { margin: 1.8rem 0 0; }
+#how-it-works .rlead { font: .9rem/1.65 var(--grid); color: var(--ink-soft); max-width: 100ch; margin: .5rem 0 0; }
+#how-it-works .rlist { margin: .15rem 0 0; }
+#how-it-works .rrow { display: grid; grid-template-columns: 272px minmax(0, 1fr); gap: 0 1.4rem; padding: .4rem 0; align-items: baseline; }
+#how-it-works .rrow + .rrow { border-top: 1px solid var(--hair); }
+#how-it-works .rwhat { font: .9rem/1.5 var(--grid); color: var(--ink-soft); }
+#how-it-works .rfoot { font: .8rem/1.5 var(--grid); color: var(--muted); margin: .55rem 0 0; }
+#how-it-works code { font-family: ui-monospace, Menlo, monospace; font-size: .85rem; color: var(--ink); }
+/* A panel needs about 600px for its 12px axis text, and two of them plus the 32px gutter need
+   1232px of content, which the sheet has from 1328px up; below that they stack. The step grid
+   holds its two columns down to 1024px. Below 632px one panel is under 600px, so the chart keeps
+   its width and scrolls sideways inside its wrapper. */
+@media (max-width: 1327px) { #how-it-works .cal2 { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 1023px) { #how-it-works .mstep { grid-template-columns: minmax(0, 1fr); gap: 0; } }
+@media (max-width: 631px) {
+  #how-it-works .cal2 { min-width: 600px; }
+  /* At this width the 272px command column leaves the description a word a line, so it reads as a
+     command over what it does, still one hairlined row. */
+  #how-it-works .rrow { grid-template-columns: minmax(0, 1fr); }
+}
