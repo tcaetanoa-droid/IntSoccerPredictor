@@ -297,13 +297,14 @@ PIN = {
 
 
 @pytest.fixture(scope="module")
-def full():
+def full(tmp_path_factory):
     if not (FULL_RUN / "matches.parquet").exists():
         pytest.skip("no 100k run on disk")
     r = load_run(FULL_RUN)
     if r.meta["n_sims"] != 100_000 or r.meta["seed"] != 2026:
         pytest.skip("output/wc2026 is not the seed-2026 100k run")
-    return build_backtest(FULL_RUN, RESULTS, names={})
+    return build_backtest(FULL_RUN, RESULTS, names={},
+                          out_dir=tmp_path_factory.mktemp("full_backtest"))
 
 
 def test_full_run_tournament_numbers_match_the_spec(full):

@@ -1,6 +1,6 @@
 """Score a saved run against the real results: output/<name>/backtest/{matches,teams,
-calibration}.csv + summary.json, and with a site folder, site/data/<name>/backtest.json.
-The record is written up in docs/BACKTEST.md."""
+calibration}.csv + summary.json (elsewhere with `out_dir`), and with a site folder,
+site/data/<name>/backtest.json. The record is written up in docs/BACKTEST.md."""
 
 from __future__ import annotations
 
@@ -21,7 +21,7 @@ CALIBRATION_PATH = Path(__file__).resolve().parents[3] / "data" / "calibration.j
 
 
 def build_backtest(run_dir: Path, results: Path, site_dir: Path | None = None,
-                   calibration: Path = CALIBRATION_PATH,
+                   out_dir: Path | None = None, calibration: Path = CALIBRATION_PATH,
                    names: dict | None = None) -> dict:
     run_dir, results = Path(run_dir), Path(results)
     run = load_run(run_dir)
@@ -60,7 +60,7 @@ def build_backtest(run_dir: Path, results: Path, site_dir: Path | None = None,
     }
     calibration_rows = pd.DataFrame(cal["bins"] + cal["thresholds"])
 
-    out = run_dir / "backtest"
+    out = Path(out_dir) if out_dir is not None else run_dir / "backtest"
     out.mkdir(parents=True, exist_ok=True)
     matches.to_csv(out / "matches.csv", index=False, float_format="%.5f")
     teams.to_csv(out / "teams.csv", index=False, float_format="%.5f")

@@ -116,7 +116,11 @@ first (PR #4, same day) and parked the rest here:
 - two stale spec lines (§4's 120 ms hover transition against the build's none; §6's 1rem on 1.8
   against the ruling's 1rem/1.5 with padding);
 - the 516px gap in chapter two that the 0.045 lead rests on lives only in a comment;
-- whether the CSS sort arrows and the × glyph fall under the glyph ban (passed twice already).
+- whether the CSS sort arrows and the × glyph fall under the glyph ban (passed twice already);
+- `resolve_meta_path`'s fallback substitutes this checkout's own `data/tournaments/<name>.yaml`
+  silently when the recorded path is gone, which could mask a run pointed at a variant tournament
+  file rather than the one meant; make the substitution visible, or have `report.tables.context`
+  assert the loaded tournament's rounds match `run.meta["rounds"]`.
 
 **11g Reality check.** From impeccable's critique of 22 September 2026 ("the reality check is a
 whisper"): the sheet's only statement of how the runs compared with the real tournament is a clause

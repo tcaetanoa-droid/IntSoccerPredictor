@@ -69,6 +69,7 @@ def knockout_win_prob(model: GoalsModel, rating_home, rating_away, home_sign: in
 
 
 def dayof(model: GoalsModel, rating_home, rating_away, home_sign: int, ways: int) -> np.ndarray:
+    """The model's day-of forecast: three numbers for a group match, two for a knockout."""
     if ways == 3:
         la, lb = model.expected_goals(rating_home, rating_away, home_sign)
         w, d, loss = outcome_probs(la, lb, model.max_goals)
@@ -80,6 +81,7 @@ def dayof(model: GoalsModel, rating_home, rating_away, home_sign: int, ways: int
 # --- the baselines ------------------------------------------------------------------------
 
 def shrug(ways: int) -> np.ndarray:
+    """An equal share to every outcome."""
     return np.full(ways, 1.0 / ways)
 
 

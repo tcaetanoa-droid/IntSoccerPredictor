@@ -18,11 +18,13 @@ def _one_hot(p: np.ndarray, observed: int) -> np.ndarray:
 
 
 def brier(p, observed: int) -> float:
+    """The Brier score: squared gap between the forecast and the one-hot outcome, summed."""
     p = np.asarray(p, dtype=float)
     return float(((p - _one_hot(p, observed)) ** 2).sum())
 
 
 def logloss(p, observed: int, floor: float = LOG_FLOOR) -> float:
+    """The log-loss: minus the log of the probability the forecast gave the outcome, floored."""
     p = np.asarray(p, dtype=float)
     return float(-np.log(max(float(p[observed]), floor)))
 
