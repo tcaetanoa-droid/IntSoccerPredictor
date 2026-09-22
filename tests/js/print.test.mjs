@@ -58,6 +58,17 @@ test('tintStrength: the fate colour follows the share and saturates at 40%', () 
   assert.equal(tintStrength(0.8), 1);
 });
 
+test('band: a row unit prints over its own band, not always the spec\'s 18%', () => {
+  const H = 900;
+  const B = 0.684;                                           // chapter four: 3.8 bands of 18%
+  assert.equal(lineProgress(H, 0.92 * H, B), 0);             // nothing printed on the reading line
+  near(lineProgress(H, 0.92 * H - 0.342 * H, B), 0.5);       // half way, 0.342 of a screen later
+  near(lineProgress(H, 0.92 * H - B * H, B), 1);             // complete 0.684 of a screen later
+  assert.ok(lineProgress(H, 0.92 * H - 0.68 * H, B) < 1);    // and not a moment before
+  near(lineProgress(H, 0.92 * H - 0.10 * H, 0.10), 1);       // chapter seven's quicker band
+  near(lineProgress(H, 747, 0.18), lineProgress(H, 747));    // the default is the spec's band
+});
+
 test('a lead of half a band (0.09 of a screen) delays a row by half its progress', () => {
   near(lineProgress(900, 700 + 0.09 * 900), lineProgress(900, 700) - 0.5);
 });

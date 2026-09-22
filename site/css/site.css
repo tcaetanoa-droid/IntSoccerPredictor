@@ -213,17 +213,29 @@ img.flag { width: 20px; height: 14px; object-fit: cover; vertical-align: -2px; m
    state, so hover does not undo it. */
 #bracket .tie:hover { filter: brightness(.94); }
 
-/* chapter 4: the hosts */
-#hosts .sm3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-#hosts .hn { display: flex; align-items: baseline; gap: 12px; margin-bottom: 2px; font-size: 15px; }
-#hosts .hn b { font-family: var(--serif); font-size: 22px; font-weight: 500; }
-/* The brief stacks at 1024px, but the rail takes 218px out of the page down to 1023px, so
-   between 1024 and 1261 a third of the column is under 300px and the 9.5px labels inside the
-   420-wide viewBox scale down to 6px. Stack from there, and cap the width so a lone chart does
-   not scale its labels up past the body text on a tablet. */
-@media (max-width: 1261px) {
-  #hosts .sm3 { grid-template-columns: 1fr; }
-  #hosts .sm { max-width: 560px; }
+/* chapter 4: the hosts. Three regions in equal columns, each a small chart of nine plain ink bars
+   in fate order with the shared axis in runs behind them. js/hosts.js draws a chart at its
+   holder's measured pixel width and redraws it when that changes, so nothing is scaled by a
+   viewBox and every label is 12px at every width; the turned fate names cost the chart 94px of
+   height, measured. The bars carry no colour but ink, the axis no weight but a hairline. */
+#hosts .regions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 28px; }
+#hosts .hn { display: flex; align-items: center; gap: .45rem; margin: 0 0 .5rem; font: 1.5rem/1 var(--display); font-weight: 400; text-transform: uppercase; }
+#hosts .hn img.flag { width: 26px; height: 18px; margin: 0; }
+#hosts .holder { min-width: 0; }
+#hosts .hc { display: block; }
+#hosts .hc text { font-family: var(--grid); }
+#hosts .hc .lab { font-weight: 700; letter-spacing: .06em; fill: var(--ink); text-transform: uppercase; }
+#hosts .hc .val { fill: var(--ink); font-variant-numeric: tabular-nums; }
+#hosts .hc .tick { fill: var(--muted); font-variant-numeric: tabular-nums; }
+#hosts .hc .grid { stroke: var(--hair); stroke-width: 1; }
+#hosts .hc .base { stroke: var(--ink); stroke-width: 1; }
+#hosts .hc .bar { fill: var(--ink); }
+/* Three across needs about 330px a column: at 1151px the column is 333px and the closest pair of
+   counts over two short bars still clears by 3.2px. Below that the regions stack, each chart
+   capped so a lone one does not run the width of a tablet. */
+@media (max-width: 1150px) {
+  #hosts .regions { grid-template-columns: minmax(0, 1fr); gap: 2.2rem; }
+  #hosts .reg { max-width: 560px; }
 }
 
 /* chapter 5: underdogs */

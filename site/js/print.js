@@ -12,8 +12,9 @@ export const fmt = (n) => Math.round(n).toLocaleString('en-GB');
 export const rowWindow = (p, i, R) => clamp((p - i / (R + 1)) / (2 / (R + 1)));
 // A block (a title, an intro) prints over the first 40% of a screen after its top enters.
 export const blockProgress = (H, top) => clamp((H - top) / (0.4 * H));
-// A row prints as it crosses the reading line at 92% of the viewport, over an 18% band.
-export const lineProgress = (H, top) => clamp((0.92 * H - top) / (0.18 * H));
+// A row prints as it crosses the reading line at 92% of the viewport, over its band: 18% of a
+// screen by default (the spec's band), wider or narrower where a chapter's unit asks for it.
+export const lineProgress = (H, top, band = 0.18) => clamp((0.92 * H - top) / (band * H));
 // Density: the darkness a hero row prints to. The floor keeps the faintest row at 4.8:1.
 export const densityTarget = (share, floor = 0.65) => floor + (1 - floor) * share;
 // A fate cell's colour strength follows the share and saturates at a 40% share.
@@ -66,15 +67,18 @@ function set(u, p) {
   if (u.key) memo.set(u.key, p);
 }
 
-// register(el, painter, { kind, key, manual, lead })
+// register(el, painter, { kind, key, manual, lead, band })
 //   kind    'row' (prints across the reading line, default) or 'block' (prints on entry);
 //   key     a stable id, such as a team code, so a re-drawn unit keeps its progress;
 //   manual  excluded from scroll progress; driven by reprint() instead;
 //   lead    a fraction of the viewport height (a number, or a function returning one) added to
 //           the unit's top before its progress is measured: the unit prints that much later, as
-//           if it sat that much lower on the sheet (chapter two's wave across a wall row).
-export function register(el, painter, { kind = 'row', key = null, manual = false, lead = 0 } = {}) {
-  const u = { el, painter, kind, key, manual, lead, p: 0, painted: false, live: false };
+//           if it sat that much lower on the sheet (chapter two's wave across a wall row);
+//   band    the fraction of a screen a row unit's print takes, 0.18 by default. A unit that
+//           carries a schedule of its own asks for the whole schedule's travel (chapter four's
+//           three regions take 3.8 bands, 0.684 of a screen).
+export function register(el, painter, { kind = 'row', key = null, manual = false, lead = 0, band = 0.18 } = {}) {
+  const u = { el, painter, kind, key, manual, lead, band, p: 0, painted: false, live: false };
   units.push(u); byEl.set(el, u);
   set(u, reduced() ? 1 : (key && memo.has(key) ? memo.get(key) : 0));
   if (io && !manual) io.observe(el);
@@ -190,7 +194,7 @@ function tickPin(y) {
 function progressOf(u) {
   const lead = typeof u.lead === 'function' ? u.lead() : u.lead;
   const top = u.el.getBoundingClientRect().top + lead * H;
-  return u.kind === 'block' ? blockProgress(H, top) : lineProgress(H, top);
+  return u.kind === 'block' ? blockProgress(H, top) : lineProgress(H, top, u.band);
 }
 function tick() {
   raf = null;
