@@ -48,6 +48,12 @@ typography:
     fontWeight: 400
     lineHeight: 1.55
     letterSpacing: "normal"
+  head:
+    fontFamily: "News Cycle, Arial Narrow, sans-serif"
+    fontSize: "0.8rem"
+    fontWeight: 700
+    lineHeight: 1.3
+    letterSpacing: "normal"
   label:
     fontFamily: "News Cycle, Arial Narrow, sans-serif"
     fontSize: "0.75rem"
@@ -90,6 +96,10 @@ components:
     typography: "{typography.label}"
     textColor: "{colors.ink}"
     padding: "0 0 0.2rem"
+  box-head:
+    typography: "{typography.head}"
+    textColor: "{colors.ink}"
+    padding: "0 0 0.3rem"
   agate-head:
     typography: "{typography.label}"
     textColor: "{colors.ink}"
@@ -164,7 +174,8 @@ The faces are self-hosted: twelve woff2 files under `site/fonts/`, declared one 
 - **Title** (400, 1.5rem, line-height 1, uppercase): a sub-head inside a chapter, a host region's name, the champion's name in the bracket. The chart masthead's title is the same face at 1.75rem (1.4rem below 1024px); the picked team's name at 2rem; the wordmark at 1.35rem with .02em tracking.
 - **Body** (400, 1.05rem, line-height 1.55, soft ink, measure ≤ 60ch): the lede, chapter intros, method prose, the picked team's paragraph. The claim that opens an intro is 700 in full ink. The paradox reason lines and the worked example run at .95rem with the same leading; 1.55 is the reading face's one leading.
 - **Agate** (400, .8rem, News Cycle, figures right-aligned): the body of every table, the foot notes and the chart masthead's line; cells pad .25rem .3rem. Rows in the bracket and the paradox boxes run at .75rem; list rows in the picker and the search results at .875rem; the hero column rows at 1rem (the rest-of-field row at .85rem).
-- **Label** (700, .75rem, .06em tracking, uppercase): a table head, a column label, a box label, a round head in the bracket, the sub-line under a count. The hero column's label, a host mark, the footer's column heads and the placeholder pages' fact keys track wider at .08em.
+- **Label** (700, .75rem, .06em tracking, uppercase): the short-label role — a table head, a column label, a group box's label, a round head in the bracket, the sub-line under a count, the calibration chart's two SVG panel titles. The hero column's label, a host mark, the footer's column heads and the placeholder pages' fact keys track wider at .08em.
+- **Head** (700, .8rem, line-height 1.3, sentence case, no tracking, full ink): a label that reads as a sentence rather than a column head — the three paradox box labels and the method chapter's worked-example, calibration and "Reproduce it" heads — over the same 1px rule the caps label carries (a box head's rule prints with its box at `--bp`).
 - **Count** (700, 2rem, News Cycle, right-aligned): the picked team's headline count in chapter seven, the one figure set at title size.
 - **Equation** (KaTeX at 20px, line-height 1.4, ink): display maths in the method chapter; the size chosen so KaTeX's smallest script level stays at 12px.
 
@@ -173,13 +184,15 @@ The faces are self-hosted: twelve woff2 files under `site/fonts/`, declared one 
 
 **The Three Registers Rule.** League Gothic sets titles, Old Standard TT sets sentences, News Cycle sets everything that is a table, label or number. A face does not cross into another's job; a title is never set in the serif, and a count is never set in the display face.
 
+**The Sentence-Case Head Rule.** A label that runs as a sentence is set as a sentence-case bold head (News Cycle 700, .8rem, no tracking, full ink) over its rule. Tracked capitals are for short labels only: a column head, a box label, a round head, a chart's panel title.
+
 **The Right-Edge Rule.** Every number sits in News Cycle and is right-aligned, so a count-up settles on its right edge. `font-variant-numeric: tabular-nums` is declared throughout but News Cycle carries no tabular figures, so digits shift sideways while a count climbs; accepted at the hero checkpoint, and the reason numbers are never centred.
 
 ## Layout
 
-One column. The sheet is a centred `max-width: 1360px` with a 48px gutter either side (16px below 1024px); there is no rail, no side column, no grid with a secondary track. The site masthead is sticky at the top on paper, `z-index: 5`, with a 1px ink rule beneath it; its measured height is published as `--hdr` on `:root` by `js/header.js` (0px until measured, re-measured on resize and once the faces settle), and the two pinned regions, the Chapters popover's top edge and every hash target's `scroll-margin-top` take their geometry from it. Every focusable element carries `scroll-margin-top: calc(var(--hdr) + .5rem)` so a Tab never lands behind the masthead.
+One column. The sheet is a centred `max-width: 1360px` with a 48px gutter either side (16px below 1024px); there is no rail, no side column, no grid with a secondary track. The site masthead is sticky at the top on paper, `z-index: 5`, with a 1px ink rule beneath it; its measured height is published as `--hdr` on `:root` by `js/header.js` (0px until measured, re-measured on resize and once the faces settle), and the two pinned regions, the Chapters popover's top edge and every hash target's `scroll-margin-top` take their geometry from it. Every focusable element carries `scroll-margin-top: calc(var(--hdr) + .5rem)` so a Tab never lands behind the masthead. Below 1024px the masthead is one row — the wordmark and the Chapters button — and the five site links withdraw into the Chapters popover as a first group above a 1px ink rule; `--hdr` measures about 46px there against 49px on the desktop.
 
-A chapter is padded `3rem 0 2rem`. It opens with its title between two 3px rules, then an intro in the reading face at ≤ 60ch, then its own region of the chart. Chapters are separated by air and by their own title rules; there is no border between them. The hero is a held screen (`height: calc(100dvh - var(--hdr))`, sticky at `top: var(--hdr)`) inside a taller pin block, and closes on a 3px rule that bleeds to the gutters as the sheet's first limit.
+A chapter is padded `3rem 0 2rem`. It opens with its title between two 3px rules, then an intro in the reading face at ≤ 60ch, then its own region of the chart. Chapters are separated by air and by their own title rules; there is no border between them. The hero is a held screen as tall as its own content (sticky at `top: var(--hdr)`) inside a taller pin block, and closes on a 3px rule set 1.5rem under the taller of its two columns, bleeding to the gutters as the sheet's first limit.
 
 Region ladders are set per chapter from measured widths, not from shared breakpoints: the group wall runs four boxes across, stepping to three at 1299px, two at 899px, one at 559px; the hosts' three regions stack below 1150px (each capped at 560px); the paradox pairs stack below 900px; the picker's two columns stack below 900px, and its opponents region is a container that drops the round label onto its own line below 560px and the three opponents to one per line below 440px; the method chapter's calibration panels stack below 1327px and its step grid below 1023px. The fate table (1100px floor), the underdogs tables (1100px), the bracket grid (1104px), the paradox chart (500px) and the calibration chart (600px below 631px) never shrink below the width their 12px type needs: they scroll sideways inside a focusable region with a thin ink scrollbar and a "Scrolls sideways" line printed under them while they overflow.
 
@@ -204,8 +217,8 @@ The form language is the rule and the box. Rules come in three weights with thre
 There are no styled buttons. Every button on the sheet is text in the surrounding type with the chrome removed (`background: none; border: 0; padding: 0; cursor: pointer`): the Chapters button in the masthead, the sort buttons inside the fate table's column heads (which take the head's caps and tracking, underline when sorted, and append an arrow from `aria-sort`), and the clear button inside the search field (muted, 1.05rem). Focus is the 2px orange ring; inside a sideways-scrolling region the ring's offset goes negative (`-2px`) so the container does not clip it.
 
 ### Navigation
-- **Site masthead:** sticky, paper, 1px ink rule beneath, flex with the wordmark left (League Gothic 1.35rem caps) and the nav right (News Cycle .85rem, no underline at rest), wrapping at narrow widths. The current page carries a 2px orange underline with .1rem of padding; a "soon" page is muted; a hovered link takes the sheet's underline.
-- **Chapters list:** a native `popover` fixed under the masthead's right edge (`inset: calc(var(--hdr) + .4rem) var(--gutter) auto auto`), paper with a 1px ink border, at least 12rem wide, one chapter per line at .85rem with a hairline between; a hovered chapter takes the 9% tint. Escape and light dismiss come from the popover; the first link is autofocused.
+- **Site masthead:** sticky, paper, 1px ink rule beneath, flex with the wordmark left (League Gothic 1.35rem caps) and the nav right (News Cycle .85rem, no underline at rest), wrapping at narrow widths. The current page carries a 2px orange underline with .1rem of padding; a "soon" page is muted; a hovered link takes the sheet's underline. Below 1024px the nav links are withdrawn and the masthead is one row, wordmark and Chapters button, about 46px tall.
+- **Chapters list:** a native `popover` fixed under the masthead's right edge (`inset: calc(var(--hdr) + .4rem) var(--gutter) auto auto`), paper with a 1px ink border, at least 12rem wide, one chapter per line at .85rem with a hairline between; a hovered chapter takes the 9% tint. Below 1024px it opens with the five site links as a first group, each page's own states kept (the current page marked with a 2px orange underline, since a border would draw the box's full width; a "soon" page muted), and a 1px ink rule between that group and the chapters. Escape and light dismiss come from the popover; the first link is autofocused.
 - **Chart masthead:** the hero's and the placeholder pages' title line: title in League Gothic 1.75rem caps left, the muted .8rem line right, a 3px ink rule beneath, wrapping under the title on phones.
 
 ### Inputs / Fields
@@ -229,10 +242,13 @@ There are no styled buttons. Every button on the sheet is text in the surroundin
 ### Charts
 SVG drawn by script at the holder's measured pixel width and redrawn on resize, never scaled through a viewBox, so every label is 12px at every width. Bars are ink, grid runs are hairline, the baseline is 1px ink, ticks are muted, values are ink (bold where they are the mark), the calibration line is 1.5px ink and its observed points are hollow (paper fill, 1.4px ink stroke). No colour but ink; no bar carries a flag colour.
 
-### The Print (signature)
-Motion on the sheet is one thing: a unit prints. `js/print.js` owns every scroll-linked change; chapter modules build their DOM, register units and never listen to scroll. Progress follows the scroll on the way down and never decreases. A block (a title, an intro) prints over the first 40% of a screen after its top enters, from 4% to full ink. A row prints as it crosses the reading line at 92% of the viewport, over a band of 18% of a screen by default (a unit with its own schedule asks for more): its row head from 15% ink, its cells from 20%, its counts as `round(p × count)` with thousands separators, its fate tint as `p × min(1, 2.5 × share)`. A hero row prints from 6% ink to a target of `0.65 + 0.35 × share`. Every count is two spans: the final value visually hidden for assistive technology, the counting display `aria-hidden`; a screen reader always reads the finished sheet.
+### Bracket summary (narrow screens)
+A ruled unit, not a box: a 3px ink rule above, a hairline below, `.9rem 0 1rem` of padding. On a screen too narrow for the bracket grid it prints between the chapter's intro and the sideways grid — the champion mark, the final's tie box (capped at 300px, centred) and the reality caption centred beneath it — built from the same matches as the grid, nothing typed. It is shown by a `:has()` on the grid's own overflow class, so it is out of the layout wherever the grid fits whole and a browser without `:has()` simply never shows it. It prints as one block on entry: its box's rule from 6% to full ink with the unit, its three percentages counting out of blank.
 
-Two authored moments hold the page. The hero: the held screen sticks under the masthead inside a block of `2.35 × viewport − header`; one screen of scroll fills the thirteen rows in sequence, each overlapping the next by half, the last finishing at progress 1; the finished column holds for 0.35 of a screen; then the page releases, and nothing below prints until the column is complete. The bracket: once its grid crosses the reading line the page holds the whole grid in view for 1.35 screens of wheel travel, printing the four knockout rounds over 0.3 of a screen each, then a beat of 0.15 with the finished bracket, then releases; the approach is 0.92 of a screen less the header and less the chapter head when that is held with the grid. Either pin engages only when its region fits the viewport (height, and for the bracket width too); otherwise the rows print across the reading line like any table.
+### The Print (signature)
+Motion on the sheet is one thing: a unit prints. `js/print.js` owns every scroll-linked change; chapter modules build their DOM, register units and never listen to scroll. Progress follows the scroll on the way down and never decreases. A block (a title, an intro) prints over the first 40% of a screen after its top enters, from 4% to full ink. A row prints as it crosses the reading line at 92% of the viewport, over a band of 18% of a screen by default (a unit with its own schedule asks for more): its row head and its cells from that same 4% floor, its counts as `round(p × count)` with thousands separators, its fate tint as `p × min(1, 2.5 × share)`. A hero row prints from 6% ink to a target of `0.65 + 0.35 × share`. Nothing shows until it prints: a count or a percentage is empty at progress 0 and climbs from the first frame, so a half-read sheet carries no number the runs never produced, while the frame — heads, labels, rules, axes, ticks, a box border at its 6% floor — is printed from the start. Every count is two spans: the final value visually hidden for assistive technology, the counting display `aria-hidden`; a screen reader always reads the finished sheet.
+
+Two authored moments hold the page. The hero: the held screen sticks under the masthead inside a block of `held content + 1.35 × viewport`; one screen of scroll fills the thirteen rows in sequence, each overlapping the next by half, the last finishing at progress 1; the finished column then holds for 0.35 of a screen, during which chapter one's title rises from below the fold and arrives 3rem under the limit rule exactly at the release, so no blank paper scrolls past. Nothing below prints until the column is complete. The pin engages only when the held content fits the viewport less the masthead and the sheet is at least 1024px wide (below that the column stacks under the lede and the hero flows, so a phone's URL bar changing the viewport height mid-scroll can never flip it), and it snaps at half a pixel, so a masthead height rounded up never starts the fill on an unscrolled page. The bracket: once its grid crosses the reading line the page holds the whole grid in view for 1.35 screens of wheel travel, printing the four knockout rounds over 0.3 of a screen each, then a beat of 0.15 with the finished bracket, then releases; the approach is 0.92 of a screen less the header and less the chapter head when that is held with the grid. The held region carries 8px of paper above its content at the lock (one constant, the same 8 in the stylesheet and in the engine), so its top rule never touches the masthead's; the fit test, the block's travel height and the slack all count it. Either pin engages only when its region fits the viewport (height, and for the bracket width too); otherwise the rows print across the reading line like any table.
 
 Exceptions are exact: on a pick in chapter seven the old team's ink fades to paper over 150ms, then the new team reprints from zero over 400ms ease-out (`1 − (1 − k)³`), independent of scroll. Sorting the fate table keys progress by team, so a sorted row stays printed. Under `prefers-reduced-motion: reduce` the sheet is finished: every unit painted complete at boot, no pin, no hold, no listener, and smooth scrolling off. There are no CSS transitions anywhere; hover feedback is instant. Budget: one passive scroll listener, one `requestAnimationFrame` per scroll event, an IntersectionObserver marking the live set one screen either side, and only units whose progress changed are painted.
 
@@ -244,6 +260,8 @@ Exceptions are exact: on a pick in chapter seven the old team's ink fades to pap
 - **Do** keep numbers in full ink and let the fate scale's tint at `min(1, 2.5 × share)` carry frequency; where there is no fate colour, use ink density with a 65% floor.
 - **Do** reserve orange for the hot number, the real result, the current-page underline and the focus ring.
 - **Do** make a new unit print through `js/print.js` (register it with a painter; blocks on entry, rows across the reading line) and honour reduced motion by painting it complete at boot.
+- **Do** leave a count or a percentage blank until its unit prints, and sit an unprinted row at the 4% block floor; the frame (heads, labels, rules, axes, a box border at its floor) prints from the start.
+- **Do** set a label that runs as a sentence as a sentence-case bold head (News Cycle 700, .8rem, no tracking) over its rule, and keep tracked capitals for short labels.
 - **Do** clear 4.5:1 on paper and on the tint a text sits on, and never set text under 12px; step a muted figure to soft ink when it lands on the 9% tint.
 - **Do** give a wide region a measured minimum width and let it scroll sideways inside a focusable `.scroll-x` with its cue line, rather than shrinking type or scaling a chart.
 - **Do** measure a chart's width and redraw it, so its labels stay 12px.
@@ -256,5 +274,6 @@ Exceptions are exact: on a pick in chapter seven the old team's ink fades to pap
 - **Don't** use monospace as a costume; it sets the five reproduction commands and nothing else.
 - **Don't** add a CSS transition, a hover lift, a transform or a fade-in from below; the sheet's only fade is the 150ms ink-to-paper on a team pick, and the only hover feedback is `brightness(.94)`.
 - **Don't** let a unit un-print on the way back up, or listen to scroll outside `js/print.js`.
+- **Don't** stretch tracked capitals across a sentence-length label, and don't print a "0" where a unit has not printed yet; blank is the unprinted state.
 - **Don't** let a column head's length set a tinted cell's width; fix the layout where a tint could read as area.
 - **Don't** treat the bracket's losing rows at 0.75 opacity (3.07:1 at 12px) as licence: it is Thiago's one kept exception to the 4.5 floor, not a pattern for new surfaces.

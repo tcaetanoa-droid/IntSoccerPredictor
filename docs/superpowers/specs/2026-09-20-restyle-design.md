@@ -100,7 +100,11 @@ render in the new type at every checkpoint; the aliases are deleted with the las
 
 Three faces from Google Fonts, loaded with two `preconnect` links and one stylesheet link in
 the head (replacing the `@import`), `display=swap`: League Gothic (one weight), Old Standard TT
-(400, 700, italic 400 for emphasis inside prose), News Cycle (400, 700). None is on
+(400, 700, italic 400 for emphasis inside prose), News Cycle (400, 700). Owner amendment
+(23 September 2026, the PR review): the faces are self-hosted, twelve woff2 files (latin and
+latin-extended subsets of the six faces, 157 KB) under `site/fonts/` declared in
+`site/css/fonts.css` with `font-display: swap`, League Gothic preloaded, the three OFL licence
+files beside them, and no request to Google Fonts. None is on
 impeccable's overused list. These become the house type for Thiago's personal sites
 (PRODUCT.md, Brand commitments).
 
@@ -205,6 +209,15 @@ Two materials, both scrubbed and never un-printing:
   number climbs to its value as the ink darkens. Fate cells also print their colour: the tint
   strength at progress p is `p × min(1, 2.5 × share)`.
 
+Owner amendment (23 September 2026, the PR review, "blank until printed"): nothing shows until a
+unit prints. A count or percentage is empty at progress 0 and climbs from the first frame of
+its print; an unprinted chapter row sits at the block floor, 4% ink, so it reads as a hairline
+and faint paper rather than ghost text (the 15% and 20% floors above are retired; the hero's 6%
+stays, its counts blank at 0). The frame stays printed from the start: heads, labels, rules,
+axes, ticks, the dashed divider, box borders at their floor. Every chapter's painter follows the
+two rules; the group boxes' finishing position is a rank, not a count, and follows the row's ink.
+Reduced motion and the finished sheet are unchanged.
+
 ### 4.2 The print engine, `site/js/print.js`
 
 One module owns every scroll-linked change. Chapter modules build their DOM and register units;
@@ -249,6 +262,12 @@ measures it at load, after the fonts load and on resize, and publishes it as `--
 every page loads the module. The two pinned screens, the Chapters popover and the hash targets
 take their geometry from `--hdr` (sections 5.2, 6.1 and 8, The bracket).
 
+Owner amendment (23 September 2026, the PR review, decided by the controller on Thiago's
+delegation): below 1024px the masthead is one row, the wordmark left and the Chapters button
+right (46px at 390, where the three wrapped rows measured 117); the five site links move into
+the Chapters popover as its first group (section 5.2), with the current page's orange mark and
+the muted "soon" pages kept. The button still reads "Chapters".
+
 ### 5.2 Chapters
 
 "Chapters" is a button in the masthead that opens a popover (`popover` attribute, so Escape and
@@ -263,6 +282,11 @@ anchored at `--hdr` plus .4rem, and never covers the masthead or its own button 
 1023px and under, it opened over both). The hero and every chapter section carry
 `scroll-margin-top: var(--hdr)`, so the popover's links and deep links land a chapter's title
 below the masthead, not under it (measured 48px clear at 1440 and 1024, 47px at 390).
+Owner amendment (23 September 2026): below 1024px the popover opens with a first group of the
+five site links (World Cup 2026, Euro 2028, Copa América 2028, How it works, GitHub, each page's
+own states), a 1px ink rule, then the eight chapters; at 1024px and above the group is hidden
+and the popover is as before. Browsers without the `popover` attribute hide the popover and its
+button (`@supports not selector(:popover-open)`), the chapters staying reachable by reading down.
 
 ### 5.3 Footer
 
@@ -283,7 +307,9 @@ unchanged from today.
 ## 6. The hero (first viewport)
 
 Composition, as approved: the chart masthead under a 3px rule; the headline and lede on the
-left; the champion column on the right; a 3px rule at the bottom edge. The 100,000, the 18,626
+left; the champion column on the right; a 3px rule at the bottom edge (since the owner amendment
+of 23 September 2026 in section 6.1, the rule sits 1.5rem under the column, not at the
+viewport's edge). The 100,000, the 18,626
 and the team name are read from the data as today; the stat strip and the chapter row are gone.
 
 - Chart masthead: "World Cup 2026" left; right, muted: "Filled in 100,000 times." (run count
@@ -335,6 +361,20 @@ is `2.35 H − hdr` tall (2066px at 1440×900 with a 49px masthead). The fit tes
 column against the viewport minus the masthead and nothing else. Measured on 22 September: the
 column completes 13/13 at one screen of travel at 1440×900 and 1280×720, chapter one gated until
 then.
+
+Owner amendment (23 September 2026, the PR review): the held screen is as tall as its content,
+the 3px limit rule sitting 1.5rem under the taller of the two columns instead of at the
+viewport's bottom edge (514px of content at 1440), and the pin block is that height plus one
+screen of fill plus the 0.35 H hold. The fit test compares the content against the viewport
+minus the masthead; the pin point, the progress formula and the gate are unchanged, and the pin
+snaps at half a pixel so a sub-pixel rounding of the masthead's height never starts the fill on
+an unscrolled page. During the hold, chapter one's title rises from below the fold and arrives
+3rem under the limit rule exactly at the release (48.7px measured at 1440 and 1280), as the
+hosts arrive after the bracket; no blank paper scrolls past. Thiago's choice over letting the
+column fill the held screen and over keeping the composition. The pin applies only at 1024px
+and wider, where the column sits beside the lede; below that the hero flows, so a phone's URL bar
+changing the viewport height mid-scroll can never flip it between flow and pin (the controller's
+ruling after the batch's review, when the one-row masthead had made the content fit at 390×844).
 
 Gate: chapter one prints nothing until the column is complete. With this geometry the chapter's
 top cannot enter the viewport before `p = 1`; `print.js` still computes chapter units only once
@@ -486,6 +526,16 @@ unchanged; with no lock the schedule is what it was. Measured on 22 September: t
 alone at 1280×720 (the window too short for the title), rounds and beat as before. A 1440-wide
 window between about 840 and 889px tall now takes the grid-alone lock where it used to hold the
 title too, the masthead having taken that room.
+Owner amendment (23 September 2026, the PR review): two additions. The held region carries 8px
+of paper above its content at the lock (padding on the held candidate, the constant beside the
+hold's other numbers), so the title's 3px rule sits clear of the masthead's 1px rule; the fit
+test, the parent's travel height and the slack count the 8px, the lock point and the approach
+are unchanged, the round of 32 still complete at the lock. On a phone, when the grid does not
+fit sideways and the hold is off, a ruled summary unit prints between the intro and the sideways
+grid: the champion mark, the final's tie box with its conditional percentages and the reality
+caption, built from the same data as the grid, printing as one block as it enters; it is hidden
+whenever the grid fits, so wider screens show nothing new (a CSS `:has()` toggle on the grid's
+overflow state; without `:has()` it stays hidden).
 
 **The hosts.** Fixed: three regions, one per host, in News Cycle; flag-colour bars go. Open: ink
 bars per fate or a nine-row fate list with the chapter-one cell encoding, one per host; how the
@@ -567,6 +617,10 @@ boxes share a top, so they print together; the bold lands as a step when the uni
 Elo prints with the row's ink and does not climb; Italy's unit grows only its 3px stub.
 Owner amendment (22 September 2026): the reason lines take the reading face's one leading, 1.55
 (section 3.2), from 1.5; Thiago's decision after the polish review.
+Owner amendment (23 September 2026, the PR review): the three box labels are sentence-case bold
+heads, News Cycle 700 at .8rem, no tracking, ink, their rule beneath unchanged, in place of the
+12px tracked caps stretched to a 62-to-77-character sentence (the detector's `all-caps-body`
+findings, all gone); the same treatment as chapter eight's labels.
 
 **Pick a team.** Fixed: the search combobox as a printed field (1px ink box, News Cycle, no
 radius, the same keyboard behaviour); the favourites as a printed line of links, not chips; the
@@ -651,6 +705,11 @@ their third window prints nothing; both chart panels share one progress; KaTeX i
 re-rendered per frame; reduced motion is the finished chapter.
 Owner amendment (22 September 2026): the steps' prose and the worked example take the reading
 face's one leading, 1.55 (section 3.2), from 1.6; Thiago's decision after the polish review.
+Owner amendment (23 September 2026, the PR review): the worked example's label, the calibration
+caption and "Reproduce it" are sentence-case bold heads (News Cycle 700 at .8rem, no tracking,
+ink, the rule beneath unchanged), as chapter six's box labels. The calibration chart's two 12px
+SVG panel titles keep their caps and tracking (short labels; the detector's two remaining
+`wide-tracking` findings, ruled a false positive).
 
 ## 9. Files and build order
 

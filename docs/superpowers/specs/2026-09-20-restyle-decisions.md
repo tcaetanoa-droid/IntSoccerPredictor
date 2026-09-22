@@ -167,3 +167,17 @@
 - Chapter two finishing before the bracket arrives: the column lead halved, 0.09 to 0.045 of a screen. Near-miss: a hold before the bracket (his first suggestion), set aside for the shortened lead on the argument that a groups hold would sit back to back with the bracket's and that a lead change is invisible as a mechanism; he confirmed the lead route from the terminal.
 - Pick a team, the opponents: three fixed columns so the flags line up down the region; the name alone takes the ellipsis, the percentage stays whole.
 - The reading face's leading: 1.55 everywhere (chapter six's 1.5 and chapter eight's 1.6 unified), his decision after the polish review had changed and restored them.
+
+## The PR review (23 September 2026, Thiago on localhost with the finished branch)
+- Everything built overnight (the owner amendments, the critique and finish fixes, DESIGN.md, the final-review fixes) approved as built.
+- The hero's lower third: the limit rule moves under the column and chapter one rises during the hold, as the hosts after the bracket. Near-misses: the column filling the held screen (row height from the held height), keeping the approved composition.
+- The bracket on phones: a ruled summary unit (champion mark, the final's box, the reality caption) above the sideways grid, on top of the hold being off when the grid overflows. Near-miss: the grid alone, flowing.
+- The bracket's losing rows at 0.75 opacity: kept for the third time ("I like it").
+- Blank until printed: counts empty and rows at the 4% floor until a unit prints. Near-miss: the 15–20% ghost rows with "0" counts, the spec's ink material as approved at the companion.
+- The reality-check unit and the lede clause: later, not now.
+- The caps sentence labels in chapters six and eight: sentence-case bold heads at .8rem (the controller's size). Near-miss: keeping the 12px tracked caps.
+- The paradox pairs: the three ruled boxes kept ("they look great").
+- The phone masthead: delegated to the controller; one row with the site links inside the Chapters popover. Near-miss: the three sticky rows.
+- The bracket's real final: the muted caption kept; DESIGN.md records the narrowed orange rule.
+- The faces: self-hosted, replacing Google Fonts.
+- The lock: 8px of paper above the held title so the two rules do not fuse.

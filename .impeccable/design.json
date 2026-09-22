@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-22T00:00:00Z",
+  "generatedAt": "2026-09-23T00:00:00Z",
   "title": "Design System: IntSoccerPredictor",
   "extensions": {
     "colorMeta": {
@@ -26,7 +26,8 @@
       "title": { "displayName": "Sub-head", "purpose": "A sub-head inside a chapter, a host region's name, the champion's name. The chart masthead is the same face at 1.75rem, the picked team's name at 2rem, the wordmark at 1.35rem." },
       "body": { "displayName": "Reading", "purpose": "Ledes, intros, method prose and the picked team's paragraph, in soft ink at 60ch or less; the opening claim is bold ink." },
       "agate": { "displayName": "Agate", "purpose": "The body of every table, foot notes and the chart masthead's line; figures right-aligned." },
-      "label": { "displayName": "Label", "purpose": "Table heads, column and box labels, round heads, count sub-lines: bold caps with .06em tracking (.08em on the hero column label, host marks, footer heads and fact keys)." }
+      "head": { "displayName": "Head", "purpose": "A label that reads as a sentence rather than a column head: the paradox box labels and the method chapter's worked-example, calibration and \"Reproduce it\" heads, sentence case, bold, no tracking, over their 1px rule." },
+      "label": { "displayName": "Label", "purpose": "Short labels only: table heads, column and group-box labels, round heads, count sub-lines and the calibration chart's two SVG panel titles; bold caps with .06em tracking (.08em on the hero column label, host marks, footer heads and fact keys)." }
     },
     "shadows": [],
     "motion": [
@@ -65,17 +66,17 @@
       "name": "Site masthead",
       "kind": "nav",
       "refersTo": "nav-link",
-      "description": "The sticky site masthead: wordmark left, nav right, 1px ink rule beneath; the current page underlined 2px orange.",
+      "description": "The sticky site masthead: wordmark left, nav right, 1px ink rule beneath; the current page underlined 2px orange. Below 1024px it is one row, wordmark and Chapters button, and the nav links move into the popover.",
       "html": "<header class=\"ds-mast\"><a class=\"ds-wordmark\" href=\"#\">IntSoccerPredictor</a><nav class=\"ds-nav\"><a href=\"#\" aria-current=\"page\">World Cup 2026</a><a class=\"ds-soon\" href=\"#\">Euro 2028</a><a href=\"#\">How it works</a><button class=\"ds-chapters-btn\" type=\"button\">Chapters</button></nav></header>",
-      "css": ".ds-mast { display: flex; justify-content: space-between; align-items: baseline; gap: .6rem 2rem; flex-wrap: wrap; padding: .75rem 48px .6rem; background: var(--paper, #F2F6F1); color: var(--ink, #10261A); border-bottom: 1px solid var(--ink, #10261A); font: .85rem/1.55 'News Cycle', 'Arial Narrow', sans-serif; } .ds-wordmark { font: 1.35rem/1 'League Gothic', 'Arial Narrow', sans-serif; text-transform: uppercase; letter-spacing: .02em; color: inherit; text-decoration: none; } .ds-nav { display: flex; gap: 1.1rem; flex-wrap: wrap; align-items: baseline; } .ds-nav a { color: inherit; text-decoration: none; } .ds-nav a[aria-current=\"page\"] { border-bottom: 2px solid var(--orange, #C2410C); padding-bottom: .1rem; } .ds-nav a:not([aria-current]):hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .15em; } .ds-nav .ds-soon { color: var(--muted, #5B6E62); } .ds-chapters-btn { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; } .ds-mast :focus-visible { outline: 2px solid var(--orange, #C2410C); outline-offset: 2px; }"
+      "css": ".ds-mast { display: flex; justify-content: space-between; align-items: baseline; gap: .6rem 2rem; flex-wrap: wrap; padding: .75rem 48px .6rem; background: var(--paper, #F2F6F1); color: var(--ink, #10261A); border-bottom: 1px solid var(--ink, #10261A); font: .85rem/1.55 'News Cycle', 'Arial Narrow', sans-serif; } .ds-wordmark { font: 1.35rem/1 'League Gothic', 'Arial Narrow', sans-serif; text-transform: uppercase; letter-spacing: .02em; color: inherit; text-decoration: none; } .ds-nav { display: flex; gap: 1.1rem; flex-wrap: wrap; align-items: baseline; } .ds-nav a { color: inherit; text-decoration: none; } .ds-nav a[aria-current=\"page\"] { border-bottom: 2px solid var(--orange, #C2410C); padding-bottom: .1rem; } .ds-nav a:not([aria-current]):hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .15em; } .ds-nav .ds-soon { color: var(--muted, #5B6E62); } .ds-chapters-btn { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; } .ds-mast :focus-visible { outline: 2px solid var(--orange, #C2410C); outline-offset: 2px; } @media (max-width: 1023px) { .ds-mast { padding-left: 16px; padding-right: 16px; } .ds-nav a { display: none; } }"
     },
     {
       "name": "Chapters list",
       "kind": "nav",
       "refersTo": "chapters-list",
-      "description": "The popover under the masthead's right edge: a paper box with a 1px ink border, one chapter per hairlined line.",
-      "html": "<nav class=\"ds-chapters\"><a href=\"#\">Who wins it</a><a href=\"#\">Group stage</a><a href=\"#\">The bracket</a><a href=\"#\">How it works</a></nav>",
-      "css": ".ds-chapters { display: inline-block; min-width: 12rem; padding: .35rem .9rem .4rem; background: var(--paper, #F2F6F1); color: var(--ink, #10261A); border: 1px solid var(--ink, #10261A); font-family: 'News Cycle', 'Arial Narrow', sans-serif; } .ds-chapters a { display: block; padding: .3rem 0; font-size: .85rem; color: inherit; text-decoration: none; border-top: 1px solid var(--hair, rgba(16,38,26,.18)); } .ds-chapters a:first-child { border-top: 0; } .ds-chapters a:hover { background: color-mix(in srgb, var(--ink, #10261A) 9%, transparent); } .ds-chapters a:focus-visible { outline: 2px solid var(--orange, #C2410C); outline-offset: 2px; }"
+      "description": "The popover under the masthead's right edge: a paper box with a 1px ink border, one chapter per hairlined line. Below 1024px it opens with the five site links as a first group above a 1px ink rule.",
+      "html": "<nav class=\"ds-chapters\"><div class=\"ds-sitenav\"><a href=\"#\" aria-current=\"page\">World Cup 2026</a><a class=\"ds-soon\" href=\"#\">Euro 2028</a><a href=\"#\">How it works</a></div><a href=\"#\">Who wins it</a><a href=\"#\">Group stage</a><a href=\"#\">The bracket</a><a href=\"#\">How it works</a></nav>",
+      "css": ".ds-chapters { display: inline-block; min-width: 12rem; padding: .35rem .9rem .4rem; background: var(--paper, #F2F6F1); color: var(--ink, #10261A); border: 1px solid var(--ink, #10261A); font-family: 'News Cycle', 'Arial Narrow', sans-serif; } .ds-chapters a { display: block; padding: .3rem 0; font-size: .85rem; color: inherit; text-decoration: none; border-top: 1px solid var(--hair, rgba(16,38,26,.18)); } .ds-chapters a:first-child { border-top: 0; } .ds-chapters a:hover { background: color-mix(in srgb, var(--ink, #10261A) 9%, transparent); } .ds-chapters a:focus-visible { outline: 2px solid var(--orange, #C2410C); outline-offset: 2px; } .ds-chapters .ds-sitenav + a { border-top: 1px solid var(--ink, #10261A); } .ds-chapters .ds-sitenav a[aria-current=\"page\"] { text-decoration: underline 2px var(--orange, #C2410C); } .ds-chapters .ds-sitenav .ds-soon { color: var(--muted, #5B6E62); }"
     },
     {
       "name": "Chart masthead",
@@ -132,6 +133,14 @@
       "description": "A hero row: name left, count right on a hairline; the hot row is orange with a bold count; the rest-of-field row is muted and smaller.",
       "html": "<div class=\"ds-col\"><div class=\"ds-cl\"><span>Champion</span><span>Runs won</span></div><div class=\"ds-hr ds-hot\"><span>Spain</span><span class=\"ds-ct\">18,626</span></div><div class=\"ds-hr\"><span>Argentina</span><span class=\"ds-ct\">14,102</span></div><div class=\"ds-hr\" style=\"opacity:.72\"><span>Portugal</span><span class=\"ds-ct\">4,310</span></div><div class=\"ds-hr ds-rest\"><span>The other 36 teams, between them</span><span class=\"ds-ct\">9,880</span></div></div>",
       "css": ".ds-col { max-width: 560px; border-top: 3px solid var(--ink, #10261A); color: var(--ink, #10261A); font-family: 'News Cycle', 'Arial Narrow', sans-serif; } .ds-cl { display: flex; justify-content: space-between; font-weight: 700; font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; padding: .3rem 0 .2rem; } .ds-hr { display: grid; grid-template-columns: 1fr auto; gap: .6rem; align-items: center; font-size: 1rem; line-height: 1.5; padding: .15rem 0; border-bottom: 1px solid var(--hair, rgba(16,38,26,.18)); } .ds-ct { font-variant-numeric: tabular-nums; } .ds-hot { color: var(--orange, #C2410C); } .ds-hot .ds-ct { font-weight: 700; } .ds-rest { color: var(--muted, #5B6E62); font-size: .85rem; } .ds-hr:hover { opacity: 1 !important; }"
+    },
+    {
+      "name": "Sentence-case head",
+      "kind": "custom",
+      "refersTo": "box-head",
+      "description": "A label that reads as a sentence: bold News Cycle at .8rem, sentence case, no tracking, over its 1px ink rule.",
+      "html": "<div class=\"ds-box-head\">Every team that got out of its group did it the same way</div>",
+      "css": ".ds-box-head { font: 700 .8rem/1.3 'News Cycle', 'Arial Narrow', sans-serif; text-transform: none; letter-spacing: normal; color: var(--ink, #10261A); padding-bottom: .3rem; margin-bottom: .55rem; border-bottom: 1px solid var(--ink, #10261A); }"
     }
   ],
   "narrative": {
@@ -150,6 +159,7 @@
       { "name": "The 4.5 Floor Rule", "body": "Every text colour clears 4.5:1 on paper and on the strongest tint it sits on. A muted figure that lands on the 9% tint steps to soft ink to keep the floor. One kept exception exists and is recorded under Do's and Don'ts, not here.", "section": "colors" },
       { "name": "The Twelve-Pixel Rule", "body": "No text under 12px (.75rem): agate is the densest role, superscripts are floored at max(12px, .72em), chart labels are drawn at 12px at every width because the charts redraw at their measured pixel width rather than scaling through a viewBox.", "section": "typography" },
       { "name": "The Three Registers Rule", "body": "League Gothic sets titles, Old Standard TT sets sentences, News Cycle sets everything that is a table, label or number. A face does not cross into another's job; a title is never set in the serif, and a count is never set in the display face.", "section": "typography" },
+      { "name": "The Sentence-Case Head Rule", "body": "A label that runs as a sentence is set as a sentence-case bold head (News Cycle 700, .8rem, no tracking, full ink) over its rule. Tracked capitals are for short labels only: a column head, a box label, a round head, a chart's panel title.", "section": "typography" },
       { "name": "The Right-Edge Rule", "body": "Every number sits in News Cycle and is right-aligned, so a count-up settles on its right edge. font-variant-numeric: tabular-nums is declared throughout but News Cycle carries no tabular figures, so digits shift sideways while a count climbs; accepted at the hero checkpoint, and the reason numbers are never centred.", "section": "typography" },
       { "name": "The No-Shadow Rule", "body": "Nothing on the sheet casts a shadow, glows, blurs or lifts on hover. A popover or a dropdown is a ruled box on the paper. If a new surface needs to read as \"above\", give it a 1px ink border.", "section": "elevation" }
     ],
@@ -159,6 +169,8 @@
       "Do keep numbers in full ink and let the fate scale's tint at min(1, 2.5 × share) carry frequency; where there is no fate colour, use ink density with a 65% floor.",
       "Do reserve orange for the hot number, the real result, the current-page underline and the focus ring.",
       "Do make a new unit print through js/print.js (register it with a painter; blocks on entry, rows across the reading line) and honour reduced motion by painting it complete at boot.",
+      "Do leave a count or a percentage blank until its unit prints, and sit an unprinted row at the 4% block floor; the frame (heads, labels, rules, axes, a box border at its floor) prints from the start.",
+      "Do set a label that runs as a sentence as a sentence-case bold head (News Cycle 700, .8rem, no tracking) over its rule, and keep tracked capitals for short labels.",
       "Do clear 4.5:1 on paper and on the tint a text sits on, and never set text under 12px; step a muted figure to soft ink when it lands on the 9% tint.",
       "Do give a wide region a measured minimum width and let it scroll sideways inside a focusable .scroll-x with its cue line, rather than shrinking type or scaling a chart.",
       "Do measure a chart's width and redraw it, so its labels stay 12px."
@@ -171,6 +183,7 @@
       "Don't use monospace as a costume; it sets the five reproduction commands and nothing else.",
       "Don't add a CSS transition, a hover lift, a transform or a fade-in from below; the sheet's only fade is the 150ms ink-to-paper on a team pick, and the only hover feedback is brightness(.94).",
       "Don't let a unit un-print on the way back up, or listen to scroll outside js/print.js.",
+      "Don't stretch tracked capitals across a sentence-length label, and don't print a \"0\" where a unit has not printed yet; blank is the unprinted state.",
       "Don't let a column head's length set a tinted cell's width; fix the layout where a tint could read as area.",
       "Don't treat the bracket's losing rows at 0.75 opacity (3.07:1 at 12px) as licence: it is Thiago's one kept exception to the 4.5 floor, not a pattern for new surfaces."
     ]
