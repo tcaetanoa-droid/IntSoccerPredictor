@@ -8,7 +8,7 @@ from intsoccer.backtest import build_backtest, fates, forecasts
 from intsoccer.cli import main
 from intsoccer.data.snapshot import load_snapshot
 from intsoccer.model import GoalsModel, simulate_match
-from intsoccer.montecarlo import run
+from intsoccer.montecarlo import OUTPUT_DIR, load_run, run
 from intsoccer.report import bracket, tables
 from intsoccer.report.tables import fate_order
 from intsoccer.tournament import load_tournament
@@ -278,3 +278,75 @@ def test_cli_backtest_runs_and_names_the_doc(ctx, tmp_path, capsys):
     text = capsys.readouterr().out
     assert "RPS" in text and "docs/BACKTEST.md" in text
     assert (run_dir / "backtest" / "summary.json").exists()
+
+
+FULL_RUN = OUTPUT_DIR / "wc2026"
+
+# pinned from the seed-2026 run on 2026-09-22 (spec section 10)
+PIN = {
+    "dayof_brier": 0.47006,
+    "dayof_logloss": 0.77704,
+    "runs_brier": 0.46939,
+    "runs_logloss": 0.77674,
+    "shrug_brier": 0.61538,
+    "elo_logloss": 0.75602,
+    "dayof_skill_logloss_vs_shrug": 0.2021,
+}
+
+
+@pytest.fixture(scope="module")
+def full():
+    if not (FULL_RUN / "matches.parquet").exists():
+        pytest.skip("no 100k run on disk")
+    r = load_run(FULL_RUN)
+    if r.meta["n_sims"] != 100_000 or r.meta["seed"] != 2026:
+        pytest.skip("output/wc2026 is not the seed-2026 100k run")
+    return build_backtest(FULL_RUN, RESULTS, names={})
+
+
+def test_full_run_tournament_numbers_match_the_spec(full):
+    t = full["summary"]["tournament"]
+    assert t["rps"] == pytest.approx(0.0816, abs=5e-5)
+    assert t["rps_shrug"] == pytest.approx(0.1208, abs=5e-5)
+    assert t["rps_skill"] == pytest.approx(0.32, abs=0.005)
+    h = t["hits"]
+    assert h["champion"] == {"modal": "ES", "real": "ES", "hit": True}
+    assert h["semi_finalists"]["matched"] == 4
+    assert h["r32_pairings"]["matched"] == 4 and h["r32_pairings"]["of"] == 16
+    assert full["summary"]["sparse_pairings"]["count"] == 0
+
+
+def test_full_run_calibration_bins_match_the_spec(full):
+    bins = full["summary"]["calibration"]["bins"]
+    assert [b["n"] for b in bins] == [152, 47, 38, 29, 22]
+    observed = [b["observed"] for b in bins]
+    assert observed == pytest.approx([0.000, 0.149, 0.395, 0.793, 0.818], abs=5e-4)
+
+
+def test_full_run_first_matchday_frequencies_agree_with_the_day_of_forecast(full):
+    """Both sides' pre-match ratings equal the snapshot, so the runs' drift has not started."""
+    snap = load_snapshot(FULL_RUN.parent.parent / "data" / "snapshots" / "2026-06-10_wc2026.csv")
+    res = forecasts.load_results(RESULTS)          # matches.csv keeps this row order
+    first = ((res["ways"] == 3)
+             & (res["home"].map(snap) == res["home_rating_before"])
+             & (res["away"].map(snap) == res["away_rating_before"])).to_numpy()
+    m = full["matches"][first]
+    assert len(m) == 24
+    for side in ("home", "draw", "away"):
+        assert (m[f"runs_p_{side}"] - m[f"dayof_p_{side}"]).abs().max() < 0.02
+    opener = m[(m["home"] == "MX") & (m["away"] == "ZA")].iloc[0]
+    assert opener["dayof_p_home"] == pytest.approx(0.816, abs=0.001)
+    assert opener["runs_p_home"] == pytest.approx(0.81, abs=0.01)
+
+
+def test_full_run_match_scores_are_pinned(full):
+    """Pinned once first computed (spec section 10); a change that moves them is noticed."""
+    m = full["summary"]["matches"]
+    assert m["dayof"]["all"]["brier"] == pytest.approx(PIN["dayof_brier"], abs=5e-5)
+    assert m["dayof"]["all"]["logloss"] == pytest.approx(PIN["dayof_logloss"], abs=5e-5)
+    assert m["runs"]["all"]["brier"] == pytest.approx(PIN["runs_brier"], abs=5e-5)
+    assert m["runs"]["all"]["logloss"] == pytest.approx(PIN["runs_logloss"], abs=5e-5)
+    assert m["shrug"]["all"]["brier"] == pytest.approx(PIN["shrug_brier"], abs=5e-5)
+    assert m["elo"]["all"]["logloss"] == pytest.approx(PIN["elo_logloss"], abs=5e-5)
+    assert m["dayof"]["all"]["skill"]["logloss_vs_shrug"] == pytest.approx(
+        PIN["dayof_skill_logloss_vs_shrug"], abs=5e-4)
