@@ -55,8 +55,10 @@ backtest.
   section is built by the modules in `site/js/` from the JSON data; `site/index.html` holds
   only the shell. KaTeX renders formulas from the jsDelivr CDN; flags are PNGs from
   flagcdn.com by ISO code.
-- Page structure is fixed: hero, eight chapters in the order above, footer. Three placeholder
-  pages: Euro 2028, Copa América 2028, and `thiago.html` until the personal site exists.
+- Page structure is fixed: hero, eight chapters in the order above, footer. Two placeholder
+  pages, Euro 2028 and Copa América 2028, until their formats and draws are known. `thiago.html`
+  is a short first-person note from Thiago linking out to his personal site
+  (https://www.thiagocaetano.co), live since 22 Sep 2026.
 - Chapters are known by name. The 01 to 08 numbering and the numbered chapter rail are
   dropped (Thiago, 20 Sep 2026); how a visitor finds a chapter is a design decision.
 - Voice is first person, confident, explains the model once and never sells. The voice and the
