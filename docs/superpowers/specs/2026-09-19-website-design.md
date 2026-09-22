@@ -1,5 +1,7 @@
 # IntSoccerPredictor website: design spec
 
+> Superseded for everything the visitor sees by `2026-09-20-restyle-design.md` (20 September 2026). Hosting is Vercel, not GitHub Pages; see the README.
+
 Date: 19 September 2026. Status: agreed in the brainstorm session of the same day; every
 choice below was picked by Thiago from rendered mock-ups (kept under `.superpowers/brainstorm/`,
 not committed). Roadmap component 11b.

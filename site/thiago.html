@@ -5,32 +5,52 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>IntSoccerPredictor · Thiago Caetano</title>
 <meta name="description" content="Thiago Caetano, who built IntSoccerPredictor.">
+<link rel="preload" href="fonts/league-gothic-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/fonts.css">
 <link rel="stylesheet" href="css/site.css">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 </head>
 <body>
 <header class="site-header">
-  <a class="wordmark" href="index.html">Int<span>Soccer</span>Predictor</a>
+  <a class="wordmark" href="index.html">IntSoccerPredictor</a>
   <nav aria-label="Site">
     <a href="index.html">World Cup 2026</a>
-    <a href="euro2028.html">Euro 2028 <span class="pill">soon</span></a>
-    <a href="copa2028.html">Copa América 2028 <span class="pill">soon</span></a>
+    <a class="soon" href="euro2028.html">Euro 2028</a>
+    <a class="soon" href="copa2028.html">Copa América 2028</a>
     <a href="index.html#how-it-works">How it works</a>
     <a href="https://github.com/tcaetanoa-droid/IntSoccerPredictor">GitHub</a>
+    <button class="chapters-btn" type="button" popovertarget="chapters">Chapters</button>
   </nav>
 </header>
-<main class="page" style="grid-template-columns:1fr">
-<section class="chapter" style="border-top:0">
-  <div class="num">Thiago Caetano</div>
-  <h2>Personal site coming soon.</h2>
-  <p class="lede">Until then, the code for this project is on <a href="https://github.com/tcaetanoa-droid/IntSoccerPredictor">GitHub</a>.</p>
+<nav id="chapters" popover aria-label="Chapters">
+  <div class="sitenav">
+    <a href="index.html">World Cup 2026</a>
+    <a class="soon" href="euro2028.html">Euro 2028</a>
+    <a class="soon" href="copa2028.html">Copa América 2028</a>
+    <a href="index.html#how-it-works">How it works</a>
+    <a href="https://github.com/tcaetanoa-droid/IntSoccerPredictor">GitHub</a>
+  </div>
+  <a href="index.html#who-wins-it" autofocus>Who wins it</a>
+  <a href="index.html#group-stage">Group stage</a>
+  <a href="index.html#bracket">The bracket</a>
+  <a href="index.html#hosts">The hosts</a>
+  <a href="index.html#underdogs">Underdogs</a>
+  <a href="index.html#paradoxes">Paradoxes</a>
+  <a href="index.html#pick-a-team">Pick a team</a>
+  <a href="index.html#how-it-works">How it works</a>
+</nav>
+<main class="sheet">
+<section class="chapter">
+  <div class="mast"><h1 class="mt">Thiago Caetano</h1><div class="mi">Personal site coming soon.</div></div>
+  <p class="intro">Until then, the code for this project is on <a href="https://github.com/tcaetanoa-droid/IntSoccerPredictor">GitHub</a>.</p>
 </section>
 </main>
 <footer class="site-footer">
-  <div><a class="wordmark" href="index.html">Int<span>Soccer</span>Predictor</a>
+  <div><a class="wordmark" href="index.html">IntSoccerPredictor</a>
     <p>100,000 replays of international tournaments from Elo ratings. A personal project by Thiago Caetano, not affiliated with FIFA, UEFA, CONMEBOL or eloratings.net.</p></div>
-  <div><div class="exh">Data</div><p>Ratings and match histories from <a href="https://eloratings.net">eloratings.net</a>. Tournament regulations from FIFA, as documented on Wikipedia. Flags from <a href="https://flagcdn.com">flagcdn</a>.</p></div>
-  <div><div class="exh">Links</div><p><a href="https://github.com/tcaetanoa-droid/IntSoccerPredictor">Source code on GitHub</a><br><a href="index.html#how-it-works">How it works</a><br><a href="thiago.html">Thiago Caetano</a></p></div>
+  <div><div class="fh">Data</div><p>Ratings and match histories from <a href="https://eloratings.net">eloratings.net</a>. Tournament regulations from FIFA, as documented on Wikipedia. Flags from <a href="https://flagcdn.com">flagcdn</a>.</p></div>
+  <div><div class="fh">Links</div><p><a href="https://github.com/tcaetanoa-droid/IntSoccerPredictor">Source code on GitHub</a><br><a href="index.html#how-it-works">How it works</a><br><a href="thiago.html">Thiago Caetano</a></p></div>
 </footer>
+<script type="module" src="js/header.js"></script>
 </body>
 </html>

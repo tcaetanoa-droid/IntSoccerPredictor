@@ -67,6 +67,10 @@ so the site never computes a statistic of its own; the views themselves are spec
 [docs/REPORTS.md](docs/REPORTS.md). Vercel deploys it from `main` through its GitHub integration,
 with the project's root directory set to `site/`; every pull request gets a preview deployment.
 
+Design: [PRODUCT.md](PRODUCT.md) holds the product truth (audience, purpose, voice, brand
+commitments), `DESIGN.md` the visual system (written at the end of the restyle), and
+`.impeccable/surfaces/` the per-page design briefs.
+
 ## Quick start
 
 ```bash
@@ -76,6 +80,7 @@ python3 -m venv .venv && source .venv/bin/activate   # keep the clone out of iCl
 pip install -e ".[dev]"
 
 pytest                                   # run the test suite
+node --test tests/js/*.mjs               # the print engine's formulas (site/js/print.js)
 intsoccer fetch --teams ES AR EN         # download current ratings and team histories
 intsoccer snapshot --date 2026-06-11 --label wc2026   # ratings as of the eve of the World Cup
 intsoccer fit                            # refit the goals model and draw the calibration chart

@@ -1,0 +1,191 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-23T00:00:00Z",
+  "title": "Design System: IntSoccerPredictor",
+  "extensions": {
+    "colorMeta": {
+      "paper": { "role": "neutral", "displayName": "Paper", "canonical": "#F2F6F1", "tonalRamp": ["oklch(20% 0.012 155)", "oklch(32% 0.012 155)", "oklch(44% 0.012 155)", "oklch(56% 0.012 155)", "oklch(68% 0.012 155)", "oklch(80% 0.012 155)", "oklch(90% 0.012 155)", "oklch(97% 0.012 155)"] },
+      "ink": { "role": "neutral", "displayName": "Ink", "canonical": "#10261A", "tonalRamp": ["oklch(15% 0.035 158)", "oklch(24% 0.035 158)", "oklch(34% 0.035 158)", "oklch(45% 0.035 158)", "oklch(56% 0.035 158)", "oklch(68% 0.035 158)", "oklch(82% 0.035 158)", "oklch(95% 0.035 158)"] },
+      "ink-soft": { "role": "neutral", "displayName": "Soft Ink", "canonical": "#2C4A38", "tonalRamp": ["oklch(15% 0.045 158)", "oklch(25% 0.045 158)", "oklch(36% 0.045 158)", "oklch(47% 0.045 158)", "oklch(58% 0.045 158)", "oklch(70% 0.045 158)", "oklch(83% 0.045 158)", "oklch(95% 0.045 158)"] },
+      "muted": { "role": "neutral", "displayName": "Muted", "canonical": "#5B6E62", "tonalRamp": ["oklch(15% 0.025 158)", "oklch(26% 0.025 158)", "oklch(37% 0.025 158)", "oklch(49% 0.025 158)", "oklch(60% 0.025 158)", "oklch(72% 0.025 158)", "oklch(84% 0.025 158)", "oklch(95% 0.025 158)"] },
+      "orange": { "role": "primary", "displayName": "Orange", "canonical": "#C2410C", "tonalRamp": ["oklch(15% 0.06 40)", "oklch(27% 0.10 40)", "oklch(39% 0.14 40)", "oklch(50% 0.17 40)", "oklch(62% 0.17 40)", "oklch(74% 0.13 40)", "oklch(86% 0.08 40)", "oklch(95% 0.03 40)"] },
+      "hair": { "role": "neutral", "displayName": "Hairline", "canonical": "rgba(16, 38, 26, .18)", "tonalRamp": ["oklch(15% 0.035 158)", "oklch(26% 0.03 158)", "oklch(38% 0.025 158)", "oklch(50% 0.02 158)", "oklch(62% 0.015 158)", "oklch(74% 0.012 158)", "oklch(86% 0.01 158)", "oklch(95% 0.008 158)"] },
+      "fate-gs4": { "role": "secondary", "displayName": "Fate: 4th in group", "canonical": "#DDE3DC", "tonalRamp": ["oklch(18% 0.012 150)", "oklch(30% 0.012 150)", "oklch(42% 0.012 150)", "oklch(54% 0.012 150)", "oklch(66% 0.012 150)", "oklch(78% 0.012 150)", "oklch(90% 0.012 150)", "oklch(96% 0.008 150)"] },
+      "fate-gs3": { "role": "secondary", "displayName": "Fate: 3rd, out", "canonical": "#C9D3C7", "tonalRamp": ["oklch(18% 0.015 150)", "oklch(30% 0.015 150)", "oklch(42% 0.015 150)", "oklch(54% 0.015 150)", "oklch(66% 0.015 150)", "oklch(78% 0.015 150)", "oklch(85% 0.015 150)", "oklch(95% 0.01 150)"] },
+      "fate-r32": { "role": "secondary", "displayName": "Fate: round of 32", "canonical": "#C2DFC6", "tonalRamp": ["oklch(18% 0.03 150)", "oklch(30% 0.035 150)", "oklch(42% 0.04 150)", "oklch(54% 0.045 150)", "oklch(66% 0.045 150)", "oklch(78% 0.04 150)", "oklch(87% 0.035 150)", "oklch(95% 0.02 150)"] },
+      "fate-r16": { "role": "secondary", "displayName": "Fate: round of 16", "canonical": "#98C8A2", "tonalRamp": ["oklch(18% 0.04 150)", "oklch(30% 0.05 150)", "oklch(42% 0.06 150)", "oklch(54% 0.07 150)", "oklch(66% 0.07 150)", "oklch(78% 0.065 150)", "oklch(88% 0.05 150)", "oklch(95% 0.03 150)"] },
+      "fate-qf": { "role": "secondary", "displayName": "Fate: quarter-final", "canonical": "#6BAE7C", "tonalRamp": ["oklch(18% 0.05 150)", "oklch(30% 0.07 150)", "oklch(42% 0.09 150)", "oklch(54% 0.10 150)", "oklch(66% 0.10 150)", "oklch(78% 0.09 150)", "oklch(88% 0.06 150)", "oklch(95% 0.03 150)"] },
+      "fate-4th": { "role": "secondary", "displayName": "Fate: 4th place", "canonical": "#3F8F57", "tonalRamp": ["oklch(18% 0.06 150)", "oklch(30% 0.09 150)", "oklch(42% 0.11 150)", "oklch(56% 0.13 150)", "oklch(66% 0.12 150)", "oklch(78% 0.10 150)", "oklch(88% 0.07 150)", "oklch(95% 0.03 150)"] },
+      "fate-3rd": { "role": "secondary", "displayName": "Fate: 3rd place (bronze)", "canonical": "#B87333", "tonalRamp": ["oklch(18% 0.05 60)", "oklch(30% 0.08 60)", "oklch(42% 0.11 60)", "oklch(56% 0.13 60)", "oklch(66% 0.13 60)", "oklch(78% 0.10 60)", "oklch(88% 0.06 60)", "oklch(95% 0.03 60)"] },
+      "fate-ru": { "role": "secondary", "displayName": "Fate: runner-up (silver)", "canonical": "#A8A9AD", "tonalRamp": ["oklch(18% 0.005 270)", "oklch(30% 0.005 270)", "oklch(42% 0.005 270)", "oklch(54% 0.005 270)", "oklch(66% 0.005 270)", "oklch(74% 0.005 270)", "oklch(86% 0.005 270)", "oklch(95% 0.003 270)"] },
+      "fate-w": { "role": "secondary", "displayName": "Fate: champion (gold)", "canonical": "#C9A227", "tonalRamp": ["oklch(18% 0.05 90)", "oklch(30% 0.08 90)", "oklch(42% 0.11 90)", "oklch(56% 0.14 90)", "oklch(72% 0.15 90)", "oklch(80% 0.12 90)", "oklch(90% 0.08 90)", "oklch(96% 0.04 90)"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "The hero headline only; its second sentence is orange on its own line." },
+      "headline": { "displayName": "Chapter title", "purpose": "A chapter's name, centred between a 3px rule above and below; 2rem below 1024px." },
+      "title": { "displayName": "Sub-head", "purpose": "A sub-head inside a chapter, a host region's name, the champion's name. The chart masthead is the same face at 1.75rem, the picked team's name at 2rem, the wordmark at 1.35rem." },
+      "body": { "displayName": "Reading", "purpose": "Ledes, intros, method prose and the picked team's paragraph, in soft ink at 60ch or less; the opening claim is bold ink." },
+      "agate": { "displayName": "Agate", "purpose": "The body of every table, foot notes and the chart masthead's line; figures right-aligned." },
+      "head": { "displayName": "Head", "purpose": "A label that reads as a sentence rather than a column head: the paradox box labels and the method chapter's worked-example, calibration and \"Reproduce it\" heads, sentence case, bold, no tracking, over their 1px rule." },
+      "label": { "displayName": "Label", "purpose": "Short labels only: table heads, column and group-box labels, round heads, count sub-lines and the calibration chart's two SVG panel titles; bold caps with .06em tracking (.08em on the hero column label, host marks, footer heads and fact keys)." }
+    },
+    "shadows": [],
+    "motion": [
+      { "name": "reading-line", "value": "0.92 × viewport height", "purpose": "A row prints as its top crosses this line." },
+      { "name": "row-band", "value": "0.18 × viewport height", "purpose": "The scroll a row's print takes: p = clamp((0.92H − top) / 0.18H)." },
+      { "name": "block-band", "value": "0.4 × viewport height", "purpose": "A title or intro prints over the first 40% of a screen after entering: p = clamp((H − top) / 0.4H), 4% to full ink." },
+      { "name": "row-ink", "value": "head 0.15 → 1, cells 0.2 → 1", "purpose": "Ink density of a table row as it prints." },
+      { "name": "hero-density", "value": "0.06 → 0.65 + 0.35 × share", "purpose": "A hero row prints from 6% ink to a share-weighted target; the floor holds 4.8:1." },
+      { "name": "fate-tint", "value": "p × min(1, 2.5 × share)", "purpose": "A fate cell's colour strength, written to --t." },
+      { "name": "box-rule", "value": "0.06 + 0.94 × p", "purpose": "A box's border ink (--bp) prints with its label." },
+      { "name": "count", "value": "round(p × count), en-GB thousands", "purpose": "A count climbs to its value as its ink darkens; final value in a visually hidden span." },
+      { "name": "hero-pin", "value": "block height 2.35H − header; fill over 1H; hold 0.35H", "purpose": "The first authored moment: one screen of scroll fills the champion column, rows overlapping by half, the last finishing at p = 1; then a beat; nothing below prints until the column is complete." },
+      { "name": "bracket-hold", "value": "approach 0.92H − header (− chapter head when held); hold 1.35H = 4 rounds × 0.3H + beat 0.15H", "purpose": "The second authored moment: the grid is held in view while the knockout rounds print round by round, then a beat, then release. Engages only when the region fits the viewport in both dimensions." },
+      { "name": "pick-fade", "value": "150ms ink to paper", "purpose": "The sheet's only fade: the old team leaves before the new one prints, driven by script so reduced motion skips it." },
+      { "name": "reprint", "value": "400ms, ease-out 1 − (1 − k)³", "purpose": "Chapter seven reprints from zero on a pick, independent of scroll." },
+      { "name": "hover", "value": "filter: brightness(.94), no transition", "purpose": "The one hover feedback on a row, tie or list row; a faded hero row goes to full ink." },
+      { "name": "reduced-motion", "value": "finished sheet", "purpose": "Every unit painted complete at boot; no pin, no hold, no listener; smooth scroll off; transitions none." }
+    ],
+    "breakpoints": [
+      { "name": "gutter", "value": "1023px", "purpose": "Gutter 48px → 16px; masthead title 1.75rem → 1.4rem; chapter title 2.6rem → 2rem; hero grid, footer and method steps go one column." },
+      { "name": "calibration-stack", "value": "1327px" },
+      { "name": "groups-3", "value": "1299px" },
+      { "name": "hosts-stack", "value": "1150px" },
+      { "name": "fate-table-floor", "value": "1100px", "purpose": "Below this the fate and underdogs tables scroll sideways." },
+      { "name": "bracket-floor", "value": "1104px", "purpose": "The bracket grid's min-content; it scrolls sideways and the hold does not engage below it." },
+      { "name": "pairs-and-picker-stack", "value": "900px" },
+      { "name": "groups-2", "value": "899px" },
+      { "name": "calibration-floor", "value": "631px" },
+      { "name": "input-16px", "value": "600px or coarse pointer" },
+      { "name": "groups-1", "value": "559px" },
+      { "name": "paradox-chart-floor", "value": "500px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Site masthead",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "The sticky site masthead: wordmark left, nav right, 1px ink rule beneath; the current page underlined 2px orange. Below 1024px it is one row, wordmark and Chapters button, and the nav links move into the popover.",
+      "html": "<header class=\"ds-mast\"><a class=\"ds-wordmark\" href=\"#\">IntSoccerPredictor</a><nav class=\"ds-nav\"><a href=\"#\" aria-current=\"page\">World Cup 2026</a><a class=\"ds-soon\" href=\"#\">Euro 2028</a><a href=\"#\">How it works</a><button class=\"ds-chapters-btn\" type=\"button\">Chapters</button></nav></header>",
+      "css": ".ds-mast { display: flex; justify-content: space-between; align-items: baseline; gap: .6rem 2rem; flex-wrap: wrap; padding: .75rem 48px .6rem; background: var(--paper, #F2F6F1); color: var(--ink, #10261A); border-bottom: 1px solid var(--ink, #10261A); font: .85rem/1.55 'News Cycle', 'Arial Narrow', sans-serif; } .ds-wordmark { font: 1.35rem/1 'League Gothic', 'Arial Narrow', sans-serif; text-transform: uppercase; letter-spacing: .02em; color: inherit; text-decoration: none; } .ds-nav { display: flex; gap: 1.1rem; flex-wrap: wrap; align-items: baseline; } .ds-nav a { color: inherit; text-decoration: none; } .ds-nav a[aria-current=\"page\"] { border-bottom: 2px solid var(--orange, #C2410C); padding-bottom: .1rem; } .ds-nav a:not([aria-current]):hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .15em; } .ds-nav .ds-soon { color: var(--muted, #5B6E62); } .ds-chapters-btn { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; } .ds-mast :focus-visible { outline: 2px solid var(--orange, #C2410C); outline-offset: 2px; } @media (max-width: 1023px) { .ds-mast { padding-left: 16px; padding-right: 16px; } .ds-nav a { display: none; } }"
+    },
+    {
+      "name": "Chapters list",
+      "kind": "nav",
+      "refersTo": "chapters-list",
+      "description": "The popover under the masthead's right edge: a paper box with a 1px ink border, one chapter per hairlined line. Below 1024px it opens with the five site links as a first group above a 1px ink rule.",
+      "html": "<nav class=\"ds-chapters\"><div class=\"ds-sitenav\"><a href=\"#\" aria-current=\"page\">World Cup 2026</a><a class=\"ds-soon\" href=\"#\">Euro 2028</a><a href=\"#\">How it works</a></div><a href=\"#\">Who wins it</a><a href=\"#\">Group stage</a><a href=\"#\">The bracket</a><a href=\"#\">How it works</a></nav>",
+      "css": ".ds-chapters { display: inline-block; min-width: 12rem; padding: .35rem .9rem .4rem; background: var(--paper, #F2F6F1); color: var(--ink, #10261A); border: 1px solid var(--ink, #10261A); font-family: 'News Cycle', 'Arial Narrow', sans-serif; } .ds-chapters a { display: block; padding: .3rem 0; font-size: .85rem; color: inherit; text-decoration: none; border-top: 1px solid var(--hair, rgba(16,38,26,.18)); } .ds-chapters a:first-child { border-top: 0; } .ds-chapters a:hover { background: color-mix(in srgb, var(--ink, #10261A) 9%, transparent); } .ds-chapters a:focus-visible { outline: 2px solid var(--orange, #C2410C); outline-offset: 2px; } .ds-chapters .ds-sitenav + a { border-top: 1px solid var(--ink, #10261A); } .ds-chapters .ds-sitenav a[aria-current=\"page\"] { text-decoration: underline 2px var(--orange, #C2410C); } .ds-chapters .ds-sitenav .ds-soon { color: var(--muted, #5B6E62); }"
+    },
+    {
+      "name": "Chart masthead",
+      "kind": "custom",
+      "refersTo": "chapter-title",
+      "description": "The hero's title line: League Gothic caps left, the muted line right, a 3px ink rule beneath.",
+      "html": "<div class=\"ds-cmast\"><div class=\"ds-cmast-t\">World Cup 2026</div><div class=\"ds-cmast-i\">Filled in 100,000 times.</div></div>",
+      "css": ".ds-cmast { display: flex; justify-content: space-between; align-items: baseline; gap: .5rem 1.5rem; flex-wrap: wrap; border-bottom: 3px solid var(--ink, #10261A); padding: 1rem 0 .35rem; color: var(--ink, #10261A); font-family: 'News Cycle', 'Arial Narrow', sans-serif; } .ds-cmast-t { font: 1.75rem/1 'League Gothic', 'Arial Narrow', sans-serif; text-transform: uppercase; } .ds-cmast-i { font-size: .8rem; color: var(--muted, #5B6E62); text-align: right; }"
+    },
+    {
+      "name": "Chapter head",
+      "kind": "custom",
+      "refersTo": "chapter-title",
+      "description": "A chapter's name centred between two 3px rules, then its intro in the reading face with the claim bold.",
+      "html": "<section class=\"ds-chapter\"><h2 class=\"ds-chapter-h2\">Who wins it</h2><p class=\"ds-intro\"><b>Every team's fate, counted.</b> Each row splits a team's 100,000 runs into nine ways a World Cup can end.</p></section>",
+      "css": ".ds-chapter { color: var(--ink, #10261A); } .ds-chapter-h2 { font: 2.6rem/.95 'League Gothic', 'Arial Narrow', sans-serif; font-weight: 400; text-transform: uppercase; text-align: center; margin: 0 0 1rem; padding: .35rem 0 .3rem; border-top: 3px solid var(--ink, #10261A); border-bottom: 3px solid var(--ink, #10261A); } .ds-intro { font: 1.05rem/1.55 'Old Standard TT', Georgia, serif; color: var(--ink-soft, #2C4A38); max-width: 60ch; margin: 0; } .ds-intro b { color: var(--ink, #10261A); }"
+    },
+    {
+      "name": "Agate table with fate cells",
+      "kind": "custom",
+      "refersTo": "agate-cell",
+      "description": "The sheet's table: a 3px rule over the caps head, a 1px rule under it, hairlines between rows, numbers in ink on a fate tint whose strength follows the share.",
+      "html": "<table class=\"ds-agate\"><thead><tr><th>Team</th><th>Elo</th><th>Out in QF</th><th>Runner-up</th><th>Champion</th></tr></thead><tbody><tr><th>Spain <i>Group H</i></th><td>2118</td><td style=\"--fate:#6BAE7C;--t:.44\">17,652</td><td style=\"--fate:#A8A9AD;--t:.33\">13,181</td><td class=\"ds-w\" style=\"--fate:#C9A227;--t:.47\">18,626</td></tr><tr><th>Argentina <i>Group J</i></th><td>2097</td><td style=\"--fate:#6BAE7C;--t:.42\">16,900</td><td style=\"--fate:#A8A9AD;--t:.28\">11,200</td><td class=\"ds-w\" style=\"--fate:#C9A227;--t:.35\">14,102</td></tr></tbody></table>",
+      "css": ".ds-agate { border-collapse: collapse; width: 100%; font: .8rem/1.55 'News Cycle', 'Arial Narrow', sans-serif; color: var(--ink, #10261A); } .ds-agate thead th { font-weight: 700; font-size: .75rem; text-transform: uppercase; letter-spacing: .06em; text-align: right; padding: .3rem .3rem .2rem; border-top: 3px solid var(--ink, #10261A); border-bottom: 1px solid var(--ink, #10261A); white-space: nowrap; } .ds-agate thead th:first-child, .ds-agate tbody th { text-align: left; } .ds-agate tbody th { font-weight: 700; padding: .25rem .3rem; border-bottom: 1px solid var(--hair, rgba(16,38,26,.18)); white-space: nowrap; } .ds-agate tbody th i { font-style: normal; font-weight: 400; font-size: .75rem; color: var(--muted, #5B6E62); margin-left: .4rem; } .ds-agate td { text-align: right; font-variant-numeric: tabular-nums; padding: .25rem .3rem; border-bottom: 1px solid var(--hair, rgba(16,38,26,.18)); background: color-mix(in srgb, var(--fate, transparent) calc(var(--t, 0) * 100%), transparent); } .ds-agate td.ds-w { font-weight: 700; } .ds-agate tbody tr:hover th, .ds-agate tbody tr:hover td { filter: brightness(.94); }"
+    },
+    {
+      "name": "Sort button (column head)",
+      "kind": "button",
+      "refersTo": "agate-head",
+      "description": "The only button style on the sheet: the head's own caps with the chrome removed; underlined when sorted, with an arrow from aria-sort.",
+      "html": "<table class=\"ds-agate-s\"><thead><tr><th class=\"ds-sorted\" aria-sort=\"descending\"><button type=\"button\">Champion</button></th><th aria-sort=\"none\"><button type=\"button\">Runner-up</button></th></tr></thead></table>",
+      "css": ".ds-agate-s { border-collapse: collapse; font-family: 'News Cycle', 'Arial Narrow', sans-serif; color: var(--ink, #10261A); } .ds-agate-s th { padding: 0; border-top: 3px solid var(--ink, #10261A); border-bottom: 1px solid var(--ink, #10261A); } .ds-agate-s th button { display: block; width: 100%; padding: .3rem .3rem .2rem; border: 0; background: none; color: inherit; font: 700 .75rem/1.55 'News Cycle', 'Arial Narrow', sans-serif; text-transform: uppercase; letter-spacing: .06em; text-align: right; white-space: nowrap; cursor: pointer; } .ds-agate-s th.ds-sorted button { text-decoration: underline; text-underline-offset: .15em; } .ds-agate-s th[aria-sort=\"descending\"] button::after { content: ' \\2193'; } .ds-agate-s th[aria-sort=\"ascending\"] button::after { content: ' \\2191'; } .ds-agate-s th button:focus-visible { outline: 2px solid var(--orange, #C2410C); outline-offset: -2px; }"
+    },
+    {
+      "name": "Team search field",
+      "kind": "input",
+      "refersTo": "input-search",
+      "description": "A ruled field: 1px ink border, no fill, no radius; the box carries the orange focus ring; the results list is a paper box hung 4px below.",
+      "html": "<div class=\"ds-sw\"><div class=\"ds-srch\"><input class=\"ds-si\" type=\"text\" placeholder=\"Team\" aria-label=\"Team\"><button class=\"ds-x\" type=\"button\" aria-label=\"Clear the team name\">×</button></div><div class=\"ds-res\"><div class=\"ds-r ds-on\">Spain <b>18,626</b></div><div class=\"ds-r\">Argentina <b>14,102</b></div></div></div>",
+      "css": ".ds-sw { position: relative; width: 320px; max-width: 100%; font-family: 'News Cycle', 'Arial Narrow', sans-serif; color: var(--ink, #10261A); } .ds-srch { display: flex; align-items: center; gap: .5rem; padding: .4rem .6rem; border: 1px solid var(--ink, #10261A); border-radius: 0; background: none; } .ds-srch:focus-within { outline: 2px solid var(--orange, #C2410C); outline-offset: 2px; } .ds-si { flex: 1; min-width: 0; border: 0; padding: 0; background: none; color: var(--ink, #10261A); font: 1rem/1.3 'News Cycle', 'Arial Narrow', sans-serif; } .ds-si:focus { outline: 0; } .ds-x { margin-left: auto; padding: 0 0 0 .4rem; border: 0; background: none; color: var(--muted, #5B6E62); font: 400 1.05rem/1 'News Cycle', 'Arial Narrow', sans-serif; cursor: pointer; } .ds-res { position: absolute; top: calc(100% + 4px); left: 0; min-width: 100%; max-height: 15rem; overflow-y: auto; background: var(--paper, #F2F6F1); border: 1px solid var(--ink, #10261A); } .ds-r { display: flex; align-items: center; padding: .25rem .5rem; font-size: .875rem; white-space: nowrap; cursor: pointer; } .ds-r b { margin-left: auto; padding-left: .75rem; font-weight: 400; color: var(--muted, #5B6E62); font-variant-numeric: tabular-nums; } .ds-r.ds-on, .ds-r:hover { background: color-mix(in srgb, var(--ink, #10261A) 9%, transparent); } .ds-r.ds-on b, .ds-r:hover b { color: var(--ink-soft, #2C4A38); }"
+    },
+    {
+      "name": "Ruled box (group)",
+      "kind": "card",
+      "refersTo": "box",
+      "description": "The sheet's only container: a 1px ink border, no fill, no radius, a caps label over a 1px rule, then rows with a solid ink bar.",
+      "html": "<div class=\"ds-box\"><div class=\"ds-box-label\"><b>Group H</b><span>Advances 4 in 5</span></div><div class=\"ds-box-row\"><span>Spain</span><span class=\"ds-bar\"><i style=\"width:88%\"></i></span><span class=\"ds-val\">88,412</span></div><div class=\"ds-box-row\"><span>Uruguay</span><span class=\"ds-bar\"><i style=\"width:61%\"></i></span><span class=\"ds-val\">61,020</span></div><div class=\"ds-box-row ds-out\"><span>Cape Verde</span><span class=\"ds-bar\"><i style=\"width:12%\"></i></span><span class=\"ds-val\">12,311</span></div></div>",
+      "css": ".ds-box { border: 1px solid var(--ink, #10261A); padding: .4rem .5rem .45rem; background: none; color: var(--ink, #10261A); font: .8rem/1.55 'News Cycle', 'Arial Narrow', sans-serif; max-width: 20rem; } .ds-box-label { display: flex; justify-content: space-between; align-items: baseline; gap: .4rem; padding-bottom: .2rem; border-bottom: 1px solid var(--ink, #10261A); font-size: .75rem; line-height: 1.2; } .ds-box-label b { text-transform: uppercase; letter-spacing: .06em; } .ds-box-label span { color: var(--muted, #5B6E62); text-align: right; } .ds-box-row { display: grid; grid-template-columns: 6rem 1fr 3.5rem; gap: .5rem; align-items: center; padding: .24rem 0; border-bottom: 1px solid var(--hair, rgba(16,38,26,.18)); } .ds-box-row:last-child { border-bottom: 0; } .ds-bar { display: block; height: 6px; background: var(--hair, rgba(16,38,26,.18)); } .ds-bar i { display: block; height: 100%; background: var(--ink, #10261A); } .ds-val { text-align: right; font-variant-numeric: tabular-nums; } .ds-out { color: var(--muted, #5B6E62); } .ds-out .ds-bar i { background: var(--muted, #5B6E62); } .ds-box-row:hover { filter: brightness(.94); }"
+    },
+    {
+      "name": "Champion column row (hero)",
+      "kind": "custom",
+      "refersTo": "agate-cell",
+      "description": "A hero row: name left, count right on a hairline; the hot row is orange with a bold count; the rest-of-field row is muted and smaller.",
+      "html": "<div class=\"ds-col\"><div class=\"ds-cl\"><span>Champion</span><span>Runs won</span></div><div class=\"ds-hr ds-hot\"><span>Spain</span><span class=\"ds-ct\">18,626</span></div><div class=\"ds-hr\"><span>Argentina</span><span class=\"ds-ct\">14,102</span></div><div class=\"ds-hr\" style=\"opacity:.72\"><span>Portugal</span><span class=\"ds-ct\">4,310</span></div><div class=\"ds-hr ds-rest\"><span>The other 36 teams, between them</span><span class=\"ds-ct\">9,880</span></div></div>",
+      "css": ".ds-col { max-width: 560px; border-top: 3px solid var(--ink, #10261A); color: var(--ink, #10261A); font-family: 'News Cycle', 'Arial Narrow', sans-serif; } .ds-cl { display: flex; justify-content: space-between; font-weight: 700; font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; padding: .3rem 0 .2rem; } .ds-hr { display: grid; grid-template-columns: 1fr auto; gap: .6rem; align-items: center; font-size: 1rem; line-height: 1.5; padding: .15rem 0; border-bottom: 1px solid var(--hair, rgba(16,38,26,.18)); } .ds-ct { font-variant-numeric: tabular-nums; } .ds-hot { color: var(--orange, #C2410C); } .ds-hot .ds-ct { font-weight: 700; } .ds-rest { color: var(--muted, #5B6E62); font-size: .85rem; } .ds-hr:hover { opacity: 1 !important; }"
+    },
+    {
+      "name": "Sentence-case head",
+      "kind": "custom",
+      "refersTo": "box-head",
+      "description": "A label that reads as a sentence: bold News Cycle at .8rem, sentence case, no tracking, over its 1px ink rule.",
+      "html": "<div class=\"ds-box-head\">Every team that got out of its group did it the same way</div>",
+      "css": ".ds-box-head { font: 700 .8rem/1.3 'News Cycle', 'Arial Narrow', sans-serif; text-transform: none; letter-spacing: normal; color: var(--ink, #10261A); padding-bottom: .3rem; margin-bottom: .55rem; border-bottom: 1px solid var(--ink, #10261A); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Wall Chart",
+    "overview": "The site is one printed sheet: a newspaper wall chart of the 2026 World Cup, filled in 100,000 times. One paper, one ink, and the count. Everything a visitor reads sits on the same surface; nothing floats above it, nothing is boxed off into a card, nothing glows. The hierarchy is the broadsheet's: condensed capitals for mastheads and chapter titles, a text serif for the sentences, a compact sans for every table, label and figure. Rules do the structural work that colour and elevation do elsewhere: a 3px rule under a masthead, a pair of 3px rules around a chapter title, a hairline between rows.\n\nColour is rationed by meaning. Orange marks the hot number and the real result, and appears in two pieces of chrome (the current-page underline, the focus ring). The nine-step fate scale colours a cell whose column is a fate, at a strength that follows the share, so the tint carries frequency and the number stays in full ink. Where there is no fate colour, ink density carries frequency instead (the hero's champion column). Text never fades to say \"small\".\n\nThe sheet is filled in as you read it. Ink prints and counts count up as a row crosses the reading line; nothing slides, rises or fades in from below; nothing un-prints on the way back up. Two authored moments hold the page still (the pinned hero, the held bracket); every other chapter varies the same print with its own material. This world was chosen against the heat-shaded probability dashboard and against the cream, italic-serif, mono-kicker editorial scroll the site had before; both are rejected, not merely absent.",
+    "keyCharacteristics": [
+      "One surface: paper, with ink and hairline rules as the only structure. No cards, no shadows, no radius, no gradients, no glow.",
+      "Three faces, each with one job: League Gothic capitals for titles, Old Standard TT for reading, News Cycle for every table, label, count and nav.",
+      "Colour rationed: orange for the hot number, the real result and two chrome uses; the fate scale as cell tint whose strength follows the share; numbers always in full ink.",
+      "Motion is print: scrubbed to the scroll on the way down, never un-printing, with count-ups and ink density instead of transitions. No CSS transitions exist on the sheet.",
+      "Contrast floor: every text colour clears 4.5:1 on paper and on the tint it sits on; no text under 12px."
+    ],
+    "rules": [
+      { "name": "The Real-Result Rule", "body": "Orange means the thing that actually happened or the number the page exists to show. It is never decoration, never a heading colour, never a link colour. Beyond the hot number and the real result its only uses are the current-page underline and the focus ring.", "section": "colors" },
+      { "name": "The Ink-Number Rule", "body": "A number is set in full ink whatever tint sits under it. Colour carries frequency; text never fades to carry it. The one place ink density carries frequency is the hero's champion column, where there is no fate colour, and its floor is 65% ink (4.8:1 on paper).", "section": "colors" },
+      { "name": "The 4.5 Floor Rule", "body": "Every text colour clears 4.5:1 on paper and on the strongest tint it sits on. A muted figure that lands on the 9% tint steps to soft ink to keep the floor. One kept exception exists and is recorded under Do's and Don'ts, not here.", "section": "colors" },
+      { "name": "The Twelve-Pixel Rule", "body": "No text under 12px (.75rem): agate is the densest role, superscripts are floored at max(12px, .72em), chart labels are drawn at 12px at every width because the charts redraw at their measured pixel width rather than scaling through a viewBox.", "section": "typography" },
+      { "name": "The Three Registers Rule", "body": "League Gothic sets titles, Old Standard TT sets sentences, News Cycle sets everything that is a table, label or number. A face does not cross into another's job; a title is never set in the serif, and a count is never set in the display face.", "section": "typography" },
+      { "name": "The Sentence-Case Head Rule", "body": "A label that runs as a sentence is set as a sentence-case bold head (News Cycle 700, .8rem, no tracking, full ink) over its rule. Tracked capitals are for short labels only: a column head, a box label, a round head, a chart's panel title.", "section": "typography" },
+      { "name": "The Right-Edge Rule", "body": "Every number sits in News Cycle and is right-aligned, so a count-up settles on its right edge. font-variant-numeric: tabular-nums is declared throughout but News Cycle carries no tabular figures, so digits shift sideways while a count climbs; accepted at the hero checkpoint, and the reason numbers are never centred.", "section": "typography" },
+      { "name": "The No-Shadow Rule", "body": "Nothing on the sheet casts a shadow, glows, blurs or lifts on hover. A popover or a dropdown is a ruled box on the paper. If a new surface needs to read as \"above\", give it a 1px ink border.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do put every new region on the paper with rules for structure: a 3px ink rule to open a table head or a masthead, a 1px ink rule to close a head or a label, a hairline (hair) between rows.",
+      "Do set a title in League Gothic capitals, a sentence in Old Standard TT at 1.05rem/1.55 and ≤ 60ch, and every table, label, count and nav item in News Cycle with right-aligned figures.",
+      "Do keep numbers in full ink and let the fate scale's tint at min(1, 2.5 × share) carry frequency; where there is no fate colour, use ink density with a 65% floor.",
+      "Do reserve orange for the hot number, the real result, the current-page underline and the focus ring.",
+      "Do make a new unit print through js/print.js (register it with a painter; blocks on entry, rows across the reading line) and honour reduced motion by painting it complete at boot.",
+      "Do leave a count or a percentage blank until its unit prints, and sit an unprinted row at the 4% block floor; the frame (heads, labels, rules, axes, a box border at its floor) prints from the start.",
+      "Do set a label that runs as a sentence as a sentence-case bold head (News Cycle 700, .8rem, no tracking) over its rule, and keep tracked capitals for short labels.",
+      "Do clear 4.5:1 on paper and on the tint a text sits on, and never set text under 12px; step a muted figure to soft ink when it lands on the 9% tint.",
+      "Do give a wide region a measured minimum width and let it scroll sideways inside a focusable .scroll-x with its cue line, rather than shrinking type or scaling a chart.",
+      "Do measure a chart's width and redraw it, so its labels stay 12px."
+    ],
+    "donts": [
+      "Don't add cards, a second surface colour, border radius, shadows, glow, gradients or pills; a raised thing is a 1px ink box on paper.",
+      "Don't put a kicker, an eyebrow or a chapter number above a heading; a chapter is known by its name between two rules.",
+      "Don't use orange on the bracket (its real final is a muted caption), as a heading colour or as a link colour; links are ink with a 1px underline at .15em offset.",
+      "Don't fade text to say a number is small, and don't colour a bar or chart with a flag's colours; bars are ink.",
+      "Don't use monospace as a costume; it sets the five reproduction commands and nothing else.",
+      "Don't add a CSS transition, a hover lift, a transform or a fade-in from below; the sheet's only fade is the 150ms ink-to-paper on a team pick, and the only hover feedback is brightness(.94).",
+      "Don't let a unit un-print on the way back up, or listen to scroll outside js/print.js.",
+      "Don't stretch tracked capitals across a sentence-length label, and don't print a \"0\" where a unit has not printed yet; blank is the unprinted state.",
+      "Don't let a column head's length set a tinted cell's width; fix the layout where a tint could read as area.",
+      "Don't treat the bracket's losing rows at 0.75 opacity (3.07:1 at 12px) as licence: it is Thiago's one kept exception to the 4.5 floor, not a pattern for new surfaces."
+    ]
+  }
+}

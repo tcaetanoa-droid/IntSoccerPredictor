@@ -25,3 +25,13 @@ data/raw/*
 
 # Brainstorm visual companion sessions (mockups, not source)
 .superpowers/
+
+# Impeccable: session state, snapshots and caches (surface briefs and config.json stay committed)
+.impeccable/live/
+.impeccable/critique/
+.impeccable/review/
+.impeccable/mocks/
+.impeccable/build/
+.impeccable/hook.cache.json
+.impeccable/config.local.json
+.impeccable/questions/
