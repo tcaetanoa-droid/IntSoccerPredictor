@@ -1,5 +1,5 @@
 // site/js/team.js
-import { h, flag, name, fmtCount, fmtPct, countOf, count, scrollX, chapterHead } from './dom.js';
+import { h, flag, name, fmtCount, fmtPct, countOf, count, scrollX, chapterHead, layoutScrollX } from './dom.js';
 import { FATES } from './fate-table.js';
 import { register, reprint, paintRow, paintBlock, paintCounts } from './print.js';
 
@@ -196,6 +196,7 @@ export async function render(section, ctx) {
 
     body.replaceChildren(head, fate,
       h('div', { class: 'cols' }, h('div', { class: 'col' }, far, opps), h('div', { class: 'col' }, ko, one)));
+    layoutScrollX();     // the fate strip is a fresh region on every pick; it needs its own cue
   }
 
   draw(await ctx.team(code), false);

@@ -21,6 +21,9 @@ html { scroll-behavior: smooth; }
 body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.55 var(--grid); }
 a { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .15em; }
 :focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
+/* The browser scrolls a focused element into view with no regard for the sticky masthead, so
+   everything a Tab can land on carries the offset the hash targets have, and a little air. */
+a, button, input, select, textarea, [tabindex] { scroll-margin-top: calc(var(--hdr) + .5rem); }
 ::selection { background: var(--ink); color: var(--paper); }
 /* Read by assistive technology, never seen: the final value of every printed count. */
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
@@ -28,6 +31,10 @@ img.flag { width: 20px; height: 14px; object-fit: cover; vertical-align: -2px; m
 /* Sideways-scrolling regions: focusable, so the arrow keys scroll them. position: relative so
    the .sr spans inside a wide table are contained and clipped here, not by the viewport. */
 .scroll-x { position: relative; overflow-x: auto; scrollbar-width: thin; scrollbar-color: var(--ink) transparent; }
+/* The sideways cue, in the foot note's own type: js/dom.js prints the line under a region and
+   marks the region while it overflows, so the line shows only while there is more to the right. */
+.sxnote { display: none; font-size: .8rem; color: var(--muted); text-align: right; margin: .35rem 0 0; }
+.scroll-x.sx + .sxnote { display: block; }
 
 /* site masthead: it stays at the top of the sheet throughout the scroll, on the paper and over
    everything the sheet prints. Its height is not constant — the nav wraps at narrow widths — so

@@ -5,6 +5,7 @@
 // ones approved in the design (docs/superpowers/specs/2026-09-20-restyle-design.md, §4 and §6).
 
 import { measure as measureHeader } from './header.js';
+import { layoutScrollX } from './dom.js';
 
 export const clamp = (x) => Math.max(0, Math.min(1, x));
 export const fmt = (n) => Math.round(n).toLocaleString('en-GB');
@@ -102,6 +103,7 @@ export function pin(block, held, rows, painter) {
 }
 function layoutPin() {
   HD = measureHeader();     // before any fit test: a held screen's height is the viewport minus it
+  layoutScrollX();          // and before any measurement: the cue is a line inside the layout
   layoutHero();
   for (const o of holds) layoutHold(o);
 }
@@ -119,10 +121,11 @@ function layoutHero() {
 }
 // hold(block, candidates, paint, { start }): the bracket's pin. `candidates` is an ordered list
 // of regions that could be locked, each the parent of the next (the chapter's head with the grid,
-// then the grid alone); the first whose height fits the viewport is the one held, so a window too
-// short for the title keeps the grid's lock (spec §8, checkpoint amendment). The held region
-// sticks at the top of the viewport inside its parent, which is given the region's own height
-// plus the hold's travel, so the wheel keeps turning while the bracket stands still. `start` is
+// then the grid alone); the first that fits the viewport is the one held, so a window too short
+// for the title keeps the grid's lock (spec §8, checkpoint amendment) and a window too narrow for
+// the grid keeps no lock at all. The held region sticks at the top of the viewport inside its
+// parent, which is given the region's own height plus the hold's travel, so the wheel keeps
+// turning while the bracket stands still. `start` is
 // the element whose top crossing the reading line begins the schedule (the grid), so the first
 // row always opens with the grid on the reading line whichever region is held, and the approach
 // shortens by the head's height rather than the rows starting earlier. `paint(t, H, approach)` is the
@@ -144,7 +147,11 @@ function layoutHold(o) {
   for (const el of o.candidates) { el.classList.remove('held'); el.style.height = ''; }
   const blockTop = o.block.getBoundingClientRect().top;
   const rects = o.candidates.map((el) => el.getBoundingClientRect());
-  const i = reduced() ? -1 : rects.findIndex((r) => r.height <= H - HD - 4);
+  // Fit is both dimensions. A grid wider than its sideways container would be pinned with its
+  // last rounds off the sheet, so an overflow sideways rules out every candidate exactly as a
+  // window too short for the grid does: no lock, and the schedule on the page's own travel.
+  const wide = [...o.block.querySelectorAll('.scroll-x')].some((el) => el.scrollWidth > el.clientWidth);
+  const i = reduced() || wide ? -1 : rects.findIndex((r) => r.height <= H - HD - 4);
   const fits = i >= 0;
   // No candidate fits: no lock, but the schedule still runs on the page's own travel from the
   // last candidate, which is the grid, exactly as it did before the title was a candidate.
@@ -155,9 +162,9 @@ function layoutHold(o) {
   // edge; the paper left under the held region is what the viewport has below the header.
   o.approach = (0.92 * H - (o.start.getBoundingClientRect().top - rects[k].top) - HD) / H;
   o.slack = fits ? (H - HD - rects[k].height) / H : 0;
-  o.candidates[k].classList.add('held');
   o.block.classList.toggle('flow', !fits);
   if (fits) {
+    o.candidates[k].classList.add('held');
     const parent = k === 0 ? o.block : o.candidates[k - 1];
     const off = rects[k].top - (k === 0 ? blockTop : rects[k - 1].top);
     parent.style.height = `${Math.round(off + rects[k].height + HOLD_TRAVEL * H)}px`;

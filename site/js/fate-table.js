@@ -43,7 +43,7 @@ export function render(section, ctx) {
   function th(key, label, cls = '') {
     const sorted = sortKey === key;
     return h('th', { class: ['sort', cls, sorted && 'sorted'].filter(Boolean).join(' '), scope: 'col', 'aria-sort': sorted ? (desc ? 'descending' : 'ascending') : 'none' },
-      h('button', { type: 'button', title: 'Sort', onclick: () => sortBy(key) }, label));
+      h('button', { type: 'button', title: `Sort by ${label}`, onclick: () => sortBy(key) }, label));
   }
   draw();
   const runs = fmtCount(ctx.n);
