@@ -113,7 +113,6 @@ img.flag { width: 20px; height: 14px; object-fit: cover; vertical-align: -2px; m
 .legend { display: flex; gap: 18px; font-size: 12px; color: var(--ink-soft); margin: 0 0 12px; flex-wrap: wrap; }
 .legend i { display: inline-block; width: 12px; height: 12px; border-radius: 2px; vertical-align: -1px; margin-right: 6px; }
 .card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; }
-.row3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 .exh { font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--green); font-family: var(--mono); margin-bottom: 8px; }
 .kv { display: grid; grid-template-columns: 90px 1fr; gap: 14px; padding: 8px 0; border-top: 1px solid var(--rule); font-size: 13px; }
 .kv:first-child { border-top: 0; }
@@ -251,31 +250,41 @@ img.flag { width: 20px; height: 14px; object-fit: cover; vertical-align: -2px; m
 /* Four count heads are sentences; they wrap and sit on the 1px rule under the head row. */
 #underdogs .agate thead th { white-space: normal; vertical-align: bottom; }
 
-/* chapter 6: paradoxes */
-/* The chart's smallest labels are 11px in a 1300-wide viewBox, so they drop under 7px once it
-   is squeezed below 830px; give it that floor and let the section scroll instead. */
-#paradoxes .chart { min-width: 830px; }
-#paradoxes .chart .tn { fill: var(--ink); }
-#paradoxes .chart .tt { fill: var(--muted); }
-/* --gold-text (#8A6D12) is 4.49:1 on the paper, just under AA, and these 11px labels sit on
-   it; this one use is a shade deeper, 5.54:1, still gold and still not --muted. */
-#paradoxes .chart .tt.first { fill: #7A5F0E; }
-#paradoxes .chart .dv { stroke: var(--ink); }
-#paradoxes .chart .dl { fill: var(--ink-soft); }
-#paradoxes .vs { padding: 14px 16px 12px; font-size: 12.5px; }
-#paradoxes .vm { font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 12px; line-height: 1.4; }
-#paradoxes .vs-grid { display: grid; grid-template-columns: 1fr 28px 1fr; gap: 8px; align-items: end; }
-/* The mock-up's --faint is 2.96:1 on the card; --muted (5.45:1) is the Elo labels' colour. */
-#paradoxes .vsx { text-align: center; font-family: var(--serif); font-style: italic; color: var(--muted); padding-bottom: 6px; }
-#paradoxes .vh { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
-#paradoxes .vh b { font-family: var(--serif); font-size: 18px; font-weight: 500; }
-#paradoxes .vh .n { font-size: 11px; color: var(--muted); }
-#paradoxes .vb { height: 8px; background: var(--rule); border-radius: 2px; overflow: hidden; margin-bottom: 6px; }
-#paradoxes .vb i { display: block; height: 100%; }
-#paradoxes .vv { font-family: var(--serif); font-size: 26px; line-height: 1; color: var(--muted); }
-#paradoxes .vv.hi { color: var(--orange); }
-#paradoxes .vn { font-size: 11.5px; color: var(--ink-soft); line-height: 1.45; margin: 12px 0 0; border-top: 1px solid var(--rule); padding-top: 8px; }
-@media (max-width: 900px) { #paradoxes .row3 { grid-template-columns: 1fr; } }
+/* chapter 6: paradoxes. The trophy chart, six plain ink bars with the percentage over each and
+   a dashed divider between the new contenders and the faded giants, then the three versus pairs
+   as 1px ink boxes. js/paradoxes.js draws the chart at its holder's measured pixel width and
+   redraws it when that changes, as chapter four does, so nothing is scaled by a viewBox and
+   every label is 12px at every width; the frame is printed from the start and the bars grow into
+   it. A pair is one printed unit: the module sets --bp, its rules' ink, with its label. */
+/* A line under a bar needs its own column and 10px of air. The widest of them once the two-part
+   title lines break in two is "did not qualify" at 65.3px, measured at 12px News Cycle, ahead of
+   "Netherlands" at 61.2px, so six columns need 6 × 75.3 plus the 34px axis column and the 8px
+   right edge: 494px, rounded up. Below that the region scrolls sideways, as chapter one's table
+   does; the title lines go back to one line above 892px, where the longest fits whole. */
+#paradoxes .holder { min-width: 500px; }
+#paradoxes .tc { display: block; }
+#paradoxes .tc text { font-family: var(--grid); }
+#paradoxes .tc .bar { fill: var(--ink); }
+#paradoxes .tc .val { fill: var(--ink); font-weight: 700; font-variant-numeric: tabular-nums; }
+#paradoxes .tc .tn { fill: var(--ink); font-weight: 700; }
+#paradoxes .tc .ts { fill: var(--muted); }
+#paradoxes .tc .tick { fill: var(--muted); font-variant-numeric: tabular-nums; }
+#paradoxes .tc .grid { stroke: var(--hair); stroke-width: 1; }
+#paradoxes .tc .base { stroke: var(--ink); stroke-width: 1; }
+#paradoxes .tc .dv { stroke: var(--ink); stroke-width: 1; }
+#paradoxes .tc .dl { fill: var(--ink); font-weight: 700; letter-spacing: .06em; }
+/* the three versus pairs: three ruled boxes across, one column below 900px */
+#paradoxes .pairs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 28px; margin-top: .2rem; }
+#paradoxes .pbox { border: 1px solid color-mix(in srgb, var(--ink) calc(var(--bp, 1) * 100%), transparent); padding: .65rem .75rem .75rem; min-width: 0; }
+#paradoxes .plab { font-weight: 700; font-size: .75rem; line-height: 1.35; text-transform: uppercase; letter-spacing: .06em; padding-bottom: .3rem; margin-bottom: .55rem; border-bottom: 1px solid color-mix(in srgb, var(--ink) calc(var(--bp, 1) * 100%), transparent); }
+/* The label's rule closes the head, so the agate inside a box drops its own 3px rule. Both team
+   names print in the regular weight, so the bold on the bigger number reads as the mark. */
+#paradoxes .vst thead th { border-top: 0; padding-top: 0; }
+#paradoxes .vst tbody th { font-weight: 400; }
+#paradoxes .vst tbody .el { color: var(--muted); }
+#paradoxes .vst tbody tr.hi th, #paradoxes .vst tbody tr.hi td { font-weight: 700; }
+#paradoxes .prz { font: .95rem/1.5 var(--reading); color: var(--ink-soft); margin: .6rem 0 0; }
+@media (max-width: 900px) { #paradoxes .pairs { grid-template-columns: minmax(0, 1fr); gap: 1.4rem; } }
 
 /* chapter 7: pick a team */
 #pick-a-team .pk { display: flex; align-items: center; gap: 14px; margin: 0 0 22px; font-size: 13px; flex-wrap: wrap; }
