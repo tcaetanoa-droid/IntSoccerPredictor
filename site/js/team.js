@@ -66,12 +66,17 @@ export async function render(section, ctx) {
   const results = h('div', { class: 'res', id: 'team-results', role: 'listbox', 'aria-label': 'Teams', hidden: '' });
   const favs = h('span', { class: 'favs' });   // the opening line's five names, redrawn by draw()
   const body = h('div', { class: 'tbody' });
+  // The line a failed pick prints under the search field. It is on the page from the start, empty,
+  // so assistive technology announces its text when a failure sets it; empty, its margins fold into
+  // the picker's own and it takes no room.
+  const note = h('p', { class: 'foot', role: 'status' });
   // The picker is the region's own unit, outside the body the pick reprints: the field and the
   // favourites line stay printed while the team under them is replaced.
   const pk = h('div', { class: 'pk' },
     h('p', { class: 'lead' }, 'Pick a team, or one of the favourites: ', favs),
     h('label', { class: 'sr', for: 'team-search' }, 'Team'),
-    h('div', { class: 'sw' }, h('div', { class: 'srch' }, fsl, input, clear), results));
+    h('div', { class: 'sw' }, h('div', { class: 'srch' }, fsl, input, clear), results),
+    note);
   register(pk, paintBlock, { kind: 'block' });
   section.replaceChildren(
     ...chapterHead('Pick a team', 'One team, one hundred thousand tournaments.',
@@ -116,6 +121,7 @@ export async function render(section, ctx) {
     else if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); closeList(true); }  // the rail's Escape listens on document
   }
   async function pick(c) {
+    const was = code, wasHash = location.hash;
     code = c;
     history.replaceState(null, '', `#team=${code}`);
     // draw() rebuilds the favourites line, so a favourite that was activated is removed from the
@@ -125,9 +131,27 @@ export async function render(section, ctx) {
     const onInput = document.activeElement === input;
     closeList(false);
     if (onInput) input.focus();
+    note.textContent = '';                     // a new pick clears the last one's failure
     const g = ++gen;
     // The team's JSON is fetched while the old ink fades, so the fade is the whole wait.
-    const [t] = await Promise.all([ctx.team(code), fadeOut(body)]);
+    const fade = fadeOut(body);
+    let t;
+    try {
+      t = await ctx.team(code);
+    } catch (e) {
+      // The file did not arrive. Once the fade has run, and unless a newer pick has taken over,
+      // the previous team comes back as it was, name and address included, and one line says
+      // what happened and what to do.
+      await fade;
+      if (g !== gen) return;
+      code = was;
+      history.replaceState(null, '', wasHash || location.pathname + location.search);
+      input.value = ctx.byCode[code].name;
+      body.style.opacity = '';
+      note.textContent = `${ctx.byCode[c].name}'s runs did not load. Pick again to retry.`;
+      return;
+    }
+    await fade;
     if (g !== gen) return;                     // a second pick overtook this one
     draw(t, true);
     body.style.opacity = '';
