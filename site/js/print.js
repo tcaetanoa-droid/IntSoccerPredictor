@@ -329,15 +329,20 @@ export function boot() {
   booted = true;
   H = window.innerHeight; W = window.innerWidth;
   window.addEventListener('pagehide', savePlace);
-  if (reduced()) { units.forEach((u) => set(u, 1)); layoutPin(); land(); return; }
+  // Both paths lay the sheet out again when the window changes and once the faces have settled,
+  // so the sideways cue and the bracket's phone summary follow the width under reduced motion
+  // too; only the moving path then paints from the scroll.
+  const still = reduced();
+  const relayout = () => { H = window.innerHeight; W = window.innerWidth; layoutPin(); if (!still) schedule(); };
+  window.addEventListener('resize', relayout);
+  document.fonts.ready.then(relayout);   // the held screen's height settles with the faces
+  if (still) { units.forEach((u) => set(u, 1)); layoutPin(); land(); return; }
   io = new IntersectionObserver((entries) => {
     for (const e of entries) { const u = byEl.get(e.target); if (u) u.live = e.isIntersecting; }
     schedule();
   }, { rootMargin: '100% 0px 100% 0px' });
   units.forEach((u) => { if (!u.manual) io.observe(u.el); });
   window.addEventListener('scroll', schedule, { passive: true });
-  window.addEventListener('resize', () => { H = window.innerHeight; W = window.innerWidth; layoutPin(); schedule(); });
-  document.fonts.ready.then(() => { layoutPin(); schedule(); });   // the held screen's height settles with the faces
   layoutPin();
   land();
   // Seed pass: a deep-load position (a hash, scroll restoration) can land above units the
