@@ -220,7 +220,10 @@ from `Emulation.setCPUThrottlingRate`, held and failed downloads from the `Fetch
   a viewport to the bottom, waiting two frames after each step, it records every element's inline
   style attribute, every count display's text and every `.sx` class, keyed by a stable element
   path, as sorted JSON for a plain `diff`.
-- `measure`: section 5's protocol; prints the numbers.
+- `measure`: section 5's protocol; prints the numbers and the two verdicts.
+- `shots <dir>`: the render check's screenshots: the World Cup page's first viewport at 1440×900
+  and at a true 390×844 (emulated, so no iframe harness), and the top 9000px of both pages under
+  reduced motion, where every unit is printed at load.
 
 ## 10. Testing and acceptance
 
@@ -229,9 +232,8 @@ from `Emulation.setCPUThrottlingRate`, held and failed downloads from the `Fetch
 - `node tools/check.mjs checks` passes.
 - `node tools/check.mjs dump` equals the dump taken before the first site change, byte for byte,
   after every commit that touches `site/`: an ordinary read is unchanged.
-- The UI track's render check: `/world-cup-2026` and `/how-it-works` at 1440×900 and at 390×844
-  through the iframe harness, plus full-height captures; nothing moved against the captures taken
-  before the first change.
+- The UI track's render check: `node tools/check.mjs shots`, compared with the captures taken
+  before the first change; nothing moved.
 - The detector on rendered dumps: no finding beyond the baseline's two.
 - Branch `hardening`, commits `Component 11f: <what>`; a pull request, Thiago's review on
   localhost (`python3 tools/serve.py`), a merge commit on his word.
