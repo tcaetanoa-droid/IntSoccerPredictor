@@ -111,8 +111,9 @@ export function register(el, painter, { kind = 'row', key = null, manual = false
 // screen, then the page releases. When the held screen does not fit the viewport, or under
 // reduced motion, there is no pin: the rows print across the reading line like any table.
 export function pin(block, held, rows, painter) {
-  pinned = { block, held, rows: rows.map((el, i) => ({ el, i, p: 0 })), painter, p: 0, active: false };
-  rows.forEach((el) => painter(el, reduced() ? 1 : 0));
+  const p0 = reduced() ? 1 : 0;
+  pinned = { block, held, rows: rows.map((el, i) => ({ el, i, p: p0 })), painter, p: 0, active: false };
+  rows.forEach((el) => painter(el, p0));
   if (booted) layoutPin();
 }
 function layoutPin() {
@@ -233,7 +234,16 @@ function tickPin(y) {
     // progress is the same formula it has always been.
     const top = pinned.block.getBoundingClientRect().top + y - HD;
     const p = Math.max(pinned.p, y >= top + 0.5 ? clamp((y - top) / H) : 0);
-    if (p !== pinned.p) { pinned.p = p; pinned.rows.forEach((r) => pinned.painter(r.el, rowWindow(p, r.i, pinned.rows.length))); }
+    if (p !== pinned.p) {
+      pinned.p = p;
+      // A row keeps the most it has printed in either mode, so a width crossing 1024px mid-fill,
+      // which moves the hero between the pin and the flow, never takes ink back; and only a row
+      // whose value moved is painted.
+      for (const r of pinned.rows) {
+        const v = Math.max(r.p, rowWindow(p, r.i, pinned.rows.length));
+        if (v !== r.p) { r.p = v; pinned.painter(r.el, v); }
+      }
+    }
     return p >= 1;
   }
   for (const r of pinned.rows) {
