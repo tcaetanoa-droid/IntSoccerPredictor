@@ -1,8 +1,8 @@
 // site/js/hosts.js
 import { h, flag, name, fmtCount, chapterHead } from './dom.js';
 import { FATES } from './fate-table.js';
-import { svgEl } from './svg.js';
-import { register, paintBlock, paintCounts, clamp } from './print.js';
+import { svgEl, snap } from './svg.js';
+import { register, paintBlock, paintCounts, clamp, inkAt } from './print.js';
 
 // data/tournaments/wc2026.yaml `hosts`, strongest first as the lede tells it. No flag colours
 // here: the bars are plain ink like every other mark on the sheet.
@@ -45,7 +45,6 @@ function labelRun(section) {
 // dom.js's two spans; the hidden agate table beside the charts is what assistive technology reads.
 function chart(byFate, width, labelH) {
   const base = TOP + PLOT, height = base + GAP + labelH, slot = (width - AXIS) / 9;
-  const snap = (v) => Math.round(v) + 0.5;       // a hairline on the pixel, not across two
   const Y = (v) => base - v / YMAX * PLOT;
   const svg = svgEl('svg', { class: 'hc', width, height, 'aria-hidden': 'true' });
   const chrome = svgEl('g', { class: 'chrome' });
@@ -78,7 +77,7 @@ function paintValue(bar, p) {
   bar.rect.setAttribute('y', (bar.top + rise).toFixed(1));
   bar.rect.setAttribute('height', grown.toFixed(1));
   bar.val.setAttribute('transform', `translate(0,${rise.toFixed(1)})`);
-  bar.val.style.opacity = (0.04 + 0.96 * p).toFixed(3);
+  bar.val.style.opacity = inkAt(p).toFixed(3);
   paintCounts(bar.val, p);
 }
 
@@ -110,7 +109,7 @@ export function render(section, ctx) {
 
   // The chrome and each bar are written only where their value moved (spec §4, the budget), and a
   // redraw clears the record, since fresh nodes carry no print.
-  const paintChrome = (r) => { if (r.chart) r.chart.chrome.style.opacity = (0.04 + 0.96 * r.headP).toFixed(3); };
+  const paintChrome = (r) => { if (r.chart) r.chart.chrome.style.opacity = inkAt(r.headP).toFixed(3); };
   const paintBars = (r) => {
     if (!r.chart) return;
     r.chart.bars.forEach((bar, i) => {

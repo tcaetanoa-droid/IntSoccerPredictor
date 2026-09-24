@@ -1,6 +1,6 @@
 // site/js/groups.js
 import { h, flag, name, fmtCount, countOf, count, chapterHead } from './dom.js';
-import { register, paintRow, paintBlock, rowWindow, clamp } from './print.js';
+import { register, paintRow, paintBlock, rowWindow, clamp, inkAt, ruleAt } from './print.js';
 
 const HOSTS = ['US', 'MX', 'CA'];  // data/tournaments/wc2026.yaml `hosts`
 const ORD = { 1: '1st', 2: '2nd', 3: '3rd', 4: '4th' };
@@ -10,8 +10,8 @@ const ORD = { 1: '1st', 2: '2nd', 3: '3rd', 4: '4th' };
 // its percentage climbs.
 function paintBox(box, p) {
   const label = clamp(p / 0.2);
-  box.style.setProperty('--bp', (0.06 + 0.94 * label).toFixed(3));
-  box.querySelector('.label').style.opacity = (0.04 + 0.96 * label).toFixed(3);
+  box.style.setProperty('--bp', ruleAt(label).toFixed(3));
+  box.querySelector('.label').style.opacity = inkAt(label).toFixed(3);
   box.querySelectorAll('tbody tr').forEach((tr, i) => {
     const q = rowWindow(p, i, 4);
     paintRow(tr, q);

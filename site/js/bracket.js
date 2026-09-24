@@ -1,6 +1,7 @@
 // site/js/bracket.js
 import { h, flag, name, fmtPct, fmtCount, count, chapterHead, scrollX } from './dom.js';
-import { hold, register, paintBlock, paintCounts, rowWindow, holdPhase, roundProgress, clamp } from './print.js';
+import { hold, register, paintBlock, paintCounts, rowWindow, holdPhase, roundProgress, clamp, inkAt, ruleAt } from './print.js';
+import { snap } from './svg.js';
 
 // Feed order from data/tournaments/wc2026.yaml knockout.matches: 101 = W97 v W98, 102 = W99 v W100.
 const LEFT = { R32: [74, 77, 73, 75, 83, 84, 81, 82], R16: [89, 90, 93, 94], QF: [97, 98], SF: [101] };
@@ -93,8 +94,8 @@ export function render(section, ctx) {
   // both rows 0.04 to full, the percentages counting up from blank, the winner ending in full ink
   // on its 9% tint and the loser at 0.75.
   const paintBox = (el, pr, pw) => {
-    el.style.setProperty('--bp', (0.06 + 0.94 * pr).toFixed(3));
-    const on = 0.04 + 0.96 * pw;
+    el.style.setProperty('--bp', ruleAt(pr).toFixed(3));
+    const on = inkAt(pw);
     el.querySelector('.mn').style.opacity = on.toFixed(3);
     for (const row of el.querySelectorAll('.tie')) {
       row.style.opacity = (row.classList.contains('win') ? on : on * 0.75).toFixed(3);
@@ -127,16 +128,16 @@ export function render(section, ctx) {
       const v = rowsP.get(headBox[k]) ?? 0;
       if (doneHead.get(k) === v) return;
       doneHead.set(k, v);
-      el.style.opacity = (0.04 + 0.96 * v).toFixed(3);
+      el.style.opacity = inkAt(v).toFixed(3);
     });
     const pf = rowsP.get(104) ?? 0, pt = rowsP.get(103) ?? 0;
     if (pf !== doneFin) {
       doneFin = pf;
-      mark.style.opacity = (0.04 + 0.96 * pf).toFixed(3);
+      mark.style.opacity = inkAt(pf).toFixed(3);
       paintCounts(mark, pf);
-      cap.style.opacity = (0.04 + 0.96 * pf).toFixed(3);
+      cap.style.opacity = inkAt(pf).toFixed(3);
     }
-    if (pt !== doneThird) { doneThird = pt; thirdLbl.style.opacity = (0.04 + 0.96 * pt).toFixed(3); }
+    if (pt !== doneThird) { doneThird = pt; thirdLbl.style.opacity = inkAt(pt).toFixed(3); }
   };
   const paint = (t, H, approach) => {
     const { p1, q } = holdPhase(t, H, approach);
@@ -166,7 +167,7 @@ export function render(section, ctx) {
   // and its three percentages counting out of blank, the way every ruled unit on the sheet prints.
   register(sum, (el, p) => {
     paintBlock(el, p);
-    sumBox.style.setProperty('--bp', (0.06 + 0.94 * p).toFixed(3));
+    sumBox.style.setProperty('--bp', ruleAt(p).toFixed(3));
     paintCounts(el, p);
   }, { kind: 'block' });
   const bracket = hold(block, [lock, held], paint, { start: held });
@@ -197,7 +198,6 @@ function drawConnectors(grid, road, paths, repaint) {
     svg.replaceChildren();
     paths.length = 0;
     const g = grid.getBoundingClientRect();
-    const snap = (v) => Math.round(v) + 0.5;      // a hairline on the pixel, not across two
     const mid = (el, edge) => { const r = el.getBoundingClientRect(); return [(edge === 'r' ? r.right : r.left) - g.left, snap(r.top + r.height / 2 - g.top)]; };
     const link = (a, b, side) => {
       const [x1, y1] = mid(a, side === 'l' ? 'r' : 'l'), [x2, y2] = mid(b, side);

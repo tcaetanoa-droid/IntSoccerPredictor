@@ -1,7 +1,7 @@
 // site/js/paradoxes.js
 import { h, flag, name, fmtCount, fmtPct, scrollX, chapterHead } from './dom.js';
-import { svgEl } from './svg.js';
-import { register, paintBlock, rowWindow } from './print.js';
+import { svgEl, snap } from './svg.js';
+import { register, paintBlock, rowWindow, inkAt, ruleAt } from './print.js';
 
 // Italy has four titles and did not qualify, so it is not in teams.json; the chart still has to
 // name it. It has no flag anywhere on the site, and the chart carries no flags by design.
@@ -65,7 +65,6 @@ function measure(section, rows) {
 // dom.js's two spans; the hidden agate table beside it is what assistive technology reads.
 function chart(rows, subWidths, n, width) {
   const gw = (width - AXIS - EDGE) / rows.length, bw = Math.min(gw * 0.46, 96);
-  const snap = (v) => Math.round(v) + 0.5;         // a hairline on the pixel, not across two
   const Y = (share) => BASE - (share * 100) / YMAX * PLOT;
   const two = rows.some((r, i) => r.parts.length > 1 && subWidths[i] > gw - CLEAR);
   const height = BASE + (two ? FOOT_2 : FOOT_1);
@@ -112,9 +111,9 @@ function paintBar(bar, p) {
   bar.rect.setAttribute('y', y.toFixed(1));
   bar.rect.setAttribute('height', grown.toFixed(1));
   bar.val.setAttribute('y', (y - LABEL_GAP).toFixed(1));
-  bar.val.style.opacity = (0.04 + 0.96 * p).toFixed(3);
+  bar.val.style.opacity = inkAt(p).toFixed(3);
   bar.ct.textContent = p === 0 ? '' : fmtPct(p * bar.share);
-  const ink = (0.04 + 0.96 * p).toFixed(3);
+  const ink = inkAt(p).toFixed(3);
   bar.tn.style.opacity = ink;
   for (const t of bar.subs) t.style.opacity = ink;
 }
@@ -126,14 +125,14 @@ function paintBar(bar, p) {
 // the box's own band, so the explanation is on the paper before the figures land.
 function paintPair(pair, p) {
   const ink = rowWindow(p, 0, 3);
-  pair.el.style.setProperty('--bp', (0.06 + 0.94 * ink).toFixed(3));
+  pair.el.style.setProperty('--bp', ruleAt(ink).toFixed(3));
   paintBlock(pair.label, ink);
-  const on = (0.04 + 0.96 * ink).toFixed(3);   // the row floor: a name and its Elo, 4% ink until printed
+  const on = inkAt(ink).toFixed(3);   // the row floor: a name and its Elo, 4% ink until printed
   for (const s of pair.sides) {
     s.th.style.opacity = on;
     s.elo.style.opacity = on;
     const q = rowWindow(p, s.hi ? 2 : 1, 3);
-    s.cell.style.opacity = (0.04 + 0.96 * q).toFixed(3);
+    s.cell.style.opacity = inkAt(q).toFixed(3);
     s.ct.textContent = q === 0 ? '' : fmtPct(q * s.share, s.dec);
     if (s.hi) s.tr.classList.toggle('hi', q >= 1);
   }

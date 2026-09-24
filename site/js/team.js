@@ -1,7 +1,7 @@
 // site/js/team.js
 import { h, flag, name, fmtCount, fmtPct, countOf, count, scrollX, chapterHead, layoutScrollX } from './dom.js';
 import { FATES } from './fate-table.js';
-import { register, reprint, paintRow, paintBlock, paintCounts } from './print.js';
+import { register, reprint, paintRow, paintBlock, paintCounts, inkAt, reduced } from './print.js';
 
 const ROUNDS = [['R32', 'Round of 32'], ['R16', 'Round of 16'], ['QF', 'Quarter-final'], ['SF', 'Semi-final'], ['F', 'Final']];
 // "curacao" has to find "Curaçao", so both sides of the match lose their accents.
@@ -14,7 +14,6 @@ const BAND = 0.10;
 // once. It is driven here rather than by a CSS transition, which would still run under reduced
 // motion and could not be skipped cleanly. Then the new team prints over PRINT_MS, ease-out.
 const FADE_MS = 150, PRINT_MS = 400;
-const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 function fadeOut(el) {
   if (reduced()) return Promise.resolve();
@@ -40,8 +39,8 @@ const pct = (x) => [h('span', { class: 'sr' }, fmtPct(x, 1)), h('span', { class:
 // .sr span.
 function paintListRow(el, p) {
   el.style.setProperty('--rp', p.toFixed(3));
-  for (const lb of el.querySelectorAll('.lb')) lb.style.opacity = (0.04 + 0.96 * p).toFixed(3);
-  for (const v of el.querySelectorAll('.val, .oitem')) v.style.opacity = (0.04 + 0.96 * p).toFixed(3);
+  for (const lb of el.querySelectorAll('.lb')) lb.style.opacity = inkAt(p).toFixed(3);
+  for (const v of el.querySelectorAll('.val, .oitem')) v.style.opacity = inkAt(p).toFixed(3);
   for (const b of el.querySelectorAll('.bar')) b.style.width = `${(p * +b.dataset.w).toFixed(2)}%`;
   for (const c of el.querySelectorAll('[data-pct]')) c.querySelector('.ct').textContent = p === 0 ? '' : fmtPct(p * +c.dataset.pct, 1);
   paintCounts(el, p);

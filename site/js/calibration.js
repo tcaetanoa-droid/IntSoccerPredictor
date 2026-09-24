@@ -1,5 +1,5 @@
 // site/js/calibration.js
-import { svgEl } from './svg.js';
+import { svgEl, snap } from './svg.js';
 import { h, fmtPct, scrollX } from './dom.js';
 import { register, rowWindow } from './print.js';
 
@@ -15,7 +15,6 @@ const AXIS = "rating gap, from the team's point of view (home +100 included)";
 function panel(p, bins, width) {
   const pw = width - L - R, ph = H - T - B;
   const X = (x) => L + (x - XMIN) / (XMAX - XMIN) * pw, Y = (y) => T + ph - y / p.ymax * ph;
-  const snap = (v) => Math.round(v) + 0.5;         // a hairline on the pixel, not across two
   const svg = svgEl('svg', { width, height: H, viewBox: `0 0 ${width} ${H}`, role: 'img',
     'aria-label': `${p.title}: what the model predicts against what was observed, by rating gap` },
     svgEl('text', { class: 'ttl', x: L, y: 13, 'font-size': 12 }, p.title.toUpperCase()));
