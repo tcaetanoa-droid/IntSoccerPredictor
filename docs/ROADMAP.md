@@ -122,11 +122,11 @@ in the record run and no run under 34.1 ms across six, the excess in the chart r
 guard on the charts alone still read over budget in 4 of 6 runs (8.3 to 35.8 ms); the rest was the
 engine's own relayout. Fixed by also having the engine skip a height-only change while neither pin
 is engaged: on the final code, 0.2 to 9.8 ms in eight runs and 8.2 and 6.1 ms in two more; two
-further runs each read one 844-to-788 event far over the line, 107.2 ms at the bracket and 78.5 ms
-at the hero, with every other event in those runs under 2 ms. On a phone neither pin engages, so
-the engine takes the skip on every one of these events; what remains is the browser's first layout
-after the viewport moved, paid by whichever handler reads it first, and a slow phone can still
-overrun a frame on it. The faces settling still runs the engine's full relayout, as spec §4.2
+further runs read 844-to-788 events far over the line, 107.2 ms at the bracket and 31.2 ms at the
+hero in one, 78.5 ms at the hero in the other, with every other event in them under 2 ms. On a
+phone neither pin engages, so the engine takes the skip on every one of these events; what remains
+is the browser's first layout after the viewport moved, paid by whichever handler reads it first,
+and a slow phone can still overrun a frame on it. The faces settling still runs the engine's full relayout, as spec §4.2
 requires; only a resize takes the skip.
 
 **Closed:** 7 (the thresholds: 4th place above a 37.0% share, 3rd place above 38.1%, against 5.3%
