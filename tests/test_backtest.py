@@ -238,13 +238,13 @@ def test_calibration_bins_cover_all_288_predictions(ctx, real_fates, wc):
     assert c["skill"] == pytest.approx(1 - c["brier"] / c["brier_shrug"])
 
 
-def test_build_backtest_writes_the_four_files_and_the_site_file(ctx, tmp_path):
+def test_build_backtest_writes_the_four_files(ctx, tmp_path):
     run_dir = tmp_path / "wc2026"
     from intsoccer.montecarlo import save_run
     save_run(ctx.run, run_dir)
     cal = tmp_path / "calibration.json"
     cal.write_text(json.dumps([{"bin": 0, "n": 100, "obs_draw": 0.234}]))
-    out = build_backtest(run_dir, RESULTS, site_dir=tmp_path / "site", calibration=cal, names={})
+    out = build_backtest(run_dir, RESULTS, calibration=cal, names={})
     bt = run_dir / "backtest"
     assert sorted(p.name for p in bt.iterdir()) == ["calibration.csv", "matches.csv",
                                                      "summary.json", "teams.csv"]
@@ -261,13 +261,6 @@ def test_build_backtest_writes_the_four_files_and_the_site_file(ctx, tmp_path):
     assert s["tournament"]["rps_skill"] == pytest.approx(
         1 - s["tournament"]["rps"] / s["tournament"]["rps_shrug"])
     assert s["tournament"]["hits"]["champion"]["real"] == "ES"
-    site_file = tmp_path / "site" / "data" / "wc2026" / "backtest.json"
-    payload = json.loads(site_file.read_text())
-    assert payload["meta"]["run"] == "wc2026" and payload["meta"]["results"] == "wc2026_results.csv"
-    assert "/" not in payload["meta"]["run"] and "/" not in payload["meta"]["results"]
-    assert len(payload["teams"]) == 48 and set(payload["teams"][0]) == {"team", "real_fate", "rps"}
-    assert payload["calibration"]["bins"] == s["calibration"]["bins"]
-    assert payload["tournament"] == s["tournament"] and payload["matches"] == s["matches"]
 
 
 def test_cli_backtest_runs_and_names_the_doc(ctx, tmp_path, capsys):

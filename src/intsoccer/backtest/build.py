@@ -1,6 +1,6 @@
 """Score a saved run against the real results: output/<name>/backtest/{matches,teams,
-calibration}.csv + summary.json (elsewhere with `out_dir`), and with a site folder,
-site/data/<name>/backtest.json. The record is written up in docs/BACKTEST.md."""
+calibration}.csv + summary.json (elsewhere with `out_dir`). The record is written up in
+docs/BACKTEST.md."""
 
 from __future__ import annotations
 
@@ -20,9 +20,8 @@ from . import fates, forecasts, scores
 CALIBRATION_PATH = Path(__file__).resolve().parents[3] / "data" / "calibration.json"
 
 
-def build_backtest(run_dir: Path, results: Path, site_dir: Path | None = None,
-                   out_dir: Path | None = None, calibration: Path = CALIBRATION_PATH,
-                   names: dict | None = None) -> dict:
+def build_backtest(run_dir: Path, results: Path, out_dir: Path | None = None,
+                   calibration: Path = CALIBRATION_PATH, names: dict | None = None) -> dict:
     run_dir, results = Path(run_dir), Path(results)
     run = load_run(run_dir)
     ctx = tables.context(run)
@@ -66,19 +65,5 @@ def build_backtest(run_dir: Path, results: Path, site_dir: Path | None = None,
     teams.to_csv(out / "teams.csv", index=False, float_format="%.5f")
     calibration_rows.to_csv(out / "calibration.csv", index=False, float_format="%.5f")
     (out / "summary.json").write_text(json.dumps(summary, indent=1))
-    if site_dir is not None:
-        dest = Path(site_dir) / "data" / run_dir.name
-        dest.mkdir(parents=True, exist_ok=True)
-        (dest / "backtest.json").write_text(json.dumps(site_payload(summary, teams), indent=1))
     return {"matches": matches, "teams": teams, "calibration": calibration_rows,
             "summary": summary}
-
-
-def site_payload(summary: dict, teams: pd.DataFrame) -> dict:
-    """The summary with file names in place of local paths, plus the teams' fates and RPS."""
-    meta = dict(summary["meta"])
-    meta["run"] = Path(meta["run"]).name
-    meta["results"] = Path(meta["results"]).name
-    return {**summary, "meta": meta,
-            "teams": [{"team": r.team, "real_fate": r.real_fate, "rps": float(r.rps)}
-                      for r in teams.itertuples(index=False)]}

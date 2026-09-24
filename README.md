@@ -94,7 +94,7 @@ intsoccer snapshot --date 2026-06-11 --label wc2026   # ratings as of the eve of
 intsoccer fit                            # refit the goals model and draw the calibration chart
 intsoccer simulate --n 100000 --seed 2026   # 100k World Cups -> output/wc2026/ (~8 min)
 intsoccer report --run output/wc2026        # the report views -> output/wc2026/report/
-intsoccer backtest --run output/wc2026 --site   # score the run -> output/wc2026/backtest/
+intsoccer backtest --run output/wc2026          # score the run -> output/wc2026/backtest/
 ```
 
 Requires Python 3.11 or newer. Downloads are cached in `data/raw/` and simulation runs are
@@ -121,7 +121,7 @@ src/intsoccer/
                docs/REPORTS.md
   backtest/    scores.py (Brier, log-loss, RPS, skill), forecasts.py (day-of, the runs'
                frequencies, baselines), fates.py (real fates, ladders, hits, calibration),
-               build.py (output/<name>/backtest/, site JSON); the record is docs/BACKTEST.md
+               build.py (output/<name>/backtest/); the record is docs/BACKTEST.md
   cli.py       intsoccer fetch | snapshot | fit | simulate | report | backtest
 site/               the static website (plain HTML/CSS/JS), reads site/data/<name>/*.json
 data/tournaments/   wc2026.yaml (annotated schema example), wc2026_results.csv (all 104 real
