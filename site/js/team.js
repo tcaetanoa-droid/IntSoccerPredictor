@@ -53,6 +53,10 @@ export async function render(section, ctx) {
   const fromHash = (location.hash.match(/team=([A-Z]{2})/) || [])[1];
   let code = ctx.byCode[fromHash] ? fromHash : ctx.teams[0].code;
   let matches = [], hi = -1, blurT = 0, gen = 0;
+  // The team on the page and its address, kept by draw(): what a failed pick puts back. The last
+  // team asked for will not do, since a pick overtaken on its way never reached the page. It
+  // starts as the first team, for a pick that fails before that one has arrived.
+  let drawn = { code, hash: location.hash };
 
   const input = h('input', { class: 'si', id: 'team-search', type: 'text', autocomplete: 'off', role: 'combobox',
     'aria-controls': 'team-results', 'aria-expanded': 'false', 'aria-autocomplete': 'list',
@@ -121,7 +125,6 @@ export async function render(section, ctx) {
     else if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); closeList(true); }  // the rail's Escape listens on document
   }
   async function pick(c) {
-    const was = code, wasHash = location.hash;
     code = c;
     history.replaceState(null, '', `#team=${code}`);
     // draw() rebuilds the favourites line, so a favourite that was activated is removed from the
@@ -140,12 +143,12 @@ export async function render(section, ctx) {
       t = await ctx.team(code);
     } catch (e) {
       // The file did not arrive. Once the fade has run, and unless a newer pick has taken over,
-      // the previous team comes back as it was, name and address included, and one line says
+      // the team on the page comes back as it was, name and address included, and one line says
       // what happened and what to do.
       await fade;
       if (g !== gen) return;
-      code = was;
-      history.replaceState(null, '', wasHash || location.pathname + location.search);
+      code = drawn.code;
+      history.replaceState(null, '', drawn.hash || location.pathname + location.search);
       input.value = ctx.byCode[code].name;
       body.style.opacity = '';
       note.textContent = `${ctx.byCode[c].name}'s runs did not load. Pick again to retry.`;
@@ -221,6 +224,7 @@ export async function render(section, ctx) {
     body.replaceChildren(head, fate,
       h('div', { class: 'cols' }, h('div', { class: 'col' }, far, opps), h('div', { class: 'col' }, ko, one)));
     layoutScrollX();     // the fate strip is a fresh region on every pick; it needs its own cue
+    drawn = { code, hash: location.hash };   // what a failed pick puts back
   }
 
   // A pick made while this file was on its way has drawn its own team; drawing the first one now

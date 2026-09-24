@@ -279,37 +279,65 @@ async function earlyPick(b) {
   } finally { off(); await t.close(); }
 }
 
-// 4. A pick whose file does not arrive: the previous team comes back at full ink with its name and
-// its address, one line under the search field says what happened, and the next pick clears it.
-// With motion and under reduced motion (no fade).
+// 4. A pick whose file does not arrive: the team on the page comes back at full ink with its name
+// and its address, one line under the search field says what happened, and the next pick clears
+// it. Then, on a fresh page, two picks in flight: Brazil's file is held at the network while
+// France's fails, so what comes back is Spain, still on the page, not Brazil, the pick France
+// overtook; and Brazil's file, let through late, changes nothing. With motion and under reduced
+// motion (no fade).
 async function failedPick(b) {
   for (const reduced of [false, true]) {
     const t = await tab(b, DESKTOP, { reduced });
+    // Every request the Fetch patterns catch fails, except the file named by `hold`, which waits.
+    let hold = null;
+    const held = [];
     const off = b.on((m) => {
-      if (m.sessionId === t.sessionId && m.method === 'Fetch.requestPaused')
-        t.s('Fetch.failRequest', { requestId: m.params.requestId, errorReason: 'Failed' }).catch(() => {});
+      if (m.sessionId !== t.sessionId || m.method !== 'Fetch.requestPaused') return;
+      if (hold && m.params.request.url.includes(hold)) held.push(m.params.requestId);
+      else t.s('Fetch.failRequest', { requestId: m.params.requestId, errorReason: 'Failed' }).catch(() => {});
     });
     const mode = reduced ? 'reduced motion' : 'motion';
+    const look = `(() => {
+      const note = document.querySelector('#pick-a-team .pk [role=status]');
+      return { opacity: getComputedStyle(document.querySelector('#pick-a-team .tbody')).opacity,
+               team: document.querySelector('#pick-a-team .th .tn')?.textContent,
+               field: document.getElementById('team-search').value, hash: location.hash,
+               note: note ? note.textContent : null };
+    })()`;
+    // Each value the page shows that is not the one wanted, or '' when all of them are.
+    const wrong = (v, want) => Object.keys(want).filter((k) => v[k] !== want[k])
+      .map((k) => `${k} ${JSON.stringify(v[k])}, wanted ${JSON.stringify(want[k])}`).join('; ');
     try {
       await t.open('/world-cup-2026');
       await t.s('Fetch.enable', { patterns: [{ urlPattern: '*team_BR.json*' }] });
       await t.js(pickTeam('Brazil'));
       await t.js('window.__c.sleep(600).then(() => window.__c.frames(2))');
-      const v = await t.js(`(() => {
-        const note = document.querySelector('#pick-a-team .pk [role=status]');
-        return { opacity: getComputedStyle(document.querySelector('#pick-a-team .tbody')).opacity,
-                 team: document.querySelector('#pick-a-team .th .tn')?.textContent,
-                 field: document.getElementById('team-search').value, hash: location.hash,
-                 note: note ? note.textContent : null };
-      })()`);
-      const want = { opacity: '1', team: 'Spain', field: 'Spain', hash: '', note: "Brazil's runs did not load. Pick again to retry." };
-      const wrong = Object.keys(want).filter((k) => v[k] !== want[k]);
-      if (wrong.length) return `${mode}: ${wrong.map((k) => `${k} ${JSON.stringify(v[k])}, wanted ${JSON.stringify(want[k])}`).join('; ')}`;
+      let why = wrong(await t.js(look), { opacity: '1', team: 'Spain', field: 'Spain', hash: '', note: "Brazil's runs did not load. Pick again to retry." });
+      if (why) return `${mode}: ${why}`;
       await t.s('Fetch.disable');
       await t.js(pickTeam('Brazil'));
       await t.js(`window.__c.waitFor(() => document.querySelector('#pick-a-team .th .tn')?.textContent === 'Brazil').then(() => window.__c.frames(2))`);
       const after = await t.js(`document.querySelector('#pick-a-team .pk [role=status]').textContent`);
       if (after !== '') return `${mode}: after a pick that worked, the line still reads ${JSON.stringify(after)}`;
+      // Two picks in flight, from Spain with no hash.
+      await t.open('/world-cup-2026');
+      hold = 'team_BR.json';
+      await t.s('Fetch.enable', { patterns: [{ urlPattern: '*team_BR.json*' }, { urlPattern: '*team_FR.json*' }] });
+      await t.js(pickTeam('Brazil'));
+      for (let i = 0; !held.length; i++) {
+        if (i > 800) return `${mode}: setup: Brazil's file was never requested`;
+        await new Promise((r) => setTimeout(r, 25));
+      }
+      await t.js(pickTeam('France'));
+      await t.js('window.__c.sleep(600).then(() => window.__c.frames(2))');
+      const back = { opacity: '1', team: 'Spain', field: 'Spain', hash: '', note: "France's runs did not load. Pick again to retry." };
+      why = wrong(await t.js(look), back);
+      if (why) return `${mode}, two picks in flight: ${why}`;
+      for (const requestId of held) await t.s('Fetch.continueRequest', { requestId });
+      await t.s('Fetch.disable');
+      await t.js('window.__c.sleep(800).then(() => window.__c.frames(4))');
+      why = wrong(await t.js(look), back);
+      if (why) return `${mode}, once Brazil's held file arrived: ${why}`;
     } finally { off(); await t.close(); }
   }
 }
