@@ -324,7 +324,8 @@ function land() {
 }
 
 // boot(): once every chapter has rendered. Under reduced motion the sheet is finished: every
-// unit painted complete, no pin, no listener.
+// unit painted complete, no pin and no scroll listener. The layout still follows resizes and the
+// faces settling, but nothing is ever painted from the scroll.
 export function boot() {
   booted = true;
   H = window.innerHeight; W = window.innerWidth;
