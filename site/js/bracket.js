@@ -161,8 +161,13 @@ export function render(section, ctx) {
       });
     });
     paintAll();
+    // On a phone the grid sits at its minimum width, where the columns widen as the percentages
+    // print and so move the boxes after the connectors were drawn. A width change is now the only
+    // resize that redraws them, so they are redrawn once, when the final has printed.
+    if (!redrawn && roundProgress(q, 3) === 1) { redrawn = true; redraw(); }
   };
-  drawConnectors(grid, roadLinks(M, final), paths, paintAll);
+  let redrawn = false;
+  const redraw = drawConnectors(grid, roadLinks(M, final), paths, paintAll);
   // The phone summary is one printed unit: it prints as a block on entry, its box's rule with it
   // and its three percentages counting out of blank, the way every ruled unit on the sheet prints.
   register(sum, (el, p) => {
@@ -182,9 +187,10 @@ export function render(section, ctx) {
 // inner edge mid-point of the box it feeds, with the elbow half-way across the column gap, so
 // the two feeders of a box share one vertical stem. Every path is keyed "feeder-fed" and its own
 // length measured, so the hold can draw it by stroke-dashoffset; the eight on the road to the
-// final carry the class that keeps them at 2px. Redrawn whenever the page's width changes and
-// once the web fonts have settled, since the column widths follow the content, and repainted
-// after each redraw because a fresh path carries no dash.
+// final carry the class that keeps them at 2px. Redrawn whenever the page's width changes, once
+// the web fonts have settled and once the bracket has printed (render() calls the draw returned
+// here), since the column widths follow the content, and repainted after each redraw because a
+// fresh path carries no dash.
 function drawConnectors(grid, road, paths, repaint) {
   const NS = 'http://www.w3.org/2000/svg';
   const svg = document.createElementNS(NS, 'svg');
@@ -218,4 +224,5 @@ function drawConnectors(grid, road, paths, repaint) {
   draw();
   redrawOnWidth(grid, draw);
   document.fonts.ready.then(draw);
+  return draw;
 }
