@@ -6,9 +6,10 @@ Poisson scoreline, updates the ratings as the simulated tournament unfolds, and 
 tournament 100,000 times to estimate each team's chance of winning its group, reaching each
 knockout round, and lifting the trophy.
 
-The first target is a replay of the **2026 FIFA World Cup** from the ratings as they stood on
-10 June 2026, scored against what actually happened. UEFA Euro 2028 and Copa América 2028 will
-run on the same code once their fields and formats are known.
+The first edition, finished in September 2026, replays the **2026 FIFA World Cup** from the
+ratings as they stood on 10 June 2026 and scores it against what actually happened. UEFA Euro 2028
+and Copa América 2028 will run on the same code once their draws and formats are known; until then
+the project is on hiatus.
 
 ## Why
 
