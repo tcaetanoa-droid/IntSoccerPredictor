@@ -1,3 +1,5 @@
+import warnings
+
 import numpy as np
 import pandas as pd
 import pytest
@@ -123,12 +125,15 @@ def test_resolve_meta_path_falls_back_to_this_checkouts_data_folder(tmp_path):
     from intsoccer.tournament.format import TOURNAMENT_DIR
 
     stale = "/Users/someone/OldPlace/IntSoccerPredictor/data/tournaments/wc2026.yaml"
-    assert resolve_meta_path(stale) == TOURNAMENT_DIR / "wc2026.yaml"
+    with pytest.warns(UserWarning, match="OldPlace.*wc2026.yaml"):
+        assert resolve_meta_path(stale) == TOURNAMENT_DIR / "wc2026.yaml"
     stale_snapshot = "/Users/someone/OldPlace/data/snapshots/2026-06-10_wc2026.csv"
-    assert resolve_meta_path(stale_snapshot).name == "2026-06-10_wc2026.csv"
-    assert resolve_meta_path(stale_snapshot).exists()
+    with pytest.warns(UserWarning, match="2026-06-10_wc2026.csv"):
+        assert resolve_meta_path(stale_snapshot).name == "2026-06-10_wc2026.csv"
     here = tmp_path / "meta.yaml"
     here.write_text("x")
-    assert resolve_meta_path(here) == here
+    with warnings.catch_warnings():
+        warnings.simplefilter("error")          # a recorded path that exists is used without a word
+        assert resolve_meta_path(here) == here
     with pytest.raises(FileNotFoundError):
         resolve_meta_path("/nowhere/data/tournaments/no_such_tournament.yaml")
