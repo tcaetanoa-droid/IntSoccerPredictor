@@ -161,7 +161,9 @@ A green-tinted paper and a near-black green ink, with one orange for what is rea
 ## Typography
 
 **Display Font:** League Gothic (with Arial Narrow, sans-serif)
+
 **Body Font:** Old Standard TT (with Georgia, serif)
+
 **Label/Mono Font:** News Cycle (with Arial Narrow, sans-serif) for every table, label, count, nav item and foot note; `ui-monospace, Menlo, monospace` only for the five reproduction commands in the method chapter.
 
 **Character:** A newspaper's three registers. League Gothic is the condensed headline capital: one weight, always uppercase, set tight at line-height 1 or below. Old Standard TT is the text face for anything that reads as a sentence, and the sheet's only serif. News Cycle is the agate: compact, upright, with proportional figures (the face has no tabular set; `tabular-nums` is declared and inert), and it carries the whole numerical story. Emphasis comes from weight and size, never from a second colour.

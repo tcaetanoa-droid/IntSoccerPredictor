@@ -1,8 +1,6 @@
 # Data sources
 
-All data comes from **https://eloratings.net**, which serves tab-separated files with no header
-row. Fetch with plain HTTP GET (`requests`). Files are small (ratings ≈ 20 KB, a team history
-≈ 50 KB). Be polite: cache in `data/raw/`, re-download only on demand.
+All data comes from **https://eloratings.net**, which serves tab-separated files with no header row. Fetch with plain HTTP GET (`requests`). Files are small (ratings ≈ 20 KB, a team history ≈ 50 KB). Be polite: cache in `data/raw/`, re-download only on demand.
 
 ## Endpoints
 
@@ -15,13 +13,9 @@ row. Fetch with plain HTTP GET (`requests`). Files are small (ratings ≈ 20 KB,
 | `https://eloratings.net/en.tournaments.tsv` | Tournament code → name (669 rows) |
 | `https://eloratings.net/en.labels.tsv`, `menu.tsv`, `teams.tsv`, `tournaments.tsv` | UI/lookup files used by the site (not needed yet) |
 
-Team file names: display name from `en.teams.tsv`, spaces → `_`, accents stripped
-(`Curaçao` → `Curacao.tsv`, `Bosnia and Herzegovina` → `Bosnia_and_Herzegovina.tsv`).
-The files are UTF-8 but served without a charset header: read `resp.content`, not `resp.text`.
+Team file names: display name from `en.teams.tsv`, spaces → `_`, accents stripped (`Curaçao` → `Curacao.tsv`, `Bosnia and Herzegovina` → `Bosnia_and_Herzegovina.tsv`). The files are UTF-8 but served without a charset header: read `resp.content`, not `resp.text`.
 
-Code gotchas: `SQ` = Scotland (not Slovakia), `CD` = DR Congo, `CI` = Ivory Coast,
-`KR` = South Korea, `BA` = Bosnia and Herzegovina, `CW` = Curaçao. Some very old rows have
-month/day = 0 (unknown); the parser clamps them to the 1st.
+Code gotchas: `SQ` = Scotland (not Slovakia), `CD` = DR Congo, `CI` = Ivory Coast, `KR` = South Korea, `BA` = Bosnia and Herzegovina, `CW` = Curaçao. Some very old rows have month/day = 0 (unknown); the parser clamps them to the 1st.
 
 ## Ratings table layout (`World.tsv`, `<YYYY>_<Tournament>.tsv`)
 
@@ -45,8 +39,7 @@ No header. Example row:
 | 26–28 | three more W/D/L-like counts summing to matches (home/neutral/away?) | guess |
 | 29, 30 | goals for, goals against | probable |
 
-Only columns 2 and 3 are needed for simulation. The `2026_World_Cup.tsv` variant has 22 columns
-(drops the record columns) and only 47–48 rows.
+Only columns 2 and 3 are needed for simulation. The `2026_World_Cup.tsv` variant has 22 columns (drops the record columns) and only 47–48 rows.
 
 ## Match history layout (`<Team>.tsv`)
 
@@ -72,20 +65,10 @@ No header. Example rows from `Spain.tsv`:
 
 Minus signs are the Unicode `−` (U+2212), not ASCII `-`. Normalise when parsing.
 
-Pre-match rating = rating after − points exchanged (for home; + for away). This is how we
-reconstruct pre-tournament ratings for backtesting and fit the goals model.
+Pre-match rating = rating after − points exchanged (for home; + for away). This is how we reconstruct pre-tournament ratings for backtesting and fit the goals model.
 
 ## Tournament formats (for `data/tournaments/*.yaml`)
 
-- **Euro 2028**: 9 Jun – 9 Jul 2028, hosts England, Scotland, Wales, Republic of Ireland.
-  24 teams, 6 groups of 4; group winners, runners-up and best four third-placed teams → R16.
-  Qualifying draw 6 Dec 2026; finals draw not yet held. Use UEFA tiebreakers and the UEFA
-  third-place pairing table (same structure as Euro 2024).
-- **Copa América 2028**: host, dates, team count and format **not yet announced** (candidates:
-  Ecuador, USA, Uruguay). Template on the 2024 edition: 16 teams (10 CONMEBOL + 6 CONCACAF),
-  4 groups of 4, top two → quarter-finals, no third-place path. Keep fully configurable.
-- **World Cup 2026** (current target): 48 teams, 12 groups of 4, top two + best eight thirds → R32,
-  11 Jun – 19 Jul 2026. Groups are in `data/tournaments/wc2026.yaml` (inferred from match data),
-  all 104 real results in `data/tournaments/wc2026_results.csv`, pre-tournament ratings in
-  `data/snapshots/2026-06-10_wc2026.csv`. Hosts played true home games (venue column empty),
-  so the site applied +100 for USA, Canada and Mexico in their own countries.
+- **Euro 2028**: 9 Jun – 9 Jul 2028, hosts England, Scotland, Wales, Republic of Ireland. 24 teams, 6 groups of 4; group winners, runners-up and best four third-placed teams → R16. Qualifying draw 6 Dec 2026; finals draw not yet held. Use UEFA tiebreakers and the UEFA third-place pairing table (same structure as Euro 2024).
+- **Copa América 2028**: host, dates, team count and format **not yet announced** (candidates: Ecuador, USA, Uruguay). Template on the 2024 edition: 16 teams (10 CONMEBOL + 6 CONCACAF), 4 groups of 4, top two → quarter-finals, no third-place path. Keep fully configurable.
+- **World Cup 2026** (current target): 48 teams, 12 groups of 4, top two + best eight thirds → R32, 11 Jun – 19 Jul 2026. Groups are in `data/tournaments/wc2026.yaml` (inferred from match data), all 104 real results in `data/tournaments/wc2026_results.csv`, pre-tournament ratings in `data/snapshots/2026-06-10_wc2026.csv`. Hosts played true home games (venue column empty), so the site applied +100 for USA, Canada and Mexico in their own countries.

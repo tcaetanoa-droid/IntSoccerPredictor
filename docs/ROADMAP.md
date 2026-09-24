@@ -1,12 +1,8 @@
 # Roadmap: components and status
 
-**Current target: the 2026 World Cup.** Build and validate the whole pipeline on it, using every
-team's rating as of 10 June 2026 (the day before the opening match). Euro 2028 and Copa América
-2028 are deferred until their fields, groups, and knockout formats are known; the code will be
-reused unchanged with a new YAML.
+**Current target: the 2026 World Cup.** Build and validate the whole pipeline on it, using every team's rating as of 10 June 2026 (the day before the opening match). Euro 2028 and Copa América 2028 are deferred until their fields, groups, and knockout formats are known; the code will be reused unchanged with a new YAML.
 
-Work through these in order; each one is small enough to finish in a sitting and is testable on
-its own. Update the status column as things land.
+Work through these in order; each one is small enough to finish in a sitting and is testable on its own. Update the status column as things land.
 
 | # | Component | Module | Status |
 |---|---|---|---|
@@ -31,137 +27,40 @@ its own. Update the status column as things land.
 
 ## Component notes
 
-**2 Elo core.** Pure functions. Test against rows from `Spain.tsv`: reconstruct pre-match ratings,
-apply the update, expect the site's "points exchanged" column within ±2 (rounding).
+**2 Elo core.** Pure functions. Test against rows from `Spain.tsv`: reconstruct pre-match ratings, apply the update, expect the site's "points exchanged" column within ±2 (rounding).
 
-**3 Rating reconstruction.** A team's rating on date D = rating-after of its last match before D.
-For a tournament backtest, snapshot every participant's rating the day before the opening match.
-Save snapshots to `data/snapshots/<YYYY-MM-DD>_<label>.csv` and commit them.
+**3 Rating reconstruction.** A team's rating on date D = rating-after of its last match before D. For a tournament backtest, snapshot every participant's rating the day before the opening match. Save snapshots to `data/snapshots/<YYYY-MM-DD>_<label>.csv` and commit them.
 
-**4 Goals model.** Fitted on all matches (friendlies included, with a separate friendly offset that
-turned out to be ~0) from the 48 WC 2026 histories, 2010 to 10 Jun 2026. Params in
-`data/model_params.yaml`; diagnostics chart in `output/`. Details in `docs/ELO_FORMULA.md`.
+**4 Goals model.** Fitted on all matches (friendlies included, with a separate friendly offset that turned out to be ~0) from the 48 WC 2026 histories, 2010 to 10 Jun 2026. Params in `data/model_params.yaml`; diagnostics chart in `output/`. Details in `docs/ELO_FORMULA.md`.
 
-**5 Match simulator.** Inputs: two ratings, home flag, K, rng. Output: scoreline, winner
-(after ET/pens if knockout), new ratings. Extra time: Poisson with λ·(30/90). Shootout: 50/50
-(or a mild Elo tilt, configurable). Elo update uses the score after extra time, W = 0.5 on pens.
+**5 Match simulator.** Inputs: two ratings, home flag, K, rng. Output: scoreline, winner (after ET/pens if knockout), new ratings. Extra time: Poisson with λ·(30/90). Shootout: 50/50 (or a mild Elo tilt, configurable). Elo update uses the score after extra time, W = 0.5 on pens.
 
-**6 Tournament YAML.** Fields: name, match_type (→ K), hosts (code → venue country), groups
-(letter → codes), advance (top_n, best_thirds), tiebreakers (`head_to_head_first` for the World Cup
-and UEFA, `overall_first` for CONMEBOL), knockout matches keyed by FIFA match number with slots
-`1A`, `2B`, `3:ABCDF`, `W74`, `L101`, rounds (name → match numbers), and a third-place table CSV.
-`load_tournament("wc2026")` validates every cross-reference: each group position used exactly once,
-match refs only point backwards, the table covers all C(groups, best_thirds) sets and only sends
-thirds to slots that accept them. Schema in the `tournament/format.py` docstring.
+**6 Tournament YAML.** Fields: name, match_type (→ K), hosts (code → venue country), groups (letter → codes), advance (top_n, best_thirds), tiebreakers (`head_to_head_first` for the World Cup and UEFA, `overall_first` for CONMEBOL), knockout matches keyed by FIFA match number with slots `1A`, `2B`, `3:ABCDF`, `W74`, `L101`, rounds (name → match numbers), and a third-place table CSV. `load_tournament("wc2026")` validates every cross-reference: each group position used exactly once, match refs only point backwards, the table covers all C(groups, best_thirds) sets and only sends thirds to slots that accept them. Schema in the `tournament/format.py` docstring.
 
-**7 Group standings validation.** The 48-team / best-8-thirds format is the fiddliest part of the
-whole project, so it gets its own acceptance test: feed the 72 real group results from
-`data/tournaments/wc2026_results.csv` through the standings code and assert the 12 winners, 12
-runners-up and 8 best thirds are exactly the 32 teams that appear in the real round of 32.
-FIFA 2026 ranks third-placed teams by points, GD, goals scored, then disciplinary points (we
-cannot model that; fall back to rng lots) and drawing of lots.
+**7 Group standings validation.** The 48-team / best-8-thirds format is the fiddliest part of the whole project, so it gets its own acceptance test: feed the 72 real group results from `data/tournaments/wc2026_results.csv` through the standings code and assert the 12 winners, 12 runners-up and 8 best thirds are exactly the 32 teams that appear in the real round of 32. FIFA 2026 ranks third-placed teams by points, GD, goals scored, then disciplinary points (we cannot model that; fall back to rng lots) and drawing of lots.
 
-**7 Group tiebreakers.** World Cup 2026 and UEFA: points, then head-to-head among the tied teams
-(points, GD, goals; re-applied to any subset still level), then overall GD, goals, fair play (not
-modelled: use Elo then rng lots). CONMEBOL Copa: points, overall GD, goals, head-to-head, lots.
-Encoded as ordered stage lists in `tournament/group.py`; only the head-to-head block restarts on
-a subset still level, later stages continue. `Standings.depth` says how deep a tie went, so the
-Monte Carlo can count how often Elo or lots decided a place. Exact 2026 text in
-`docs/WC2026_FORMAT.md`.
+**7 Group tiebreakers.** World Cup 2026 and UEFA: points, then head-to-head among the tied teams (points, GD, goals; re-applied to any subset still level), then overall GD, goals, fair play (not modelled: use Elo then rng lots). CONMEBOL Copa: points, overall GD, goals, head-to-head, lots. Encoded as ordered stage lists in `tournament/group.py`; only the head-to-head block restarts on a subset still level, later stages continue. `Standings.depth` says how deep a tie went, so the Monte Carlo can count how often Elo or lots decided a place. Exact 2026 text in `docs/WC2026_FORMAT.md`.
 
-**8 Knockout.** `play_knockout(tournament, group_orders, best_thirds, play)` resolves slots round
-by round and calls `play(number, round, home, away) -> winner` for each match, so the tests replay
-the real results and the simulator plugs in `simulate_match`.
+**8 Knockout.** `play_knockout(tournament, group_orders, best_thirds, play)` resolves slots round by round and calls `play(number, round, home, away) -> winner` for each match, so the tests replay the real results and the simulator plugs in `simulate_match`.
 
-**9 Single tournament.** `simulate_tournament(tournament, ratings, model, rng)` plays the 72 group
-matches in FIFA match-day order, ranks each group, ranks the thirds, then plays the bracket; Elo
-is updated after every match and carried forward, while the standings' Elo fallback uses the
-pre-tournament ratings. Home advantage: hosts play their group matches at home; each knockout
-match number has a host country in the YAML (`knockout.venues`, taken from the real 2026
-schedule) and a host playing there gets +100. Extra time and penalties always apply in the
-knockouts; `extra_time_and_penalties: false` (straight to penalties, as in Copa América
-quarter-finals) is stored but not yet modelled. About 4 ms per tournament, so 100k simulations
-take ~7 minutes until component 16 vectorises across simulations.
+**9 Single tournament.** `simulate_tournament(tournament, ratings, model, rng)` plays the 72 group matches in FIFA match-day order, ranks each group, ranks the thirds, then plays the bracket; Elo is updated after every match and carried forward, while the standings' Elo fallback uses the pre-tournament ratings. Home advantage: hosts play their group matches at home; each knockout match number has a host country in the YAML (`knockout.venues`, taken from the real 2026 schedule) and a host playing there gets +100. Extra time and penalties always apply in the knockouts; `extra_time_and_penalties: false` (straight to penalties, as in Copa América quarter-finals) is stored but not yet modelled. About 4 ms per tournament, so 100k simulations take ~7 minutes until component 16 vectorises across simulations.
 
-**10 Monte Carlo store.** `intsoccer simulate --n 100000 --seed 2026` writes `output/wc2026/`:
-`matches.parquet` (one row per match per simulation: stage, group, match number, home, away,
-goals after extra time, how it was decided), `teams.parquet` (one row per team per simulation:
-group position, points, GD, GF, tiebreak depth, third-place rank, last round reached, final place
-1–4, rating after the tournament), `sims.parquet` (champion, runner-up, third, fourth),
-`summary.csv` (per-team probabilities) and `meta.yaml`. Simulation i uses
-`np.random.default_rng([seed, i])`, so `regenerate(run, i)` rebuilds exactly that tournament.
-Team columns are pandas categoricals. ~65 MB for 100k World Cups; `output/` is gitignored.
+**10 Monte Carlo store.** `intsoccer simulate --n 100000 --seed 2026` writes `output/wc2026/`: `matches.parquet` (one row per match per simulation: stage, group, match number, home, away, goals after extra time, how it was decided), `teams.parquet` (one row per team per simulation: group position, points, GD, GF, tiebreak depth, third-place rank, last round reached, final place 1–4, rating after the tournament), `sims.parquet` (champion, runner-up, third, fourth), `summary.csv` (per-team probabilities) and `meta.yaml`. Simulation i uses `np.random.default_rng([seed, i])`, so `regenerate(run, i)` rebuilds exactly that tournament. Team columns are pandas categoricals. ~65 MB for 100k World Cups; `output/` is gitignored.
 
-**11 Reports.** The views are specified in `docs/REPORTS.md` (agreed with Thiago view by view).
-11a, `report/tables.py` (views 1–8), `report/bracket.py` (9–10) and `report/build.py`, turns a
-saved run into one CSV/JSON per view plus `report.json`; editorial choices per tournament (faded
-giants, paradox pairs, real-results file) live in `build.FOCUS`. Tests check the
-structural invariants on a fresh 300-run store and, when `output/wc2026/` holds the seed-2026
-100k run, the exact numbers quoted in the doc. 11b draws one PNG per view from those files.
+**11 Reports.** The views are specified in `docs/REPORTS.md` (agreed with Thiago view by view). 11a, `report/tables.py` (views 1–8), `report/bracket.py` (9–10) and `report/build.py`, turns a saved run into one CSV/JSON per view plus `report.json`; editorial choices per tournament (faded giants, paradox pairs, real-results file) live in `build.FOCUS`. Tests check the structural invariants on a fresh 300-run store and, when `output/wc2026/` holds the seed-2026 100k run, the exact numbers quoted in the doc. 11b draws one PNG per view from those files.
 
-**11f Internal hardening.** The list came from PR #2's final review (22 September 2026) plus one
-item from the backtest's; settled 23 September 2026 per
-`docs/superpowers/specs/2026-09-23-hardening-design.md`.
+**11f Internal hardening.** The list came from PR #2's final review (22 September 2026) plus one item from the backtest's; settled 23 September 2026 per `docs/superpowers/specs/2026-09-23-hardening-design.md`.
 
-**Fixed:** the hero rows keep their ink when the width crosses 1024px mid-fill; under reduced
-motion the sideways cue and the bracket's phone summary follow the width; a pick made while the
-first team loads stays; a failed pick restores the team and prints "Brazil's runs did not load.
-Pick again to retry."; the print floors (`inkAt`, `ruleAt`), `reduced()`, `snap()` and `fmtCount`
-each live in one module; `resolve_meta_path` warns when it substitutes a file.
+**Fixed:** the hero rows keep their ink when the width crosses 1024px mid-fill; under reduced motion the sideways cue and the bracket's phone summary follow the width; a pick made while the first team loads stays; a failed pick restores the team and prints "Brazil's runs did not load. Pick again to retry."; the print floors (`inkAt`, `ruleAt`), `reduced()`, `snap()` and `fmtCount` each live in one module; `resolve_meta_path` warns when it substitutes a file.
 
-**Measured** (6× CPU slowdown, phone 390×844 and desktop 1440×900): items 4 and 8, the engine's
-frame work at the 95th percentile of a scroll of the whole page, against 8 ms. Before, 38.5 ms in
-the record run (phone 36.6, desktop 38.5) and 38.5 to 60.7 ms across six runs in the worse
-profile. Fixed: `tick()` measures every live unit before it paints any, and `groups.js` keeps its
-column count from the last layout; forced layouts fell from 719 to 380 on the phone and from 702
-to 247 on the desktop. After, six runs of the fix read (phone/desktop) 7.4/6.5, 9.5/7.8, 6.9/6.5,
-7.3/6.3, 6.8/6.4 and 7.0/6.1 ms, and the final code read 6.6 to 6.9 ms in three more runs, though
-single runs still read 8.3, 9.5 and 12.0 ms — it sits close to the line on this machine. Item 3,
-the slowest phone address-bar resize (844 to 788 tall and back) against 16.7 ms. Before, 42.9 ms
-in the record run and no run under 34.1 ms across six, the excess in the chart redraws. A width
-guard on the charts alone still read over budget in 4 of 6 runs (8.3 to 35.8 ms); the rest was the
-engine's own relayout. Fixed by also having the engine skip a height-only change while neither pin
-is engaged: on the final code, 0.2 to 9.8 ms in eight runs and 8.2 and 6.1 ms in two more; two
-further runs read 844-to-788 events far over the line, 107.2 ms at the bracket and 31.2 ms at the
-hero in one, 78.5 ms at the hero in the other, with every other event in them under 2 ms. On a
-phone neither pin engages, so the engine takes the skip on every one of these events; what remains
-is the browser's first layout after the viewport moved, paid by whichever handler reads it first,
-and a slow phone can still overrun a frame on it. The faces settling still runs the engine's full relayout, as spec §4.2
-requires; only a resize takes the skip.
+**Measured** (6× CPU slowdown, phone 390×844 and desktop 1440×900): items 4 and 8, the engine's frame work at the 95th percentile of a scroll of the whole page, against 8 ms. Before, 38.5 ms in the record run (phone 36.6, desktop 38.5) and 38.5 to 60.7 ms across six runs in the worse profile. Fixed: `tick()` measures every live unit before it paints any, and `groups.js` keeps its column count from the last layout; forced layouts fell from 719 to 380 on the phone and from 702 to 247 on the desktop. After, six runs of the fix read (phone/desktop) 7.4/6.5, 9.5/7.8, 6.9/6.5, 7.3/6.3, 6.8/6.4 and 7.0/6.1 ms, and the final code read 6.6 to 6.9 ms in three more runs, though single runs still read 8.3, 9.5 and 12.0 ms — it sits close to the line on this machine. Item 3, the slowest phone address-bar resize (844 to 788 tall and back) against 16.7 ms. Before, 42.9 ms in the record run and no run under 34.1 ms across six, the excess in the chart redraws. A width guard on the charts alone still read over budget in 4 of 6 runs (8.3 to 35.8 ms); the rest was the engine's own relayout. Fixed by also having the engine skip a height-only change while neither pin is engaged: on the final code, 0.2 to 9.8 ms in eight runs and 8.2 and 6.1 ms in two more; two further runs read 844-to-788 events far over the line, 107.2 ms at the bracket and 31.2 ms at the hero in one, 78.5 ms at the hero in the other, with every other event in them under 2 ms. On a phone neither pin engages, so the engine takes the skip on every one of these events; what remains is the browser's first layout after the viewport moved, paid by whichever handler reads it first, and a slow phone can still overrun a frame on it. The faces settling still runs the engine's full relayout, as spec §4.2 requires; only a resize takes the skip.
 
-**Closed:** 7 (the thresholds: 4th place above a 37.0% share, 3rd place above 38.1%, against 5.3%
-and 9.3%; no cap in code); 9 (the stale restyle-spec lines corrected); 10 (the restyle spec's §8
-owner amendment, commit b28fb5c, already records the 516px gap and the clearance formula); 11 (the
-arrows and the × are characters in the text face; DESIGN.md records the ruling).
+**Closed:** 7 (the thresholds: 4th place above a 37.0% share, 3rd place above 38.1%, against 5.3% and 9.3%; no cap in code); 9 (the stale restyle-spec lines corrected); 10 (the restyle spec's §8 owner amendment, commit b28fb5c, already records the 516px gap and the clearance formula); 11 (the arrows and the × are characters in the text face; DESIGN.md records the ruling).
 
-**Also found and fixed in the sitting:** the failed pick (it was not on the list); and, on a
-phone, the bracket's count cells widen as its percentages print, so its connectors, drawn before
-that, sat up to 6px off the boxes — until now a height-only resize (the address bar) happened to
-redraw them, and with the width guard it no longer does, so the bracket now redraws its connectors
-once, when it has finished printing. The style dump of both pages, in both profiles, with motion
-on and reduced, matched the one taken before the first change, with three named exceptions: the
-failed-pick line's element; chapter seven's first rows printing up to a quarter of a band early in
-the one frame the fate strip first prints: its rows only after a jump of more than about 90px
-(desktop) or 117px (phone), and its region heads by about 0.05 of opacity for that one frame on
-any scroll; and the phone bracket's connectors, which now meet the boxes.
+**Also found and fixed in the sitting:** the failed pick (it was not on the list); and, on a phone, the bracket's count cells widen as its percentages print, so its connectors, drawn before that, sat up to 6px off the boxes — until now a height-only resize (the address bar) happened to redraw them, and with the width guard it no longer does, so the bracket now redraws its connectors once, when it has finished printing. The style dump of both pages, in both profiles, with motion on and reduced, matched the one taken before the first change, with three named exceptions: the failed-pick line's element; chapter seven's first rows printing up to a quarter of a band early in the one frame the fate strip first prints: its rows only after a jump of more than about 90px (desktop) or 117px (phone), and its region heads by about 0.05 of opacity for that one frame on any scroll; and the phone bracket's connectors, which now meet the boxes.
 
-**Left open:** two reflows found in the sitting, both older than 11f and both out of its scope,
-since fixing either changes what an unprinted chapter looks like: chapter seven's fate strip row
-is 9px tall blank and 28.8px once its counts print, so the columns under it move down about 20px;
-and, on a phone, the bracket's count cells widen as they print. Also for the next sitting: the
-bracket's connector length could be computed from the elbow (|mx − x1| + |y2 − y1| + |x2 − mx|)
-instead of `getTotalLength()`, which removes the one-shot redraw's forced layouts; checks 3 and 4
-could wait for the released file to finish loading instead of a fixed 800 ms; `tools/check.mjs`
-could gain checks for faces that settle after boot and for the hero crossing 1024px from wide to
-narrow; and the dump could record the text an element holds beside its child elements, not only
-leaf text.
+**Left open:** two reflows found in the sitting, both older than 11f and both out of its scope, since fixing either changes what an unprinted chapter looks like: chapter seven's fate strip row is 9px tall blank and 28.8px once its counts print, so the columns under it move down about 20px; and, on a phone, the bracket's count cells widen as they print. Also for the next sitting: the bracket's connector length could be computed from the elbow (|mx − x1| + |y2 − y1| + |x2 − mx|) instead of `getTotalLength()`, which removes the one-shot redraw's forced layouts; checks 3 and 4 could wait for the released file to finish loading instead of a fixed 800 ms; `tools/check.mjs` could gain checks for faces that settle after boot and for the hero crossing 1024px from wide to narrow; and the dump could record the text an element holds beside its child elements, not only leaf text.
 
-**11g Reality check.** Dropped 23 September 2026. Thiago: the backtest belongs in the repository
-for anyone who digs into the code and results; on the website it is not needed, and the Euro and
-Copa editions follow the same rule. Its site file, `site/data/wc2026/backtest.json`, and the
-`intsoccer backtest --site` flag that wrote it were removed with 11f.
+**11g Reality check.** Dropped 23 September 2026. Thiago: the backtest belongs in the repository for anyone who digs into the code and results; on the website it is not needed, and the Euro and Copa editions follow the same rule. Its site file, `site/data/wc2026/backtest.json`, and the `intsoccer backtest --site` flag that wrote it were removed with 11f.
 
-**12 Backtest.** Done as specified in docs/BACKTEST.md: two forecasts per match (day-of, the runs'
-frequencies) against two baselines (shrug, plain Elo), the fate ladders by RPS against a structural
-shrug, the three hits, the reach-the-round calibration. Approach A, scoring the stored run;
-approach B, a re-simulation from the real round of 32 with day-of ratings, is the possible 12b.
+**12 Backtest.** Done as specified in docs/BACKTEST.md: two forecasts per match (day-of, the runs' frequencies) against two baselines (shrug, plain Elo), the fate ladders by RPS against a structural shrug, the three hits, the reach-the-round calibration. Approach A, scoring the stored run; approach B, a re-simulation from the real round of 32 with day-of ratings, is the possible 12b.

@@ -533,8 +533,7 @@ await commands[cmd]();
 
 - [ ] **Step 2: Run the checks against today's code; all four must fail**
 
-Run: `node tools/check.mjs checks`
-Expected: four `FAIL` lines, each for the bug it names: (1) a hero row going down in ink, (2) `sx`, `cue` and `summary` still false at 820 wide, (3) `team` "Spain" after Spain's file arrived, (4) `opacity "0"`, `hash "#team=BR"` and `note null`, among others. A check that passes on today's code does not reproduce its bug: fix the check, not the site. A `setup:` failure means the scene was not reached. For check 1, if the hero does not pin at 1100×900, raise both heights together (for example 1000×1000 and 1100×1000) until the wide side pins and the narrow side flows, and keep those numbers in the file.
+Run: `node tools/check.mjs checks` Expected: four `FAIL` lines, each for the bug it names: (1) a hero row going down in ink, (2) `sx`, `cue` and `summary` still false at 820 wide, (3) `team` "Spain" after Spain's file arrived, (4) `opacity "0"`, `hash "#team=BR"` and `note null`, among others. A check that passes on today's code does not reproduce its bug: fix the check, not the site. A `setup:` failure means the scene was not reached. For check 1, if the hero does not pin at 1100×900, raise both heights together (for example 1000×1000 and 1100×1000) until the wide side pins and the narrow side flows, and keep those numbers in the file.
 
 - [ ] **Step 3: Take the reference dump twice and compare**
 
@@ -547,13 +546,11 @@ Expected: `identical`. If the files differ, the dump is not deterministic: find 
 
 - [ ] **Step 4: Measure (the decision input for Tasks 5 and 6)**
 
-Run: `node tools/check.mjs measure`
-Expected: a table (phone and desktop scroll rows, six phone resize rows) and two verdict lines, `items 4 and 8: ... FIX|close` and `item 3: ... FIX|close`. Copy the whole output into the task report exactly; the controller decides Tasks 5 and 6 from it and the roadmap quotes it.
+Run: `node tools/check.mjs measure` Expected: a table (phone and desktop scroll rows, six phone resize rows) and two verdict lines, `items 4 and 8: ... FIX|close` and `item 3: ... FIX|close`. Copy the whole output into the task report exactly; the controller decides Tasks 5 and 6 from it and the roadmap quotes it.
 
 - [ ] **Step 5: The before screenshots**
 
-Run: `node tools/check.mjs shots .impeccable/review/before`
-Expected: `desktop.png`, `mobile.png` and four `*-full-*.png` files. Open `desktop.png` and `mobile.png` (the Read tool shows images) and confirm each is the first viewport of the World Cup page at its width (the mobile one 390 wide, not a crop of a 500px layout).
+Run: `node tools/check.mjs shots .impeccable/review/before` Expected: `desktop.png`, `mobile.png` and four `*-full-*.png` files. Open `desktop.png` and `mobile.png` (the Read tool shows images) and confirm each is the first viewport of the World Cup page at its width (the mobile one 390 wide, not a crop of a 500px layout).
 
 - [ ] **Step 6: README**
 
@@ -563,11 +560,7 @@ In `README.md`'s quick start, after the line `python3 tools/serve.py            
 node tools/check.mjs checks              # the site's behaviours in a headless Chrome (serve first)
 ```
 
-In the project layout, replace
-`tools/              serve.py, the local server for site/: clean addresses and site/vercel.json's redirects`
-with
-`tools/              serve.py, the local server for site/: clean addresses and site/vercel.json's redirects;`
-`                    check.mjs, the site's checks, dumps, timings and screenshots in a headless Chrome`
+In the project layout, replace `tools/              serve.py, the local server for site/: clean addresses and site/vercel.json's redirects` with `tools/              serve.py, the local server for site/: clean addresses and site/vercel.json's redirects;` `                    check.mjs, the site's checks, dumps, timings and screenshots in a headless Chrome`
 
 - [ ] **Step 7: Commit**
 
@@ -625,8 +618,7 @@ test('ruleAt: a box rule sits at 6% ink and climbs to full', () => {
 
 - [ ] **Step 3: Run them to see them fail**
 
-Run: `node --test tests/js/*.mjs`
-Expected: FAIL, `does not provide an export named 'inkAt'`.
+Run: `node --test tests/js/*.mjs` Expected: FAIL, `does not provide an export named 'inkAt'`.
 
 - [ ] **Step 4: The helpers**
 
@@ -656,8 +648,7 @@ export const snap = (v) => Math.round(v) + 0.5;
 
 - [ ] **Step 5: Run the tests to see them pass**
 
-Run: `node --test tests/js/*.mjs`
-Expected: 14 pass, 0 fail.
+Run: `node --test tests/js/*.mjs` Expected: 14 pass, 0 fail.
 
 - [ ] **Step 6: Every copy becomes the shared helper**
 
@@ -689,8 +680,7 @@ Change each line below and nothing else; every `.toFixed(3)` and the bracket's `
 
 Line numbers are before this task's edits; match on the text. Then:
 
-Run: `grep -n "0\.04 + 0\.96\|0\.06 + 0\.94\|const snap\|const reduced\|fmt(" site/js/*.js`
-Expected: only the two definitions in `print.js` (`inkAt`, `ruleAt`), `export const reduced` in `print.js`, and `export const snap` in `svg.js`.
+Run: `grep -n "0\.04 + 0\.96\|0\.06 + 0\.94\|const snap\|const reduced\|fmt(" site/js/*.js` Expected: only the two definitions in `print.js` (`inkAt`, `ruleAt`), `export const reduced` in `print.js`, and `export const snap` in `svg.js`.
 
 - [ ] **Step 7: Prove an ordinary read is unchanged**
 
@@ -728,8 +718,7 @@ Recommended model: the most capable (the engine).
 
 - [ ] **Step 2: Confirm checks 1 and 2 fail**
 
-Run: `node tools/check.mjs checks`
-Expected: `FAIL` on the first two lines (and on the last two, which Task 4 fixes).
+Run: `node tools/check.mjs checks` Expected: `FAIL` on the first two lines (and on the last two, which Task 4 fixes).
 
 - [ ] **Step 3: Item 1, each hero row keeps its progress in both modes**
 
@@ -771,8 +760,7 @@ with
     return p >= 1;
 ```
 
-Run: `node tools/check.mjs checks`
-Expected: the first line `pass`.
+Run: `node tools/check.mjs checks` Expected: the first line `pass`.
 
 - [ ] **Step 4: Commit item 1**
 
@@ -849,8 +837,7 @@ Recommended model: the most capable (async ordering, focus and assistive technol
 
 - [ ] **Step 2: Confirm checks 3 and 4 fail**
 
-Run: `node tools/check.mjs checks`
-Expected: `FAIL` on the last two lines.
+Run: `node tools/check.mjs checks` Expected: `FAIL` on the last two lines.
 
 - [ ] **Step 3: Item 5, the first draw yields to a pick**
 
@@ -870,8 +857,7 @@ with
   if (first === gen) draw(t, false);
 ```
 
-Run: `node tools/check.mjs checks`
-Expected: the third line `pass`.
+Run: `node tools/check.mjs checks` Expected: the third line `pass`.
 
 - [ ] **Step 4: Commit item 5**
 
@@ -1163,8 +1149,7 @@ In `tests/test_montecarlo.py`, add `import warnings` to the imports, and replace
         resolve_meta_path("/nowhere/data/tournaments/no_such_tournament.yaml")
 ```
 
-Run: `.venv/bin/python -m pytest -q tests/test_montecarlo.py -k resolve_meta_path`
-Expected: FAIL, `DID NOT WARN`.
+Run: `.venv/bin/python -m pytest -q tests/test_montecarlo.py -k resolve_meta_path` Expected: FAIL, `DID NOT WARN`.
 
 - [ ] **Step 2: The warning**
 
@@ -1187,8 +1172,7 @@ def resolve_meta_path(path: str | Path) -> Path:
     raise FileNotFoundError(f"{p} is not on disk, and neither is {local}")
 ```
 
-Run: `.venv/bin/python -m pytest -q`
-Expected: 125 pass. The tests that read the stored 100k run (`test_report.py`, `test_backtest.py`) now list `UserWarning`s in the summary: that run's `meta.yaml` records the project's old folder. That is the warning doing its job; do not silence it.
+Run: `.venv/bin/python -m pytest -q` Expected: 125 pass. The tests that read the stored 100k run (`test_report.py`, `test_backtest.py`) now list `UserWarning`s in the summary: that run's `meta.yaml` records the project's old folder. That is the warning doing its job; do not silence it.
 
 - [ ] **Step 3: Commit item 12**
 

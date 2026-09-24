@@ -1,22 +1,12 @@
 # IntSoccerPredictor
 
-A Monte Carlo simulator for international soccer tournaments. It rates every team with the
-[World Football Elo Ratings](https://eloratings.net), turns the rating gap of each match into a
-Poisson scoreline, updates the ratings as the simulated tournament unfolds, and repeats the whole
-tournament 100,000 times to estimate each team's chance of winning its group, reaching each
-knockout round, and lifting the trophy.
+A Monte Carlo simulator for international soccer tournaments. It rates every team with the [World Football Elo Ratings](https://eloratings.net), turns the rating gap of each match into a Poisson scoreline, updates the ratings as the simulated tournament unfolds, and repeats the whole tournament 100,000 times to estimate each team's chance of winning its group, reaching each knockout round, and lifting the trophy.
 
-The first edition, finished in September 2026, replays the **2026 FIFA World Cup** from the
-ratings as they stood on 10 June 2026 and scores it against what actually happened. UEFA Euro 2028
-and Copa América 2028 will run on the same code once their draws and formats are known; until then
-the project is on hiatus.
+The first edition, finished in September 2026, replays the **2026 FIFA World Cup** from the ratings as they stood on 10 June 2026 and scores it against what actually happened. UEFA Euro 2028 and Copa América 2028 will run on the same code once their draws and formats are known; until then the project is on hiatus.
 
 ## Why
 
-I watched the 2026 World Cup and wondered how well a simple, transparent model could have called
-it. Elo ratings are among the strongest public predictors of international results, and the
-eloratings.net system publishes both the ratings and every match that produced them, so the
-whole pipeline can be checked against real data at each step.
+I watched the 2026 World Cup and wondered how well a simple, transparent model could have called it. Elo ratings are among the strongest public predictors of international results, and the eloratings.net system publishes both the ratings and every match that produced them, so the whole pipeline can be checked against real data at each step.
 
 ## How it works
 
@@ -24,19 +14,13 @@ For every match in a simulated tournament:
 
 1. Take both teams' current Elo ratings (already updated by earlier simulated matches).
 2. Compute the rating gap, adding 100 points to a host playing at home.
-3. Convert the gap into expected goals for each side using a curve fitted to 7,526 real matches
-   from 2010 to June 2026: `goals = exp(0.136 + 0.00176 × gap)`. Equal teams expect 1.15 goals
-   each; every 100 rating points multiplies a team's rate by 1.19.
-4. Draw both scores from Poisson distributions. Win, draw or loss follows from the score, so draws
-   happen at their real frequency. Knockout ties go to extra time and then penalties.
-5. Update both ratings with the eloratings.net formula `R' = R + K·G·(W − We)`, where K is 60 for
-   World Cup matches and G grows with the margin of victory, then move on to the next match.
+3. Convert the gap into expected goals for each side using a curve fitted to 7,526 real matches from 2010 to June 2026: `goals = exp(0.136 + 0.00176 × gap)`. Equal teams expect 1.15 goals each; every 100 rating points multiplies a team's rate by 1.19.
+4. Draw both scores from Poisson distributions. Win, draw or loss follows from the score, so draws happen at their real frequency. Knockout ties go to extra time and then penalties.
+5. Update both ratings with the eloratings.net formula `R' = R + K·G·(W − We)`, where K is 60 for World Cup matches and G grows with the margin of victory, then move on to the next match.
 
 Repeat the tournament many times and count outcomes.
 
-The fitted curve reproduces observed goals and win rates across the entire range of rating gaps.
-It also shows why the scoreline model matters: Elo's own win expectancy (dashed) overstates how
-often a favourite actually gets the result.
+The fitted curve reproduces observed goals and win rates across the entire range of rating gaps. It also shows why the scoreline model matters: Elo's own win expectancy (dashed) overstates how often a favourite actually gets the result.
 
 ![Goals model calibration](docs/img/goals_model_diagnostics.png)
 
@@ -62,22 +46,9 @@ Details and the full component list are in [docs/ROADMAP.md](docs/ROADMAP.md).
 
 ### Website
 
-The simulations are published at [int-soccer-predictor.vercel.app](https://int-soccer-predictor.vercel.app):
-the 2026 World Cup in seven chapters — who wins it, the group stage, the bracket, the hosts, the
-underdogs, the paradoxes and pick a team — and the method on a page of its own, how it works. It
-is plain HTML, CSS and JavaScript under
-`site/`, with no build step and no framework. Every number on it is read from
-`site/data/wc2026/*.json`, written by `intsoccer report --site` and committed alongside the pages,
-so the site never computes a statistic of its own; the views themselves are specified in
-[docs/REPORTS.md](docs/REPORTS.md). Vercel deploys it from `main` through its GitHub integration,
-with the project's root directory set to `site/`; every pull request gets a preview deployment.
-Every page has a clean address: `/world-cup-2026` (the root redirects there), `/euro-2028`,
-`/copa-america-2028`, `/how-it-works` and `/thiago`; `site/vercel.json` holds the rules, and
-`tools/serve.py` serves the folder the same way locally.
+The simulations are published at [int-soccer-predictor.vercel.app](https://int-soccer-predictor.vercel.app): the 2026 World Cup in seven chapters — who wins it, the group stage, the bracket, the hosts, the underdogs, the paradoxes and pick a team — and the method on a page of its own, how it works. It is plain HTML, CSS and JavaScript under `site/`, with no build step and no framework. Every number on it is read from `site/data/wc2026/*.json`, written by `intsoccer report --site` and committed alongside the pages, so the site never computes a statistic of its own; the views themselves are specified in [docs/REPORTS.md](docs/REPORTS.md). Vercel deploys it from `main` through its GitHub integration, with the project's root directory set to `site/`; every pull request gets a preview deployment. Every page has a clean address: `/world-cup-2026` (the root redirects there), `/euro-2028`, `/copa-america-2028`, `/how-it-works` and `/thiago`; `site/vercel.json` holds the rules, and `tools/serve.py` serves the folder the same way locally.
 
-Design: [PRODUCT.md](PRODUCT.md) holds the product truth (audience, purpose, voice, brand
-commitments), `DESIGN.md` the visual system (written at the end of the restyle), and
-`.impeccable/surfaces/` the per-page design briefs.
+Design: [PRODUCT.md](PRODUCT.md) holds the product truth (audience, purpose, voice, brand commitments), `DESIGN.md` the visual system (written at the end of the restyle), and `.impeccable/surfaces/` the per-page design briefs.
 
 ## Quick start
 
@@ -99,8 +70,7 @@ intsoccer report --run output/wc2026        # the report views -> output/wc2026/
 intsoccer backtest --run output/wc2026          # score the run -> output/wc2026/backtest/
 ```
 
-Requires Python 3.11 or newer. Downloads are cached in `data/raw/` and simulation runs are
-written to `output/` (neither is committed).
+Requires Python 3.11 or newer. Downloads are cached in `data/raw/` and simulation runs are written to `output/` (neither is committed).
 
 ## Project layout
 
@@ -158,68 +128,40 @@ data/tournaments/<name>.yaml + snapshot + params
                                calibration against the real results; docs/BACKTEST.md)
 ```
 
-Tests check the code against reality wherever the data allows. `tests/fixtures/` holds small real
-TSV slices; the Elo tests reconstruct pre-match ratings from them and compare the update with the
-site's own points column. The match-simulator tests run 200,000 simulations and compare outcome
-frequencies with the analytic Poisson probabilities. The loader tests read the real `wc2026.yaml`
-and cross-check its groups against the real results and the ratings snapshot.
+Tests check the code against reality wherever the data allows. `tests/fixtures/` holds small real TSV slices; the Elo tests reconstruct pre-match ratings from them and compare the update with the site's own points column. The match-simulator tests run 200,000 simulations and compare outcome frequencies with the analytic Poisson probabilities. The loader tests read the real `wc2026.yaml` and cross-check its groups against the real results and the ratings snapshot.
 
 ## Working notes
 
-The decisions behind the code and the things that bite. Formulas are in
-[docs/ELO_FORMULA.md](docs/ELO_FORMULA.md), endpoints and column layouts in
-[docs/DATA_SOURCES.md](docs/DATA_SOURCES.md), the 2026 standings and bracket rules in
-[docs/WC2026_FORMAT.md](docs/WC2026_FORMAT.md), the plan and status in
-[docs/ROADMAP.md](docs/ROADMAP.md). Code comments point there rather than repeating them.
+The decisions behind the code and the things that bite. Formulas are in [docs/ELO_FORMULA.md](docs/ELO_FORMULA.md), endpoints and column layouts in [docs/DATA_SOURCES.md](docs/DATA_SOURCES.md), the 2026 standings and bracket rules in [docs/WC2026_FORMAT.md](docs/WC2026_FORMAT.md), the plan and status in [docs/ROADMAP.md](docs/ROADMAP.md). Code comments point there rather than repeating them.
 
 ### Design decisions
 
-- **Outcomes come from the scoreline model, never from Elo's win expectancy `We`.** `We` is an
-  expected score, not a probability, and sampling from it produces no draws. This is the one idea
-  that must survive every refactor.
-- **One match, one pipeline.** Pre-match Elo, gap `dr` (+100 home), expected goals, Poisson
-  scores, result from the score, Elo update with the site's formula, new ratings carried into the
-  next match of *that* simulation. Every stage is a pure function so each can be checked against
-  real data.
-- **Reproducibility.** Every simulation takes an explicit `np.random.default_rng(seed)`. No global
-  RNG state anywhere.
-- **Rules live in data, not in loops.** Groups, hosts, tiebreaker ruleset, bracket and the
-  third-place table are YAML/CSV under `data/tournaments/`, interpreted by `tournament/`. The
-  simulator loop never contains a tournament-specific `if`. `euro2028.yaml` and `copa2028.yaml`
-  are `TBD` placeholders the loader rejects by design until the draws happen.
-- **Honest backtest.** The goals model is fitted only on matches before 11 June 2026. Never widen
-  the training window into the World Cup.
-- **Scored, not just simulated.** [docs/BACKTEST.md](docs/BACKTEST.md) is the record: the runs
-  against the real 2026 results, with the baselines and the misses.
-- **Tiebreaker rulesets.** Two named orders: `head_to_head_first` (World Cup 2026 and UEFA:
-  points, head-to-head among the tied teams, then overall GD, GF) and `overall_first` (CONMEBOL).
-  2026 is the first World Cup with head-to-head before overall GD. Fair play and FIFA ranking
-  cannot be modelled: fall back to pre-tournament Elo, then a seeded draw.
+- **Outcomes come from the scoreline model, never from Elo's win expectancy `We`.** `We` is an expected score, not a probability, and sampling from it produces no draws. This is the one idea that must survive every refactor.
+- **One match, one pipeline.** Pre-match Elo, gap `dr` (+100 home), expected goals, Poisson scores, result from the score, Elo update with the site's formula, new ratings carried into the next match of *that* simulation. Every stage is a pure function so each can be checked against real data.
+- **Reproducibility.** Every simulation takes an explicit `np.random.default_rng(seed)`. No global RNG state anywhere.
+- **Rules live in data, not in loops.** Groups, hosts, tiebreaker ruleset, bracket and the third-place table are YAML/CSV under `data/tournaments/`, interpreted by `tournament/`. The simulator loop never contains a tournament-specific `if`. `euro2028.yaml` and `copa2028.yaml` are `TBD` placeholders the loader rejects by design until the draws happen.
+- **Honest backtest.** The goals model is fitted only on matches before 11 June 2026. Never widen the training window into the World Cup.
+- **Scored, not just simulated.** [docs/BACKTEST.md](docs/BACKTEST.md) is the record: the runs against the real 2026 results, with the baselines and the misses.
+- **Tiebreaker rulesets.** Two named orders: `head_to_head_first` (World Cup 2026 and UEFA: points, head-to-head among the tied teams, then overall GD, GF) and `overall_first` (CONMEBOL). 2026 is the first World Cup with head-to-head before overall GD. Fair play and FIFA ranking cannot be modelled: fall back to pre-tournament Elo, then a seeded draw.
 
 ### Implementation details
 
-- Paths in a tournament YAML (`ratings_snapshot`, `third_place_table`) resolve against the
-  project root; every module finds it as `Path(__file__).resolve().parents[3]`.
+- Paths in a tournament YAML (`ratings_snapshot`, `third_place_table`) resolve against the project root; every module finds it as `Path(__file__).resolve().parents[3]`.
 - `simulate_match` broadcasts scalars to length-n arrays; downstream code should assume arrays.
 - Elo update in knockouts uses the score **after extra time**; a shootout is `W = 0.5`, `G = 1`.
-- An empty venue column in a history row means a true home game (+100). A venue code means
-  neutral, even for a host playing elsewhere in the host region (Canada's knockouts were in the USA).
+- An empty venue column in a history row means a true home game (+100). A venue code means neutral, even for a host playing elsewhere in the host region (Canada's knockouts were in the USA).
 - `K` comes from the tournament's `match_type` via `elo.k_factor()` (WC 60, EC/CA 50, F 20).
 
 ### Gotchas
 
 1. **Quote every team code in YAML.** Bare `NO` (Norway) parses as `false`.
-2. **Team codes are eloratings.net's, not ISO.** The trap list is under "Data and credits"; the
-   lookup is `data/raw/en.teams.tsv`. Check before typing one.
-3. **TSV quirks.** No header row, Unicode minus sign, UTF-8 without a charset header: read
-   `resp.content`, never `resp.text`. Team history filenames strip accents.
-4. **Ruff is not the gate, pytest is.** `ruff check` reports import-wrapping style in older files;
-   keep new files clean for `--select F,E` and leave the rest alone.
+2. **Team codes are eloratings.net's, not ISO.** The trap list is under "Data and credits"; the lookup is `data/raw/en.teams.tsv`. Check before typing one.
+3. **TSV quirks.** No header row, Unicode minus sign, UTF-8 without a charset header: read `resp.content`, never `resp.text`. Team history filenames strip accents.
+4. **Ruff is not the gate, pytest is.** `ruff check` reports import-wrapping style in older files; keep new files clean for `--select F,E` and leave the rest alone.
 
 ### Conventions
 
-Work through [docs/ROADMAP.md](docs/ROADMAP.md) one component per sitting and validate against
-reality whenever the data allows:
+Work through [docs/ROADMAP.md](docs/ROADMAP.md) one component per sitting and validate against reality whenever the data allows:
 
 ```
 Elo update      → points exchanged match the site within ±1 on real rows
@@ -227,21 +169,13 @@ Group standings → the 72 real 2026 group results yield the real 32 qualifiers
 Bracket         → the real standings yield all 16 real round-of-32 pairings
 ```
 
-A component is done when `pytest` passes, its ROADMAP row is updated and the docs reflect any
-formula, endpoint or rule change. Commits are `Component N: <what>`. The website is light-themed
-and reads `site/data/<name>/*.json`; the views are specified in [docs/REPORTS.md](docs/REPORTS.md).
+A component is done when `pytest` passes, its ROADMAP row is updated and the docs reflect any formula, endpoint or rule change. Commits are `Component N: <what>`. The website is light-themed and reads `site/data/<name>/*.json`; the views are specified in [docs/REPORTS.md](docs/REPORTS.md).
 
 ## Data and credits
 
-All ratings and match histories come from [eloratings.net](https://eloratings.net) (World Football
-Elo Ratings). Tournament regulations are taken from FIFA's 2026 World Cup regulations as
-documented on Wikipedia. Flag images are served by flagcdn.com. This is a personal,
-non-commercial project and is not affiliated with any of them.
+All ratings and match histories come from [eloratings.net](https://eloratings.net) (World Football Elo Ratings). Tournament regulations are taken from FIFA's 2026 World Cup regulations as documented on Wikipedia. Flag images are served by flagcdn.com. This is a personal, non-commercial project and is not affiliated with any of them.
 
-Teams are identified everywhere by eloratings.net's own two-letter codes, which are not ISO codes.
-Some are easy to get wrong: `SQ` is Scotland (`SC` is Seychelles), `IE` is the Republic of Ireland
-(`IR` is Iran), `EN` is England and `WA` is Wales. The full lookup is `en.teams.tsv`, downloaded
-into `data/raw/` by `intsoccer fetch`.
+Teams are identified everywhere by eloratings.net's own two-letter codes, which are not ISO codes. Some are easy to get wrong: `SQ` is Scotland (`SC` is Seychelles), `IE` is the Republic of Ireland (`IR` is Iran), `EN` is England and `WA` is Wales. The full lookup is `en.teams.tsv`, downloaded into `data/raw/` by `intsoccer fetch`.
 
 ## License
 
