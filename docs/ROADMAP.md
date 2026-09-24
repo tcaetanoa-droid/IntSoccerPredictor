@@ -121,8 +121,13 @@ the slowest phone address-bar resize (844 to 788 tall and back) against 16.7 ms.
 in the record run and no run under 34.1 ms across six, the excess in the chart redraws. A width
 guard on the charts alone still read over budget in 4 of 6 runs (8.3 to 35.8 ms); the rest was the
 engine's own relayout. Fixed by also having the engine skip a height-only change while neither pin
-is engaged: 0.2 to 9.8 ms across eight runs on the final code. The faces settling still runs the
-engine's full relayout, as spec §4.2 requires; only a resize takes the skip.
+is engaged: on the final code, 0.2 to 9.8 ms in eight runs and 8.2 and 6.1 ms in two more; two
+further runs each read one 844-to-788 event far over the line, 107.2 ms at the bracket and 78.5 ms
+at the hero, with every other event in those runs under 2 ms. On a phone neither pin engages, so
+the engine takes the skip on every one of these events; what remains is the browser's first layout
+after the viewport moved, paid by whichever handler reads it first, and a slow phone can still
+overrun a frame on it. The faces settling still runs the engine's full relayout, as spec §4.2
+requires; only a resize takes the skip.
 
 **Closed:** 7 (the thresholds: 4th place above a 37.0% share, 3rd place above 38.1%, against 5.3%
 and 9.3%; no cap in code); 9 (the stale restyle-spec lines corrected); 10 (the restyle spec's §8
@@ -136,13 +141,20 @@ redraw them, and with the width guard it no longer does, so the bracket now redr
 once, when it has finished printing. The style dump of both pages, in both profiles, with motion
 on and reduced, matched the one taken before the first change, with three named exceptions: the
 failed-pick line's element; chapter seven's first rows printing up to a quarter of a band early in
-the one frame the fate strip first prints, visible only after a jump of more than about 90px
-(desktop) or 117px (phone); and the phone bracket's connectors, which now meet the boxes.
+the one frame the fate strip first prints: its rows only after a jump of more than about 90px
+(desktop) or 117px (phone), and its region heads by about 0.05 of opacity for that one frame on
+any scroll; and the phone bracket's connectors, which now meet the boxes.
 
 **Left open:** two reflows found in the sitting, both older than 11f and both out of its scope,
 since fixing either changes what an unprinted chapter looks like: chapter seven's fate strip row
 is 9px tall blank and 28.8px once its counts print, so the columns under it move down about 20px;
-and, on a phone, the bracket's count cells widen as they print.
+and, on a phone, the bracket's count cells widen as they print. Also for the next sitting: the
+bracket's connector length could be computed from the elbow (|mx − x1| + |y2 − y1| + |x2 − mx|)
+instead of `getTotalLength()`, which removes the one-shot redraw's forced layouts; checks 3 and 4
+could wait for the released file to finish loading instead of a fixed 800 ms; `tools/check.mjs`
+could gain checks for faces that settle after boot and for the hero crossing 1024px from wide to
+narrow; and the dump could record the text an element holds beside its child elements, not only
+leaf text.
 
 **11g Reality check.** Dropped 23 September 2026. Thiago: the backtest belongs in the repository
 for anyone who digs into the code and results; on the website it is not needed, and the Euro and
