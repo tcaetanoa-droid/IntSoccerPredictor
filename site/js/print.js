@@ -338,9 +338,11 @@ export function boot() {
   // scroll.
   const still = reduced();
   const relayout = () => { H = window.innerHeight; W = window.innerWidth; layoutPin(); if (!still) schedule(); };
-  // A phone's address bar changes the height alone; with neither pin engaged, nothing the layout
-  // measures has moved, so the new height is taken and the sheet repaints from it. The faces
-  // settling always takes the full relayout: they move the boxes without moving the width.
+  // A phone's address bar changes the height alone; with neither pin engaged the sheet takes the
+  // new height and repaints from it without re-testing the fit, which then waits for the next
+  // width change (accepted: a desktop window made taller by its bottom edge alone keeps the hero
+  // in flow until then). The faces settling always takes the full relayout: they move the boxes
+  // without moving the width.
   window.addEventListener('resize', () => {
     const engaged = (pinned && pinned.active) || holds.some((o) => o.candidates.some((el) => el.classList.contains('held')));
     if (window.innerWidth === W && !engaged) { H = window.innerHeight; if (!still) schedule(); return; }

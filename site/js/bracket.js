@@ -162,9 +162,9 @@ export function render(section, ctx) {
     });
     paintAll();
     // On a phone the grid sits at its minimum width, where the columns widen as the percentages
-    // print and so move the boxes after the connectors were drawn. A width change is now the only
-    // resize that redraws them, so they are redrawn once, when the final has printed.
-    if (!redrawn && roundProgress(q, 3) === 1) { redrawn = true; redraw(); }
+    // print and so move the boxes after the connectors were drawn. Only a width change redraws
+    // them on a resize, so they are redrawn once more, when the final has printed.
+    if (!redrawn && roundProgress(q, HELD.length - 1) === 1) { redrawn = true; redraw(); }
   };
   let redrawn = false;
   const redraw = drawConnectors(grid, roadLinks(M, final), paths, paintAll);

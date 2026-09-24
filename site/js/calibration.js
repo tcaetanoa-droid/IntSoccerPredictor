@@ -103,7 +103,7 @@ export function calibrationChart(bins) {
       for (const dot of pn.dots) dot.style.opacity = rowWindow(pd, +dot.dataset.i, bins.length).toFixed(3);
     }
   };
-  // Redrawn at the holders' measured width on resize and once the faces have settled, as chapter
+  // Redrawn at the holders' measured width on a width change and once the faces have settled, as chapter
   // four's charts are. Fresh nodes carry no print, so the painter runs again after every redraw.
   const draw = () => {
     if (!holders[0].clientWidth) return;           // not in the page yet: render() draws it once it is

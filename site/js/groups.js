@@ -67,5 +67,5 @@ export function render(section, ctx) {
       `Twelve groups of four. The top two go through, and the eight best third-placed teams join them. Each bar is how often a team reached the round of 32 in ${runs} runs. The rows in lighter ink usually go out. ${got(best)} runs; ${got(worst)}.`),
     wall, foot);
   countColumns();
-  window.addEventListener('resize', countColumns);   // before the engine's own, which boots later
+  window.addEventListener('resize', countColumns);   // the engine's tick reads `columns` in the frame after the handlers, so the order does not matter
 }
