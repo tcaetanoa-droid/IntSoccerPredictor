@@ -199,5 +199,9 @@ export async function render(section, ctx) {
     layoutScrollX();     // the fate strip is a fresh region on every pick; it needs its own cue
   }
 
-  draw(await ctx.team(code), false);
+  // A pick made while this file was on its way has drawn its own team; drawing the first one now
+  // would land on top of it, the picked team's flag over the first team's numbers.
+  const first = gen;
+  const t = await ctx.team(code);
+  if (first === gen) draw(t, false);
 }
