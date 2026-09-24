@@ -80,10 +80,11 @@ Colour rules:
   Its floor is 65% ink, not the 55% approved in the companion, because 55% ink on this paper
   measures 3.55:1 and 65% measures 4.8:1 (AA is 4.5:1). Impeccable's contrast rule applies by
   default; the floor is revisited at the hero checkpoint (section 12).
-- Every text colour clears 4.5:1 on the paper and on the strongest tint it sits on. The plan
-  measures the tinted cells; the dark fates (4th place green, 3rd place bronze) never reach the
-  strength where ink would fail because their shares are small, and the strength is capped at
-  the last value that clears 4.5:1 if a data refresh ever changes that.
+- Every text colour clears 4.5:1 on the paper and on the strongest tint it sits on. Measured
+  (11f, 23 September 2026): ink falls under 4.5:1 only on 4th place above 92.4% strength (a 37.0%
+  share) and on 3rd place above 95.3% (38.1%); every other fate clears it at full strength. The
+  2026 sheet's highest shares are 5.3% and 9.3%, and no real tournament gives a team a 37% chance
+  of finishing fourth, so there is no cap in code.
 - Flag colours are gone from every chart and bar. Flags themselves stay as the team's mark
   beside its name in the chapters (PRODUCT.md: teams are shown by name and flag), except where
   the approved companion screens showed none: the hero column (decided at the hero checkpoint)
@@ -120,7 +121,7 @@ impeccable's overused list. These become the house type for Thiago's personal si
 | Sub-head inside a chapter | League Gothic | 1.5rem | caps | |
 | Column label, table head, box label | News Cycle | 0.75rem | 700 caps, tracking .06em to .08em | |
 | Agate table body | News Cycle | 0.8rem | 400; row padding .25rem .3rem | tabular figures |
-| Hero column row | News Cycle | 1rem, line-height 1.8 | 400; the hot row's count 700 | the rest-of-field row 0.85rem muted |
+| Hero column row | News Cycle | 1rem, line-height 1.5, .15rem padding | 400; the hot row's count 700 | the rest-of-field row 0.85rem muted |
 | Foot note | News Cycle | 0.8rem | muted | |
 | Link | inherits | | ink, 1px underline, offset .15em | no green links |
 | Commands (method chapter only) | `ui-monospace, Menlo, monospace` | 0.85rem | | the only monospace on the site: it sets code, not a costume |
@@ -186,14 +187,14 @@ place the spec proposed. Everything else still prints and never un-prints.
   section 8). Sorting chapter one keeps every printed row printed: progress is keyed by team,
   not by row position. Picking a team in chapter seven reprints that chapter once, not on
   scroll.
-- **Feedback:** a hovered row darkens its ink (`filter: brightness(.94)` on the row, 120 ms; a
+- **Feedback:** a hovered row darkens its ink (`filter: brightness(.94)` on the row, at once, with no transition; a
   faded hero row goes to full ink on hover). Sort buttons, the picker and the Chapters popover
   keep visible focus and pointer cursors. No hover lifts, no transforms.
 - **Budget:** scroll-linked properties are written per frame by script, never transitioned. One
   passive scroll listener and one `requestAnimationFrame` per scroll event. Units outside the
   viewport plus one screen either side are not measured or painted (an IntersectionObserver
   marks the live set). Only units whose progress changed are painted. No blur, filter or shadow
-  animation. The only CSS transitions are hover (120 ms) and the popover (none).
+  animation. There are no CSS transitions: hover feedback and the popover change at once.
 - **Reduced motion** (`prefers-reduced-motion: reduce`): the finished sheet. No pin, no
   count-ups, no scroll-linked change; every unit is painted complete at boot; hover feedback
   stays.
@@ -326,7 +327,7 @@ and the team name are read from the data as today; the stat strip and the chapte
   approved companion screen) for the twelve teams with the most titles in the fate table's order,
   then "The other 36 teams, between them" with their summed count in muted ink (the 36 is
   `teams − 12`, the sum a display aggregate as today's "other 40" is). Spain's row is orange with
-  its count in bold. Rows are 1rem on 1.8 with hairlines. Blank on load: every row at 6% ink,
+  its count in bold. Rows are 1rem on 1.5 with .15rem of padding and hairlines. Blank on load: every row at 6% ink,
   every count 0.
 - Grid: headline column 1.15fr, champion column 1fr, gap 3rem at 1440; the column is at most
   560px wide. Below 1024px the column sits under the lede.

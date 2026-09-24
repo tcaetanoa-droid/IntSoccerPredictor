@@ -43,7 +43,7 @@ often a favourite actually gets the result.
 
 | Done | Next |
 |---|---|
-| Data layer for eloratings.net TSV files | The Reality check unit on the sheet (11g) and the internal hardening (11f), then hiatus until the 2028 draws |
+| Data layer for eloratings.net TSV files | Hiatus until the Euro 2028 and Copa América 2028 draws |
 | Elo engine, verified against the site's own point exchanges | |
 | Pre-tournament ratings for all 48 teams, groups, all 104 real results, full bracket and FIFA's 495-row third-place table | |
 | Goals model fitted and calibrated | |
@@ -55,6 +55,7 @@ often a favourite actually gets the result.
 | Report data layer: ten views (group odds, fate table, paradoxes, most-probable bracket, reality check) as CSV/JSON | |
 | The website: the World Cup sheet as a newspaper wall chart, the pitch mark, How it works on its own page, clean addresses; live on Vercel | |
 | The 2026 backtest: the run scored against the real 104 matches and 48 fates, published in [docs/BACKTEST.md](docs/BACKTEST.md) | |
+| Internal hardening: the sheet's edge cases at every width, one home for the print helpers, browser checks in `tools/check.mjs` | |
 
 Details and the full component list are in [docs/ROADMAP.md](docs/ROADMAP.md).
 
