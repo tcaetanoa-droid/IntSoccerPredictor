@@ -1,5 +1,5 @@
 // site/js/calibration.js
-import { svgEl } from './svg.js';
+import { svgEl, snap, redrawOnWidth } from './svg.js';
 import { h, fmtPct, scrollX } from './dom.js';
 import { register, rowWindow } from './print.js';
 
@@ -15,7 +15,6 @@ const AXIS = "rating gap, from the team's point of view (home +100 included)";
 function panel(p, bins, width) {
   const pw = width - L - R, ph = H - T - B;
   const X = (x) => L + (x - XMIN) / (XMAX - XMIN) * pw, Y = (y) => T + ph - y / p.ymax * ph;
-  const snap = (v) => Math.round(v) + 0.5;         // a hairline on the pixel, not across two
   const svg = svgEl('svg', { width, height: H, viewBox: `0 0 ${width} ${H}`, role: 'img',
     'aria-label': `${p.title}: what the model predicts against what was observed, by rating gap` },
     svgEl('text', { class: 'ttl', x: L, y: 13, 'font-size': 12 }, p.title.toUpperCase()));
@@ -104,7 +103,7 @@ export function calibrationChart(bins) {
       for (const dot of pn.dots) dot.style.opacity = rowWindow(pd, +dot.dataset.i, bins.length).toFixed(3);
     }
   };
-  // Redrawn at the holders' measured width on resize and once the faces have settled, as chapter
+  // Redrawn at the holders' measured width on a width change and once the faces have settled, as chapter
   // four's charts are. Fresh nodes carry no print, so the painter runs again after every redraw.
   const draw = () => {
     if (!holders[0].clientWidth) return;           // not in the page yet: render() draws it once it is
@@ -120,7 +119,7 @@ export function calibrationChart(bins) {
     });
     paint(grid, p);
   };
-  window.addEventListener('resize', draw);
+  redrawOnWidth(holders[0], draw);
   document.fonts.ready.then(draw);
   // One unit on the panel grid, with a band of its own height and a floor of a third of a screen,
   // so the chart is finished as its bottom crosses the reading line however tall the panels are.

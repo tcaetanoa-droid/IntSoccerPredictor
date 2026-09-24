@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import datetime as dt
 import time
+import warnings
 from dataclasses import asdict
 from pathlib import Path
 from typing import NamedTuple
@@ -36,12 +37,16 @@ DATA_DIR = Path(__file__).resolve().parents[3] / "data"
 
 def resolve_meta_path(path: str | Path) -> Path:
     """A path recorded in meta.yaml: as recorded if it exists, else the same file under this
-    checkout's data/<folder>/ (runs record absolute paths, and the project folder has moved)."""
+    checkout's data/<folder>/ (runs record absolute paths, and the project folder has moved). The
+    substitution warns, naming both paths: a run made from a variant file whose recorded path is
+    gone would otherwise be read against this checkout's own file unnoticed."""
     p = Path(path)
     if p.exists():
         return p
     local = DATA_DIR / p.parent.name / p.name
     if local.exists():
+        warnings.warn(f"{p} is not on disk; reading {local} from this checkout in its place",
+                      UserWarning, stacklevel=2)
         return local
     raise FileNotFoundError(f"{p} is not on disk, and neither is {local}")
 

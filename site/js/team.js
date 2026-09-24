@@ -1,7 +1,7 @@
 // site/js/team.js
 import { h, flag, name, fmtCount, fmtPct, countOf, count, scrollX, chapterHead, layoutScrollX } from './dom.js';
 import { FATES } from './fate-table.js';
-import { register, reprint, paintRow, paintBlock, paintCounts } from './print.js';
+import { register, reprint, paintRow, paintBlock, paintCounts, inkAt, reduced } from './print.js';
 
 const ROUNDS = [['R32', 'Round of 32'], ['R16', 'Round of 16'], ['QF', 'Quarter-final'], ['SF', 'Semi-final'], ['F', 'Final']];
 // "curacao" has to find "Curaçao", so both sides of the match lose their accents.
@@ -14,7 +14,6 @@ const BAND = 0.10;
 // once. It is driven here rather than by a CSS transition, which would still run under reduced
 // motion and could not be skipped cleanly. Then the new team prints over PRINT_MS, ease-out.
 const FADE_MS = 150, PRINT_MS = 400;
-const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 function fadeOut(el) {
   if (reduced()) return Promise.resolve();
@@ -40,8 +39,8 @@ const pct = (x) => [h('span', { class: 'sr' }, fmtPct(x, 1)), h('span', { class:
 // .sr span.
 function paintListRow(el, p) {
   el.style.setProperty('--rp', p.toFixed(3));
-  for (const lb of el.querySelectorAll('.lb')) lb.style.opacity = (0.04 + 0.96 * p).toFixed(3);
-  for (const v of el.querySelectorAll('.val, .oitem')) v.style.opacity = (0.04 + 0.96 * p).toFixed(3);
+  for (const lb of el.querySelectorAll('.lb')) lb.style.opacity = inkAt(p).toFixed(3);
+  for (const v of el.querySelectorAll('.val, .oitem')) v.style.opacity = inkAt(p).toFixed(3);
   for (const b of el.querySelectorAll('.bar')) b.style.width = `${(p * +b.dataset.w).toFixed(2)}%`;
   for (const c of el.querySelectorAll('[data-pct]')) c.querySelector('.ct').textContent = p === 0 ? '' : fmtPct(p * +c.dataset.pct, 1);
   paintCounts(el, p);
@@ -54,6 +53,10 @@ export async function render(section, ctx) {
   const fromHash = (location.hash.match(/team=([A-Z]{2})/) || [])[1];
   let code = ctx.byCode[fromHash] ? fromHash : ctx.teams[0].code;
   let matches = [], hi = -1, blurT = 0, gen = 0;
+  // The team on the page and its address, kept by draw(): what a failed pick puts back. The last
+  // team asked for will not do, since a pick overtaken on its way never reached the page. It
+  // starts as the first team, for a pick that fails before that one has arrived.
+  let drawn = { code, hash: location.hash };
 
   const input = h('input', { class: 'si', id: 'team-search', type: 'text', autocomplete: 'off', role: 'combobox',
     'aria-controls': 'team-results', 'aria-expanded': 'false', 'aria-autocomplete': 'list',
@@ -67,12 +70,17 @@ export async function render(section, ctx) {
   const results = h('div', { class: 'res', id: 'team-results', role: 'listbox', 'aria-label': 'Teams', hidden: '' });
   const favs = h('span', { class: 'favs' });   // the opening line's five names, redrawn by draw()
   const body = h('div', { class: 'tbody' });
+  // The line a failed pick prints under the search field. It is on the page from the start, empty,
+  // so assistive technology announces its text when a failure sets it; empty, its margins fold into
+  // the picker's own and it takes no room.
+  const note = h('p', { class: 'foot', role: 'status' });
   // The picker is the region's own unit, outside the body the pick reprints: the field and the
   // favourites line stay printed while the team under them is replaced.
   const pk = h('div', { class: 'pk' },
     h('p', { class: 'lead' }, 'Pick a team, or one of the favourites: ', favs),
     h('label', { class: 'sr', for: 'team-search' }, 'Team'),
-    h('div', { class: 'sw' }, h('div', { class: 'srch' }, fsl, input, clear), results));
+    h('div', { class: 'sw' }, h('div', { class: 'srch' }, fsl, input, clear), results),
+    note);
   register(pk, paintBlock, { kind: 'block' });
   section.replaceChildren(
     ...chapterHead('Pick a team', 'One team, one hundred thousand tournaments.',
@@ -126,9 +134,27 @@ export async function render(section, ctx) {
     const onInput = document.activeElement === input;
     closeList(false);
     if (onInput) input.focus();
+    note.textContent = '';                     // a new pick clears the last one's failure
     const g = ++gen;
     // The team's JSON is fetched while the old ink fades, so the fade is the whole wait.
-    const [t] = await Promise.all([ctx.team(code), fadeOut(body)]);
+    const fade = fadeOut(body);
+    let t;
+    try {
+      t = await ctx.team(code);
+    } catch (e) {
+      // The file did not arrive. Once the fade has run, and unless a newer pick has taken over,
+      // the team on the page comes back as it was, name and address included, and one line says
+      // what happened and what to do.
+      await fade;
+      if (g !== gen) return;
+      code = drawn.code;
+      history.replaceState(null, '', drawn.hash || location.pathname + location.search);
+      input.value = ctx.byCode[code].name;
+      body.style.opacity = '';
+      note.textContent = `${ctx.byCode[c].name}'s runs did not load. Pick again to retry.`;
+      return;
+    }
+    await fade;
     if (g !== gen) return;                     // a second pick overtook this one
     draw(t, true);
     body.style.opacity = '';
@@ -198,7 +224,12 @@ export async function render(section, ctx) {
     body.replaceChildren(head, fate,
       h('div', { class: 'cols' }, h('div', { class: 'col' }, far, opps), h('div', { class: 'col' }, ko, one)));
     layoutScrollX();     // the fate strip is a fresh region on every pick; it needs its own cue
+    drawn = { code, hash: location.hash };   // what a failed pick puts back
   }
 
-  draw(await ctx.team(code), false);
+  // A pick made while this file was on its way has drawn its own team; drawing the first one now
+  // would land on top of it, the picked team's flag over the first team's numbers.
+  const first = gen;
+  const t = await ctx.team(code);
+  if (first === gen) draw(t, false);
 }

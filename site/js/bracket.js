@@ -1,6 +1,7 @@
 // site/js/bracket.js
 import { h, flag, name, fmtPct, fmtCount, count, chapterHead, scrollX } from './dom.js';
-import { hold, register, paintBlock, paintCounts, rowWindow, holdPhase, roundProgress, clamp } from './print.js';
+import { hold, register, paintBlock, paintCounts, rowWindow, holdPhase, roundProgress, clamp, inkAt, ruleAt } from './print.js';
+import { snap, redrawOnWidth } from './svg.js';
 
 // Feed order from data/tournaments/wc2026.yaml knockout.matches: 101 = W97 v W98, 102 = W99 v W100.
 const LEFT = { R32: [74, 77, 73, 75, 83, 84, 81, 82], R16: [89, 90, 93, 94], QF: [97, 98], SF: [101] };
@@ -93,8 +94,8 @@ export function render(section, ctx) {
   // both rows 0.04 to full, the percentages counting up from blank, the winner ending in full ink
   // on its 9% tint and the loser at 0.75.
   const paintBox = (el, pr, pw) => {
-    el.style.setProperty('--bp', (0.06 + 0.94 * pr).toFixed(3));
-    const on = 0.04 + 0.96 * pw;
+    el.style.setProperty('--bp', ruleAt(pr).toFixed(3));
+    const on = inkAt(pw);
     el.querySelector('.mn').style.opacity = on.toFixed(3);
     for (const row of el.querySelectorAll('.tie')) {
       row.style.opacity = (row.classList.contains('win') ? on : on * 0.75).toFixed(3);
@@ -127,16 +128,16 @@ export function render(section, ctx) {
       const v = rowsP.get(headBox[k]) ?? 0;
       if (doneHead.get(k) === v) return;
       doneHead.set(k, v);
-      el.style.opacity = (0.04 + 0.96 * v).toFixed(3);
+      el.style.opacity = inkAt(v).toFixed(3);
     });
     const pf = rowsP.get(104) ?? 0, pt = rowsP.get(103) ?? 0;
     if (pf !== doneFin) {
       doneFin = pf;
-      mark.style.opacity = (0.04 + 0.96 * pf).toFixed(3);
+      mark.style.opacity = inkAt(pf).toFixed(3);
       paintCounts(mark, pf);
-      cap.style.opacity = (0.04 + 0.96 * pf).toFixed(3);
+      cap.style.opacity = inkAt(pf).toFixed(3);
     }
-    if (pt !== doneThird) { doneThird = pt; thirdLbl.style.opacity = (0.04 + 0.96 * pt).toFixed(3); }
+    if (pt !== doneThird) { doneThird = pt; thirdLbl.style.opacity = inkAt(pt).toFixed(3); }
   };
   const paint = (t, H, approach) => {
     const { p1, q } = holdPhase(t, H, approach);
@@ -160,13 +161,18 @@ export function render(section, ctx) {
       });
     });
     paintAll();
+    // On a phone the grid sits at its minimum width, where the columns widen as the percentages
+    // print and so move the boxes after the connectors were drawn. Only a width change redraws
+    // them on a resize, so they are redrawn once more, when the final has printed.
+    if (!redrawn && roundProgress(q, HELD.length - 1) === 1) { redrawn = true; redraw(); }
   };
-  drawConnectors(grid, roadLinks(M, final), paths, paintAll);
+  let redrawn = false;
+  const redraw = drawConnectors(grid, roadLinks(M, final), paths, paintAll);
   // The phone summary is one printed unit: it prints as a block on entry, its box's rule with it
   // and its three percentages counting out of blank, the way every ruled unit on the sheet prints.
   register(sum, (el, p) => {
     paintBlock(el, p);
-    sumBox.style.setProperty('--bp', (0.06 + 0.94 * p).toFixed(3));
+    sumBox.style.setProperty('--bp', ruleAt(p).toFixed(3));
     paintCounts(el, p);
   }, { kind: 'block' });
   const bracket = hold(block, [lock, held], paint, { start: held });
@@ -181,9 +187,10 @@ export function render(section, ctx) {
 // inner edge mid-point of the box it feeds, with the elbow half-way across the column gap, so
 // the two feeders of a box share one vertical stem. Every path is keyed "feeder-fed" and its own
 // length measured, so the hold can draw it by stroke-dashoffset; the eight on the road to the
-// final carry the class that keeps them at 2px. Redrawn whenever the window resizes and once the
-// web fonts have settled, since the column widths follow the content, and repainted after each
-// redraw because a fresh path carries no dash.
+// final carry the class that keeps them at 2px. Redrawn whenever the page's width changes, once
+// the web fonts have settled and once the bracket has printed (render() calls the draw returned
+// here), since the column widths follow the content, and repainted after each redraw because a
+// fresh path carries no dash.
 function drawConnectors(grid, road, paths, repaint) {
   const NS = 'http://www.w3.org/2000/svg';
   const svg = document.createElementNS(NS, 'svg');
@@ -197,7 +204,6 @@ function drawConnectors(grid, road, paths, repaint) {
     svg.replaceChildren();
     paths.length = 0;
     const g = grid.getBoundingClientRect();
-    const snap = (v) => Math.round(v) + 0.5;      // a hairline on the pixel, not across two
     const mid = (el, edge) => { const r = el.getBoundingClientRect(); return [(edge === 'r' ? r.right : r.left) - g.left, snap(r.top + r.height / 2 - g.top)]; };
     const link = (a, b, side) => {
       const [x1, y1] = mid(a, side === 'l' ? 'r' : 'l'), [x2, y2] = mid(b, side);
@@ -216,6 +222,7 @@ function drawConnectors(grid, road, paths, repaint) {
     repaint();
   };
   draw();
-  window.addEventListener('resize', draw);
+  redrawOnWidth(grid, draw);
   document.fonts.ready.then(draw);
+  return draw;
 }

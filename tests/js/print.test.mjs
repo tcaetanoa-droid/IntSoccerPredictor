@@ -2,7 +2,8 @@
 // Run: node --test tests/js/*.mjs
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { clamp, fmt, rowWindow, blockProgress, lineProgress, densityTarget, tintStrength, holdPhase, roundProgress } from '../../site/js/print.js';
+import { clamp, inkAt, ruleAt, rowWindow, blockProgress, lineProgress, densityTarget, tintStrength, holdPhase, roundProgress } from '../../site/js/print.js';
+import { fmtCount } from '../../site/js/dom.js';
 
 const near = (a, b) => assert.ok(Math.abs(a - b) < 1e-9, `${a} is not near ${b}`);
 
@@ -12,10 +13,22 @@ test('clamp holds a value inside [0, 1]', () => {
   assert.equal(clamp(7), 1);
 });
 
-test('fmt rounds and groups thousands', () => {
-  assert.equal(fmt(18626), '18,626');
-  assert.equal(fmt(0.4), '0');
-  assert.equal(fmt(12345.6), '12,346');
+test('fmtCount rounds and groups thousands', () => {
+  assert.equal(fmtCount(18626), '18,626');
+  assert.equal(fmtCount(0.4), '0');
+  assert.equal(fmtCount(12345.6), '12,346');
+});
+
+test('inkAt: an unprinted text, row head or cell sits at 4% ink and climbs to full', () => {
+  near(inkAt(0), 0.04);
+  near(inkAt(0.5), 0.52);
+  near(inkAt(1), 1);
+});
+
+test('ruleAt: a box rule sits at 6% ink and climbs to full', () => {
+  near(ruleAt(0), 0.06);
+  near(ruleAt(0.5), 0.53);
+  near(ruleAt(1), 1);
 });
 
 test('rowWindow: rows start in sequence, overlap by half, the last finishes at p = 1', () => {

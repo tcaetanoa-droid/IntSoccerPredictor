@@ -3,9 +3,8 @@
 In plain words: before the World Cup the model made its predictions; the tournament happened;
 this is the report card. `intsoccer backtest` scores the seed-2026 run (100,000 simulations from
 the ratings of 10 June 2026) against the 104 real matches and the 48 real team fates and writes
-the numbers under `output/wc2026/backtest/`; a compact copy is written to
-`site/data/wc2026/backtest.json` for the Reality check unit (component 11g). Built 22 September
-2026; results in `data/tournaments/wc2026_results.csv`.
+the numbers under `output/wc2026/backtest/`. Built 22 September 2026; results in
+`data/tournaments/wc2026_results.csv`.
 
 ## What is scored
 
@@ -203,7 +202,7 @@ done.
 
 ```
 intsoccer simulate --n 100000 --seed 2026
-intsoccer backtest --run output/wc2026 --site
+intsoccer backtest --run output/wc2026
 ```
 
 The headline numbers above — the fate-ladder RPS and the shrug's, the three hits, the five

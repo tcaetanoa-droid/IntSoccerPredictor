@@ -5,10 +5,14 @@
 // ones approved in the design (docs/superpowers/specs/2026-09-20-restyle-design.md, §4 and §6).
 
 import { measure as measureHeader } from './header.js';
-import { layoutScrollX } from './dom.js';
+import { layoutScrollX, fmtCount } from './dom.js';
 
 export const clamp = (x) => Math.max(0, Math.min(1, x));
-export const fmt = (n) => Math.round(n).toLocaleString('en-GB');
+
+// The two print floors (spec §4.1): an unprinted text, row head or cell sits at 4% ink and a box's
+// rule at 6%, each climbing to full ink as its progress p goes from 0 to 1.
+export const inkAt = (p) => 0.04 + 0.96 * p;
+export const ruleAt = (p) => 0.06 + 0.94 * p;
 
 // A pinned row's window: rows start in sequence, each overlapping the next by half; the last
 // row finishes exactly when the pin's progress reaches 1.
@@ -39,7 +43,7 @@ export const holdPhase = (t, H, approach = APPROACH) => ({ p1: clamp(t / (approa
 // own 0.3, complete at q = (k + 1) / 4.5, and the beat holds the finished bracket from 4/4.5 to 1.
 export const roundProgress = (q, k) => clamp(q * 4.5 - k);
 
-const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+export const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 // Painters. A count cell carries data-count and holds a .ct span (the counting display) beside
 // a .sr span (the final value, for assistive technology); a fate cell also carries data-share.
@@ -49,7 +53,7 @@ const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matc
 export function paintCounts(root, p) {
   for (const c of root.querySelectorAll('[data-count]')) {
     const ct = c.querySelector('.ct');
-    if (ct) ct.textContent = p === 0 ? '' : fmt(p * +c.dataset.count);
+    if (ct) ct.textContent = p === 0 ? '' : fmtCount(p * +c.dataset.count);
     if (c.dataset.share !== undefined) c.style.setProperty('--t', (p * tintStrength(+c.dataset.share)).toFixed(3));
   }
 }
@@ -57,11 +61,11 @@ export function paintCounts(root, p) {
 // sit at the block floor, 4% ink, until the row crosses the reading line.
 export function paintRow(el, p) {
   const head = el.querySelector('th');
-  if (head) head.style.opacity = (0.04 + 0.96 * p).toFixed(3);
-  for (const c of el.querySelectorAll('td')) c.style.opacity = (0.04 + 0.96 * p).toFixed(3);
+  if (head) head.style.opacity = inkAt(p).toFixed(3);
+  for (const c of el.querySelectorAll('td')) c.style.opacity = inkAt(p).toFixed(3);
   paintCounts(el, p);
 }
-export function paintBlock(el, p) { el.style.opacity = (0.04 + 0.96 * p).toFixed(3); }
+export function paintBlock(el, p) { el.style.opacity = inkAt(p).toFixed(3); }
 export function paintDensityRow(el, p) {
   const target = densityTarget(+el.dataset.share);
   el.style.opacity = (0.06 + p * (target - 0.06)).toFixed(3);
@@ -107,8 +111,9 @@ export function register(el, painter, { kind = 'row', key = null, manual = false
 // screen, then the page releases. When the held screen does not fit the viewport, or under
 // reduced motion, there is no pin: the rows print across the reading line like any table.
 export function pin(block, held, rows, painter) {
-  pinned = { block, held, rows: rows.map((el, i) => ({ el, i, p: 0 })), painter, p: 0, active: false };
-  rows.forEach((el) => painter(el, reduced() ? 1 : 0));
+  const p0 = reduced() ? 1 : 0;
+  pinned = { block, held, rows: rows.map((el, i) => ({ el, i, p: p0 })), painter, p: 0, active: false };
+  rows.forEach((el) => painter(el, p0));
   if (booted) layoutPin();
 }
 function layoutPin() {
@@ -229,7 +234,16 @@ function tickPin(y) {
     // progress is the same formula it has always been.
     const top = pinned.block.getBoundingClientRect().top + y - HD;
     const p = Math.max(pinned.p, y >= top + 0.5 ? clamp((y - top) / H) : 0);
-    if (p !== pinned.p) { pinned.p = p; pinned.rows.forEach((r) => pinned.painter(r.el, rowWindow(p, r.i, pinned.rows.length))); }
+    if (p !== pinned.p) {
+      pinned.p = p;
+      // A row keeps the most it has printed in either mode, so a width crossing 1024px mid-fill,
+      // which moves the hero between the pin and the flow, never takes ink back; and only a row
+      // whose value moved is painted.
+      for (const r of pinned.rows) {
+        const v = Math.max(r.p, rowWindow(p, r.i, pinned.rows.length));
+        if (v !== r.p) { r.p = v; pinned.painter(r.el, v); }
+      }
+    }
     return p >= 1;
   }
   for (const r of pinned.rows) {
@@ -251,10 +265,12 @@ function tick() {
   if (!tickPin(window.scrollY)) return;     // nothing below the hero prints until its column is complete
   for (const o of holds) tickHold(o, window.scrollY);
   units = units.filter((u) => u.el.isConnected);
-  for (const u of units) {
-    if (u.manual || !u.live) continue;
-    set(u, progressOf(u));
-  }
+  // Every live unit is measured before any is painted: a paint changes the layout (a count's text,
+  // a bar's width), so a measurement after it would make the browser lay the page out again, once
+  // per unit (spec §4, the budget).
+  const live = units.filter((u) => !u.manual && u.live);
+  const progress = live.map(progressOf);
+  live.forEach((u, i) => set(u, progress[i]));
 }
 const schedule = () => { if (!raf) raf = requestAnimationFrame(tick); };
 
@@ -310,20 +326,36 @@ function land() {
 }
 
 // boot(): once every chapter has rendered. Under reduced motion the sheet is finished: every
-// unit painted complete, no pin, no listener.
+// unit painted complete, no pin and no scroll listener. The layout still follows resizes and the
+// faces settling, but nothing is ever painted from the scroll.
 export function boot() {
   booted = true;
   H = window.innerHeight; W = window.innerWidth;
   window.addEventListener('pagehide', savePlace);
-  if (reduced()) { units.forEach((u) => set(u, 1)); layoutPin(); land(); return; }
+  // Both paths lay the sheet out again when the width changes, when the height does under an
+  // engaged pin and once the faces have settled, so the sideways cue and the bracket's phone
+  // summary follow the width under reduced motion too; only the moving path then paints from the
+  // scroll.
+  const still = reduced();
+  const relayout = () => { H = window.innerHeight; W = window.innerWidth; layoutPin(); if (!still) schedule(); };
+  // A phone's address bar changes the height alone; with neither pin engaged the sheet takes the
+  // new height and repaints from it without re-testing the fit, which then waits for the next
+  // width change (accepted: a desktop window made taller by its bottom edge alone keeps the hero
+  // in flow until then). The faces settling always takes the full relayout: they move the boxes
+  // without moving the width.
+  window.addEventListener('resize', () => {
+    const engaged = (pinned && pinned.active) || holds.some((o) => o.candidates.some((el) => el.classList.contains('held')));
+    if (window.innerWidth === W && !engaged) { H = window.innerHeight; if (!still) schedule(); return; }
+    relayout();
+  });
+  document.fonts.ready.then(relayout);   // the held screen's height settles with the faces
+  if (still) { units.forEach((u) => set(u, 1)); layoutPin(); land(); return; }
   io = new IntersectionObserver((entries) => {
     for (const e of entries) { const u = byEl.get(e.target); if (u) u.live = e.isIntersecting; }
     schedule();
   }, { rootMargin: '100% 0px 100% 0px' });
   units.forEach((u) => { if (!u.manual) io.observe(u.el); });
   window.addEventListener('scroll', schedule, { passive: true });
-  window.addEventListener('resize', () => { H = window.innerHeight; W = window.innerWidth; layoutPin(); schedule(); });
-  document.fonts.ready.then(() => { layoutPin(); schedule(); });   // the held screen's height settles with the faces
   layoutPin();
   land();
   // Seed pass: a deep-load position (a hash, scroll restoration) can land above units the

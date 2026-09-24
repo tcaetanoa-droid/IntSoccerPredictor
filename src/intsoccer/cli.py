@@ -123,8 +123,7 @@ def cmd_backtest(args: argparse.Namespace) -> int:
     from .backtest.forecasts import SPARSE_RUNS
 
     run_dir = Path(args.run)
-    out = build_backtest(run_dir, Path(args.results),
-                         site_dir=Path("site") if args.site else None)
+    out = build_backtest(run_dir, Path(args.results))
     s = out["summary"]
     t, m = s["tournament"], s["matches"]
     print(f"{run_dir.name}: {s['meta']['n_sims']} runs against {len(out['matches'])} real matches"
@@ -142,8 +141,6 @@ def cmd_backtest(args: argparse.Namespace) -> int:
               f"vs Elo {a['skill']['logloss_vs_elo']:+.3f}  (log-loss)")
     if s["sparse_pairings"]["count"]:
         print(f"sparse pairings (under {SPARSE_RUNS} runs): {s['sparse_pairings']['count']}")
-    if args.site:
-        print(f"site file -> site/data/{run_dir.name}/backtest.json")
     print("method and record: docs/BACKTEST.md")
     return 0
 
@@ -192,8 +189,6 @@ def build_parser() -> argparse.ArgumentParser:
     bt.add_argument("--run", default="output/wc2026", help="run directory written by simulate")
     bt.add_argument("--results", default="data/tournaments/wc2026_results.csv",
                     help="the real results CSV")
-    bt.add_argument("--site", action="store_true",
-                    help="also write site/data/<run name>/backtest.json")
     bt.set_defaults(func=cmd_backtest)
     return p
 

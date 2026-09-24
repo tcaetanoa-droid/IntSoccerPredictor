@@ -21,7 +21,7 @@ its own. Update the status column as things land.
 | 8 | Knockout stage: bracket resolution incl. the 495-row third-place table. **Validate: real 2026 standings must produce all 16 real R32 pairings** | `tournament/knockout.py` | done (component-7 standings from the real results + real knockout results reproduce all 32 real knockout pairings through the final) |
 | 9 | Full single-tournament simulation | `tournament/simulate.py` | done (~4 ms per tournament; hosts get +100 in group games and in knockout matches whose YAML `venues` entry is their country) |
 | 10 | Monte Carlo runner: N sims, seeds, aggregation (P(win), P(reach round), group finish) | `montecarlo/` | done (every match, team-fate and sim stored as Parquet under `output/<name>/`; any sim regenerable from `[seed, i]`; `intsoccer simulate`; ~225 sims/s) |
-| 11 | Reports: CSV/JSON tables + charts | `report/` | 11a done (data layer: the ten views of `docs/REPORTS.md` as CSV/JSON under `output/<name>/report/`, `intsoccer report`); 11b website done (site/, deployed on Vercel from main; data via intsoccer report --site) ; 11c restyle done (the tournament wall chart: spec docs/superpowers/specs/2026-09-20-restyle-design.md, DESIGN.md at the root); 11d mark done (the pitch favicon with PNG fallbacks for Safari and iOS, and the mark before the wordmark in the masthead; DESIGN.md "The mark"); 11e done (visitor-facing hardening: KaTeX integrity, the calibration table for assistive technology, a reload keeps the place; How it works on its own page; clean addresses through site/vercel.json, /world-cup-2026 with the root redirecting, tools/serve.py locally); 11f todo (internal hardening from PR #2's final review, with the backtest sitting; the list below); 11g todo (the Reality check unit and the lede clause, parked 22 Sep 2026, once 12 has scored the runs) |
+| 11 | Reports: CSV/JSON tables + charts | `report/` | 11a done (data layer: the ten views of `docs/REPORTS.md` as CSV/JSON under `output/<name>/report/`, `intsoccer report`); 11b website done (site/, deployed on Vercel from main; data via intsoccer report --site) ; 11c restyle done (the tournament wall chart: spec docs/superpowers/specs/2026-09-20-restyle-design.md, DESIGN.md at the root); 11d mark done (the pitch favicon with PNG fallbacks for Safari and iOS, and the mark before the wordmark in the masthead; DESIGN.md "The mark"); 11e done (visitor-facing hardening: KaTeX integrity, the calibration table for assistive technology, a reload keeps the place; How it works on its own page; clean addresses through site/vercel.json, /world-cup-2026 with the root redirecting, tools/serve.py locally); 11f done 23 Sep 2026 (internal hardening: the hero across 1024px, reduced motion at every width, the pick's first-load race and its failure line, one home for the print helpers, the run-path warning; the rest measured or closed, see the note; spec docs/superpowers/specs/2026-09-23-hardening-design.md, checks in tools/check.mjs); 11g dropped 23 Sep 2026 (the backtest lives in the repository, not on the site) |
 | 12 | 2026 World Cup: transcribe groups/bracket/results to YAML, snapshot ratings at 2026-06-10, run the sim, score it (Brier / log-loss, RPS, calibration) | `backtest/` + `data/tournaments/wc2026.yaml` | done 22 Sep 2026 (the seed-2026 run scored against the real 104 matches and 48 fates: match Brier and log-loss for the day-of and the runs' forecasts against a shrug and plain Elo, fate-ladder RPS 0.0816 vs the structural shrug's 0.1208, the three hits, five-bin calibration; `intsoccer backtest`, record in docs/BACKTEST.md; spec docs/superpowers/specs/2026-09-22-backtest-design.md; a re-simulation from the real round of 32 deferred as 12b) |
 | 13 | Euro 2028 run | `data/tournaments/euro2028.yaml` | deferred until draw + format known |
 | 14 | Copa América 2028 run | `data/tournaments/copa2028.yaml` | deferred until CONMEBOL announces format |
@@ -99,36 +99,67 @@ giants, paradox pairs, real-results file) live in `build.FOCUS`. Tests check the
 structural invariants on a fresh 300-run store and, when `output/wc2026/` holds the seed-2026
 100k run, the exact numbers quoted in the doc. 11b draws one PNG per view from those files.
 
-**11f Internal hardening.** The final review before PR #2 (22 September 2026) left a list that
-touches no visitor and can wait for the backtest sitting; Thiago chose the five visitor-facing items
-first (PR #4, same day) and parked the rest here:
-- the hero's fit-threshold seed, so row progress never decreases when a tablet rotates across
-  1024px mid-hero;
-- the sideways-scroll cue not updating on resize under reduced motion;
-- width guards on the four chart redraws and the pins' re-layout on a phone's toolbar resize (a
-  zero-width measurement while a unit is hidden);
-- the read-then-write split in `tick()` (layout reads and style writes interleave);
-- the team search's initial-draw generation guard (a stale first draw overwriting a newer one);
-- shared exports: `fmt`/`fmtCount`, `snap()`, the row-ink formulas and `reduced()` are duplicated
-  across modules;
-- spec §3.1's per-fate tint contrast cap, unreachable with today's shares;
-- `groups.js` reading `getComputedStyle` per box per tick;
-- two stale spec lines (§4's 120 ms hover transition against the build's none; §6's 1rem on 1.8
-  against the ruling's 1rem/1.5 with padding);
-- the 516px gap in chapter two that the 0.045 lead rests on lives only in a comment;
-- whether the CSS sort arrows and the × glyph fall under the glyph ban (passed twice already);
-- `resolve_meta_path`'s fallback substitutes this checkout's own `data/tournaments/<name>.yaml`
-  silently when the recorded path is gone, which could mask a run pointed at a variant tournament
-  file rather than the one meant; make the substitution visible, or have `report.tables.context`
-  assert the loaded tournament's rounds match `run.meta["rounds"]`.
+**11f Internal hardening.** The list came from PR #2's final review (22 September 2026) plus one
+item from the backtest's; settled 23 September 2026 per
+`docs/superpowers/specs/2026-09-23-hardening-design.md`.
 
-**11g Reality check.** From impeccable's critique of 22 September 2026 ("the reality check is a
-whisper"): the sheet's only statement of how the runs compared with the real tournament is a clause
-and the 12px caption under the bracket. Proposed: a ruled "Reality check" unit as the sheet's last
-unit before the colophon (the real final and its rank among the runs' finals, the four real
-semi-finalists against the bracket's, Spain's 18,626 against the real winner) plus one clause in the
-hero lede saying the runs were checked. Copy and unit are Thiago's; ruled "later, not now" at the
-PR #2 review. It needs 12's scored result, so it belongs to that sitting.
+**Fixed:** the hero rows keep their ink when the width crosses 1024px mid-fill; under reduced
+motion the sideways cue and the bracket's phone summary follow the width; a pick made while the
+first team loads stays; a failed pick restores the team and prints "Brazil's runs did not load.
+Pick again to retry."; the print floors (`inkAt`, `ruleAt`), `reduced()`, `snap()` and `fmtCount`
+each live in one module; `resolve_meta_path` warns when it substitutes a file.
+
+**Measured** (6× CPU slowdown, phone 390×844 and desktop 1440×900): items 4 and 8, the engine's
+frame work at the 95th percentile of a scroll of the whole page, against 8 ms. Before, 38.5 ms in
+the record run (phone 36.6, desktop 38.5) and 38.5 to 60.7 ms across six runs in the worse
+profile. Fixed: `tick()` measures every live unit before it paints any, and `groups.js` keeps its
+column count from the last layout; forced layouts fell from 719 to 380 on the phone and from 702
+to 247 on the desktop. After, six runs of the fix read (phone/desktop) 7.4/6.5, 9.5/7.8, 6.9/6.5,
+7.3/6.3, 6.8/6.4 and 7.0/6.1 ms, and the final code read 6.6 to 6.9 ms in three more runs, though
+single runs still read 8.3, 9.5 and 12.0 ms — it sits close to the line on this machine. Item 3,
+the slowest phone address-bar resize (844 to 788 tall and back) against 16.7 ms. Before, 42.9 ms
+in the record run and no run under 34.1 ms across six, the excess in the chart redraws. A width
+guard on the charts alone still read over budget in 4 of 6 runs (8.3 to 35.8 ms); the rest was the
+engine's own relayout. Fixed by also having the engine skip a height-only change while neither pin
+is engaged: on the final code, 0.2 to 9.8 ms in eight runs and 8.2 and 6.1 ms in two more; two
+further runs read 844-to-788 events far over the line, 107.2 ms at the bracket and 31.2 ms at the
+hero in one, 78.5 ms at the hero in the other, with every other event in them under 2 ms. On a
+phone neither pin engages, so the engine takes the skip on every one of these events; what remains
+is the browser's first layout after the viewport moved, paid by whichever handler reads it first,
+and a slow phone can still overrun a frame on it. The faces settling still runs the engine's full relayout, as spec §4.2
+requires; only a resize takes the skip.
+
+**Closed:** 7 (the thresholds: 4th place above a 37.0% share, 3rd place above 38.1%, against 5.3%
+and 9.3%; no cap in code); 9 (the stale restyle-spec lines corrected); 10 (the restyle spec's §8
+owner amendment, commit b28fb5c, already records the 516px gap and the clearance formula); 11 (the
+arrows and the × are characters in the text face; DESIGN.md records the ruling).
+
+**Also found and fixed in the sitting:** the failed pick (it was not on the list); and, on a
+phone, the bracket's count cells widen as its percentages print, so its connectors, drawn before
+that, sat up to 6px off the boxes — until now a height-only resize (the address bar) happened to
+redraw them, and with the width guard it no longer does, so the bracket now redraws its connectors
+once, when it has finished printing. The style dump of both pages, in both profiles, with motion
+on and reduced, matched the one taken before the first change, with three named exceptions: the
+failed-pick line's element; chapter seven's first rows printing up to a quarter of a band early in
+the one frame the fate strip first prints: its rows only after a jump of more than about 90px
+(desktop) or 117px (phone), and its region heads by about 0.05 of opacity for that one frame on
+any scroll; and the phone bracket's connectors, which now meet the boxes.
+
+**Left open:** two reflows found in the sitting, both older than 11f and both out of its scope,
+since fixing either changes what an unprinted chapter looks like: chapter seven's fate strip row
+is 9px tall blank and 28.8px once its counts print, so the columns under it move down about 20px;
+and, on a phone, the bracket's count cells widen as they print. Also for the next sitting: the
+bracket's connector length could be computed from the elbow (|mx − x1| + |y2 − y1| + |x2 − mx|)
+instead of `getTotalLength()`, which removes the one-shot redraw's forced layouts; checks 3 and 4
+could wait for the released file to finish loading instead of a fixed 800 ms; `tools/check.mjs`
+could gain checks for faces that settle after boot and for the hero crossing 1024px from wide to
+narrow; and the dump could record the text an element holds beside its child elements, not only
+leaf text.
+
+**11g Reality check.** Dropped 23 September 2026. Thiago: the backtest belongs in the repository
+for anyone who digs into the code and results; on the website it is not needed, and the Euro and
+Copa editions follow the same rule. Its site file, `site/data/wc2026/backtest.json`, and the
+`intsoccer backtest --site` flag that wrote it were removed with 11f.
 
 **12 Backtest.** Done as specified in docs/BACKTEST.md: two forecasts per match (day-of, the runs'
 frequencies) against two baselines (shrug, plain Elo), the fate ladders by RPS against a structural
