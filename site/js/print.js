@@ -265,10 +265,12 @@ function tick() {
   if (!tickPin(window.scrollY)) return;     // nothing below the hero prints until its column is complete
   for (const o of holds) tickHold(o, window.scrollY);
   units = units.filter((u) => u.el.isConnected);
-  for (const u of units) {
-    if (u.manual || !u.live) continue;
-    set(u, progressOf(u));
-  }
+  // Every live unit is measured before any is painted: a paint changes the layout (a count's text,
+  // a bar's width), so a measurement after it would make the browser lay the page out again, once
+  // per unit (spec §4, the budget).
+  const live = units.filter((u) => !u.manual && u.live);
+  const progress = live.map(progressOf);
+  live.forEach((u, i) => set(u, progress[i]));
 }
 const schedule = () => { if (!raf) raf = requestAnimationFrame(tick); };
 

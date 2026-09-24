@@ -31,7 +31,10 @@ export function render(section, ctx) {
   // line: four across, the last column's lead plus its own band has to fit in the 516px between
   // the last wall row and that grid, which at half a band it did not on a window over 1147px tall.
   const LEAD = 0.045;
-  const cols = () => getComputedStyle(wall).gridTemplateColumns.split(' ').length;
+  // The wall's column count follows the width alone (site.css's media queries), so it is read once
+  // the wall is on the page and again on each resize, not per box on every frame.
+  let columns = 4;
+  const countColumns = () => { columns = getComputedStyle(wall).gridTemplateColumns.split(' ').length; };
   Object.keys(byGroup).sort().forEach((g, i) => {
     const rows = byGroup[g].sort((a, b) => b.adv_pct - a.adv_pct);
     const shaded = rows[0].third_shaded;  // a property of the group, carried on every row
@@ -48,7 +51,7 @@ export function render(section, ctx) {
             h('td', {}, h('span', { class: 'bar' }, h('i'))),
             h('td', { 'data-count': pct }, count(pct), '%'));
         }))));
-    register(box, paintBox, { lead: () => (i % cols()) * LEAD });
+    register(box, paintBox, { lead: () => (i % columns) * LEAD });
     wall.append(box);
   });
   const best = all.reduce((a, b) => (b.adv_pct > a.adv_pct ? b : a));
@@ -63,4 +66,6 @@ export function render(section, ctx) {
     ...chapterHead('Group stage', 'Who gets out of the group.',
       `Twelve groups of four. The top two go through, and the eight best third-placed teams join them. Each bar is how often a team reached the round of 32 in ${runs} runs. The rows in lighter ink usually go out. ${got(best)} runs; ${got(worst)}.`),
     wall, foot);
+  countColumns();
+  window.addEventListener('resize', countColumns);   // before the engine's own, which boots later
 }
