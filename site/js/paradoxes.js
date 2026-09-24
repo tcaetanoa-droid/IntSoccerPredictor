@@ -1,6 +1,6 @@
 // site/js/paradoxes.js
 import { h, flag, name, fmtCount, fmtPct, scrollX, chapterHead } from './dom.js';
-import { svgEl, snap } from './svg.js';
+import { svgEl, snap, redrawOnWidth } from './svg.js';
 import { register, paintBlock, rowWindow, inkAt, ruleAt } from './print.js';
 
 // Italy has four titles and did not qualify, so it is not in teams.json; the chart still has to
@@ -232,6 +232,6 @@ export function render(section, ctx) {
   // the reading line prints them together; stacked on a narrow screen they print as they arrive.
   register(holder, (_el, p) => { chartP = p; paintBars(); }, { band: chartBand(rows.length) });
   for (const box of boxes) register(box.el, (_el, p) => paintPair(box, p));
-  window.addEventListener('resize', draw);
+  redrawOnWidth(holder, draw);
   document.fonts.ready.then(draw);
 }

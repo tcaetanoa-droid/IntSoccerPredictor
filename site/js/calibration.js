@@ -1,5 +1,5 @@
 // site/js/calibration.js
-import { svgEl, snap } from './svg.js';
+import { svgEl, snap, redrawOnWidth } from './svg.js';
 import { h, fmtPct, scrollX } from './dom.js';
 import { register, rowWindow } from './print.js';
 
@@ -119,7 +119,7 @@ export function calibrationChart(bins) {
     });
     paint(grid, p);
   };
-  window.addEventListener('resize', draw);
+  redrawOnWidth(holders[0], draw);
   document.fonts.ready.then(draw);
   // One unit on the panel grid, with a band of its own height and a floor of a third of a screen,
   // so the chart is finished as its bottom crosses the reading line however tall the panels are.

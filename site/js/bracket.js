@@ -1,7 +1,7 @@
 // site/js/bracket.js
 import { h, flag, name, fmtPct, fmtCount, count, chapterHead, scrollX } from './dom.js';
 import { hold, register, paintBlock, paintCounts, rowWindow, holdPhase, roundProgress, clamp, inkAt, ruleAt } from './print.js';
-import { snap } from './svg.js';
+import { snap, redrawOnWidth } from './svg.js';
 
 // Feed order from data/tournaments/wc2026.yaml knockout.matches: 101 = W97 v W98, 102 = W99 v W100.
 const LEFT = { R32: [74, 77, 73, 75, 83, 84, 81, 82], R16: [89, 90, 93, 94], QF: [97, 98], SF: [101] };
@@ -182,9 +182,9 @@ export function render(section, ctx) {
 // inner edge mid-point of the box it feeds, with the elbow half-way across the column gap, so
 // the two feeders of a box share one vertical stem. Every path is keyed "feeder-fed" and its own
 // length measured, so the hold can draw it by stroke-dashoffset; the eight on the road to the
-// final carry the class that keeps them at 2px. Redrawn whenever the window resizes and once the
-// web fonts have settled, since the column widths follow the content, and repainted after each
-// redraw because a fresh path carries no dash.
+// final carry the class that keeps them at 2px. Redrawn whenever the page's width changes and
+// once the web fonts have settled, since the column widths follow the content, and repainted
+// after each redraw because a fresh path carries no dash.
 function drawConnectors(grid, road, paths, repaint) {
   const NS = 'http://www.w3.org/2000/svg';
   const svg = document.createElementNS(NS, 'svg');
@@ -216,6 +216,6 @@ function drawConnectors(grid, road, paths, repaint) {
     repaint();
   };
   draw();
-  window.addEventListener('resize', draw);
+  redrawOnWidth(grid, draw);
   document.fonts.ready.then(draw);
 }

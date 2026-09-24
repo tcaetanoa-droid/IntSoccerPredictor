@@ -332,12 +332,20 @@ export function boot() {
   booted = true;
   H = window.innerHeight; W = window.innerWidth;
   window.addEventListener('pagehide', savePlace);
-  // Both paths lay the sheet out again when the window changes and once the faces have settled,
-  // so the sideways cue and the bracket's phone summary follow the width under reduced motion
-  // too; only the moving path then paints from the scroll.
+  // Both paths lay the sheet out again when the width changes, when the height does under an
+  // engaged pin and once the faces have settled, so the sideways cue and the bracket's phone
+  // summary follow the width under reduced motion too; only the moving path then paints from the
+  // scroll.
   const still = reduced();
   const relayout = () => { H = window.innerHeight; W = window.innerWidth; layoutPin(); if (!still) schedule(); };
-  window.addEventListener('resize', relayout);
+  // A phone's address bar changes the height alone; with neither pin engaged, nothing the layout
+  // measures has moved, so the new height is taken and the sheet repaints from it. The faces
+  // settling always takes the full relayout: they move the boxes without moving the width.
+  window.addEventListener('resize', () => {
+    const engaged = (pinned && pinned.active) || holds.some((o) => o.candidates.some((el) => el.classList.contains('held')));
+    if (window.innerWidth === W && !engaged) { H = window.innerHeight; if (!still) schedule(); return; }
+    relayout();
+  });
   document.fonts.ready.then(relayout);   // the held screen's height settles with the faces
   if (still) { units.forEach((u) => set(u, 1)); layoutPin(); land(); return; }
   io = new IntersectionObserver((entries) => {

@@ -1,7 +1,7 @@
 // site/js/hosts.js
 import { h, flag, name, fmtCount, chapterHead } from './dom.js';
 import { FATES } from './fate-table.js';
-import { svgEl, snap } from './svg.js';
+import { svgEl, snap, redrawOnWidth } from './svg.js';
 import { register, paintBlock, paintCounts, clamp, inkAt } from './print.js';
 
 // data/tournaments/wc2026.yaml `hosts`, strongest first as the lede tells it. No flag colours
@@ -143,6 +143,6 @@ export function render(section, ctx) {
     register(r.head, (el, p) => { paintBlock(el, p); r.headP = p; paintChrome(r); }, { kind: 'block', lead: HEAD_LEAD });
     register(r.el, (el, p) => { r.p = p; paintBars(r); }, { band: BAND });
   }
-  window.addEventListener('resize', draw);
+  redrawOnWidth(regions[0].holder, draw);
   document.fonts.ready.then(draw);
 }
