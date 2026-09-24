@@ -88,6 +88,7 @@ pip install -e ".[dev]"
 pytest                                   # run the test suite
 node --test tests/js/*.mjs               # the print engine's formulas (site/js/print.js)
 python3 tools/serve.py                   # the site at http://localhost:8001, addresses as on Vercel
+node tools/check.mjs checks              # the site's behaviours in a headless Chrome (serve first)
 intsoccer fetch --teams ES AR EN         # download current ratings and team histories
 intsoccer snapshot --date 2026-06-11 --label wc2026   # ratings as of the eve of the World Cup
 intsoccer fit                            # refit the goals model and draw the calibration chart
@@ -130,7 +131,8 @@ data/snapshots/     committed rating snapshots, e.g. 2026-06-10_wc2026.csv
 data/model_params.yaml   fitted goals-model parameters
 docs/               formula reference, data-source reference, 2026 format rules, roadmap
 tests/              pytest suite with small real-data fixtures
-tools/              serve.py, the local server for site/: clean addresses and site/vercel.json's redirects
+tools/              serve.py, the local server for site/: clean addresses and site/vercel.json's redirects;
+                    check.mjs, the site's checks, dumps, timings and screenshots in a headless Chrome
 ```
 
 Data flow:
